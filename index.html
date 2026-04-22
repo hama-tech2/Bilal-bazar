@@ -1019,12 +1019,11 @@ const App = () => {
         </div>
     );
 };
-
-const Root = () => <LangProvider><App/></LangProvider>;
-ReactDOM.createRoot(document.getElementById('root')).render(<Root/>);
-</script>
-<video autoplay muted loop id="bg-video">
-  <source src="bg.mp4" type="video/mp4">
+<body>
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="./bg.mp4" type="video/mp4">
 </video>
+
+<!-- بقیەی وێبسایتەکەت -->
 </body>
 </html>
