@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
-<link rel="stylesheet" href="style.css">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Bilal Bazar – بیناڵ بازاڕ</title>
@@ -82,7 +81,13 @@
     </style>
 </head>
 <body>
-<div id="root"></div>
+<body>
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="./bg.mp4" type="video/mp4">
+  </video>
+
+  <div id="root"></div>
+    <div id="root"></div>
 <script type="text/babel">
 const { useState, useEffect, useRef, useCallback, useContext } = React;
 
@@ -1019,11 +1024,9 @@ const App = () => {
         </div>
     );
 };
-<body>
-<video id="bg-video" autoplay muted loop playsinline>
-  <source src="./bg.mp4" type="video/mp4">
-</video>
 
-<!-- بقیەی وێبسایتەکەت -->
+const Root = () => <LangProvider><App/></LangProvider>;
+ReactDOM.createRoot(document.getElementById('root')).render(<Root/>);
+</script>
 </body>
 </html>
