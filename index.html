@@ -1,1026 +1,921 @@
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bilal Bazar – بیناڵ بازاڕ</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;900&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Righteous&family=Fredoka+One&family=Pacifico&family=Montserrat:wght@400;700;900&family=Oswald:wght@700&family=Lobster&family=Russo+One&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bilal: { 400:'#34d399',500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b' }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        :root {
-            --bg: #0a0f1a;
-            --surface: #111827;
-            --surface2: #1a2235;
-            --border: #1e2d40;
-            --text: #f0f6ff;
-            --muted: #64748b;
-            --accent: #059669;
-            --accent2: #34d399;
-            --gold: #f59e0b;
-            --red: #dc2626;
-        }
-        body { font-family: 'DM Sans','Noto Sans Arabic',sans-serif; background: var(--bg); color: var(--text); }
-        .rtl { direction: rtl; }
-        .ltr { direction: ltr; }
-        ::-webkit-scrollbar { width:6px; height:6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius:3px; }
-        .hide-scrollbar::-webkit-scrollbar { display:none; }
-        .hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
-        .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
-        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(5,150,105,0.15); }
-        .price-old { text-decoration: line-through; color: var(--muted); }
-        .price-new { color: #22c55e; font-weight: 800; }
-        .discount-burst {
-            background: conic-gradient(from 0deg, #dc2626 0%, #ef4444 10%, #dc2626 20%, #ef4444 30%, #dc2626 40%, #ef4444 50%, #dc2626 60%, #ef4444 70%, #dc2626 80%, #ef4444 90%, #dc2626 100%);
-        }
-        /* Facebook-style grid */
-        .fb-grid-1 .fb-img { height: 380px; }
-        .fb-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:2px; height:280px; }
-        .fb-grid-3 { display:grid; grid-template-columns:2fr 1fr; grid-template-rows:1fr 1fr; gap:2px; height:300px; }
-        .fb-grid-3 .fb-img:first-child { grid-row:1/3; }
-        .fb-grid-4 { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:2px; height:300px; }
-        .fb-grid-5plus { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:2px; height:280px; }
-        .fb-grid-5plus .fb-img:nth-child(1),
-        .fb-grid-5plus .fb-img:nth-child(2) { grid-column: span 1; }
-        .fb-img { overflow:hidden; position:relative; }
-        .fb-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
-        .fb-img:hover img { transform:scale(1.04); }
-        .fb-more-overlay {
-            position:absolute; inset:0; background:rgba(0,0,0,0.55);
-            display:flex; align-items:center; justify-content:center;
-            font-size:28px; font-weight:900; color:#fff;
-        }
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(5,150,105,0.7); }
-            70% { box-shadow: 0 0 0 14px rgba(5,150,105,0); }
-            100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); }
-        }
-        .pulse-btn { animation: pulse-ring 2s infinite; }
-        @media(max-width:640px) {
-            .mobile-nav { position:fixed; bottom:0; left:0; right:0; z-index:50; background:rgba(10,15,26,0.97); backdrop-filter:blur(12px); border-top:1px solid var(--border); }
-        }
-        .gradient-text { background: linear-gradient(135deg, #34d399, #10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-        .editor-bg { background-image: linear-gradient(45deg,#1a2235 25%,transparent 25%), linear-gradient(-45deg,#1a2235 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#1a2235 75%), linear-gradient(-45deg,transparent 75%,#1a2235 75%); background-size:20px 20px; background-position:0 0,0 10px,10px -10px,-10px 0; }
-        .tag-badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:0.5px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bilal Bazar – بیناڵ بازاڕ</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;900&family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08111e;--s1:#0d1926;--s2:#112236;--border:#1a3050;
+  --green:#059669;--green2:#34d399;--gold:#f59e0b;--red:#dc2626;
+  --text:#e8f4f8;--muted:#5b7a9a;--card:#0d1f33;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans','Noto Sans Arabic',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+.rtl{direction:rtl;} .ltr{direction:ltr;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px;}
+.hide-sb::-webkit-scrollbar{display:none;} .hide-sb{-ms-overflow-style:none;scrollbar-width:none;}
+
+/* ── Typography ── */
+.heading{font-family:'Syne',sans-serif;font-weight:900;}
+
+/* ── Card hover ── */
+.lift{transition:transform .2s,box-shadow .2s;}
+.lift:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(5,150,105,.18);}
+
+/* ── FB grid ── */
+.fb1 img{height:340px;width:100%;object-fit:cover;}
+.fb2{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:260px;}
+.fb3{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:280px;}
+.fb3 .fi:first-child{grid-row:1/3;}
+.fb4{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:280px;}
+.fb5{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:260px;}
+.fi{overflow:hidden;position:relative;cursor:pointer;}
+.fi img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+.fi:hover img{transform:scale(1.04);}
+.fi-more{position:absolute;inset:0;background:rgba(0,0,0,.56);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#fff;}
+
+/* ── Discount burst ── */
+.burst{
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  background:var(--red);display:flex;align-items:center;justify-content:center;
+  position:absolute;top:12px;left:12px;width:62px;height:62px;z-index:5;
+}
+.burst-text{font-family:'Syne',sans-serif;font-weight:900;color:#fff;font-size:13px;line-height:1.1;text-align:center;}
+
+/* ── Pulse anim ── */
+@keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.5;}}
+.pulse{animation:pulse 2s infinite;}
+
+/* ── Countdown ── */
+.countdown{display:flex;gap:6px;justify-content:center;align-items:center;padding:8px 12px;border-radius:10px;background:rgba(0,0,0,.35);border:1px solid var(--border);}
+.cd-block{text-align:center;min-width:34px;}
+.cd-num{font-family:'Syne',sans-serif;font-weight:900;font-size:20px;line-height:1;color:#fff;}
+.cd-label{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+/* ── Sponsor slot ── */
+.sponsor-slot{background:var(--s2);border:1px dashed var(--border);border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:80px;}
+.sponsor-img{width:100%;height:100%;object-fit:contain;padding:6px;}
+
+/* ── Menu overlay ── */
+.menu-overlay{position:fixed;inset:0;background:rgba(8,17,30,.97);z-index:100;display:flex;flex-direction:column;padding:0;}
+.menu-item{display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--border);color:var(--text);font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;transition:background .15s;}
+.menu-item:hover{background:var(--s2);}
+.menu-item .mi-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+
+/* ── Modal base ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:80;display:flex;align-items:flex-end;justify-content:center;}
+@media(min-width:640px){.modal-bg{align-items:center;}}
+.modal-box{background:var(--s1);border:1px solid var(--border);border-radius:20px 20px 0 0;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;}
+@media(min-width:640px){.modal-box{border-radius:20px;}}
+.modal-header{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+
+/* ── Tag pill ── */
+.tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.4px;}
+
+/* ── Input ── */
+.inp{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;}
+.inp:focus{border-color:var(--green);}
+
+/* ── Button ── */
+.btn-green{background:var(--green);color:#fff;border:none;border-radius:12px;padding:12px 20px;font-weight:700;font-size:14px;cursor:pointer;transition:opacity .15s;}
+.btn-green:hover{opacity:.88;}
+.btn-green:disabled{opacity:.4;cursor:not-allowed;}
+.btn-ghost{background:var(--s2);color:var(--muted);border:1px solid var(--border);border-radius:12px;padding:10px 16px;font-weight:600;font-size:13px;cursor:pointer;transition:all .15s;}
+.btn-ghost:hover{color:var(--text);border-color:var(--green);}
+
+/* ── Mobile nav ── */
+.mob-nav{position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(8,17,30,.97);border-top:1px solid var(--border);backdrop-filter:blur(12px);display:flex;justify-content:space-around;align-items:center;height:60px;}
+
+/* ── Lightbox ── */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:flex;align-items:center;justify-content:center;}
+
+/* ── Supabase-ready data attrs (future) ── */
+/* [data-collection="posts"] [data-collection="sponsors"] */
+</style>
 </head>
 <body>
 <div id="root"></div>
 <script type="text/babel">
-const { useState, useEffect, useRef, useCallback, useContext } = React;
+const { useState, useEffect, useRef, useCallback, useContext, useMemo } = React;
 
-// ═══════════════════════════════════════════════
-// TRANSLATIONS
-// ═══════════════════════════════════════════════
-const T = {
-    ckb: {
-        home:"سەرەکی", discounts:"داشکاندنەکان", locations:"شوێنەکان", about:"دەربارە",
-        createPost:"دروستکردنی پۆست", editPost:"دەستکاری پۆست", publish:"بڵاوکردنەوە",
-        cancel:"هەڵوەشاندنەوە", save:"هەڵگرتن", gallery:"گالێری", addText:"زیادکردنی دەق",
-        stickers:"ستیکەرەکان", filters:"فلتەرەکان", search:"گەڕان...", share:"هاوبەشی",
-        directions:"کردنەوەی نەخشە", call:"پەیوەندی", signIn:"چوونەژوورەوە",
-        password:"وشەی نهێنی", logout:"دەرچوون", admin:"بەڕێوەبەر",
-        title:"ناونیشان", description:"وەسف", category:"جۆر",
-        discountPct:"داشکاندن %", days:"ڕۆژ", oldPrice:"نرخی کۆن", newPrice:"نرخی نوێ",
-        currency:"دینار",
-        everything_text:"هەموو ئەوەی پێویستتە، هەموو هەفتەیەک — بە باشترین داشکاندنەکان لە هەولێر",
-        see_discounts:"داشکاندنەکان ببینە", find_stores:"دووکانەکان بدۆزەوە",
-        locations_label:"شوێنەکان", products_label:"کاڵاکان", weekly_label:"هەفتانە", new_deals:"داشکاندنی نوێ",
-        about_text:"بیناڵ بازاڕ گەورەترین و متمانەپێکراوترین زنجیرەی سوپەرمارکێتە لە باشووری کوردستان. ئێمە خزمەتی خەڵکی هەولێر دەکەین و ١٠٠٠٠+ کاڵا پێشکەش دەکەین بە نرخی گونجاو.",
-        expired:"کۆتایی هات", days_label:"ڕۆژ", hrs_label:"کاتژمێر", min_label:"خولەک",
-        not_customer:"ئەمە بۆ کڕیار نییە", i_am_staff:"من ستافم", leave_site:"دەرچوون",
-        settings:"ڕێکخستنەکان", warning:"ئاگاداری",
-        discountOn:"داشکاندن لە", noDiscounts:"هیچ داشکاندنێک نییە",
-        categories:{all:"هەموو",fresh:"سەروەتی تازە",electronics:"ئەلیکترۆنیات",clothing:"جلوبەرگ",home:"کاڵای ناوخۆیی",food:"خواردن",beauty:"جوانی",toys:"یاری منداڵان",sports:"وەرزش",bakery:"شۆربێری",dairy:"شیر",meat:"گۆشت",frozen:"بەستراو",drinks:"خواردنەوە",cleaning:"پاکیکردنەوە",pharmacy:"دەرمانخانە",school:"قوتابخانە"}
-    },
-    ar: {
-        home:"الرئيسية", discounts:"الخصومات", locations:"المواقع", about:"من نحن",
-        createPost:"إنشاء منشور", editPost:"تعديل المنشور", publish:"نشر",
-        cancel:"إلغاء", save:"حفظ", gallery:"المعرض", addText:"إضافة نص",
-        stickers:"الملصقات", filters:"الفلاتر", search:"بحث...", share:"مشاركة",
-        directions:"فتح الخريطة", call:"اتصال", signIn:"دخول",
-        password:"كلمة المرور", logout:"تسجيل الخروج", admin:"المشرف",
-        title:"العنوان", description:"الوصف", category:"الفئة",
-        discountPct:"نسبة الخصم", days:"أيام", oldPrice:"السعر القديم", newPrice:"السعر الجديد",
-        currency:"دينار",
-        everything_text:"كل ما تحتاجه، كل أسبوع — بأفضل الخصومات في أربيل",
-        see_discounts:"عرض الخصومات", find_stores:"ابحث عن فروعنا",
-        locations_label:"المواقع", products_label:"المنتجات", weekly_label:"أسبوعي", new_deals:"عروض جديدة",
-        about_text:"بيلال بازار هي أكبر وأكثر سلاسل السوبرماركت موثوقية في كردستان الجنوبية، تخدم أهالي أربيل بأكثر من 10,000 منتج بأسعار معقولة.",
-        expired:"انتهت المدة", days_label:"أيام", hrs_label:"ساعة", min_label:"دقيقة",
-        not_customer:"هذا ليس للعملاء", i_am_staff:"أنا موظف", leave_site:"خروج",
-        settings:"الإعدادات", warning:"تحذير",
-        discountOn:"خصم على", noDiscounts:"لا توجد خصومات",
-        categories:{all:"الكل",fresh:"منتجات طازجة",electronics:"إلكترونيات",clothing:"ملابس",home:"أدوات منزلية",food:"مواد غذائية",beauty:"الجمال",toys:"ألعاب",sports:"رياضة",bakery:"مخبوزات",dairy:"ألبان",meat:"لحوم",frozen:"مجمد",drinks:"مشروبات",cleaning:"منظفات",pharmacy:"صيدلية",school:"مستلزمات مدرسية"}
-    },
-    en: {
-        home:"Home", discounts:"Discounts", locations:"Locations", about:"About",
-        createPost:"Create Post", editPost:"Edit Post", publish:"Publish",
-        cancel:"Cancel", save:"Save", gallery:"Gallery", addText:"Add Text",
-        stickers:"Stickers", filters:"Filters", search:"Search...", share:"Share",
-        directions:"Open Map", call:"Call", signIn:"Sign In",
-        password:"Password", logout:"Logout", admin:"Admin",
-        title:"Title", description:"Description", category:"Category",
-        discountPct:"Discount %", days:"Days", oldPrice:"Old Price", newPrice:"New Price",
-        currency:"IQD",
-        everything_text:"Everything you need, every week — with the best discounts in Erbil",
-        see_discounts:"See Discounts", find_stores:"Find Stores",
-        locations_label:"Locations", products_label:"Products", weekly_label:"Weekly", new_deals:"New Deals",
-        about_text:"Bilal Bazar is the largest and most trusted supermarket chain in Bashuri Kurdistan, proudly serving Erbil with 10,000+ products at the most affordable prices.",
-        expired:"EXPIRED", days_label:"DAYS", hrs_label:"HRS", min_label:"MIN",
-        not_customer:"This is NOT for customers", i_am_staff:"I Am Staff", leave_site:"Leave",
-        settings:"Settings", warning:"Warning",
-        discountOn:"Discount on", noDiscounts:"No discounts available",
-        categories:{all:"All",fresh:"Fresh Produce",electronics:"Electronics",clothing:"Clothing",home:"Home Goods",food:"Food & Grocery",beauty:"Beauty",toys:"Kids & Toys",sports:"Sports",bakery:"Bakery",dairy:"Dairy",meat:"Meat",frozen:"Frozen",drinks:"Drinks",cleaning:"Cleaning",pharmacy:"Pharmacy",school:"School"}
-    }
+/* ══════════════════════════════════════════════
+   TRANSLATIONS
+══════════════════════════════════════════════ */
+const LANG_DATA = {
+ckb:{
+  siteName:"بیناڵ بازاڕ", tagline:"ناوچەی کوردستان",
+  home:"سەرەکی", locations:"شوێنەکان", contact:"پەیوەندی",
+  languages:"زمانەکان", login:"چوونەژوورەوە", signup:"تۆمارکردن",
+  admin:"بەڕێوەبەر", logout:"دەرچوون",
+  hero1:"گەورەترین بازاڕی", hero2:"ناوچەی کوردستان",
+  heroSub:"هەموو هەفتەیەک داشکاندنی تازە بۆ تۆ",
+  seeDeals:"داشکاندنەکان ببینە", findStore:"دووکانەکان بدۆزەوە",
+  locations_h:"شوێنەکانمان", categories_h:"جۆرەکان",
+  deals_h:"داشکاندنی ئەم هەفتەیە", noDeals:"هیچ داشکاندنێک نییە",
+  about_h:"دەربارەی بیناڵ بازاڕ",
+  about_p:"بیناڵ بازاڕ گەورەترین و متمانەپێکراوترین بازاڕی ناوچەی کوردستانە. هەر هەفتەیەک کاڵای تازە و داشکاندنی بەرز پێشکەشت دەکەین.",
+  copyright:"© ٢٠٢٥ بیناڵ بازاڕ · ناوچەی کوردستان، عێراق",
+  days:"ڕۆژ", hrs:"کاتژمێر", min:"خولەک",
+  expired:"کۆتایی هات", share:"هاوبەشی", like:"دڵنیا",
+  adminPanel:"پانێلی بەڕێوەبەر",
+  addPost:"زیادکردنی پۆست", editPost:"دەستکاریکردنی پۆست",
+  addSponsor:"زیادکردنی بانگهێشتكار", manageSponsor:"بەڕێوەبردنی بانگهێشتكارەکان",
+  postTitle:"ناونیشانی پۆست", discountPct:"داشکاندن %", discountDays:"چەند ڕۆژ؟",
+  selectCategory:"جۆر هەڵبژێرە", publish:"بڵاوکردنەوە", cancel:"هەڵوەشاندنەوە",
+  save:"هەڵگرتن", delete:"سڕینەوە", edit:"دەستکاری",
+  warning:"ئاگاداری", staffOnly:"ئەمە بۆ کارمەندان تەنها",
+  iAmStaff:"من کارمەندم", notMyBiz:"پەیوەندیم پێوە نییە",
+  emailLabel:"ئیمەیڵ", passLabel:"وشەی نهێنی",
+  signIn:"چوونەژوورەوە", wrongCreds:"زانیاری هەڵەیە",
+  cats:{all:"هەموو",rice:"برنج",meat:"گۆشت",cereal:"غلّات",other:"هی تر"},
+  hide:"شاردنەوە", show:"پیشاندان",
+  sponsorTitle:"بانگهێشتكارەکان",
+  addImages:"وێنە زیادبکە", imageUrl:"لینکی وێنە",
+},
+ar:{
+  siteName:"بيلال بازار", tagline:"إقليم كردستان",
+  home:"الرئيسية", locations:"المواقع", contact:"تواصل",
+  languages:"اللغات", login:"تسجيل الدخول", signup:"إنشاء حساب",
+  admin:"المشرف", logout:"تسجيل الخروج",
+  hero1:"أكبر سوق في", hero2:"إقليم كردستان",
+  heroSub:"كل أسبوع عروض وخصومات جديدة لك",
+  seeDeals:"عرض الخصومات", findStore:"ابحث عن فروعنا",
+  locations_h:"فروعنا", categories_h:"الأقسام",
+  deals_h:"عروض هذا الأسبوع", noDeals:"لا توجد عروض حالياً",
+  about_h:"عن بيلال بازار",
+  about_p:"بيلال بازار هو أكبر وأوثق سوق في إقليم كردستان. نقدم لك كل أسبوع منتجات جديدة وعروضاً حصرية بأسعار مناسبة.",
+  copyright:"© ٢٠٢٥ بيلال بازار · إقليم كردستان، العراق",
+  days:"أيام", hrs:"ساعة", min:"دقيقة",
+  expired:"انتهت المدة", share:"مشاركة", like:"إعجاب",
+  adminPanel:"لوحة التحكم",
+  addPost:"إضافة منشور", editPost:"تعديل المنشور",
+  addSponsor:"إضافة راعي", manageSponsor:"إدارة الرعاة",
+  postTitle:"عنوان المنشور", discountPct:"نسبة الخصم", discountDays:"عدد الأيام",
+  selectCategory:"اختر القسم", publish:"نشر", cancel:"إلغاء",
+  save:"حفظ", delete:"حذف", edit:"تعديل",
+  warning:"تحذير", staffOnly:"هذا للموظفين فقط",
+  iAmStaff:"أنا موظف", notMyBiz:"مغادرة",
+  emailLabel:"البريد الإلكتروني", passLabel:"كلمة المرور",
+  signIn:"دخول", wrongCreds:"بيانات خاطئة",
+  cats:{all:"الكل",rice:"أرز",meat:"لحوم",cereal:"حبوب",other:"أخرى"},
+  hide:"إخفاء", show:"إظهار",
+  sponsorTitle:"الرعاة",
+  addImages:"إضافة صور", imageUrl:"رابط الصورة",
+},
+en:{
+  siteName:"Bilal Bazar", tagline:"Region Kurdistan",
+  home:"Home", locations:"Locations", contact:"Contact",
+  languages:"Languages", login:"Login", signup:"Sign Up",
+  admin:"Admin", logout:"Logout",
+  hero1:"The Biggest Market in", hero2:"Region Kurdistan",
+  heroSub:"New discounts & fresh products every week",
+  seeDeals:"See Deals", findStore:"Find a Store",
+  locations_h:"Our Locations", categories_h:"Categories",
+  deals_h:"This Week's Deals", noDeals:"No deals available right now",
+  about_h:"About Bilal Bazar",
+  about_p:"Bilal Bazar is the largest and most trusted market in Region Kurdistan. Every week we bring you fresh products and exclusive discounts at the best prices.",
+  copyright:"© 2025 Bilal Bazar · Region Kurdistan, Iraq",
+  days:"DAYS", hrs:"HRS", min:"MIN",
+  expired:"EXPIRED", share:"Share", like:"Like",
+  adminPanel:"Admin Panel",
+  addPost:"Add Post", editPost:"Edit Post",
+  addSponsor:"Add Sponsor", manageSponsor:"Manage Sponsors",
+  postTitle:"Post Title", discountPct:"Discount %", discountDays:"How many days?",
+  selectCategory:"Select Category", publish:"Publish", cancel:"Cancel",
+  save:"Save", delete:"Delete", edit:"Edit",
+  warning:"Warning", staffOnly:"This area is for staff only",
+  iAmStaff:"I Am Staff", notMyBiz:"Not My Business",
+  emailLabel:"Email", passLabel:"Password",
+  signIn:"Sign In", wrongCreds:"Wrong credentials",
+  cats:{all:"All",rice:"Rice",meat:"Meat",cereal:"Cereal",other:"Other"},
+  hide:"Hide", show:"Show",
+  sponsorTitle:"Sponsors",
+  addImages:"Add Images", imageUrl:"Image URL",
+},
 };
 
-const LOCATIONS = [
-    { id:1, name:"Bilal Bazar – Erbil Main", nameKu:"بیناڵ بازاڕ – لقی سەرەکی", nameAr:"بيلال بازار – الفرع الرئيسي",
-      address:"Erbil, Kurdistan Region", addressKu:"هەولێر، هەرێمی کوردستان", addressAr:"أربيل، إقليم كردستان",
-      mapLink:"https://maps.app.goo.gl/MR4fDpX1jHAAsHzLA", phone:"+964 750 919 3030",
-      hours:"8:00 AM – 10:00 PM", hoursKu:"٨:٠٠ بەیانی – ١٠:٠٠ شەو", hoursAr:"٨:٠٠ صباحاً – ١٠:٠٠ مساءً" },
-    { id:2, name:"Bilal Bazar – Kornish", nameKu:"بیناڵ بازاڕ – کۆرنیش", nameAr:"بيلال بازار – الكورنيش",
-      address:"Kornish Street, Erbil", addressKu:"شەقامی کۆرنیش، هەولێر", addressAr:"شارع الكورنيش، أربيل",
-      mapLink:"https://maps.app.goo.gl/ZuwXPth3DokXYDEt7", phone:"+964 750 919 3030",
-      hours:"8:00 AM – 10:00 PM", hoursKu:"٨:٠٠ بەیانی – ١٠:٠٠ شەو", hoursAr:"٨:٠٠ صباحاً – ١٠:٠٠ مساءً" },
-    { id:3, name:"Bilal Bazar – Ankawa", nameKu:"بیناڵ بازاڕ – عەنکاوە", nameAr:"بيلال بازار – عنكاوا",
-      address:"Ankawa, Erbil", addressKu:"عەنکاوە، هەولێر", addressAr:"عنكاوا، أربيل",
-      mapLink:"https://maps.app.goo.gl/vZhSVM94MKC1Cuja9", phone:"+964 750 919 3030",
-      hours:"8:00 AM – 10:00 PM", hoursKu:"٨:٠٠ بەیانی – ١٠:٠٠ شەو", hoursAr:"٨:٠٠ صباحاً – ١٠:٠٠ مساءً" }
+const CATS = ['all','rice','meat','cereal','other'];
+
+/* ══ Sample data (replace with Supabase later) ══ */
+const SAMPLE_POSTS = [
+  {id:1,title:{ckb:"🌾 برنجی تازە — داشکاندنی تایبەت",ar:"🌾 أرز طازج — عرض خاص",en:"🌾 Fresh Rice — Special Offer"},
+   images:["https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80"],
+   discountPct:25,discountDays:6,createdAt:Date.now()-3600000*12,likes:88,category:"rice",lang:"ckb"},
+  {id:2,title:{ckb:"🥩 گۆشتی خۆشخواردن — ٣٠٪",ar:"🥩 لحم طازج — خصم ٣٠٪",en:"🥩 Premium Meat — 30% OFF"},
+   images:["https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80","https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80"],
+   discountPct:30,discountDays:4,createdAt:Date.now()-86400000,likes:112,category:"meat",lang:"ckb"},
+  {id:3,title:{ckb:"🌽 غلاتی تازە — داشکاندن لە هەموو جۆرەکان",ar:"🌽 حبوب طازجة — خصم على جميع الأصناف",en:"🌽 Fresh Cereals — Discount on All Types"},
+   images:["https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&q=80"],
+   discountPct:20,discountDays:7,createdAt:Date.now()-172800000,likes:67,category:"cereal",lang:"ckb"},
 ];
 
-const CATS = ['all','fresh','electronics','clothing','home','food','beauty','toys','sports','bakery','dairy','meat','frozen','drinks','cleaning','pharmacy','school'];
-
-const INITIAL_POSTS = [
-    { id:1, title:{ckb:"🔥 سەروەتە تازەکان 40% داشکاندن",ar:"🔥 خضار طازج خصم 40%",en:"🔥 Fresh Vegetables 40% OFF"},
-      description:{ckb:"هەموو سەروەتە تازەکان 40% داشکاندنە",ar:"كل الخضروات الطازجة بخصم 40%",en:"All fresh vegetables 40% off"},
-      images:["https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&q=80"],
-      discountPercent:40, discountDays:5, oldPrice:15000, newPrice:9000,
-      createdAt:Date.now()-86400000, likes:142, category:"fresh", lang:"ckb" },
-    { id:2, title:{ckb:"🛒 ئەلیکترۆنیات 30% داشکاندن",ar:"🛒 إلكترونيات خصم 30%",en:"🛒 Electronics 30% OFF"},
-      description:{ckb:"سامسۆنگ، ئێل جی و زۆری تر",ar:"سامسونج، إل جي والمزيد",en:"Samsung, LG and more"},
-      images:["https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80","https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80","https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=600&q=80"],
-      discountPercent:30, discountDays:3, oldPrice:85000, newPrice:60000,
-      createdAt:Date.now()-172800000, likes:89, category:"electronics", lang:"ckb" },
-    { id:3, title:{ckb:"🍞 شۆربێری تایبەت 20% داشکاندن",ar:"🍞 مخبوزات خصم 20%",en:"🍞 Bakery Special 20% OFF"},
-      description:{ckb:"تازە هەموو بەیانیێک",ar:"طازج كل صباح",en:"Fresh baked every morning"},
-      images:["https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80","https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=80"],
-      discountPercent:20, discountDays:7, oldPrice:5000, newPrice:4000,
-      createdAt:Date.now()-7200000, likes:213, category:"bakery", lang:"ckb" }
+const SAMPLE_SPONSORS = [
+  {id:1,imageUrl:"https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=300&q=80",visible:true},
+  {id:2,imageUrl:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&q=80",visible:true},
 ];
 
-// ═══════════════════════════════════════════════
-// CONTEXT
-// ═══════════════════════════════════════════════
+/* ══ Helpers ══ */
+const tLeft = (createdAt, days) => {
+  const diff = createdAt + days*86400000 - Date.now();
+  if(diff<=0) return null;
+  return {d:Math.floor(diff/86400000),h:Math.floor((diff%86400000)/3600000),m:Math.floor((diff%3600000)/60000)};
+};
+
+/* ══ Context ══ */
 const LangCtx = React.createContext();
 const LangProvider = ({children}) => {
-    const [lang, setLang] = useState('ckb');
-    const t = (k) => { const keys=k.split('.'); let v=T[lang]; for(const x of keys){v=v?.[x]; if(!v)return k;} return v; };
-    const switchLang = (l) => { setLang(l); document.documentElement.lang=l; document.documentElement.dir=l==='en'?'ltr':'rtl'; window.scrollTo(0,0); };
-    return <LangCtx.Provider value={{lang,t,switchLang,dir:lang==='en'?'ltr':'rtl'}}>{children}</LangCtx.Provider>;
+  const [lang, setLang] = useState('ckb');
+  const t = k => { const keys=k.split('.'); let v=LANG_DATA[lang]; for(const x of keys){v=v?.[x]; if(!v)return k;} return v; };
+  const sw = l => { setLang(l); document.documentElement.lang=l; document.documentElement.dir=l==='en'?'ltr':'rtl'; window.scrollTo(0,0); };
+  return <LangCtx.Provider value={{lang,t,sw,dir:lang==='en'?'ltr':'rtl'}}>{children}</LangCtx.Provider>;
 };
 const useLang = () => useContext(LangCtx);
 
-const timeLeft = (createdAt, days) => {
-    const diff = (createdAt + days*86400000) - Date.now();
-    if(diff<=0) return null;
-    return { d:Math.floor(diff/86400000), h:Math.floor((diff%86400000)/3600000), m:Math.floor((diff%3600000)/60000) };
-};
-
-const fmt = (n) => n ? Number(n).toLocaleString() : '';
-
-// ═══════════════════════════════════════════════
-// FACEBOOK-STYLE IMAGE GRID
-// ═══════════════════════════════════════════════
-const FBGrid = ({images, discountPercent, expired, onClick}) => {
-    if(!images||images.length===0) return null;
-    const n = images.length;
-    const max = Math.min(n, 5);
-    const extra = n > 5 ? n - 5 : 0;
-
-    const Img = ({src, idx, showOverlay}) => (
-        <div className="fb-img" onClick={()=>onClick&&onClick(idx)}>
-            <img src={src} alt="" loading="lazy"/>
-            {showOverlay && <div className="fb-more-overlay">+{extra+1}</div>}
+/* ══════════════════════════════════════════════
+   FB GRID
+══════════════════════════════════════════════ */
+const FBGrid = ({images=[], pct, expired, onImageClick}) => {
+  const n = images.length; if(!n) return null;
+  const vis = Math.min(n,5); const extra = n>5?n-5:0;
+  const cls = n===1?'fb1':n===2?'fb2':n===3?'fb3':n===4?'fb4':'fb5';
+  return (
+    <div className="relative overflow-hidden" style={{borderRadius:0}}>
+      {n===1
+        ? <div className="fb1 fi" onClick={()=>onImageClick(0)}><img src={images[0]} alt="" loading="lazy"/></div>
+        : <div className={cls}>
+            {images.slice(0,vis).map((img,i)=>(
+              <div key={i} className="fi" onClick={()=>onImageClick(i)}>
+                <img src={img} alt="" loading="lazy"/>
+                {extra>0 && i===vis-1 && <div className="fi-more">+{extra+1}</div>}
+              </div>
+            ))}
+          </div>
+      }
+      <div className="burst"><div className="burst-text">{pct}%<br/>OFF</div></div>
+      {expired && (
+        <div style={{position:'absolute',inset:0,background:'rgba(0,0,0,.6)',display:'flex',alignItems:'center',justifyContent:'center',backdropFilter:'blur(3px)',zIndex:6}}>
+          <span style={{background:'var(--red)',color:'#fff',padding:'8px 24px',borderRadius:30,fontWeight:900,fontSize:18,transform:'rotate(-5deg)',border:'2px solid rgba(255,255,255,.3)'}}>EXPIRED</span>
         </div>
-    );
-
-    const gridClass = n===1?'fb-grid-1':n===2?'fb-grid-2':n===3?'fb-grid-3':n===4?'fb-grid-4':'fb-grid-5plus';
-
-    return (
-        <div className="relative overflow-hidden" style={{borderRadius:'0'}}>
-            {n===1 ? (
-                <div className="fb-grid-1"><Img src={images[0]} idx={0}/></div>
-            ) : (
-                <div className={gridClass}>
-                    {images.slice(0,max).map((img,i) => (
-                        <Img key={i} src={img} idx={i} showOverlay={extra>0 && i===max-1}/>
-                    ))}
-                </div>
-            )}
-            {/* Discount Badge */}
-            <div className="absolute top-3 left-3 z-10">
-                <div className="discount-burst w-14 h-14 rounded-full flex flex-col items-center justify-center shadow-2xl border-2 border-white/30" style={{transform:'rotate(-10deg)'}}>
-                    <span className="text-white font-black text-base leading-none">{discountPercent}%</span>
-                    <span className="text-white/90 font-bold text-[9px] uppercase tracking-wide">OFF</span>
-                </div>
-            </div>
-            {expired && (
-                <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-sm z-10">
-                    <span className="bg-red-600 text-white px-6 py-2 rounded-full font-black text-xl border-2 border-white/40" style={{transform:'rotate(-6deg)'}}>EXPIRED</span>
-                </div>
-            )}
-        </div>
-    );
-};
-
-// Lightbox
-const Lightbox = ({images, startIndex, onClose}) => {
-    const [idx, setIdx] = useState(startIndex||0);
-    useEffect(() => {
-        const handler = (e) => { if(e.key==='Escape')onClose(); if(e.key==='ArrowLeft')setIdx(i=>(i-1+images.length)%images.length); if(e.key==='ArrowRight')setIdx(i=>(i+1)%images.length); };
-        window.addEventListener('keydown', handler);
-        return () => window.removeEventListener('keydown', handler);
-    }, [images]);
-    return (
-        <div className="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center" onClick={onClose}>
-            <button className="absolute top-4 right-4 text-white text-3xl z-10" onClick={onClose}>×</button>
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">{idx+1}/{images.length}</div>
-            <img src={images[idx]} alt="" className="max-w-[90vw] max-h-[85vh] object-contain" onClick={e=>e.stopPropagation()}/>
-            {images.length>1 && <>
-                <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/50 w-12 h-12 rounded-full text-xl flex items-center justify-center" onClick={e=>{e.stopPropagation();setIdx(i=>(i-1+images.length)%images.length);}}>‹</button>
-                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/50 w-12 h-12 rounded-full text-xl flex items-center justify-center" onClick={e=>{e.stopPropagation();setIdx(i=>(i+1)%images.length);}}>›</button>
-            </>}
-        </div>
-    );
-};
-
-// ═══════════════════════════════════════════════
-// IMAGE EDITOR (Professional)
-// ═══════════════════════════════════════════════
-const ImageEditor = ({imageSrc, onSave, onCancel, t, discountPercent=0}) => {
-    const canvasRef = useRef(null);
-    const [elements, setElements] = useState([]);
-    const [selectedId, setSelectedId] = useState(null);
-    const [filter, setFilter] = useState('none');
-    const [showText, setShowText] = useState(false);
-    const [showStickers, setShowStickers] = useState(false);
-    const [textVal, setTextVal] = useState('');
-    const [textFont, setTextFont] = useState('Montserrat');
-    const [textSize, setTextSize] = useState(48);
-    const [textColor, setTextColor] = useState('#ffffff');
-    const [textBold, setTextBold] = useState(true);
-    const [textAlign, setTextAlign] = useState('center');
-    const [textBg, setTextBg] = useState('shadow');
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragStart, setDragStart] = useState({x:0,y:0});
-    const [elStart, setElStart] = useState({x:0,y:0});
-
-    const fonts = ['Montserrat','Bebas Neue','Dancing Script','Righteous','Pacifico','Oswald','Russo One','Lobster','Noto Sans Arabic'];
-    const colors = ['#fff','#000','#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#a855f7','#ec4899','#fbbf24','#059669'];
-    const filters = [{v:'none',l:'Normal'},{v:'grayscale(100%)',l:'B&W'},{v:'sepia(80%)',l:'Sepia'},{v:'contrast(150%)',l:'Contrast'},{v:'brightness(130%)',l:'Bright'},{v:'saturate(200%)',l:'Vivid'},{v:'hue-rotate(180deg)',l:'Cool'},{v:'hue-rotate(-30deg)',l:'Warm'}];
-    const emojiStickers = ['🛒','🛍️','💰','🔥','⭐','✅','💯','🎉','🎁','❤️','👍','💚','🤑','🎊','🥳','🏷️'];
-
-    useEffect(() => {
-        if(discountPercent>0){
-            setElements([
-                {id:1,type:'sticker',kind:'burst',content:`${discountPercent}% OFF`,x:60,y:60,w:110,h:110,r:-12,color:'#dc2626'},
-                {id:2,type:'text',content:'Bilal Bazar',x:10,y:10,w:200,h:40,r:0,font:'Montserrat',size:22,color:'#059669',bold:true,align:'left',bg:'none',anchor:'bottom-right'}
-            ]);
-        }
-    },[]);
-
-    const drawCanvas = useCallback(() => {
-        const canvas = canvasRef.current; if(!canvas) return;
-        const ctx = canvas.getContext('2d');
-        const img = new Image(); img.crossOrigin='anonymous'; img.src=imageSrc;
-        img.onload = () => {
-            canvas.width = img.width; canvas.height = img.height;
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            ctx.filter=filter; ctx.drawImage(img,0,0); ctx.filter='none';
-            
-            elements.forEach(el => {
-                ctx.save();
-                const cx = el.x+el.w/2, cy = el.y+el.h/2;
-                ctx.translate(cx,cy); ctx.rotate(el.r*Math.PI/180); ctx.translate(-cx,-cy);
-                
-                if(el.type==='text'){
-                    const fw = el.bold?'bold':'normal';
-                    ctx.font = `${fw} ${el.size}px "${el.font}"`;
-                    ctx.textAlign = el.align||'center';
-                    if(el.bg==='shadow'){ctx.shadowColor='rgba(0,0,0,0.8)';ctx.shadowBlur=8;ctx.shadowOffsetX=2;ctx.shadowOffsetY=2;}
-                    else if(el.bg==='box'){ctx.fillStyle='rgba(0,0,0,0.6)'; const m=ctx.measureText(el.content); ctx.fillRect(el.x-4,el.y-el.size,m.width+8,el.size+8);}
-                    ctx.fillStyle=el.color; ctx.strokeStyle='rgba(0,0,0,0.5)'; ctx.lineWidth=1.5; ctx.strokeText(el.content,el.x,el.y); ctx.fillText(el.content,el.x,el.y);
-                    ctx.shadowColor='transparent';
-                } else if(el.type==='sticker'){
-                    if(el.kind==='burst'){
-                        ctx.fillStyle=el.color||'#dc2626';
-                        ctx.beginPath();
-                        for(let i=0;i<16;i++){const a=(i/16)*Math.PI*2; const r=i%2===0?el.w/2:el.w/3; ctx.lineTo(Math.cos(a)*r+el.x+el.w/2,Math.sin(a)*r+el.y+el.h/2);}
-                        ctx.closePath(); ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.4)'; ctx.lineWidth=2; ctx.stroke();
-                        ctx.fillStyle='#fff'; ctx.font=`900 ${el.w/3.5}px "Bebas Neue"`; ctx.textAlign='center'; ctx.textBaseline='middle';
-                        const lines=el.content.split(' ');
-                        lines.forEach((line,i)=>ctx.fillText(line,el.x+el.w/2,el.y+el.h/2+(i-(lines.length-1)/2)*el.h/3.5));
-                    } else if(el.kind==='emoji'){
-                        ctx.font=`${el.w}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(el.content,el.x+el.w/2,el.y+el.h/2);
-                    }
-                }
-                if(el.id===selectedId){ctx.strokeStyle='#3b82f6';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.strokeRect(el.x-4,el.y-4,el.w+8,el.h+8);ctx.setLineDash([]);}
-                ctx.restore();
-            });
-        };
-    },[imageSrc,elements,filter,selectedId]);
-
-    useEffect(()=>drawCanvas(),[drawCanvas]);
-
-    const getPos = (e) => {
-        const canvas=canvasRef.current; const rect=canvas.getBoundingClientRect();
-        const cx=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-        const cy=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
-        return {x:cx*(canvas.width/rect.width), y:cy*(canvas.height/rect.height)};
-    };
-    const hitTest = (pos) => { for(let i=elements.length-1;i>=0;i--){const el=elements[i]; if(pos.x>=el.x-10&&pos.x<=el.x+el.w+10&&pos.y>=el.y-20&&pos.y<=el.y+el.h+10) return el.id;} return null; };
-
-    const onDown = (e) => { const pos=getPos(e); const hit=hitTest(pos); if(hit){setSelectedId(hit);setIsDragging(true);setDragStart(pos);const el=elements.find(x=>x.id===hit);setElStart({x:el.x,y:el.y});}else setSelectedId(null); };
-    const onMove = (e) => { if(!isDragging||!selectedId) return; e.preventDefault(); const pos=getPos(e); setElements(els=>els.map(el=>el.id===selectedId?{...el,x:elStart.x+(pos.x-dragStart.x),y:elStart.y+(pos.y-dragStart.y)}:el)); };
-    const onUp = () => setIsDragging(false);
-
-    const addText = () => {
-        if(!textVal.trim()) return;
-        setElements(els=>[...els,{id:Date.now(),type:'text',content:textVal,x:80,y:120,w:300,h:textSize+20,r:0,font:textFont,size:textSize,color:textColor,bold:textBold,align:textAlign,bg:textBg}]);
-        setTextVal(''); setShowText(false);
-    };
-    const addSticker = (s,kind='emoji') => {
-        setElements(els=>[...els,{id:Date.now(),type:'sticker',kind,content:s,x:120,y:120,w:kind==='emoji'?80:110,h:kind==='emoji'?80:110,r:0,color:'#dc2626'}]);
-        setShowStickers(false);
-    };
-    const deleteSelected = () => { setElements(els=>els.filter(el=>el.id!==selectedId)); setSelectedId(null); };
-    const handleSave = () => onSave(canvasRef.current.toDataURL('image/jpeg',0.95));
-
-    return (
-        <div className="fixed inset-0 bg-black z-50 flex flex-col">
-            <div className="bg-[#111827] p-3 flex justify-between items-center border-b border-[#1e2d40]">
-                <button onClick={onCancel} className="text-white/60 hover:text-white px-3 py-1 rounded text-sm"><i className="fas fa-times mr-1"/>Cancel</button>
-                <div className="flex gap-2">
-                    {selectedId && <button onClick={deleteSelected} className="bg-red-600/20 text-red-400 border border-red-600/40 px-3 py-1 rounded-lg text-sm"><i className="fas fa-trash"/></button>}
-                    <button onClick={()=>{setShowText(true);setShowStickers(false);}} className="bg-blue-600/20 text-blue-400 border border-blue-600/40 px-3 py-1 rounded-lg text-sm"><i className="fas fa-font mr-1"/>{t('addText')}</button>
-                    <button onClick={()=>{setShowStickers(true);setShowText(false);}} className="bg-purple-600/20 text-purple-400 border border-purple-600/40 px-3 py-1 rounded-lg text-sm"><i className="fas fa-smile mr-1"/>{t('stickers')}</button>
-                </div>
-                <button onClick={handleSave} className="bg-bilal-600 text-white px-5 py-1.5 rounded-lg font-bold text-sm pulse-btn"><i className="fas fa-check mr-1"/>{t('save')}</button>
-            </div>
-
-            <div className="flex-1 editor-bg flex items-center justify-center overflow-auto p-4" onMouseLeave={onUp}>
-                <canvas ref={canvasRef} onMouseDown={onDown} onMouseMove={onMove} onMouseUp={onUp} onTouchStart={onDown} onTouchMove={onMove} onTouchEnd={onUp} className="max-w-full max-h-[65vh] object-contain cursor-move shadow-2xl rounded-lg"/>
-            </div>
-
-            <div className="bg-[#111827] p-2 overflow-x-auto hide-scrollbar flex gap-2 border-t border-[#1e2d40]">
-                {filters.map(f=><button key={f.v} onClick={()=>setFilter(f.v)} className={`px-3 py-1 rounded-full text-xs whitespace-nowrap ${filter===f.v?'bg-bilal-600 text-white':'bg-[#1a2235] text-gray-400'}`}>{f.l}</button>)}
-            </div>
-
-            {showText && (
-                <div className="absolute inset-0 bg-black/80 z-50 flex items-end justify-center">
-                    <div className="bg-[#111827] rounded-t-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto">
-                        <div className="p-5 space-y-4">
-                            <div className="flex justify-between items-center"><h3 className="text-white font-bold text-lg">{t('addText')}</h3><button onClick={()=>setShowText(false)} className="text-gray-400 text-xl">×</button></div>
-                            <input type="text" value={textVal} onChange={e=>setTextVal(e.target.value)} placeholder="Your text..." className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-xl px-4 py-3 text-white text-lg" autoFocus/>
-                            <div><label className="text-gray-500 text-xs uppercase tracking-wider block mb-2">Font</label>
-                                <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
-                                    {fonts.map(f=><button key={f} onClick={()=>setTextFont(f)} className={`px-3 py-1.5 rounded-lg text-sm whitespace-nowrap ${textFont===f?'bg-bilal-600 text-white':'bg-[#1a2235] text-gray-300'}`} style={{fontFamily:f}}>{f.split(' ')[0]}</button>)}
-                                </div>
-                            </div>
-                            <div><label className="text-gray-500 text-xs uppercase tracking-wider block mb-2">Color</label>
-                                <div className="flex gap-2 flex-wrap">
-                                    {colors.map(c=><button key={c} onClick={()=>setTextColor(c)} className={`w-9 h-9 rounded-full border-2 ${textColor===c?'border-white scale-110':'border-transparent'} transition-transform`} style={{background:c}}/>)}
-                                </div>
-                            </div>
-                            <div><label className="text-gray-500 text-xs uppercase tracking-wider block mb-2">Size: {textSize}px</label>
-                                <input type="range" min="18" max="120" value={textSize} onChange={e=>setTextSize(+e.target.value)} className="w-full accent-bilal-600"/>
-                            </div>
-                            <div className="grid grid-cols-3 gap-2">
-                                <button onClick={()=>setTextBold(!textBold)} className={`py-2 rounded-lg font-black ${textBold?'bg-bilal-600 text-white':'bg-[#1a2235] text-gray-300'}`}>Bold</button>
-                                {['left','center','right'].map(a=><button key={a} onClick={()=>setTextAlign(a)} className={`py-2 rounded-lg text-sm ${textAlign===a?'bg-bilal-600 text-white':'bg-[#1a2235] text-gray-300'}`}><i className={`fas fa-align-${a}`}/></button>)}
-                            </div>
-                            <div><label className="text-gray-500 text-xs uppercase tracking-wider block mb-2">Background</label>
-                                <div className="flex gap-2">
-                                    {[{v:'none',l:'None'},{v:'shadow',l:'Shadow'},{v:'box',l:'Box'}].map(b=><button key={b.v} onClick={()=>setTextBg(b.v)} className={`flex-1 py-2 rounded-lg text-sm ${textBg===b.v?'bg-bilal-600 text-white':'bg-[#1a2235] text-gray-300'}`}>{b.l}</button>)}
-                                </div>
-                            </div>
-                            <button onClick={addText} className="w-full bg-bilal-600 hover:bg-bilal-700 text-white py-3 rounded-xl font-bold text-lg transition-colors">+ Add to Image</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {showStickers && (
-                <div className="absolute inset-0 bg-black/80 z-50 flex items-end justify-center">
-                    <div className="bg-[#111827] rounded-t-2xl w-full max-w-lg">
-                        <div className="p-5 max-h-[70vh] overflow-y-auto">
-                            <div className="flex justify-between items-center mb-4"><h3 className="text-white font-bold text-lg">{t('stickers')}</h3><button onClick={()=>setShowStickers(false)} className="text-gray-400 text-xl">×</button></div>
-                            <div className="mb-4"><p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Discount Badges</p>
-                                <div className="grid grid-cols-5 gap-2">
-                                    {['SALE','HOT','NEW','50%\nOFF','FREE'].map((s,i)=>(
-                                        <button key={i} onClick={()=>addSticker(s,'burst')} className="bg-red-600/20 border border-red-600/30 text-red-400 rounded-xl py-3 text-xs font-bold hover:bg-red-600/40 transition-colors">{s}</button>
-                                    ))}
-                                </div>
-                            </div>
-                            <div><p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Emojis</p>
-                                <div className="grid grid-cols-8 gap-1">
-                                    {emojiStickers.map((e,i)=><button key={i} onClick={()=>addSticker(e,'emoji')} className="text-3xl p-2 hover:bg-[#1a2235] rounded-xl transition-colors">{e}</button>)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-};
-
-// ═══════════════════════════════════════════════
-// MULTI-IMAGE MANAGER
-// ═══════════════════════════════════════════════
-const MediaManager = ({onSave, onCancel, t, discountPercent}) => {
-    const [images, setImages] = useState([]);
-    const [currentIdx, setCurrentIdx] = useState(0);
-    const [editingIdx, setEditingIdx] = useState(null);
-
-    const addFiles = (files) => {
-        Array.from(files).slice(0, 30-images.length).forEach(file => {
-            const r=new FileReader(); r.onload=e=>setImages(prev=>[...prev,e.target.result]); r.readAsDataURL(file);
-        });
-    };
-
-    if(editingIdx!==null){
-        return <ImageEditor imageSrc={images[editingIdx]} onSave={src=>{const n=[...images];n[editingIdx]=src;setImages(n);setEditingIdx(null);}} onCancel={()=>setEditingIdx(null)} t={t} discountPercent={editingIdx===0?discountPercent:0}/>;
-    }
-
-    return (
-        <div className="fixed inset-0 bg-[#0a0f1a] z-50 flex flex-col">
-            <div className="bg-[#111827] p-4 flex justify-between items-center border-b border-[#1e2d40]">
-                <button onClick={onCancel} className="text-gray-400 hover:text-white"><i className="fas fa-times mr-1"/>{t('cancel')}</button>
-                <span className="text-white font-bold">{images.length}/30 images</span>
-                <button onClick={()=>images.length>0&&onSave(images)} disabled={images.length===0} className="bg-bilal-600 text-white px-5 py-1.5 rounded-lg font-bold disabled:opacity-40">{t('save')}</button>
-            </div>
-
-            <div className="flex-1 flex flex-col">
-                {images.length===0 ? (
-                    <div className="flex-1 flex flex-col items-center justify-center p-8">
-                        <label className="w-full max-w-sm border-2 border-dashed border-bilal-600/50 rounded-3xl p-12 flex flex-col items-center gap-4 cursor-pointer hover:border-bilal-500 hover:bg-bilal-600/5 transition-all">
-                            <div className="w-20 h-20 bg-bilal-600/20 rounded-2xl flex items-center justify-center text-4xl">📷</div>
-                            <div className="text-center"><p className="text-white font-bold text-xl mb-1">{t('gallery')}</p><p className="text-gray-500 text-sm">Select up to 30 images</p></div>
-                            <input type="file" accept="image/*" multiple onChange={e=>addFiles(e.target.files)} className="hidden"/>
-                        </label>
-                    </div>
-                ) : (
-                    <>
-                        <div className="flex-1 flex items-center justify-center bg-black/40 p-4 relative">
-                            <img src={images[currentIdx]} alt="" className="max-w-full max-h-[55vh] object-contain rounded-xl shadow-2xl"/>
-                            <button onClick={()=>setEditingIdx(currentIdx)} className="absolute top-6 right-6 bg-black/60 text-white p-3 rounded-xl hover:bg-black/80 transition-colors">
-                                <i className="fas fa-pencil-alt text-lg"/>
-                            </button>
-                        </div>
-                        <div className="bg-[#111827] border-t border-[#1e2d40] p-3">
-                            <div className="flex gap-2 overflow-x-auto hide-scrollbar items-center">
-                                {images.map((img,i)=>(
-                                    <div key={i} className={`relative flex-shrink-0 cursor-pointer ${i===currentIdx?'ring-2 ring-bilal-500 rounded-lg':''}`} onClick={()=>setCurrentIdx(i)}>
-                                        <img src={img} alt="" className="w-16 h-16 object-cover rounded-lg"/>
-                                        <button onClick={e=>{e.stopPropagation();const n=images.filter((_,x)=>x!==i);setImages(n);if(currentIdx>=n.length)setCurrentIdx(Math.max(0,n.length-1));}} className="absolute -top-1.5 -right-1.5 bg-red-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center leading-none">×</button>
-                                    </div>
-                                ))}
-                                {images.length<30 && (
-                                    <label className="w-16 h-16 bg-[#1a2235] rounded-lg flex items-center justify-center cursor-pointer hover:bg-[#1e2d40] flex-shrink-0 transition-colors">
-                                        <i className="fas fa-plus text-gray-400 text-xl"/>
-                                        <input type="file" accept="image/*" multiple onChange={e=>addFiles(e.target.files)} className="hidden"/>
-                                    </label>
-                                )}
-                            </div>
-                        </div>
-                    </>
-                )}
-            </div>
-        </div>
-    );
-};
-
-// ═══════════════════════════════════════════════
-// PRICE DISPLAY
-// ═══════════════════════════════════════════════
-const PriceDisplay = ({oldPrice, newPrice, currency, discountPercent, discountOnLabel}) => {
-    if(!oldPrice && !newPrice) return null;
-    return (
-        <div className="bg-[#0a0f1a] rounded-xl p-3 mb-3 border border-[#1e2d40]">
-            <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">{discountOnLabel}</p>
-            <div className="flex items-center gap-3 flex-wrap">
-                {oldPrice && <span className="price-old text-sm">{fmt(oldPrice)} {currency}</span>}
-                {newPrice && <span className="price-new text-lg">{fmt(newPrice)} {currency}</span>}
-                {oldPrice && newPrice && (
-                    <span className="tag-badge ml-auto" style={{background:'rgba(239,68,68,0.15)',color:'#f87171',border:'1px solid rgba(239,68,68,0.3)'}}>
-                        -{discountPercent}%
-                    </span>
-                )}
-            </div>
-        </div>
-    );
-};
-
-// ═══════════════════════════════════════════════
-// POST CARD
-// ═══════════════════════════════════════════════
-const PostCard = ({post, isAdmin, onDelete, onEdit, t, lang}) => {
-    const [liked, setLiked] = useState(false);
-    const [lightboxIdx, setLightboxIdx] = useState(null);
-    const tl = timeLeft(post.createdAt, post.discountDays);
-    const title = post.title[lang]||post.title[post.lang]||'';
-    const desc = post.description[lang]||post.description[post.lang]||'';
-
-    const handleShare = async () => {
-        if(navigator.share) { try{await navigator.share({title,text:`${title} - ${post.discountPercent}% OFF at Bilal Bazar!`,url:window.location.href});}catch(e){} }
-        else { navigator.clipboard?.writeText(window.location.href); }
-    };
-
-    return (
-        <div className="bg-[#111827] rounded-2xl overflow-hidden border border-[#1e2d40] card-hover">
-            <FBGrid images={post.images} discountPercent={post.discountPercent} expired={!tl} onClick={i=>setLightboxIdx(i)}/>
-
-            {lightboxIdx!==null && <Lightbox images={post.images} startIndex={lightboxIdx} onClose={()=>setLightboxIdx(null)}/>}
-
-            <div className="p-4">
-                <div className="flex justify-between items-start gap-2 mb-2">
-                    <h3 className="text-white font-bold text-base leading-snug flex-1">{title}</h3>
-                    <span className="tag-badge flex-shrink-0" style={{background:'rgba(5,150,105,0.15)',color:'#34d399',border:'1px solid rgba(5,150,105,0.25)'}}>📍 Erbil</span>
-                </div>
-
-                {desc && <p className="text-gray-400 text-sm mb-3 line-clamp-2 leading-relaxed">{desc}</p>}
-
-                <PriceDisplay oldPrice={post.oldPrice} newPrice={post.newPrice} currency={t('currency')} discountPercent={post.discountPercent} discountOnLabel={t('discountOn')}/>
-
-                {tl && (
-                    <div className="flex gap-2 mb-3 justify-center bg-black/30 rounded-xl p-2 border border-[#1e2d40]">
-                        {[{v:tl.d,l:t('days_label')},{v:tl.h,l:t('hrs_label')},{v:tl.m,l:t('min_label')}].map((x,i)=>(
-                            <React.Fragment key={i}>
-                                {i>0 && <span className="text-gray-600 font-bold self-center">:</span>}
-                                <div className="text-center min-w-[36px]"><div className="text-white font-black text-xl leading-none">{x.v}</div><div className="text-gray-500 text-[9px] uppercase tracking-widest mt-0.5">{x.l}</div></div>
-                            </React.Fragment>
-                        ))}
-                    </div>
-                )}
-
-                <div className="flex items-center justify-between pt-3 border-t border-[#1e2d40]">
-                    <div className="flex gap-2">
-                        <button onClick={()=>setLiked(!liked)} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-bold transition-colors ${liked?'bg-red-500/20 text-red-400':'bg-[#1a2235] text-gray-400 hover:bg-[#1e2d40]'}`}>
-                            <i className={`${liked?'fas':'far'} fa-heart text-xs`}/>{post.likes+(liked?1:0)}
-                        </button>
-                        <button onClick={handleShare} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#1a2235] text-gray-400 hover:bg-[#1e2d40] text-sm font-bold transition-colors">
-                            <i className="fas fa-share-alt text-xs"/>{t('share')}
-                        </button>
-                    </div>
-                    {isAdmin && (
-                        <div className="flex gap-1">
-                            <button onClick={()=>onEdit(post)} className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 flex items-center justify-center transition-colors"><i className="fas fa-pencil-alt text-xs"/></button>
-                            <button onClick={()=>onDelete(post.id)} className="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 flex items-center justify-center transition-colors"><i className="fas fa-trash text-xs"/></button>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// ═══════════════════════════════════════════════
-// CREATE / EDIT POST MODAL
-// ═══════════════════════════════════════════════
-const PostModal = ({onSave, onClose, t, lang, editingPost=null}) => {
-    const [step, setStep] = useState(editingPost?'details':'media');
-    const [images, setImages] = useState(editingPost?.images||[]);
-    const [form, setForm] = useState({
-        title: editingPost?.title||{ckb:'',ar:'',en:''},
-        description: editingPost?.description||{ckb:'',ar:'',en:''},
-        discountPercent: editingPost?.discountPercent||20,
-        discountDays: editingPost?.discountDays||7,
-        oldPrice: editingPost?.oldPrice||'',
-        newPrice: editingPost?.newPrice||'',
-        category: editingPost?.category||'fresh'
-    });
-
-    const setField = (k,v) => setForm(f=>({...f,[k]:v}));
-
-    const handleSubmit = () => {
-        if(images.length===0||!form.title[lang]) return;
-        onSave({
-            id: editingPost?.id||Date.now(),   // ← FIX: always use existing id when editing
-            title: form.title, description: form.description,
-            images, discountPercent:+form.discountPercent, discountDays:+form.discountDays,
-            oldPrice:form.oldPrice?+form.oldPrice:null, newPrice:form.newPrice?+form.newPrice:null,
-            createdAt: editingPost?.createdAt||Date.now(),
-            likes: editingPost?.likes||0, category:form.category, lang, city:'Erbil'
-        });
-    };
-
-    if(step==='media'){
-        return <MediaManager onSave={imgs=>{setImages(imgs);setStep('details');}} onCancel={onClose} t={t} discountPercent={+form.discountPercent}/>;
-    }
-
-    return (
-        <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
-            <div className="min-h-screen px-4 py-8">
-                <div className="max-w-2xl mx-auto bg-[#111827] rounded-2xl overflow-hidden border border-[#1e2d40]">
-                    <div className="bg-[#0a0f1a] px-5 py-4 flex justify-between items-center border-b border-[#1e2d40]">
-                        <button onClick={()=>setStep('media')} className="text-gray-400 hover:text-white"><i className="fas fa-arrow-left mr-2"/></button>
-                        <h2 className="text-white font-bold">{editingPost?t('editPost'):t('createPost')}</h2>
-                        <button onClick={handleSubmit} disabled={!form.title[lang]||images.length===0} className="bg-bilal-600 text-white px-5 py-1.5 rounded-lg font-bold disabled:opacity-40 transition-opacity">{t('publish')}</button>
-                    </div>
-                    <div className="p-5 space-y-5">
-                        {/* Image strip */}
-                        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
-                            {images.map((img,i)=><img key={i} src={img} alt="" className="w-20 h-20 object-cover rounded-xl flex-shrink-0 border border-[#1e2d40]"/>)}
-                            <button onClick={()=>setStep('media')} className="w-20 h-20 bg-[#1a2235] rounded-xl flex-shrink-0 flex flex-col items-center justify-center text-gray-500 hover:text-gray-300 border border-[#1e2d40] transition-colors">
-                                <i className="fas fa-edit text-xl"/><span className="text-xs mt-1">Edit</span>
-                            </button>
-                        </div>
-
-                        {/* Titles per language */}
-                        {(['ckb','ar','en']).map(l=>(
-                            <div key={l} className="border border-[#1e2d40] rounded-xl overflow-hidden">
-                                <div className={`px-4 py-2 text-xs font-bold uppercase tracking-wider ${l==='ckb'?'bg-bilal-600/10 text-bilal-400':l==='ar'?'bg-green-600/10 text-green-400':'bg-blue-600/10 text-blue-400'}`}>
-                                    {l==='ckb'?'🇮🇶 Kurdish Sorani':l==='ar'?'🇸🇦 Arabic':'🇬🇧 English'}
-                                </div>
-                                <div className="p-3 space-y-2">
-                                    <input type="text" value={form.title[l]} onChange={e=>setField('title',{...form.title,[l]:e.target.value})} placeholder={t('title')} dir={l==='en'?'ltr':'rtl'} className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-lg px-3 py-2 text-white text-sm focus:border-bilal-600 outline-none transition-colors"/>
-                                    <textarea value={form.description[l]} onChange={e=>setField('description',{...form.description,[l]:e.target.value})} placeholder={t('description')} dir={l==='en'?'ltr':'rtl'} className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-lg px-3 py-2 text-white text-sm h-16 resize-none focus:border-bilal-600 outline-none transition-colors"/>
-                                </div>
-                            </div>
-                        ))}
-
-                        {/* Pricing */}
-                        <div className="border border-[#1e2d40] rounded-xl p-4 space-y-3">
-                            <p className="text-gray-400 text-xs uppercase tracking-wider font-bold">💰 Pricing</p>
-                            <div className="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label className="text-gray-500 text-xs block mb-1">{t('oldPrice')} <span className="text-red-400">(crossed out)</span></label>
-                                    <input type="number" value={form.oldPrice} onChange={e=>setField('oldPrice',e.target.value)} placeholder="e.g. 15000" className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-lg px-3 py-2 text-white text-sm focus:border-bilal-600 outline-none"/>
-                                </div>
-                                <div>
-                                    <label className="text-gray-500 text-xs block mb-1">{t('newPrice')} <span className="text-green-400">(sale price)</span></label>
-                                    <input type="number" value={form.newPrice} onChange={e=>setField('newPrice',e.target.value)} placeholder="e.g. 9000" className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-lg px-3 py-2 text-white text-sm focus:border-bilal-600 outline-none"/>
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label className="text-gray-500 text-xs block mb-1">{t('discountPct')}</label>
-                                    <input type="number" min="1" max="99" value={form.discountPercent} onChange={e=>setField('discountPercent',e.target.value)} className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-lg px-3 py-2 text-white text-sm focus:border-bilal-600 outline-none"/>
-                                </div>
-                                <div>
-                                    <label className="text-gray-500 text-xs block mb-1">{t('days')}</label>
-                                    <input type="number" min="1" max="90" value={form.discountDays} onChange={e=>setField('discountDays',e.target.value)} className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-lg px-3 py-2 text-white text-sm focus:border-bilal-600 outline-none"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Categories */}
-                        <div>
-                            <label className="text-gray-400 text-xs uppercase tracking-wider font-bold block mb-2">Category</label>
-                            <div className="flex flex-wrap gap-2">
-                                {CATS.filter(c=>c!=='all').map(cat=>(
-                                    <button key={cat} onClick={()=>setField('category',cat)} className={`px-3 py-1 rounded-full text-xs font-bold transition-colors ${form.category===cat?'bg-bilal-600 text-white':'bg-[#1a2235] text-gray-400 hover:bg-[#1e2d40]'}`}>
-                                        {T.en.categories[cat]}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// ═══════════════════════════════════════════════
-// ADMIN FLOW
-// ═══════════════════════════════════════════════
-const AdminWarning = ({onStaff, onLeave, t}) => (
-    <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
-        <div className="bg-[#111827] rounded-2xl p-7 max-w-sm w-full border border-red-500/30 shadow-2xl">
-            <div className="text-center mb-6"><div className="text-5xl mb-3">⚠️</div>
-                <h2 className="text-2xl font-black text-red-400 mb-2">{t('warning')}</h2>
-                <p className="text-gray-300 text-sm leading-relaxed">{t('not_customer')}</p>
-            </div>
-            <button onClick={onLeave} className="w-full bg-bilal-600 hover:bg-bilal-700 text-white py-3 rounded-xl font-bold mb-3 transition-colors"><i className="fas fa-door-open mr-2"/>{t('leave_site')}</button>
-            <button onClick={onStaff} className="w-full bg-[#1a2235] hover:bg-[#1e2d40] text-gray-300 py-3 rounded-xl text-sm font-bold transition-colors"><i className="fas fa-lock mr-2"/>{t('i_am_staff')}</button>
-        </div>
+      )}
     </div>
+  );
+};
+
+/* Lightbox */
+const Lightbox = ({images, start, onClose}) => {
+  const [i,setI] = useState(start||0);
+  useEffect(()=>{
+    const h=e=>{if(e.key==='Escape')onClose();if(e.key==='ArrowLeft')setI(x=>(x-1+images.length)%images.length);if(e.key==='ArrowRight')setI(x=>(x+1)%images.length);};
+    window.addEventListener('keydown',h); return()=>window.removeEventListener('keydown',h);
+  },[]);
+  return (
+    <div className="lb" onClick={onClose}>
+      <button style={{position:'absolute',top:16,right:16,background:'none',border:'none',color:'#fff',fontSize:32,cursor:'pointer',zIndex:5}} onClick={onClose}>×</button>
+      {images.length>1 && <div style={{position:'absolute',top:16,left:'50%',transform:'translateX(-50%)',color:'rgba(255,255,255,.6)',fontSize:13,zIndex:5}}>{i+1}/{images.length}</div>}
+      <img src={images[i]} alt="" style={{maxWidth:'92vw',maxHeight:'88vh',objectFit:'contain'}} onClick={e=>e.stopPropagation()}/>
+      {images.length>1 && <>
+        <button onClick={e=>{e.stopPropagation();setI(x=>(x-1+images.length)%images.length);}} style={{position:'absolute',left:12,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.12)',border:'none',color:'#fff',width:42,height:42,borderRadius:'50%',fontSize:22,cursor:'pointer'}}>‹</button>
+        <button onClick={e=>{e.stopPropagation();setI(x=>(x+1)%images.length);}} style={{position:'absolute',right:12,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.12)',border:'none',color:'#fff',width:42,height:42,borderRadius:'50%',fontSize:22,cursor:'pointer'}}>›</button>
+      </>}
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════════════════ */
+const Countdown = ({createdAt, days, t}) => {
+  const [tl, setTl] = useState(()=>tLeft(createdAt,days));
+  useEffect(()=>{const id=setInterval(()=>setTl(tLeft(createdAt,days)),30000);return()=>clearInterval(id);},[createdAt,days]);
+  if(!tl) return <div className="countdown"><span style={{color:'var(--muted)',fontSize:13,fontWeight:700}}>{t('expired')}</span></div>;
+  return (
+    <div className="countdown">
+      {[{v:tl.d,l:t('days')},{v:tl.h,l:t('hrs')},{v:tl.m,l:t('min')}].map((x,i)=>(
+        <React.Fragment key={i}>
+          {i>0&&<span style={{color:'var(--muted)',fontWeight:900,alignSelf:'center'}}>:</span>}
+          <div className="cd-block"><div className="cd-num">{x.v}</div><div className="cd-label">{x.l}</div></div>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   DEAL CARD
+══════════════════════════════════════════════ */
+const DealCard = ({post, isAdmin, onDelete, onEdit, t, lang}) => {
+  const [liked, setLiked] = useState(false);
+  const [lb, setLb] = useState(null);
+  const expired = !tLeft(post.createdAt, post.discountDays);
+  const title = post.title[lang]||post.title[post.lang]||'';
+  const share = async () => {
+    if(navigator.share){ try{await navigator.share({title, url:window.location.href});}catch(e){} }
+    else { await navigator.clipboard?.writeText(window.location.href); }
+  };
+  return (
+    <div className="lift" style={{background:'var(--card)',borderRadius:16,overflow:'hidden',border:'1px solid var(--border)'}}>
+      <FBGrid images={post.images} pct={post.discountPct} expired={expired} onImageClick={i=>setLb(i)}/>
+      {lb!==null && <Lightbox images={post.images} start={lb} onClose={()=>setLb(null)}/>}
+      <div style={{padding:'14px 16px 16px'}}>
+        <h3 style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,lineHeight:1.35,marginBottom:10,color:'var(--text)'}}>{title}</h3>
+        <Countdown createdAt={post.createdAt} days={post.discountDays} t={t}/>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:12,paddingTop:12,borderTop:'1px solid var(--border)'}}>
+          <div style={{display:'flex',gap:8}}>
+            <button onClick={()=>setLiked(!liked)} style={{display:'flex',alignItems:'center',gap:5,padding:'6px 12px',borderRadius:20,background:liked?'rgba(220,38,38,.18)':'var(--s2)',color:liked?'#f87171':'var(--muted)',border:'none',fontSize:13,fontWeight:700,cursor:'pointer'}}>
+              <i className={liked?'fas fa-heart':'far fa-heart'}/>{post.likes+(liked?1:0)}
+            </button>
+            <button onClick={share} style={{display:'flex',alignItems:'center',gap:5,padding:'6px 12px',borderRadius:20,background:'var(--s2)',color:'var(--muted)',border:'none',fontSize:13,fontWeight:700,cursor:'pointer'}}>
+              <i className="fas fa-share-alt"/>{t('share')}
+            </button>
+          </div>
+          {isAdmin && (
+            <div style={{display:'flex',gap:6}}>
+              <button onClick={()=>onEdit(post)} style={{width:32,height:32,borderRadius:8,background:'rgba(59,130,246,.15)',color:'#60a5fa',border:'none',cursor:'pointer'}}><i className="fas fa-pencil-alt" style={{fontSize:12}}/></button>
+              <button onClick={()=>onDelete(post.id)} style={{width:32,height:32,borderRadius:8,background:'rgba(220,38,38,.15)',color:'#f87171',border:'none',cursor:'pointer'}}><i className="fas fa-trash" style={{fontSize:12}}/></button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   IMAGE MANAGER (multi-upload)
+══════════════════════════════════════════════ */
+const ImageManager = ({onSave, onCancel, t}) => {
+  const [imgs, setImgs] = useState([]);
+  const [urlInput, setUrlInput] = useState('');
+  const addUrl = () => { if(urlInput.trim()){setImgs(p=>[...p,urlInput.trim()]);setUrlInput('');} };
+  const addFiles = files => {
+    Array.from(files).forEach(f => { const r=new FileReader(); r.onload=e=>setImgs(p=>[...p,e.target.result]); r.readAsDataURL(f); });
+  };
+  return (
+    <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
+      <div style={{padding:'16px',display:'flex',gap:8,borderBottom:'1px solid var(--border)'}}>
+        <input className="inp" style={{flex:1}} placeholder={t('imageUrl')} value={urlInput} onChange={e=>setUrlInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addUrl()}/>
+        <button className="btn-ghost" onClick={addUrl}><i className="fas fa-link"/></button>
+      </div>
+      <label style={{display:'flex',alignItems:'center',gap:10,padding:'14px 16px',cursor:'pointer',borderBottom:'1px solid var(--border)',color:'var(--green2)',fontWeight:700}}>
+        <i className="fas fa-images"/>{t('addImages')}
+        <input type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>addFiles(e.target.files)}/>
+      </label>
+      <div style={{flex:1,overflowY:'auto',padding:16}}>
+        {imgs.length===0 ? (
+          <div style={{textAlign:'center',color:'var(--muted)',padding:'30px 0'}}>
+            <div style={{fontSize:36,marginBottom:8}}>🖼️</div>
+            <p style={{fontSize:13}}>Add image URLs or upload from your device</p>
+          </div>
+        ) : (
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(90px,1fr))',gap:8}}>
+            {imgs.map((img,i)=>(
+              <div key={i} style={{position:'relative',borderRadius:8,overflow:'hidden'}}>
+                <img src={img} alt="" style={{width:'100%',height:80,objectFit:'cover'}}/>
+                <button onClick={()=>setImgs(p=>p.filter((_,j)=>j!==i))} style={{position:'absolute',top:2,right:2,background:'var(--red)',color:'#fff',width:20,height:20,borderRadius:'50%',border:'none',fontSize:10,cursor:'pointer'}}>×</button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div style={{padding:16,display:'flex',gap:8,borderTop:'1px solid var(--border)'}}>
+        <button className="btn-green" style={{flex:1}} onClick={()=>imgs.length>0&&onSave(imgs)} disabled={imgs.length===0}>{t('save')}</button>
+        <button className="btn-ghost" onClick={onCancel}>{t('cancel')}</button>
+      </div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   POST MODAL (add / edit)
+══════════════════════════════════════════════ */
+const PostModal = ({editingPost, onSave, onClose, t, lang}) => {
+  const [step, setStep] = useState(editingPost?'form':'images');
+  const [images, setImages] = useState(editingPost?.images||[]);
+  const [form, setForm] = useState({
+    title: editingPost?.title||{ckb:'',ar:'',en:''},
+    discountPct: editingPost?.discountPct||20,
+    discountDays: editingPost?.discountDays||7,
+    category: editingPost?.category||'rice',
+  });
+  const set = (k,v) => setForm(f=>({...f,[k]:v}));
+  const setTitle = (l,v) => setForm(f=>({...f,title:{...f.title,[l]:v}}));
+
+  const submit = () => {
+    if(!form.title[lang]||images.length===0) return;
+    onSave({
+      id: editingPost?.id||Date.now(),   // ← keeps existing id when editing
+      title: form.title,
+      images,
+      discountPct:+form.discountPct,
+      discountDays:+form.discountDays,
+      createdAt: editingPost?.createdAt||Date.now(),
+      likes: editingPost?.likes||0,
+      category: form.category,
+      lang,
+    });
+  };
+
+  if(step==='images'){
+    return (
+      <div className="modal-bg" onClick={onClose}>
+        <div className="modal-box" onClick={e=>e.stopPropagation()} style={{height:'80vh',display:'flex',flexDirection:'column'}}>
+          <div className="modal-header">
+            <span style={{fontWeight:700,fontSize:16}}>{t('addImages')}</span>
+            <button onClick={onClose} style={{background:'none',border:'none',color:'var(--muted)',fontSize:22,cursor:'pointer'}}>×</button>
+          </div>
+          <div style={{flex:1,overflow:'hidden'}}>
+            <ImageManager onSave={imgs=>{setImages(imgs);setStep('form');}} onCancel={onClose} t={t}/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="modal-bg" onClick={onClose}>
+      <div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <div className="modal-header">
+          <button onClick={()=>setStep('images')} style={{background:'none',border:'none',color:'var(--muted)',cursor:'pointer',fontSize:20}}>←</button>
+          <span style={{fontWeight:700,fontSize:15}}>{editingPost?t('editPost'):t('addPost')}</span>
+          <button onClick={onClose} style={{background:'none',border:'none',color:'var(--muted)',fontSize:22,cursor:'pointer'}}>×</button>
+        </div>
+        <div style={{padding:16,overflowY:'auto',maxHeight:'calc(80vh - 56px)'}}>
+          {/* Image preview strip */}
+          <div style={{display:'flex',gap:6,overflowX:'auto',paddingBottom:8,marginBottom:12}} className="hide-sb">
+            {images.map((img,i)=>(
+              <div key={i} style={{position:'relative',flexShrink:0}}>
+                <img src={img} style={{width:70,height:70,objectFit:'cover',borderRadius:8}} alt=""/>
+                <button onClick={()=>setImages(p=>p.filter((_,j)=>j!==i))} style={{position:'absolute',top:2,right:2,background:'var(--red)',color:'#fff',width:18,height:18,borderRadius:'50%',border:'none',fontSize:9,cursor:'pointer'}}>×</button>
+              </div>
+            ))}
+            <button onClick={()=>setStep('images')} style={{width:70,height:70,borderRadius:8,background:'var(--s2)',border:'1px dashed var(--border)',color:'var(--muted)',fontSize:22,cursor:'pointer',flexShrink:0}}>+</button>
+          </div>
+
+          {/* Titles */}
+          {['ckb','ar','en'].map(l=>(
+            <div key={l} style={{marginBottom:12}}>
+              <label style={{fontSize:11,fontWeight:700,color:l==='ckb'?'var(--green2)':l==='ar'?'#60a5fa':'#a78bfa',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:.5}}>
+                {l==='ckb'?'🇮🇶 Kurdish':l==='ar'?'🇸🇦 Arabic':'🇬🇧 English'}
+              </label>
+              <input className="inp" dir={l==='en'?'ltr':'rtl'} value={form.title[l]} onChange={e=>setTitle(l,e.target.value)} placeholder={t('postTitle')}/>
+            </div>
+          ))}
+
+          {/* Settings row */}
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:12}}>
+            <div>
+              <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:4}}>{t('discountPct')}</label>
+              <input className="inp" type="number" min="1" max="99" value={form.discountPct} onChange={e=>set('discountPct',e.target.value)}/>
+            </div>
+            <div>
+              <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:4}}>{t('discountDays')}</label>
+              <input className="inp" type="number" min="1" max="90" value={form.discountDays} onChange={e=>set('discountDays',e.target.value)}/>
+            </div>
+          </div>
+
+          {/* Category */}
+          <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:6}}>{t('selectCategory')}</label>
+          <div style={{display:'flex',flexWrap:'wrap',gap:6,marginBottom:20}}>
+            {CATS.filter(c=>c!=='all').map(c=>(
+              <button key={c} onClick={()=>set('category',c)} style={{padding:'6px 14px',borderRadius:20,border:'none',fontSize:12,fontWeight:700,cursor:'pointer',background:form.category===c?'var(--green)':'var(--s2)',color:form.category===c?'#fff':'var(--muted)',transition:'all .15s'}}>
+                {LANG_DATA.en.cats[c]}
+              </button>
+            ))}
+          </div>
+
+          <button className="btn-green" style={{width:'100%'}} onClick={submit} disabled={!form.title[lang]||images.length===0}>{t('publish')}</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   SPONSOR MANAGER
+══════════════════════════════════════════════ */
+const SponsorManager = ({sponsors, onUpdate, onClose, t}) => {
+  const [list, setList] = useState(sponsors);
+  const [urlInput, setUrlInput] = useState('');
+  const add = () => { if(urlInput.trim()){setList(p=>[...p,{id:Date.now(),imageUrl:urlInput.trim(),visible:true}]);setUrlInput('');} };
+  const toggle = id => setList(p=>p.map(s=>s.id===id?{...s,visible:!s.visible}:s));
+  const remove = id => setList(p=>p.filter(s=>s.id!==id));
+  return (
+    <div className="modal-bg" onClick={onClose}>
+      <div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <div className="modal-header">
+          <span style={{fontWeight:700,fontSize:15}}>{t('manageSponsor')}</span>
+          <button onClick={()=>{onUpdate(list);onClose();}} style={{background:'var(--green)',color:'#fff',border:'none',borderRadius:8,padding:'6px 14px',fontWeight:700,fontSize:13,cursor:'pointer'}}>{t('save')}</button>
+        </div>
+        <div style={{padding:16,overflowY:'auto',maxHeight:'70vh'}}>
+          <div style={{display:'flex',gap:8,marginBottom:16}}>
+            <input className="inp" style={{flex:1}} placeholder={t('imageUrl')} value={urlInput} onChange={e=>setUrlInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&add()}/>
+            <button className="btn-green" onClick={add}><i className="fas fa-plus"/></button>
+          </div>
+          {list.map(s=>(
+            <div key={s.id} style={{display:'flex',alignItems:'center',gap:10,padding:'8px 0',borderBottom:'1px solid var(--border)'}}>
+              <img src={s.imageUrl} alt="" style={{width:60,height:40,objectFit:'contain',borderRadius:6,background:'var(--s2)'}}/>
+              <div style={{flex:1,fontSize:11,color:'var(--muted)',wordBreak:'break-all'}}>{s.imageUrl.substring(0,40)}...</div>
+              <button onClick={()=>toggle(s.id)} style={{background:s.visible?'rgba(5,150,105,.2)':'var(--s2)',color:s.visible?'var(--green2)':'var(--muted)',border:'none',borderRadius:8,padding:'5px 10px',fontSize:11,fontWeight:700,cursor:'pointer'}}>
+                {s.visible?t('hide'):t('show')}
+              </button>
+              <button onClick={()=>remove(s.id)} style={{background:'rgba(220,38,38,.2)',color:'#f87171',border:'none',borderRadius:8,width:28,height:28,cursor:'pointer'}}>×</button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════════════════════
+   ADMIN AUTH
+══════════════════════════════════════════════ */
+const AdminWarning = ({onStaff, onLeave, t}) => (
+  <div className="modal-bg">
+    <div className="modal-box" style={{borderTop:'3px solid var(--red)'}}>
+      <div style={{padding:'28px 24px',textAlign:'center'}}>
+        <div style={{fontSize:48,marginBottom:8}}>⚠️</div>
+        <h2 style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:900,color:'#f87171',marginBottom:8}}>{t('warning')}</h2>
+        <p style={{color:'var(--muted)',fontSize:14,marginBottom:24,lineHeight:1.6}}>{t('staffOnly')}</p>
+        <button className="btn-green" style={{width:'100%',marginBottom:10}} onClick={onLeave}><i className="fas fa-door-open" style={{marginInlineEnd:8}}/>{t('notMyBiz')}</button>
+        <button className="btn-ghost" style={{width:'100%',fontSize:13}} onClick={onStaff}><i className="fas fa-lock" style={{marginInlineEnd:8}}/>{t('iAmStaff')}</button>
+      </div>
+    </div>
+  </div>
 );
 
 const AdminLogin = ({onLogin, onCancel, t}) => {
-    const [email,setEmail]=useState(''); const [pass,setPass]=useState(''); const [err,setErr]=useState('');
-    const submit = (e) => {
-        e.preventDefault();
-        if(email!=='bilbazarlal836583@gmail.com'||pass!=='Football25$'){setErr('Invalid credentials');return;}
-        const d={email,isAdmin:true,loginTime:Date.now()};
-        localStorage.setItem('bilalAdmin',JSON.stringify(d)); onLogin(d);
-    };
-    return (
-        <div className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-4">
-            <div className="bg-[#111827] rounded-2xl p-7 max-w-sm w-full border border-[#1e2d40] shadow-2xl">
-                <div className="text-center mb-6"><div className="w-14 h-14 bg-bilal-600/20 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">🔐</div>
-                    <h2 className="text-xl font-bold text-white">{t('admin')}</h2>
-                    <p className="text-gray-500 text-xs mt-1">Bilal Bazar Staff Access</p>
-                </div>
-                <form onSubmit={submit} className="space-y-3">
-                    <input type="email" placeholder="Gmail account" value={email} onChange={e=>setEmail(e.target.value)} className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-xl px-4 py-3 text-white focus:border-bilal-600 outline-none text-sm" required/>
-                    <input type="password" placeholder={t('password')} value={pass} onChange={e=>setPass(e.target.value)} className="w-full bg-[#0a0f1a] border border-[#1e2d40] rounded-xl px-4 py-3 text-white focus:border-bilal-600 outline-none text-sm" required/>
-                    {err&&<p className="text-red-400 text-xs">{err}</p>}
-                    <button type="submit" className="w-full bg-bilal-600 hover:bg-bilal-700 text-white py-3 rounded-xl font-bold transition-colors">{t('signIn')}</button>
-                    <button type="button" onClick={onCancel} className="w-full text-gray-500 py-2 text-sm">{t('cancel')}</button>
-                </form>
-            </div>
+  const [email,setEmail]=useState(''); const [pass,setPass]=useState(''); const [err,setErr]=useState('');
+  /* ── SUPABASE READY: replace this with supabase.auth.signInWithPassword() ── */
+  const submit = e => {
+    e.preventDefault();
+    // TODO: replace with Supabase auth
+    if(email!=='bilbazarlal836583@gmail.com' || pass!=='Football25$'){setErr(t('wrongCreds'));return;}
+    const d={email,isAdmin:true,loginTime:Date.now()};
+    localStorage.setItem('bb_admin',JSON.stringify(d));
+    onLogin(d);
+  };
+  return (
+    <div className="modal-bg">
+      <div className="modal-box">
+        <div className="modal-header">
+          <span style={{fontWeight:800,fontSize:15}}>{t('admin')}</span>
+          <button onClick={onCancel} style={{background:'none',border:'none',color:'var(--muted)',fontSize:22,cursor:'pointer'}}>×</button>
         </div>
-    );
+        <form onSubmit={submit} style={{padding:20,display:'flex',flexDirection:'column',gap:12}}>
+          <div style={{textAlign:'center',padding:'8px 0 4px'}}>
+            <div style={{width:52,height:52,background:'rgba(5,150,105,.15)',borderRadius:14,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 10px',fontSize:22}}>🔐</div>
+            <p style={{fontSize:12,color:'var(--muted)'}}>Bilal Bazar Staff Access</p>
+          </div>
+          <input className="inp" type="email" placeholder={t('emailLabel')} value={email} onChange={e=>setEmail(e.target.value)} required/>
+          <input className="inp" type="password" placeholder={t('passLabel')} value={pass} onChange={e=>setPass(e.target.value)} required/>
+          {err&&<p style={{color:'#f87171',fontSize:12,textAlign:'center'}}>{err}</p>}
+          <button type="submit" className="btn-green">{t('signIn')}</button>
+          <button type="button" className="btn-ghost" onClick={onCancel}>{t('cancel')}</button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
-// ═══════════════════════════════════════════════
-// MAIN APP
-// ═══════════════════════════════════════════════
+/* ══════════════════════════════════════════════
+   MAIN APP
+══════════════════════════════════════════════ */
 const App = () => {
-    const {lang,t,switchLang,dir} = useLang();
-    const [posts,setPosts] = useState(INITIAL_POSTS);
-    const [admin,setAdmin] = useState(null);
-    const [showSettings,setShowSettings] = useState(false);
-    const [showWarning,setShowWarning] = useState(false);
-    const [showLogin,setShowLogin] = useState(false);
-    const [showCreate,setShowCreate] = useState(false);
-    const [editingPost,setEditingPost] = useState(null);
-    const [search,setSearch] = useState('');
-    const [cat,setCat] = useState('all');
-    const [activeSection,setActiveSection] = useState('home');
+  const {lang,t,sw,dir} = useLang();
+  const [posts, setPosts] = useState(SAMPLE_POSTS);
+  const [sponsors, setSponsors] = useState(SAMPLE_SPONSORS);
+  const [admin, setAdmin] = useState(null);
+  const [cat, setCat] = useState('all');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showPost, setShowPost] = useState(false);
+  const [showSponsors, setShowSponsors] = useState(false);
+  const [editingPost, setEditingPost] = useState(null);
+  const [activeSection, setActiveSection] = useState('home');
 
-    useEffect(()=>{
-        try{const d=JSON.parse(localStorage.getItem('bilalAdmin'));if(d&&Date.now()-d.loginTime<7*864e5)setAdmin(d);}catch(e){}
-    },[]);
+  /* restore admin session */
+  useEffect(()=>{
+    try{const d=JSON.parse(localStorage.getItem('bb_admin'));if(d&&Date.now()-d.loginTime<7*864e5)setAdmin(d);}catch(e){}
+  },[]);
 
-    const handleLogin = (d)=>{setAdmin(d);setShowLogin(false);setShowWarning(false);};
-    const handleLogout = ()=>{localStorage.removeItem('bilalAdmin');setAdmin(null);};
-    
-    const handleSavePost = (post) => {
-        if(editingPost) {
-            // UPDATE existing post — fix: match by id
-            setPosts(ps=>ps.map(p=>p.id===post.id?post:p));
-        } else {
-            setPosts(ps=>[post,...ps]);
-        }
-        setShowCreate(false); setEditingPost(null);
-    };
-    
-    const handleDelete = (id) => { if(confirm('Delete this post?')) setPosts(ps=>ps.filter(p=>p.id!==id)); };
-    const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); setActiveSection(id); };
+  const handleLogin = d=>{setAdmin(d);setShowLogin(false);setShowWarning(false);setMenuOpen(false);};
+  const handleLogout = ()=>{localStorage.removeItem('bb_admin');setAdmin(null);};
 
-    const filteredPosts = posts.filter(p => {
-        if(cat!=='all'&&p.category!==cat) return false;
-        if(!search) return true;
-        const q=search.toLowerCase();
-        return (p.title[lang]||'').toLowerCase().includes(q)||(p.description[lang]||'').toLowerCase().includes(q);
-    });
+  /* SAVE POST — fix: update if editing, insert if new */
+  const handleSavePost = post => {
+    if(editingPost){ setPosts(ps=>ps.map(p=>p.id===post.id?post:p)); }
+    else { setPosts(ps=>[post,...ps]); }
+    setShowPost(false); setEditingPost(null);
+  };
 
-    const locName = (loc) => lang==='ckb'?loc.nameKu:lang==='ar'?loc.nameAr:loc.name;
-    const locAddr = (loc) => lang==='ckb'?loc.addressKu:lang==='ar'?loc.addressAr:loc.address;
-    const locHours = (loc) => lang==='ckb'?loc.hoursKu:lang==='ar'?loc.hoursAr:loc.hours;
+  const handleDelete = id => { if(confirm('Delete this post?')) setPosts(ps=>ps.filter(p=>p.id!==id)); };
+  const openEdit = post => { setEditingPost(post); setShowPost(true); setMenuOpen(false); };
 
-    const navItems = [{id:'home',icon:'fa-home',l:t('home')},{id:'discounts',icon:'fa-tags',l:t('discounts')},{id:'locations',icon:'fa-map-marker-alt',l:t('locations')},{id:'about',icon:'fa-info-circle',l:t('about')}];
+  const filtered = posts.filter(p=>cat==='all'||p.category===cat);
 
-    return (
-        <div className={dir==='rtl'?'rtl':'ltr'} style={{minHeight:'100vh',background:'var(--bg)'}}>
-            {/* ── DESKTOP NAV ── */}
-            <nav className="sticky top-0 z-40 hidden md:block" style={{background:'rgba(10,15,26,0.95)',backdropFilter:'blur(12px)',borderBottom:'1px solid var(--border)'}}>
-                <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-3 cursor-pointer" onClick={()=>scrollTo('home')}>
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg" style={{background:'linear-gradient(135deg,#10b981,#059669)'}}>B</div>
-                        <div><p className="text-white font-bold text-sm leading-none">Bilal Bazar</p><p className="text-[10px] font-bold tracking-widest" style={{color:'var(--accent2)'}}>BASHURI KURDISTAN</p></div>
-                    </div>
-                    <div className="flex items-center gap-1 rounded-full p-1" style={{background:'var(--surface2)'}}>
-                        {navItems.map(item=>(
-                            <button key={item.id} onClick={()=>scrollTo(item.id)} className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${activeSection===item.id?'bg-bilal-600 text-white':'text-gray-400 hover:text-white'}`}>
-                                <i className={`fas ${item.icon} mr-1.5`}/>{item.l}
-                            </button>
-                        ))}
-                    </div>
-                    <div className="flex items-center gap-3">
-                        {/* Language switcher */}
-                        <div className="relative group">
-                            <button className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm" style={{background:'var(--surface2)'}}>
-                                {lang==='ckb'?'KU':lang==='ar'?'AR':'EN'}
-                            </button>
-                            <div className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden shadow-2xl hidden group-hover:block" style={{background:'var(--surface)',border:'1px solid var(--border)',minWidth:110}}>
-                                {[{c:'ckb',l:'کوردی'},{c:'ar',l:'العربية'},{c:'en',l:'English'}].map(x=>(
-                                    <button key={x.c} onClick={()=>switchLang(x.c)} className={`w-full px-4 py-3 text-left hover:bg-[#1a2235] text-sm font-bold ${lang===x.c?'text-bilal-400':'text-gray-300'}`}>{x.l}</button>
-                                ))}
-                            </div>
-                        </div>
-                        {admin ? (
-                            <div className="flex items-center gap-2">
-                                <button onClick={()=>{setEditingPost(null);setShowCreate(true);}} className="px-4 py-2 rounded-xl text-white font-bold text-sm flex items-center gap-2" style={{background:'linear-gradient(135deg,#dc2626,#f97316)'}}>
-                                    <i className="fas fa-plus"/><span>New Post</span>
-                                </button>
-                                <button onClick={handleLogout} className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-colors" style={{background:'var(--surface2)'}}><i className="fas fa-sign-out-alt"/></button>
-                            </div>
-                        ) : null}
-                    </div>
-                </div>
-            </nav>
+  const scrollTo = id => {
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    setActiveSection(id); setMenuOpen(false);
+  };
 
-            {/* ── MOBILE TOP NAV ── */}
-            <nav className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 h-14" style={{background:'rgba(10,15,26,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid var(--border)'}}>
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-black text-sm" style={{background:'linear-gradient(135deg,#10b981,#059669)'}}>B</div>
-                    <span className="text-white font-bold text-sm">Bilal Bazar</span>
-                </div>
-                <button onClick={()=>switchLang(lang==='ckb'?'ar':lang==='ar'?'en':'ckb')} className="text-white font-bold text-xs px-3 py-1.5 rounded-lg" style={{background:'var(--surface2)'}}>
-                    {lang==='ckb'?'KU':lang==='ar'?'AR':'EN'}
-                </button>
-            </nav>
+  const visibleSponsors = sponsors.filter(s=>s.visible);
 
-            {/* ── HERO ── */}
-            <section id="home" style={{background:'linear-gradient(135deg,#064e3b 0%,#065f46 50%,#0a0f1a 100%)',paddingTop:'90px',paddingBottom:'64px',position:'relative',overflow:'hidden'}}>
-                <div style={{position:'absolute',top:'-100px',right:'-100px',width:'400px',height:'400px',borderRadius:'50%',background:'rgba(5,150,105,0.08)',pointerEvents:'none'}}/>
-                <div style={{position:'absolute',bottom:'-80px',left:'-80px',width:'300px',height:'300px',borderRadius:'50%',background:'rgba(52,211,153,0.06)',pointerEvents:'none'}}/>
-                <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold mb-6 border" style={{background:'rgba(255,255,255,0.07)',borderColor:'rgba(255,255,255,0.12)',color:'#a7f3d0'}}>
-                        <span style={{width:8,height:8,borderRadius:'50%',background:'#34d399',display:'inline-block',animation:'pulse 2s infinite'}}/>
-                        🛍️ BASHURI KURDISTAN'S BIGGEST MARKET
-                    </div>
-                    <h1 className="font-black text-white mb-4" style={{fontSize:'clamp(42px,8vw,80px)',fontFamily:"'Syne',sans-serif",lineHeight:1.05}}>
-                        Bilal <span className="gradient-text">Bazar</span>
-                    </h1>
-                    <p className="text-xl mb-8 max-w-2xl mx-auto" style={{color:'#a7f3d0',lineHeight:1.7}}>{t('everything_text')}</p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                        <button onClick={()=>scrollTo('discounts')} className="px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 hover:scale-105 transition-all" style={{background:'white',color:'#064e3b',boxShadow:'0 8px 32px rgba(0,0,0,0.2)'}}>
-                            <i className="fas fa-fire text-red-500"/> {t('see_discounts')}
-                        </button>
-                        <button onClick={()=>scrollTo('locations')} className="px-8 py-4 rounded-full font-bold text-lg border hover:bg-white/10 transition-all" style={{background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.2)',color:'white'}}>
-                            <i className="fas fa-map-marker-alt mr-2"/> {t('find_stores')}
-                        </button>
-                    </div>
-                    <div className="grid grid-cols-3 gap-8 mt-14 max-w-sm mx-auto">
-                        {[{n:'3',l:t('locations_label')},{n:'10,000+',l:t('products_label')},{n:t('weekly_label'),l:t('new_deals')}].map((s,i)=>(
-                            <div key={i} className="text-center"><div className="text-2xl font-black text-white">{s.n}</div><div className="text-xs" style={{color:'#6ee7b7'}}>{s.l}</div></div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+  /* ── NAV ITEMS ── */
+  const navItems = [
+    {id:'home',icon:'fa-home',l:t('home')},
+    {id:'locations',icon:'fa-map-marker-alt',l:t('locations')},
+    {id:'about',icon:'fa-info-circle',l:t('about')},
+  ];
 
-            {/* ── DISCOUNTS ── */}
-            <section id="discounts" className="py-14 px-4 max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-7">
-                    <div>
-                        <h2 className="text-3xl font-black text-white mb-1" style={{fontFamily:"'Syne',sans-serif"}}>{t('discounts')}</h2>
-                        <p style={{color:'var(--muted)'}}>{filteredPosts.length} active deals</p>
-                    </div>
-                    <div className="relative w-full md:w-72">
-                        <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2" style={{color:'var(--muted)'}}/>
-                        <input type="text" value={search} onChange={e=>setSearch(e.target.value)} placeholder={t('search')} className="w-full rounded-2xl pl-11 pr-4 py-3 text-white outline-none focus:border-bilal-600 transition-colors text-sm" style={{background:'var(--surface)',border:'1px solid var(--border)'}}/>
-                    </div>
-                </div>
-                <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-6 pb-2">
-                    {CATS.map(c=>(
-                        <button key={c} onClick={()=>setCat(c)} className={`px-4 py-2 rounded-full whitespace-nowrap font-bold text-sm transition-colors ${cat===c?'bg-bilal-600 text-white':'text-gray-400 hover:text-white'}`} style={cat!==c?{background:'var(--surface)',border:'1px solid var(--border)'}:{}}>
-                            {t(`categories.${c}`)}
-                        </button>
-                    ))}
-                </div>
-                {filteredPosts.length>0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {filteredPosts.map(post=><PostCard key={post.id} post={post} isAdmin={!!admin} onDelete={handleDelete} onEdit={p=>{setEditingPost(p);setShowCreate(true);}} t={t} lang={lang}/>)}
-                    </div>
-                ) : (
-                    <div className="text-center py-20" style={{color:'var(--muted)'}}>
-                        <div className="text-5xl mb-4">🔍</div><p className="text-xl">{t('noDiscounts')}</p>
-                    </div>
-                )}
-            </section>
+  return (
+    <div className={dir==='rtl'?'rtl':'ltr'} style={{minHeight:'100vh',background:'var(--bg)'}}>
 
-            {/* ── LOCATIONS ── */}
-            <section id="locations" className="py-14 px-4" style={{background:'var(--surface)'}}>
-                <div className="max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-black text-white mb-8 text-center" style={{fontFamily:"'Syne',sans-serif"}}>{t('locations')}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        {LOCATIONS.map(loc=>(
-                            <a key={loc.id} href={loc.mapLink} target="_blank" rel="noopener noreferrer" className="block rounded-2xl p-5 card-hover group" style={{background:'var(--bg)',border:'1px solid var(--border)'}}>
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4 transition-colors group-hover:bg-bilal-600" style={{background:'rgba(5,150,105,0.15)',color:'var(--accent2)'}}>
-                                    <i className="fas fa-store"/>
-                                </div>
-                                <h3 className="text-white font-bold text-base mb-1">{locName(loc)}</h3>
-                                <p className="text-sm mb-4" style={{color:'var(--muted)'}}>{locAddr(loc)}</p>
-                                <div className="space-y-1.5 mb-4 text-sm" style={{color:'#94a3b8'}}>
-                                    <div className="flex items-center gap-2"><i className="far fa-clock w-4" style={{color:'var(--accent)'}}/>  {locHours(loc)}</div>
-                                    <div className="flex items-center gap-2"><i className="fas fa-phone w-4" style={{color:'var(--accent)'}}/> {loc.phone}</div>
-                                </div>
-                                <div className="flex gap-2">
-                                    <span className="flex-1 py-2 rounded-xl text-center text-white font-bold text-sm flex items-center justify-center gap-1.5" style={{background:'var(--accent)'}}>
-                                        <i className="fas fa-map-marker-alt text-xs"/> {t('directions')}
-                                    </span>
-                                    <a href={`tel:${loc.phone}`} onClick={e=>e.stopPropagation()} className="px-4 rounded-xl flex items-center justify-center text-white hover:opacity-80 transition-opacity" style={{background:'var(--surface2)'}}>
-                                        <i className="fas fa-phone text-sm"/>
-                                    </a>
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── ABOUT ── */}
-            <section id="about" className="py-14 px-4 max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl font-black text-white mb-5" style={{fontFamily:"'Syne',sans-serif"}}>{t('about')}</h2>
-                <p className="text-lg leading-relaxed mb-8" style={{color:'var(--muted)'}}>{t('about_text')}</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {[['🥬','fresh','#22c55e'],['📱','electronics','#3b82f6'],['👗','clothing','#ec4899'],['🏠','home','#eab308'],['🍞','bakery','#f97316'],['🥛','dairy','#06b6d4'],['🧴','cleaning','#a855f7'],['💊','pharmacy','#ef4444']].map(([icon,cat,color])=>(
-                        <div key={cat} className="rounded-2xl p-4 border card-hover cursor-pointer" style={{background:'var(--surface)',borderColor:'var(--border)'}} onClick={()=>{setCat(cat);scrollTo('discounts');}}>
-                            <div className="text-2xl mb-1.5">{icon}</div>
-                            <div className="font-bold text-xs" style={{color}}>{t(`categories.${cat}`)}</div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ── FOOTER ── */}
-            <footer className="py-10 px-4 pb-24 md:pb-10 text-center" style={{background:'#060b12',borderTop:'1px solid var(--border)'}}>
-                <div className="text-2xl font-black text-white mb-1" style={{fontFamily:"'Syne',sans-serif"}}>Bilal Bazar</div>
-                <div className="text-xs font-bold tracking-widest mb-5" style={{color:'var(--accent)'}}>BASHURI KURDISTAN</div>
-                <div className="flex justify-center gap-4 mb-5 flex-wrap">
-                    {LOCATIONS.map(loc=>(
-                        <a key={loc.id} href={loc.mapLink} target="_blank" rel="noreferrer" className="text-xs hover:text-bilal-400 transition-colors" style={{color:'var(--muted)'}}>
-                            <i className="fas fa-map-pin mr-1"/>{loc.name.split('–')[1]?.trim()||loc.name}
-                        </a>
-                    ))}
-                </div>
-                <p className="text-xs" style={{color:'#334155'}}>© 2025 Bilal Bazar · Erbil, Kurdistan Region, Iraq</p>
-            </footer>
-
-            {/* ── FLOATING BUTTONS ── */}
-            <a href="https://wa.me/9647509193030" target="_blank" rel="noopener noreferrer"
-               className="fixed bottom-20 md:bottom-6 left-5 w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl z-40 hover:scale-110 transition-transform"
-               style={{background:'#25d366',boxShadow:'0 4px 20px rgba(37,211,102,0.4)'}}>
-                <i className="fab fa-whatsapp"/>
-            </a>
-
-            {/* Settings gear — subtle bottom right */}
-            <button onClick={()=>setShowSettings(true)} className="fixed bottom-6 right-5 z-40 text-lg transition-colors hover:text-gray-400" style={{color:'#334155',background:'none',border:'none',cursor:'pointer'}}>
-                <i className="fas fa-cog"/>
-            </button>
-
-            {/* Admin FAB */}
-            {admin && (
-                <button onClick={()=>{setEditingPost(null);setShowCreate(true);}} className="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl z-40 hover:scale-110 transition-transform" style={{background:'linear-gradient(135deg,#dc2626,#f97316)',boxShadow:'0 4px 24px rgba(220,38,38,0.4)'}}>
-                    <i className="fas fa-plus"/>
-                </button>
-            )}
-
-            {/* ── MOBILE BOTTOM NAV ── */}
-            <div className="md:hidden mobile-nav flex justify-around items-center h-16">
-                {navItems.map(item=>(
-                    <button key={item.id} onClick={()=>scrollTo(item.id)} className="flex flex-col items-center gap-1 transition-colors" style={{color:activeSection===item.id?'var(--accent)':'var(--muted)'}}>
-                        <i className={`fas ${item.icon} text-lg`}/>
-                        <span className="text-[9px] font-bold">{item.l}</span>
-                    </button>
-                ))}
+      {/* ─────────── HEADER ─────────── */}
+      <header style={{position:'sticky',top:0,zIndex:50,background:'rgba(8,17,30,.97)',borderBottom:'1px solid var(--border)',backdropFilter:'blur(12px)'}}>
+        <div style={{maxWidth:1080,margin:'0 auto',padding:'0 16px',height:56,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          {/* Logo */}
+          <div style={{display:'flex',alignItems:'center',gap:10,cursor:'pointer'}} onClick={()=>scrollTo('home')}>
+            <div style={{width:36,height:36,borderRadius:10,background:'linear-gradient(135deg,#059669,#047857)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:18,color:'#fff'}}>B</div>
+            <div>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:15,color:'var(--text)',lineHeight:1}}>Bilal Bazar</div>
+              <div style={{fontSize:9,color:'var(--green2)',fontWeight:700,letterSpacing:1.2,marginTop:1}}>REGION KURDISTAN</div>
             </div>
-
-            {/* ── MODALS ── */}
-            {showSettings && !showWarning && !showLogin && (
-                <div className="fixed inset-0 bg-black/60 z-50 flex items-end md:items-center justify-center p-4">
-                    <div className="rounded-t-2xl md:rounded-2xl w-full max-w-xs p-6" style={{background:'var(--surface)',border:'1px solid var(--border)'}}>
-                        <h3 className="text-white font-bold text-lg mb-4">{t('settings')}</h3>
-                        <button onClick={()=>{setShowSettings(false);setShowWarning(true);}} className="w-full py-3 rounded-xl font-bold text-sm mb-2 text-white transition-colors hover:opacity-90" style={{background:'var(--surface2)',border:'1px solid var(--border)'}}>
-                            <i className="fas fa-lock mr-2"/>{t('admin')}
-                        </button>
-                        <button onClick={()=>setShowSettings(false)} className="w-full py-2 text-sm" style={{color:'var(--muted)'}}>{t('cancel')}</button>
-                    </div>
-                </div>
-            )}
-            {showWarning && <AdminWarning onStaff={()=>{setShowWarning(false);setShowLogin(true);}} onLeave={()=>{setShowWarning(false);setShowSettings(false);}} t={t}/>}
-            {showLogin && <AdminLogin onLogin={handleLogin} onCancel={()=>{setShowLogin(false);setShowWarning(false);}} t={t}/>}
-            {showCreate && <PostModal onSave={handleSavePost} onClose={()=>{setShowCreate(false);setEditingPost(null);}} t={t} lang={lang} editingPost={editingPost}/>}
+          </div>
+          {/* Desktop nav */}
+          <nav style={{display:'flex',gap:2}} className="hidden-mobile">
+            {navItems.map(x=>(
+              <button key={x.id} onClick={()=>scrollTo(x.id)} style={{background:'none',border:'none',color:activeSection===x.id?'var(--green2)':'var(--muted)',fontSize:13,fontWeight:700,padding:'6px 12px',borderRadius:8,cursor:'pointer',transition:'color .15s'}}>
+                {x.l}
+              </button>
+            ))}
+          </nav>
+          {/* Hamburger */}
+          <button onClick={()=>setMenuOpen(true)} style={{background:'var(--s2)',border:'1px solid var(--border)',borderRadius:10,width:38,height:38,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--text)',cursor:'pointer',fontSize:16}}>
+            <i className="fas fa-bars"/>
+          </button>
         </div>
-    );
+      </header>
+
+      {/* ─────────── MENU OVERLAY ─────────── */}
+      {menuOpen && (
+        <div className="menu-overlay">
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px 20px',borderBottom:'1px solid var(--border)'}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:17,color:'var(--text)'}}>Bilal Bazar</div>
+            <button onClick={()=>setMenuOpen(false)} style={{background:'none',border:'none',color:'var(--muted)',fontSize:26,cursor:'pointer'}}>×</button>
+          </div>
+          <div style={{flex:1,overflowY:'auto'}}>
+            {navItems.map(x=>(
+              <button key={x.id} className="menu-item" onClick={()=>scrollTo(x.id)} style={{width:'100%',textAlign:'inherit',background:'none',border:'none'}}>
+                <div className="mi-icon" style={{background:'rgba(5,150,105,.15)'}}><i className={`fas ${x.icon}`} style={{color:'var(--green2)'}}/></div>{x.l}
+              </button>
+            ))}
+            <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="menu-item">
+              <div className="mi-icon" style={{background:'rgba(37,211,102,.15)'}}><i className="fab fa-whatsapp" style={{color:'#25d366'}}/></div>WhatsApp
+            </a>
+            {/* Languages */}
+            <div style={{padding:'12px 20px',borderBottom:'1px solid var(--border)'}}>
+              <p style={{fontSize:11,color:'var(--muted)',fontWeight:700,marginBottom:10,letterSpacing:.5,textTransform:'uppercase'}}>{t('languages')}</p>
+              <div style={{display:'flex',gap:8}}>
+                {[{c:'ckb',l:'کوردی'},{c:'ar',l:'العربية'},{c:'en',l:'English'}].map(x=>(
+                  <button key={x.c} onClick={()=>{sw(x.c);setMenuOpen(false);}} style={{flex:1,padding:'8px 6px',borderRadius:10,border:'none',fontWeight:700,fontSize:12,cursor:'pointer',background:lang===x.c?'var(--green)':'var(--s2)',color:lang===x.c?'#fff':'var(--muted)',transition:'all .15s'}}>
+                    {x.l}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {/* Admin */}
+            {admin ? (
+              <>
+                <button className="menu-item" onClick={()=>{setEditingPost(null);setShowPost(true);setMenuOpen(false);}} style={{width:'100%',textAlign:'inherit',background:'none',border:'none',color:'var(--green2)'}}>
+                  <div className="mi-icon" style={{background:'rgba(5,150,105,.15)'}}><i className="fas fa-plus" style={{color:'var(--green2)'}}/></div>{t('addPost')}
+                </button>
+                <button className="menu-item" onClick={()=>{setShowSponsors(true);setMenuOpen(false);}} style={{width:'100%',textAlign:'inherit',background:'none',border:'none',color:'#a78bfa'}}>
+                  <div className="mi-icon" style={{background:'rgba(167,139,250,.15)'}}><i className="fas fa-star" style={{color:'#a78bfa'}}/></div>{t('manageSponsor')}
+                </button>
+                <button className="menu-item" onClick={()=>{handleLogout();setMenuOpen(false);}} style={{width:'100%',textAlign:'inherit',background:'none',border:'none',color:'#f87171'}}>
+                  <div className="mi-icon" style={{background:'rgba(220,38,38,.1)'}}><i className="fas fa-sign-out-alt" style={{color:'#f87171'}}/></div>{t('logout')}
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="menu-item" onClick={()=>{setMenuOpen(false);setShowWarning(true);}} style={{width:'100%',textAlign:'inherit',background:'none',border:'none'}}>
+                  <div className="mi-icon" style={{background:'rgba(245,158,11,.1)'}}><i className="fas fa-lock" style={{color:'var(--gold)'}}/></div>{t('admin')}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ─────────── HERO ─────────── */}
+      <section id="home" style={{position:'relative',overflow:'hidden',padding:'60px 16px 50px',background:'linear-gradient(160deg,#07192e 0%,#0c2a1e 60%,var(--bg) 100%)'}}>
+        <div style={{position:'absolute',top:'-80px',right:'-100px',width:350,height:350,borderRadius:'50%',background:'rgba(5,150,105,.07)',pointerEvents:'none'}}/>
+        <div style={{position:'absolute',bottom:'-60px',left:'-60px',width:250,height:250,borderRadius:'50%',background:'rgba(52,211,153,.05)',pointerEvents:'none'}}/>
+        <div style={{maxWidth:640,margin:'0 auto',textAlign:'center',position:'relative',zIndex:2}}>
+          <div style={{display:'inline-flex',alignItems:'center',gap:7,background:'rgba(255,255,255,.07)',border:'1px solid rgba(255,255,255,.1)',borderRadius:30,padding:'5px 14px',fontSize:12,fontWeight:700,color:'#a7f3d0',marginBottom:20,letterSpacing:.5}}>
+            <span style={{width:7,height:7,borderRadius:'50%',background:'#34d399',display:'inline-block'}} className="pulse"/>
+            REGION KURDISTAN
+          </div>
+          <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,lineHeight:1.05,marginBottom:14}}>
+            <span style={{display:'block',fontSize:'clamp(34px,7vw,64px)',color:'var(--text)'}}>{t('hero1')}</span>
+            <span style={{display:'block',fontSize:'clamp(34px,7vw,64px)',background:'linear-gradient(120deg,#34d399,#059669)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>{t('hero2')}</span>
+          </h1>
+          <p style={{color:'#7fb8a0',fontSize:16,marginBottom:28,lineHeight:1.6}}>{t('heroSub')}</p>
+          <div style={{display:'flex',flexWrap:'wrap',gap:10,justifyContent:'center'}}>
+            <button onClick={()=>scrollTo('deals')} style={{background:'white',color:'#064e3b',border:'none',borderRadius:30,padding:'13px 26px',fontWeight:800,fontSize:15,cursor:'pointer',display:'flex',alignItems:'center',gap:8,boxShadow:'0 6px 24px rgba(0,0,0,.2)'}}>
+              <i className="fas fa-fire" style={{color:'#ef4444'}}/>{t('seeDeals')}
+            </button>
+            <button onClick={()=>scrollTo('locations')} style={{background:'rgba(255,255,255,.08)',color:'white',border:'1px solid rgba(255,255,255,.18)',borderRadius:30,padding:'13px 26px',fontWeight:700,fontSize:15,cursor:'pointer'}}>
+              <i className="fas fa-map-marker-alt" style={{marginInlineEnd:8}}/>{t('findStore')}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────── SPONSORS STRIP ─────────── */}
+      {visibleSponsors.length>0 && (
+        <section style={{padding:'10px 16px',background:'var(--s1)',borderBottom:'1px solid var(--border)'}}>
+          <div style={{maxWidth:1080,margin:'0 auto',display:'flex',gap:10,overflowX:'auto'}} className="hide-sb">
+            {visibleSponsors.map(s=>(
+              <div key={s.id} className="sponsor-slot" style={{width:120,height:56,flexShrink:0}}>
+                <img src={s.imageUrl} alt="sponsor" className="sponsor-img"/>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ─────────── DEALS ─────────── */}
+      <section id="deals" style={{padding:'40px 16px',maxWidth:1080,margin:'0 auto'}}>
+        <h2 className="heading" style={{fontSize:24,marginBottom:6}}>{t('deals_h')}</h2>
+        <p style={{color:'var(--muted)',fontSize:13,marginBottom:20}}>{filtered.length} deals</p>
+
+        {/* Category pills */}
+        <div style={{display:'flex',gap:7,overflowX:'auto',paddingBottom:12,marginBottom:20}} className="hide-sb">
+          {CATS.map(c=>(
+            <button key={c} onClick={()=>setCat(c)} style={{padding:'7px 16px',borderRadius:20,border:'none',fontSize:13,fontWeight:700,cursor:'pointer',whiteSpace:'nowrap',background:cat===c?'var(--green)':'var(--s2)',color:cat===c?'#fff':'var(--muted)',border:cat===c?'none':'1px solid var(--border)',transition:'all .15s'}}>
+              {t(`cats.${c}`)}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        {filtered.length===0 ? (
+          <div style={{textAlign:'center',padding:'60px 20px',color:'var(--muted)'}}>
+            <div style={{fontSize:40,marginBottom:12}}>🏷️</div>
+            <p style={{fontSize:16}}>{t('noDeals')}</p>
+          </div>
+        ) : (
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))',gap:16}}>
+            {filtered.map(post=>(
+              <DealCard key={post.id} post={post} isAdmin={!!admin} onDelete={handleDelete} onEdit={openEdit} t={t} lang={lang}/>
+            ))}
+          </div>
+        )}
+
+        {admin && (
+          <div style={{textAlign:'center',marginTop:28}}>
+            <button className="btn-green" onClick={()=>{setEditingPost(null);setShowPost(true);}}>
+              <i className="fas fa-plus" style={{marginInlineEnd:8}}/>{t('addPost')}
+            </button>
+          </div>
+        )}
+      </section>
+
+      {/* ─────────── LOCATIONS ─────────── */}
+      <section id="locations" style={{padding:'40px 16px',background:'var(--s1)',borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)'}}>
+        <div style={{maxWidth:1080,margin:'0 auto'}}>
+          <h2 className="heading" style={{fontSize:24,marginBottom:20,textAlign:'center'}}>{t('locations_h')}</h2>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(270px,1fr))',gap:14}}>
+            {[
+              {id:1,name:'Bilal Bazar – Koya Street',nameKu:'بیناڵ بازاڕ – شەقامی کۆیە',nameAr:'بيلال بازار – شارع كويا',addr:'Koya Street, Erbil',addrKu:'شەقامی کۆیە، هەولێر',addrAr:'شارع كويا، أربيل',link:'https://maps.app.goo.gl/MR4fDpX1jHAAsHzLA',phone:'+964 750 919 3030',hours:'8:00 AM – 10:00 PM'},
+              {id:2,name:'Bilal Bazar – Hewasti',nameKu:'بیناڵ بازاڕ – هەواستی',nameAr:'بيلال بازار – هواستي',addr:'Hewasti, Hawler (Erbil)',addrKu:'هەواستی، هەولێر',addrAr:'هواستي، هولير',link:'https://maps.app.goo.gl/ZuwXPth3DokXYDEt7',phone:'+964 750 919 3030',hours:'8:00 AM – 10:00 PM'},
+              {id:3,name:'Bilal Bazar – Ankawa',nameKu:'بیناڵ بازاڕ – عەنکاوە',nameAr:'بيلال بازار – عنكاوا',addr:'Ankawa, Erbil',addrKu:'عەنکاوە، هەولێر',addrAr:'عنكاوا، أربيل',link:'https://maps.app.goo.gl/vZhSVM94MKC1Cuja9',phone:'+964 750 919 3030',hours:'8:00 AM – 10:00 PM'},
+            ].map(loc=>(
+              <a key={loc.id} href={loc.link} target="_blank" rel="noopener noreferrer" className="lift" style={{display:'block',background:'var(--card)',border:'1px solid var(--border)',borderRadius:14,padding:'18px',textDecoration:'none',color:'inherit'}}>
+                <div style={{width:40,height:40,borderRadius:10,background:'rgba(5,150,105,.15)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:12,fontSize:18,transition:'all .2s'}}>
+                  <i className="fas fa-store" style={{color:'var(--green2)'}}/>
+                </div>
+                <h3 style={{fontWeight:800,fontSize:14,marginBottom:4,color:'var(--text)'}}>{lang==='ckb'?loc.nameKu:lang==='ar'?loc.nameAr:loc.name}</h3>
+                <p style={{fontSize:12,color:'var(--muted)',marginBottom:12}}>{lang==='ckb'?loc.addrKu:lang==='ar'?loc.addrAr:loc.addr}</p>
+                <div style={{display:'flex',gap:8,fontSize:11,color:'#6b8fa8',marginBottom:14}}>
+                  <span><i className="far fa-clock" style={{color:'var(--green)',marginInlineEnd:4}}/>{loc.hours}</span>
+                </div>
+                <div style={{display:'flex',gap:7}}>
+                  <span style={{flex:1,background:'var(--green)',color:'#fff',borderRadius:8,padding:'8px',textAlign:'center',fontSize:12,fontWeight:700}}>
+                    <i className="fas fa-map-marker-alt" style={{marginInlineEnd:5}}/>{t('locations')}
+                  </span>
+                  <a href={`tel:${loc.phone}`} onClick={e=>e.stopPropagation()} style={{background:'var(--s2)',border:'1px solid var(--border)',borderRadius:8,padding:'8px 12px',display:'flex',alignItems:'center',color:'var(--muted)',fontSize:12}}>
+                    <i className="fas fa-phone"/>
+                  </a>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────── ABOUT ─────────── */}
+      <section id="about" style={{padding:'40px 16px',maxWidth:700,margin:'0 auto',textAlign:'center'}}>
+        <h2 className="heading" style={{fontSize:24,marginBottom:14}}>{t('about_h')}</h2>
+        <p style={{color:'var(--muted)',fontSize:15,lineHeight:1.8,marginBottom:24}}>{t('about_p')}</p>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(120px,1fr))',gap:10}}>
+          {[['🌾','rice'],['🥩','meat'],['🌽','cereal'],['📦','other']].map(([icon,c])=>(
+            <div key={c} onClick={()=>{setCat(c);scrollTo('deals');}} className="lift" style={{background:'var(--s2)',border:'1px solid var(--border)',borderRadius:12,padding:'14px 8px',textAlign:'center',cursor:'pointer'}}>
+              <div style={{fontSize:26,marginBottom:6}}>{icon}</div>
+              <div style={{fontWeight:700,fontSize:12,color:'var(--green2)'}}>{t(`cats.${c}`)}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─────────── FOOTER ─────────── */}
+      <footer style={{background:'#050d18',borderTop:'1px solid var(--border)',padding:'32px 16px 80px',textAlign:'center'}}>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,color:'var(--text)',marginBottom:4}}>Bilal Bazar</div>
+        <div style={{fontSize:10,fontWeight:700,letterSpacing:1.5,color:'var(--green)',marginBottom:14}}>REGION KURDISTAN</div>
+        <p style={{fontSize:13,color:'var(--muted)',marginBottom:16,maxWidth:360,margin:'0 auto 16px',lineHeight:1.6}}>
+          {lang==='ckb'?'بازاڕی متمانەپێکراوی ناوچەی کوردستان':lang==='ar'?'السوق الموثوق في إقليم كردستان':'The Trusted Market of Region Kurdistan'}
+        </p>
+        <div style={{display:'flex',justifyContent:'center',gap:16,marginBottom:16}}>
+          <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" style={{color:'#25d366',fontSize:22}}><i className="fab fa-whatsapp"/></a>
+        </div>
+        {/* Settings — small hidden gear for admin access */}
+        <p style={{fontSize:11,color:'#1e3050'}}>{t('copyright')}</p>
+        <button onClick={()=>setShowWarning(true)} style={{background:'none',border:'none',color:'#1a3050',fontSize:13,cursor:'pointer',marginTop:16}} title="Staff access"><i className="fas fa-cog"/></button>
+      </footer>
+
+      {/* ─────────── MOBILE BOTTOM NAV ─────────── */}
+      <div className="mob-nav">
+        {navItems.map(x=>(
+          <button key={x.id} onClick={()=>scrollTo(x.id)} style={{background:'none',border:'none',display:'flex',flexDirection:'column',alignItems:'center',gap:3,color:activeSection===x.id?'var(--green2)':'var(--muted)',cursor:'pointer',flex:1}}>
+            <i className={`fas ${x.icon}`} style={{fontSize:18}}/>
+            <span style={{fontSize:9,fontWeight:700}}>{x.l}</span>
+          </button>
+        ))}
+        <button onClick={()=>setMenuOpen(true)} style={{background:'none',border:'none',display:'flex',flexDirection:'column',alignItems:'center',gap:3,color:'var(--muted)',cursor:'pointer',flex:1}}>
+          <i className="fas fa-bars" style={{fontSize:18}}/>
+          <span style={{fontSize:9,fontWeight:700}}>Menu</span>
+        </button>
+      </div>
+
+      {/* ─────────── FLOATING WHATSAPP ─────────── */}
+      <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer"
+         style={{position:'fixed',bottom:70,left:16,width:50,height:50,borderRadius:'50%',background:'#25d366',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:22,zIndex:40,boxShadow:'0 4px 16px rgba(37,211,102,.4)',textDecoration:'none'}}>
+        <i className="fab fa-whatsapp"/>
+      </a>
+
+      {/* ─────────── ADMIN FAB ─────────── */}
+      {admin && (
+        <button onClick={()=>{setEditingPost(null);setShowPost(true);}}
+           style={{position:'fixed',bottom:70,right:16,width:50,height:50,borderRadius:'50%',background:'linear-gradient(135deg,#dc2626,#f97316)',border:'none',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:22,zIndex:40,cursor:'pointer',boxShadow:'0 4px 16px rgba(220,38,38,.4)'}}>
+          <i className="fas fa-plus"/>
+        </button>
+      )}
+
+      {/* ─────────── MODALS ─────────── */}
+      {showWarning && <AdminWarning onStaff={()=>{setShowWarning(false);setShowLogin(true);}} onLeave={()=>setShowWarning(false)} t={t}/>}
+      {showLogin && <AdminLogin onLogin={handleLogin} onCancel={()=>setShowLogin(false)} t={t}/>}
+      {showPost && <PostModal editingPost={editingPost} onSave={handleSavePost} onClose={()=>{setShowPost(false);setEditingPost(null);}} t={t} lang={lang}/>}
+      {showSponsors && <SponsorManager sponsors={sponsors} onUpdate={setSponsors} onClose={()=>setShowSponsors(false)} t={t}/>}
+    </div>
+  );
 };
 
 const Root = () => <LangProvider><App/></LangProvider>;
 ReactDOM.createRoot(document.getElementById('root')).render(<Root/>);
 </script>
+
+<!-- 
+═══════════════════════════════════════════
+SUPABASE INTEGRATION GUIDE (Future)
+═══════════════════════════════════════════
+
+Tables to create in Supabase:
+  posts (id, title_ckb, title_ar, title_en, images jsonb, discount_pct, discount_days, 
+          created_at, likes, category, lang, city)
+  sponsors (id, image_url, visible, order_num)
+  admins (id, email) — use Supabase Auth instead of local credentials
+
+Replace these functions:
+  1. SAMPLE_POSTS → supabase.from('posts').select('*').order('created_at',{ascending:false})
+  2. handleSavePost → supabase.from('posts').upsert(post)
+  3. handleDelete → supabase.from('posts').delete().eq('id',id)
+  4. AdminLogin submit → supabase.auth.signInWithPassword({email,password})
+  5. SAMPLE_SPONSORS → supabase.from('sponsors').select('*')
+
+Environment: Add your Supabase URL & anon key as constants at top of file.
+═══════════════════════════════════════════
+-->
 </body>
 </html>
