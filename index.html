@@ -9,32 +9,31 @@
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
-   BILAL BAZAR — DAWN THEME
-   Midnight Navy · Fresh Green · Clean
+   BILAL BAZAR — PROFESSIONAL DARK THEME
 ═══════════════════════════════════════════ */
 :root{
-  --bg:    #050f0a;
-  --dark:  #071410;
-  --card:  #091a14;
-  --mid:   #0d2218;
-  --lift:  #112a1e;
-  --rim:   #183d2a;
-  --rim2:  #1e4d35;
-  --muted: #3a6a52;
-  --soft:  #6aa882;
-  --text:  #d8f0e8;
-  --white: #f0faf4;
-  --gold:  #059669;
-  --gold2: #10b981;
-  --gold3: #6ee7b7;
-  --teal:  #047857;
-  --teal2: #34d399;
+  --bg:    #040d08;
+  --dark:  #061210;
+  --card:  #081812;
+  --mid:   #0c2018;
+  --lift:  #102818;
+  --rim:   #163825;
+  --rim2:  #1c4830;
+  --muted: #3a6a50;
+  --soft:  #68a880;
+  --text:  #d4eee2;
+  --white: #eef8f2;
+  --gold:  #05875a;
+  --gold2: #0fa870;
+  --gold3: #5ddda0;
+  --teal:  #037a52;
+  --teal2: #2ed48a;
   --red:   #c0392b;
   --red2:  #e74c3c;
-  --green: #059669;
+  --green: #05875a;
   --r:     10px;
   --r2:    16px;
   --r3:    22px;
@@ -42,7 +41,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Outfit','Noto Sans Arabic',sans-serif;
+  font-family:'Inter','Noto Sans Arabic',sans-serif;
   background:var(--bg);color:var(--text);
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
@@ -56,14 +55,14 @@ body{
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes shimmer{0%{background-position:200% center;}100%{background-position:-200% center;}}
-@keyframes glow{0%,100%{opacity:.6;}50%{opacity:1;}}
+@keyframes glow{0%,100%{opacity:.5;}50%{opacity:1;}}
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 @keyframes scaleIn{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);}}
 @keyframes slideRight{from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0);}}
 @keyframes slideLeft{from{opacity:0;transform:translateX(-100%);}to{opacity:1;transform:translateX(0);}}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
 
 /* ── REVEAL ON SCROLL ── */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
@@ -72,62 +71,65 @@ body{
 /* ── HERO VIDEO ── */
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .vbg{position:absolute;inset:0;z-index:0;}
-.vbg video{width:100%;height:100%;object-fit:cover;opacity:.38;}
+.vbg video{width:100%;height:100%;object-fit:cover;opacity:.35;}
 .vbg::after{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(5,150,105,.09) 0%, transparent 70%),
-    linear-gradient(to bottom, rgba(5,15,10,.65) 0%, rgba(5,15,10,.12) 40%, rgba(5,15,10,.88) 100%);
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(5,135,90,.08) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(4,13,8,.7) 0%, rgba(4,13,8,.1) 40%, rgba(4,13,8,.92) 100%);
 }
 
 /* ── HERO TITLE ── */
 .hero-title{
-  font-family:'Outfit',sans-serif;font-weight:900;
-  font-size:clamp(54px,10vw,100px);
+  font-family:'Inter',sans-serif;font-weight:900;
+  font-size:clamp(52px,10vw,96px);
   letter-spacing:-2px;line-height:.95;
-  background:linear-gradient(120deg,#fff 0%,#d4f7e8 25%,var(--gold2) 52%,#fff 72%,var(--gold3) 100%);
-  background-size:250% auto;
+  background:linear-gradient(120deg,#fff 0%,#c8f5e0 25%,var(--gold2) 52%,#fff 72%,var(--gold3) 100%);
+  background-size:260% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:fadeUp .7s ease .2s both, shimmer 5s linear infinite;
+  animation:fadeUp .7s ease .2s both, shimmer 6s linear infinite;
 }
 .hero-sub{
   font-family:'Noto Sans Arabic',sans-serif;font-weight:900;
-  font-size:clamp(16px,3vw,24px);
-  color:rgba(245,208,128,.82);
+  font-size:clamp(15px,2.8vw,22px);
+  color:rgba(240,200,100,.82);
   animation:fadeUp .7s ease .45s both;
   letter-spacing:1px;
 }
 .hero-desc{
-  color:rgba(220,238,255,.68);
-  font-size:clamp(13px,2.2vw,16px);
-  line-height:1.75;font-weight:400;
+  color:rgba(210,235,255,.65);
+  font-size:clamp(13px,2vw,15px);
+  line-height:1.8;font-weight:400;
   animation:fadeUp .7s ease .68s both;
 }
 
 /* ── ORB GLOW ── */
-.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(70px);}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);}
 
-/* ── SPONSOR BANNER (like reference — full-width horizontal at top) ── */
+/* ── SPONSOR BANNER ── */
 .sp-banner{
   position:relative;overflow:hidden;
   background:var(--dark);
   border-bottom:1px solid var(--rim);
-  height:56px;display:flex;align-items:center;
+  height:52px;display:flex;align-items:center;
 }
 .sp-marquee-wrap{display:flex;overflow:hidden;width:100%;height:100%;}
-.sp-marquee{display:flex;gap:0;animation:marquee 18s linear infinite;width:max-content;}
+.sp-marquee{display:flex;gap:0;animation:marquee 22s linear infinite;width:max-content;}
 .sp-marquee:hover{animation-play-state:paused;}
-.sp-img-item{height:56px;min-width:180px;max-width:260px;flex-shrink:0;border-inline-end:1px solid var(--rim);display:flex;align-items:center;justify-content:center;padding:6px 12px;overflow:hidden;}
-.sp-img-item img{height:100%;width:100%;object-fit:contain;}
-/* Static sponsor placeholder when no images */
-.sp-placeholder{display:flex;align-items:center;gap:10px;padding:0 20px;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.sp-img-item{
+  height:52px;min-width:160px;max-width:240px;flex-shrink:0;
+  border-inline-end:1px solid var(--rim);
+  display:flex;align-items:center;justify-content:center;
+  padding:6px 16px;overflow:hidden;
+}
+.sp-img-item img{height:36px;width:auto;max-width:100%;object-fit:contain;filter:brightness(.9) contrast(1.05);}
 
 /* ── HEADER ── */
 .hdr{
   position:sticky;top:0;z-index:60;
-  background:rgba(6,9,26,.96);
+  background:rgba(4,13,8,.96);
   border-bottom:1px solid var(--rim);
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(16px);
 }
 
 /* ── CARDS ── */
@@ -137,94 +139,97 @@ body{
   transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
 }
 .card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 28px rgba(200,150,42,.1);
-  border-color:rgba(200,150,42,.3);
+  transform:translateY(-5px);
+  box-shadow:0 20px 52px rgba(0,0,0,.55),0 0 30px rgba(10,160,100,.08);
+  border-color:rgba(10,160,100,.28);
 }
 
-/* ── RIBBON ── */
-.ribbon{
-  position:absolute;top:12px;left:12px;z-index:6;
+/* ── DISCOUNT BADGE (circular) ── */
+.disc-badge{
+  position:absolute;top:10px;right:10px;z-index:6;
   background:linear-gradient(135deg,var(--red),var(--red2));
-  color:#fff;padding:4px 12px;border-radius:5px;
-  font-weight:800;font-size:12px;letter-spacing:.5px;
-  box-shadow:0 3px 10px rgba(192,57,43,.5);
+  color:#fff;
+  width:46px;height:46px;
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-weight:900;font-size:13px;line-height:1;
+  box-shadow:0 4px 14px rgba(192,57,43,.55);
+  animation:pulse 2.5s ease-in-out infinite;
+  text-align:center;
 }
-.ltr .ribbon{left:auto;right:12px;}
+.disc-badge .pct{font-size:14px;font-weight:900;}
+.disc-badge .off{font-size:7px;font-weight:700;letter-spacing:.3px;opacity:.9;}
 
 /* ── IMAGE GRID ── */
-.fb1 .fi{height:280px;}
-.fb2{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:230px;}
-.fb3{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:250px;}
+.fb1 .fi{height:260px;}
+.fb2{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:220px;}
+.fb3{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:240px;}
 .fb3 .fi:first-child{grid-row:1/3;}
-.fb4{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:250px;}
-.fb5{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:2px;height:230px;}
+.fb4{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:240px;}
+.fb5{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:2px;height:220px;}
 .fi{overflow:hidden;position:relative;background:var(--mid);cursor:pointer;}
-.fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
-.fi:hover img{transform:scale(1.05);}
-.fi-more{position:absolute;inset:0;background:rgba(6,9,26,.58);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;}
+.fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}
+.fi:hover img{transform:scale(1.06);}
+.fi-more{position:absolute;inset:0;background:rgba(4,13,8,.6);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;}
 
 /* ── COUNTDOWN ── */
 .cdown{
   display:inline-flex;align-items:center;gap:4px;
-  padding:7px 13px;border-radius:8px;
-  background:rgba(200,150,42,.08);border:1px solid rgba(200,150,42,.18);
+  padding:6px 12px;border-radius:8px;
+  background:rgba(10,160,100,.07);border:1px solid rgba(10,160,100,.16);
 }
 .cdb{text-align:center;min-width:26px;}
-.cdn{font-weight:900;font-size:17px;line-height:1;color:#fff;}
-.cdl{font-size:7px;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;}
-.cds{color:rgba(200,150,42,.5);font-weight:900;font-size:14px;align-self:center;margin-bottom:3px;}
+.cdn{font-weight:900;font-size:16px;line-height:1;color:#fff;}
+.cdl{font-size:7px;color:var(--gold2);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;}
+.cds{color:rgba(10,160,100,.45);font-weight:900;font-size:14px;align-self:center;margin-bottom:3px;}
 
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border:none;border-radius:var(--r);font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:all .16s ease;text-decoration:none;}
 .btn:disabled{opacity:.42;cursor:not-allowed;transform:none!important;}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#06091a;box-shadow:0 4px 16px rgba(200,150,42,.3);}
-.btn-gold:hover:not(:disabled){box-shadow:0 6px 26px rgba(200,150,42,.5);transform:translateY(-1px);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;box-shadow:0 4px 16px rgba(10,160,100,.3);}
+.btn-gold:hover:not(:disabled){box-shadow:0 6px 26px rgba(10,160,100,.45);transform:translateY(-1px);}
 .btn-dark{background:var(--mid);color:var(--text);border:1px solid var(--rim);}
-.btn-dark:hover{border-color:var(--gold);color:var(--gold2);}
+.btn-dark:hover{border-color:var(--gold2);color:var(--gold2);}
 .btn-ghost{background:transparent;color:var(--soft);border:1px solid var(--rim);}
 .btn-ghost:hover{color:var(--text);border-color:var(--gold2);background:var(--mid);}
-.btn-teal{background:var(--teal);color:#fff;box-shadow:0 4px 14px rgba(13,148,136,.28);}
-.btn-teal:hover:not(:disabled){background:#0b7a70;transform:translateY(-1px);}
+.btn-red{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;box-shadow:0 4px 14px rgba(192,57,43,.28);}
 
 /* ── INPUTS ── */
 .inp{width:100%;background:var(--bg);border:1.5px solid var(--rim);border-radius:var(--r);padding:11px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s;}
-.inp:focus{border-color:var(--gold);}
+.inp:focus{border-color:var(--gold2);}
 .inp::placeholder{color:var(--muted);}
 
-/* ── AUTH INPUTS (white modal) ── */
-.ainp{width:100%;background:transparent;border:none;border-bottom:1.5px solid #d1d5db;padding:10px 2px;color:#111;font-size:15px;font-family:'Outfit',sans-serif;outline:none;transition:border-color .2s;}
-.ainp:focus{border-bottom-color:#1a56db;}
-.ainp::placeholder{color:#9ca3af;font-size:14px;}
+/* ── AUTH INPUTS ── */
+.ainp{width:100%;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:11px 14px;color:#1a202c;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:all .2s;}
+.ainp:focus{border-color:#0fa870;box-shadow:0 0 0 3px rgba(15,168,112,.1);}
+.ainp::placeholder{color:#94a3b8;font-size:13px;}
 
 /* ── DARK MODAL ── */
-.mbg{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:90;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
+.mbg{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:90;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(7px);}
 @media(min-width:640px){.mbg{align-items:center;padding:20px;}}
-.mbox{background:var(--card);border:1px solid var(--rim);border-radius:var(--r3) var(--r3) 0 0;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:0 -12px 50px rgba(0,0,0,.6);animation:slideUp .24s ease;}
+.mbox{background:var(--card);border:1px solid var(--rim);border-radius:var(--r3) var(--r3) 0 0;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:0 -14px 52px rgba(0,0,0,.65);animation:slideUp .24s ease;}
 @media(min-width:640px){.mbox{border-radius:var(--r3);animation:scaleIn .22s ease;}}
 .mhdr{position:sticky;top:0;z-index:2;background:var(--card);padding:16px 20px;border-bottom:1px solid var(--rim);display:flex;align-items:center;justify-content:space-between;}
 .mhdr h3{font-weight:800;font-size:15px;color:var(--white);}
 
-/* ── WHITE AUTH MODAL ── */
-.abg{position:fixed;inset:0;background:rgba(0,0,0,.84);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
-.acard{background:#fff;border-radius:20px;width:100%;max-width:380px;overflow:hidden;animation:scaleIn .23s ease;box-shadow:0 30px 80px rgba(0,0,0,.55);}
-.atop{padding:30px 30px 0;text-align:center;}
-.atop h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:26px;color:#111;margin-bottom:6px;}
-.atop p{font-size:13px;color:#9ca3af;} .atop span{color:#1a56db;cursor:pointer;font-weight:700;}
-.abody{padding:22px 30px 30px;}
-.afield{margin-bottom:16px;}
-.afield label{display:block;font-size:12px;font-weight:600;color:#6b7280;font-family:'Outfit',sans-serif;margin-bottom:6px;}
-.asubmit{width:100%;padding:13px;margin-top:18px;background:#1a56db;color:#fff;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .16s;}
-.asubmit:hover{background:#1648c2;transform:translateY(-1px);}
+/* ── AUTH MODAL ── */
+.abg{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
+.acard{background:#fff;border-radius:20px;width:100%;max-width:380px;overflow:hidden;animation:scaleIn .23s ease;box-shadow:0 32px 80px rgba(0,0,0,.55);}
+.atop{padding:30px 30px 8px;text-align:center;}
+.atop .logo-a{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;margin:0 auto 14px;}
+.atop h2{font-family:'Inter',sans-serif;font-weight:800;font-size:24px;color:#0f172a;margin-bottom:4px;}
+.atop p{font-size:13px;color:#64748b;} .atop span{color:#0fa870;cursor:pointer;font-weight:700;}
+.abody{padding:20px 30px 30px;}
+.afield{margin-bottom:14px;}
+.afield label{display:block;font-size:11px;font-weight:700;color:#475569;font-family:'Inter',sans-serif;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px;}
+.asubmit{width:100%;padding:13px;margin-top:16px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:11px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .16s;box-shadow:0 4px 14px rgba(15,168,112,.3);}
+.asubmit:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(15,168,112,.42);}
 .asubmit:disabled{opacity:.55;cursor:not-allowed;transform:none;}
-.adiv{display:flex;align-items:center;gap:12px;margin:16px 0;color:#9ca3af;font-size:12px;font-family:'Outfit',sans-serif;}
-.adiv::before,.adiv::after{content:'';flex:1;height:1px;background:#e5e7eb;}
-.sbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border:1.5px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#374151;transition:all .16s;}
-.sbtn:hover{background:#f9fafb;border-color:#d1d5db;}
 
 /* ── DRAWER ── */
-.dbg{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.76);backdrop-filter:blur(4px);}
-.dpanel{position:absolute;top:0;bottom:0;width:min(290px,85vw);background:var(--dark);border-inline-end:1px solid var(--rim);display:flex;flex-direction:column;overflow-y:auto;}
+.dbg{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);backdrop-filter:blur(5px);}
+.dpanel{position:absolute;top:0;bottom:0;width:min(290px,86vw);background:var(--dark);border-inline-end:1px solid var(--rim);display:flex;flex-direction:column;overflow-y:auto;}
 .ltr .dpanel{left:0;animation:slideLeft .22s ease;}
 .rtl .dpanel{right:0;animation:slideRight .22s ease;}
 .di{display:flex;align-items:center;gap:13px;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text);font-size:14px;font-weight:600;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;width:100%;text-align:inherit;text-decoration:none;font-family:inherit;transition:background .14s;}
@@ -232,30 +237,44 @@ body{
 .dico{width:33px;height:33px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;}
 
 /* ── MOBILE NAV ── */
-.mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,9,26,.97);border-top:1px solid var(--rim);backdrop-filter:blur(14px);display:flex;justify-content:space-around;align-items:center;height:56px;padding-bottom:env(safe-area-inset-bottom);}
-.mnb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:inherit;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:7px 0;transition:color .15s;}
+.mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(4,13,8,.97);border-top:1px solid var(--rim);backdrop-filter:blur(16px);display:flex;justify-content:space-around;align-items:center;height:56px;padding-bottom:env(safe-area-inset-bottom);}
+.mnb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:inherit;font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:7px 0;transition:color .15s;}
 .mnb.act{color:var(--gold2);}
 
 /* ── LIGHTBOX ── */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;display:flex;align-items:center;justify-content:center;}
 
 /* ── SKELETON ── */
-.sk{background:linear-gradient(90deg,var(--mid) 25%,var(--lift) 50%,var(--mid) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+.sk{background:linear-gradient(90deg,var(--mid) 25%,var(--lift) 50%,var(--mid) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px;}
 
 /* ── SECTION TITLE ── */
 .stitle{display:flex;align-items:center;gap:12px;}
-.stitle::before{content:'';display:block;width:28px;height:2.5px;border-radius:1px;background:linear-gradient(90deg,var(--gold),var(--gold2));flex-shrink:0;}
+.stitle::before{content:'';display:block;width:26px;height:2.5px;border-radius:1px;background:linear-gradient(90deg,var(--gold),var(--gold2));flex-shrink:0;}
 
 /* ── GOLD PILL ── */
-.gpill{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:18px;font-size:11px;font-weight:700;background:rgba(200,150,42,.1);border:1px solid rgba(200,150,42,.22);color:var(--gold2);}
+.gpill{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:18px;font-size:11px;font-weight:700;background:rgba(10,160,100,.1);border:1px solid rgba(10,160,100,.2);color:var(--gold2);}
 
 /* ── LOCATION CARD ── */
-.loccard{background:var(--card);border:1px solid var(--rim);border-radius:var(--r2);padding:20px;text-decoration:none;color:inherit;display:block;transition:all .2s ease;}
-.loccard:hover{border-color:rgba(200,150,42,.38);transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.44),0 0 22px rgba(200,150,42,.1);}
+.loccard{background:var(--card);border:1px solid var(--rim);border-radius:var(--r2);padding:20px;text-decoration:none;color:inherit;display:block;transition:all .22s ease;}
+.loccard:hover{border-color:rgba(10,160,100,.35);transform:translateY(-5px);box-shadow:0 18px 46px rgba(0,0,0,.46),0 0 24px rgba(10,160,100,.08);}
+
+/* ── CATEGORY PILLS ── */
+.cat-pill{padding:8px 20px;border-radius:24px;border:none;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .18s;}
+.cat-pill.act{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;box-shadow:0 4px 14px rgba(10,160,100,.3);}
+.cat-pill.inact{background:var(--mid);color:var(--soft);border:1px solid var(--rim);}
+.cat-pill.inact:hover{border-color:var(--gold2);color:var(--text);}
 
 /* ── RESPONSIVE ── */
 @media(max-width:640px){.hd{display:none!important;}}
 @media(min-width:641px){.mnav{display:none!important;}}
+
+/* ── ERR MSG ── */
+.errmsg{background:#fef2f2;border:1px solid #fecaca;border-radius:9px;padding:9px 13px;margin-top:10px;}
+.errmsg p{color:#dc2626;font-size:12px;font-family:'Inter',sans-serif;}
+
+/* ── SUCCESS MSG ── */
+.okmsg{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:9px;padding:9px 13px;margin-top:10px;}
+.okmsg p{color:#15803d;font-size:12px;font-family:'Inter',sans-serif;}
 </style>
 </head>
 <body>
@@ -274,44 +293,40 @@ const SB=supabase.createClient(
 const ADMIN_EMAIL='bilbazarlal836583@gmail.com';
 
 /* ════════════════════════════════════════
-   TRANSLATIONS — بیلال بازار ✅
+   TRANSLATIONS
 ════════════════════════════════════════ */
 const T={
 ckb:{
   n:'بیلال بازار',
-  hero1:'گەورەترین بازاڕی',hero2:'ناوچەی کوردستان',
   sub:'هەموو ئەوەی پێویستتە — هەر هەفتەیەک داشکاندنی نوێ',
   deals:'داشکاندنەکان ببینە',stores:'شوێنەکانمان بدۆزەوە',
   home:'سەرەکی',locs:'شوێنەکان',about:'دەربارە',menu:'مینیو',
   login:'چوونەژوورەوە',signup:'تۆمارکردن',logout:'دەرچوون',
-  dtitle:'داشکاندنی ئەم هەفتەیە',more:'زیاتر ببینە',
+  dtitle:'داشکاندنی ئەم هەفتەیە',more:'زیاتر ببینە',less:'داخستن',
   noDeals:'هیچ داشکاندنێک نییە لەم کاتەدا',
   ltitle:'شوێنەکانمان',atitle:'دەربارەی بیلال بازار',
-  atext:'بیلال بازار گەورەترین و متمانەپێکراوترین بازاڕی ناوچەی کوردستانە. هەموو ئەوەی پێویستتە دەدۆزیتەوە لێرە — خواردنی تازە، برنج، گۆشت، دانەوێڵە و زیاتر، بە باشترین نرخ و دڵسۆزترین خزمەت.',
+  atext:'بیلال بازار گەورەترین و متمانەپێکراوترین بازاڕی ناوچەی کوردستانەکەیە. هەموو ئەوەی پێویستتە دەدۆزیتەوە لێرە — خواردنی تازە، برنج، گۆشت، دانەوێڵە و زیاتر، بە باشترین نرخ و دڵسۆزترین خزمەت.',
   copy:'© ٢٠٢٥ بیلال بازار · هەولێر، کوردستان',
   days:'ڕۆژ',hrs:'کاتژمێر',min:'خولەک',expired:'کۆتایی هات',
   share:'هاوبەشی',like:'دڵنیا',loginLike:'تکایە چوونەژوورەوە بۆ دڵنیابوون',
   addPost:'زیادکردنی پۆست',editPost:'دەستکاری',del:'سڕینەوە',
   mgSp:'بەڕێوەبردنی بانگهێشتکارەکان',
-  ptitle:'ناونیشان',pct:'داشکاندن %',pdays:'چەند ڕۆژ',cat:'جۆر',
   pub:'بڵاوکردنەوە',cancel:'هەڵوەشاندنەوە',save:'هەڵگرتن',
-  uploading:'بارکردن...',iurl:'لینکی وێنە',
+  uploading:'کارکردن...',iurl:'لینکی وێنە',
   hide:'شاردنەوە',show:'پیشاندان',
-  wc:'ئیمەیڵ یان وشەی نهێنی هەڵەیە',
-  noAcc:'هەژمارت نییە؟',haveAcc:'ئایا ئەندامیتی؟',
   lang:'زمانەکان',
   cats:{all:'هەموو',rice:'برنج',meat:'گۆشت',cereal:'دانەوێڵە',other:'هی تر'},
   br:'لق',pr:'کاڵا',wk:'هەفتانە',dc:'داشکاندن',
   openMap:'کردنەوەی نەخشە',call:'پەیوەندی',
+  off:'OFF',
 },
 ar:{
   n:'بيلال بازار',
-  hero1:'أكبر سوق في',hero2:'إقليم كردستان',
   sub:'كل ما تحتاجه — خصومات جديدة كل أسبوع',
   deals:'عرض الخصومات',stores:'ابحث عن فروعنا',
   home:'الرئيسية',locs:'المواقع',about:'من نحن',menu:'القائمة',
   login:'تسجيل الدخول',signup:'إنشاء حساب',logout:'تسجيل الخروج',
-  dtitle:'عروض الأسبوع',more:'عرض المزيد',
+  dtitle:'عروض الأسبوع',more:'عرض المزيد',less:'إخفاء',
   noDeals:'لا توجد عروض حالياً',
   ltitle:'فروعنا',atitle:'عن بيلال بازار',
   atext:'بيلال بازار هو أكبر وأوثق سوق في إقليم كردستان. ستجد هنا كل ما تحتاجه — منتجات طازجة، أرز، لحوم، حبوب وأكثر، بأفضل الأسعار وأرقى خدمة.',
@@ -319,22 +334,22 @@ ar:{
   days:'أيام',hrs:'ساعة',min:'دقيقة',expired:'انتهى',
   share:'مشاركة',like:'إعجاب',loginLike:'يرجى تسجيل الدخول للإعجاب',
   addPost:'إضافة منشور',editPost:'تعديل',del:'حذف',
-  mgSp:'إدارة الرعاة',ptitle:'العنوان',pct:'نسبة الخصم',pdays:'أيام',cat:'القسم',
+  mgSp:'إدارة الرعاة',
   pub:'نشر',cancel:'إلغاء',save:'حفظ',uploading:'جاري...',iurl:'رابط الصورة',
-  hide:'إخفاء',show:'إظهار',wc:'بيانات خاطئة',
-  noAcc:'ليس لديك حساب؟',haveAcc:'هل أنت عضو؟',lang:'اللغات',
+  hide:'إخفاء',show:'إظهار',
+  lang:'اللغات',
   cats:{all:'الكل',rice:'أرز',meat:'لحوم',cereal:'حبوب',other:'أخرى'},
   br:'فروع',pr:'منتج',wk:'أسبوعي',dc:'خصومات',
   openMap:'فتح الخريطة',call:'اتصال',
+  off:'خصم',
 },
 en:{
   n:'Bilal Bazar',
-  hero1:'The Biggest Market in',hero2:'Kurdistan Region',
-  sub:'Everything you need — new discounts every week',
+  sub:'Everything you need — fresh discounts every week',
   deals:'See Deals',stores:'Find a Store',
   home:'Home',locs:'Locations',about:'About',menu:'Menu',
   login:'Login',signup:'Sign Up',logout:'Logout',
-  dtitle:"This Week's Deals",more:'See More',
+  dtitle:"This Week's Deals",more:'See More',less:'Show Less',
   noDeals:'No deals available right now',
   ltitle:'Our Locations',atitle:'About Bilal Bazar',
   atext:'Bilal Bazar is the largest and most trusted market in Kurdistan Region. Find everything you need here — fresh produce, rice, meat, cereals and more — at the best prices with the finest service.',
@@ -342,13 +357,14 @@ en:{
   days:'DAYS',hrs:'HRS',min:'MIN',expired:'EXPIRED',
   share:'Share',like:'Like',loginLike:'Please log in to like',
   addPost:'Add Post',editPost:'Edit',del:'Delete',
-  mgSp:'Manage Sponsors',ptitle:'Title',pct:'Discount %',pdays:'Days',cat:'Category',
+  mgSp:'Manage Sponsors',
   pub:'Publish',cancel:'Cancel',save:'Save',uploading:'Uploading...',iurl:'Image URL',
-  hide:'Hide',show:'Show',wc:'Wrong email or password',
-  noAcc:"Don't have an account?",haveAcc:'Already a member?',lang:'Languages',
+  hide:'Hide',show:'Show',
+  lang:'Languages',
   cats:{all:'All',rice:'Rice',meat:'Meat',cereal:'Cereals',other:'Other'},
   br:'Branches',pr:'Products',wk:'Weekly',dc:'Discounts',
   openMap:'Open Map',call:'Call',
+  off:'OFF',
 },
 };
 
@@ -382,10 +398,10 @@ const Provider=({children})=>{
     const keys=k.split('.');
     let v=T[lang];
     for(const x of keys){
-      if(v===null||v===undefined)return k;
+      if(v==null)return k;
       v=v[x];
     }
-    return(v===null||v===undefined)?k:String(v);
+    return v==null?k:String(v);
   },[lang]);
 
   const sw=useCallback(l=>{
@@ -431,7 +447,7 @@ const useReveal=()=>{
   useEffect(()=>{
     const el=ref.current;
     if(!el)return;
-    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){el.classList.add('vis');obs.disconnect();}},{threshold:.08});
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){el.classList.add('vis');obs.disconnect();}},{threshold:.07});
     obs.observe(el);
     return()=>obs.disconnect();
   },[]);
@@ -448,7 +464,11 @@ const Countdown=({iso,days})=>{
     const id=setInterval(()=>setTl(tLeft(iso,days)),30000);
     return()=>clearInterval(id);
   },[iso,days]);
-  if(!tl)return <div className="cdown"><span style={{color:'var(--muted)',fontSize:12,fontWeight:700}}>{t('expired')}</span></div>;
+  if(!tl)return(
+    <div className="cdown">
+      <span style={{color:'var(--muted)',fontSize:11,fontWeight:700}}>{t('expired')}</span>
+    </div>
+  );
   return(
     <div className="cdown">
       {[{v:tl.d,l:t('days')},{v:tl.h,l:t('hrs')},{v:tl.m,l:t('min')}].map((x,i)=>(
@@ -468,9 +488,10 @@ const Countdown=({iso,days})=>{
    IMAGE GRID
 ════════════════════════════════════════ */
 const ImgGrid=({images,pct,expired,onImg})=>{
-  const {dir}=useApp();
   const n=images.length;
-  if(!n)return <div style={{height:220,background:'var(--mid)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:36}}>🏷️</div>;
+  if(!n)return(
+    <div style={{height:200,background:'var(--mid)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:40}}>🏷️</div>
+  );
   const vis=Math.min(n,5);
   const extra=n>5?n-5:0;
   const cls=n===1?'fb1':n===2?'fb2':n===3?'fb3':n===4?'fb4':'fb5';
@@ -487,10 +508,16 @@ const ImgGrid=({images,pct,expired,onImg})=>{
           ))}
         </div>
       }
-      {pct>0&&<div className={`ribbon${dir==='ltr'?' ltr':''}`}>{pct}% OFF</div>}
+      {/* Circular discount badge — only show if pct > 0 */}
+      {pct>0&&(
+        <div className="disc-badge">
+          <span className="pct">{pct}%</span>
+          <span className="off">OFF</span>
+        </div>
+      )}
       {expired&&(
-        <div style={{position:'absolute',inset:0,background:'rgba(6,9,26,.65)',display:'flex',alignItems:'center',justifyContent:'center',backdropFilter:'blur(4px)',zIndex:6}}>
-          <span style={{background:'var(--red)',color:'#fff',padding:'8px 22px',borderRadius:6,fontWeight:900,fontSize:15,letterSpacing:1}}>EXPIRED</span>
+        <div style={{position:'absolute',inset:0,background:'rgba(4,13,8,.68)',display:'flex',alignItems:'center',justifyContent:'center',backdropFilter:'blur(4px)',zIndex:6}}>
+          <span style={{background:'var(--red)',color:'#fff',padding:'8px 22px',borderRadius:8,fontWeight:900,fontSize:14,letterSpacing:1}}>EXPIRED</span>
         </div>
       )}
     </div>
@@ -513,12 +540,12 @@ const Lightbox=({images,start,onClose})=>{
   },[images,onClose]);
   return(
     <div className="lb" onClick={onClose}>
-      <button onClick={onClose} style={{position:'absolute',top:16,right:20,background:'none',border:'none',color:'#fff',fontSize:34,cursor:'pointer',zIndex:5,lineHeight:1}}>×</button>
-      {images.length>1&&<div style={{position:'absolute',top:18,left:'50%',transform:'translateX(-50%)',color:'rgba(255,255,255,.5)',fontSize:13}}>{i+1}/{images.length}</div>}
-      <img src={images[i]} alt="" style={{maxWidth:'92vw',maxHeight:'88vh',objectFit:'contain',borderRadius:10}} onClick={e=>e.stopPropagation()}/>
+      <button onClick={onClose} style={{position:'absolute',top:16,right:20,background:'rgba(255,255,255,.08)',border:'none',color:'#fff',fontSize:28,cursor:'pointer',zIndex:5,lineHeight:1,width:40,height:40,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center'}}>×</button>
+      {images.length>1&&<div style={{position:'absolute',top:18,left:'50%',transform:'translateX(-50%)',color:'rgba(255,255,255,.5)',fontSize:13,fontWeight:600}}>{i+1}/{images.length}</div>}
+      <img src={images[i]} alt="" style={{maxWidth:'92vw',maxHeight:'88vh',objectFit:'contain',borderRadius:12}} onClick={e=>e.stopPropagation()}/>
       {images.length>1&&<>
-        <button onClick={e=>{e.stopPropagation();setI(x=>(x-1+images.length)%images.length);}} style={{position:'absolute',left:12,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.09)',border:'none',color:'#fff',width:46,height:46,borderRadius:'50%',fontSize:24,cursor:'pointer'}}>‹</button>
-        <button onClick={e=>{e.stopPropagation();setI(x=>(x+1)%images.length);}} style={{position:'absolute',right:12,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.09)',border:'none',color:'#fff',width:46,height:46,borderRadius:'50%',fontSize:24,cursor:'pointer'}}>›</button>
+        <button onClick={e=>{e.stopPropagation();setI(x=>(x-1+images.length)%images.length);}} style={{position:'absolute',left:12,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.1)',border:'none',color:'#fff',width:46,height:46,borderRadius:'50%',fontSize:24,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>‹</button>
+        <button onClick={e=>{e.stopPropagation();setI(x=>(x+1)%images.length);}} style={{position:'absolute',right:12,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.1)',border:'none',color:'#fff',width:46,height:46,borderRadius:'50%',fontSize:24,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}>›</button>
       </>}
     </div>
   );
@@ -535,7 +562,7 @@ const DealCard=({post,onDelete,onEdit,onNeedLogin})=>{
   const ref=useReveal();
   const images=parseImgs(post.images);
   const expired=!tLeft(post.created_at,post.discount_days);
-  const title=(lang==='ckb'?post.title_ckb:lang==='ar'?post.title_ar:post.title_en)||post.title_ckb||'';
+  const title=(lang==='ckb'?post.title_ckb:lang==='ar'?post.title_ar:post.title_en)||post.title_ckb||'Bilal Bazar';
 
   useEffect(()=>{
     if(!user)return;
@@ -547,40 +574,45 @@ const DealCard=({post,onDelete,onEdit,onNeedLogin})=>{
     if(!user){onNeedLogin();return;}
     if(liked){
       await SB.from('likes').delete().eq('post_id',post.id).eq('user_id',user.id);
+      await SB.rpc('decrement_like_count',{post_id:post.id});
       setLikeCount(c=>Math.max(0,c-1));setLiked(false);
     }else{
       const{error}=await SB.from('likes').insert({post_id:post.id,user_id:user.id});
-      if(!error){setLikeCount(c=>c+1);setLiked(true);}
+      if(!error){
+        await SB.rpc('increment_like_count',{post_id:post.id});
+        setLikeCount(c=>c+1);setLiked(true);
+      }
     }
   };
 
   const handleShare=async()=>{
-    if(navigator.share){try{await navigator.share({title,url:window.location.href});}catch(e){}}
-    else await navigator.clipboard?.writeText(window.location.href);
+    const shareData={title:`بیلال بازار — ${title}`,url:window.location.href};
+    if(navigator.share){try{await navigator.share(shareData);}catch(e){}}
+    else{try{await navigator.clipboard.writeText(window.location.href);}catch(e){}}
   };
 
   return(
-    <div ref={ref} className="card reveal">
+    <div ref={ref} className="card reveal" style={{animationDelay:`${Math.random()*0.15}s`}}>
       <ImgGrid images={images} pct={post.discount_pct} expired={expired} onImg={i=>setLbIdx(i)}/>
       {lbIdx!==null&&<Lightbox images={images} start={lbIdx} onClose={()=>setLbIdx(null)}/>}
-      <div style={{padding:'14px 15px 16px'}}>
-        <h3 style={{fontWeight:800,fontSize:15,lineHeight:1.4,marginBottom:11,color:'var(--white)'}}>{title||'Bilal Bazar Deal'}</h3>
+      <div style={{padding:'14px 15px 15px'}}>
+        <h3 style={{fontWeight:800,fontSize:15,lineHeight:1.45,marginBottom:11,color:'var(--white)',fontFamily:'Noto Sans Arabic,Inter,sans-serif'}}>{title}</h3>
         <div style={{marginBottom:12}}><Countdown iso={post.created_at} days={post.discount_days}/></div>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',paddingTop:10,borderTop:'1px solid var(--rim)'}}>
           <div style={{display:'flex',gap:7}}>
-            <button onClick={handleLike} style={{display:'flex',alignItems:'center',gap:5,padding:'7px 12px',borderRadius:8,background:liked?'rgba(192,57,43,.18)':'var(--mid)',color:liked?'#ef9a9a':'var(--soft)',border:'none',fontSize:13,fontWeight:700,cursor:'pointer',transition:'all .15s'}}>
-              <i className={liked?'fas fa-heart':'far fa-heart'} style={{fontSize:12}}/>{likeCount}
+            <button onClick={handleLike} style={{display:'flex',alignItems:'center',gap:5,padding:'7px 12px',borderRadius:8,background:liked?'rgba(192,57,43,.18)':'var(--mid)',color:liked?'#ef9a9a':'var(--soft)',border:'none',fontSize:13,fontWeight:700,cursor:'pointer',transition:'all .15s',fontFamily:'inherit'}}>
+              <i className={liked?'fas fa-heart':'far fa-heart'} style={{fontSize:12}}/>{likeCount>0&&likeCount}
             </button>
-            <button onClick={handleShare} style={{display:'flex',alignItems:'center',gap:5,padding:'7px 12px',borderRadius:8,background:'var(--mid)',color:'var(--soft)',border:'none',fontSize:13,fontWeight:700,cursor:'pointer'}}>
+            <button onClick={handleShare} style={{display:'flex',alignItems:'center',gap:5,padding:'7px 12px',borderRadius:8,background:'var(--mid)',color:'var(--soft)',border:'none',fontSize:13,fontWeight:700,cursor:'pointer',fontFamily:'inherit'}}>
               <i className="fas fa-share-alt" style={{fontSize:12}}/>{t('share')}
             </button>
           </div>
           {isAdmin&&(
             <div style={{display:'flex',gap:5}}>
-              <button onClick={()=>onEdit(post)} style={{width:32,height:32,borderRadius:7,background:'rgba(59,130,246,.12)',color:'#7ab4fa',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12}}>
+              <button onClick={()=>onEdit(post)} title="Edit" style={{width:32,height:32,borderRadius:7,background:'rgba(59,130,246,.12)',color:'#7ab4fa',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12}}>
                 <i className="fas fa-pencil-alt"/>
               </button>
-              <button onClick={()=>onDelete(post.id)} style={{width:32,height:32,borderRadius:7,background:'rgba(192,57,43,.12)',color:'#f08080',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12}}>
+              <button onClick={()=>onDelete(post.id)} title="Delete" style={{width:32,height:32,borderRadius:7,background:'rgba(192,57,43,.12)',color:'#f08080',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12}}>
                 <i className="fas fa-trash"/>
               </button>
             </div>
@@ -592,116 +624,126 @@ const DealCard=({post,onDelete,onEdit,onNeedLogin})=>{
 };
 
 /* ════════════════════════════════════════
-   POST MODAL
+   POST MODAL (Admin)
 ════════════════════════════════════════ */
 const PostModal=({editingPost,onSave,onClose})=>{
-  const {t,lang}=useApp();
+  const {t}=useApp();
   const [images,setImages]=useState(()=>editingPost?parseImgs(editingPost.images):[]);
-  const [urlInp,setUrlInp]=useState('');
   const [form,setForm]=useState({
     title_ckb:editingPost?.title_ckb||'',
     title_ar:editingPost?.title_ar||'',
     title_en:editingPost?.title_en||'',
-    discount_pct:editingPost?.discount_pct||20,
+    discount_pct:editingPost?.discount_pct??0,   // default 0, not 20
     discount_days:editingPost?.discount_days||7,
     category:editingPost?.category||'rice',
   });
   const [saving,setSaving]=useState(false);
+  const [err,setErr]=useState('');
   const set=(k,v)=>setForm(f=>({...f,[k]:v}));
 
-  const addUrl=()=>{if(urlInp.trim()){setImages(p=>[...p,urlInp.trim()]);setUrlInp('');}};
-  const addFiles=files=>Array.from(files).forEach(f=>{const r=new FileReader();r.onload=e=>setImages(p=>[...p,e.target.result]);r.readAsDataURL(f);});
-
-  const submit=async()=>{
-    if(!form.title_ckb.trim()||images.length===0)return;
-    setSaving(true);
-    const payload={...form,discount_pct:+form.discount_pct,discount_days:+form.discount_days,images:JSON.stringify(images)};
-    if(editingPost){
-      await SB.from('posts').update(payload).eq('id',editingPost.id);
-    }else{
-      await SB.from('posts').insert({...payload,created_at:new Date().toISOString(),like_count:0});
-    }
-    setSaving(false);
-    onSave();
+  const addFiles=files=>{
+    Array.from(files).forEach(f=>{
+      if(f.size>5*1024*1024){setErr('وێنەکە زیاتر لە 5MB e — وێنەیەکی بچووکتر هەڵبژێرە');return;}
+      const r=new FileReader();
+      r.onload=e=>setImages(p=>[...p,e.target.result]);
+      r.readAsDataURL(f);
+    });
   };
 
-  const inputStyle={width:'100%',background:'var(--bg)',border:'1.5px solid var(--rim)',borderRadius:'var(--r)',padding:'11px 14px',color:'var(--text)',fontSize:14,fontFamily:'inherit',outline:'none',transition:'border-color .2s'};
+  const submit=async()=>{
+    if(!form.title_ckb.trim()||images.length===0){setErr('* ناونیشان و وێنە پێویستن');return;}
+    setSaving(true);setErr('');
+    const payload={
+      ...form,
+      discount_pct:+form.discount_pct,
+      discount_days:+form.discount_days,
+      images:JSON.stringify(images)
+    };
+    if(editingPost){
+      const{error}=await SB.from('posts').update(payload).eq('id',editingPost.id);
+      if(error){setErr(error.message);setSaving(false);return;}
+    }else{
+      const{error}=await SB.from('posts').insert({...payload,created_at:new Date().toISOString(),like_count:0});
+      if(error){setErr(error.message);setSaving(false);return;}
+    }
+    setSaving(false);onSave();
+  };
+
+  const inp={width:'100%',background:'var(--bg)',border:'1.5px solid var(--rim)',borderRadius:'var(--r)',padding:'11px 14px',color:'var(--text)',fontSize:14,fontFamily:'inherit',outline:'none'};
 
   return(
     <div className="mbg" onClick={onClose}>
       <div className="mbox" onClick={e=>e.stopPropagation()}>
         <div className="mhdr">
           <h3>{editingPost?t('editPost'):t('addPost')}</h3>
-          <button onClick={onClose} style={{background:'none',border:'none',color:'var(--muted)',fontSize:26,cursor:'pointer',lineHeight:1,width:32,height:32,display:'flex',alignItems:'center',justifyContent:'center'}}>×</button>
+          <button onClick={onClose} style={{background:'none',border:'none',color:'var(--muted)',fontSize:26,cursor:'pointer',width:32,height:32,display:'flex',alignItems:'center',justifyContent:'center'}}>×</button>
         </div>
         <div style={{padding:18,display:'flex',flexDirection:'column',gap:14}}>
-          {/* Images — upload only, no URL field */}
+
+          {/* Image upload */}
           <div>
-            <label style={{fontSize:11,color:'var(--gold2)',fontWeight:700,display:'block',marginBottom:7,textTransform:'uppercase',letterSpacing:.6}}>
-              وێنەکان *
-            </label>
-            <div style={{display:'flex',gap:6,overflowX:'auto',marginBottom:4,paddingBottom:4}} className="nsb">
+            <label style={{fontSize:11,color:'var(--gold2)',fontWeight:700,display:'block',marginBottom:8,textTransform:'uppercase',letterSpacing:.6}}>وێنەکان *</label>
+            <div style={{display:'flex',gap:7,overflowX:'auto',marginBottom:4,paddingBottom:4}} className="nsb">
               {images.map((img,i)=>(
                 <div key={i} style={{position:'relative',flexShrink:0}}>
                   <img src={img} alt="" style={{width:72,height:72,objectFit:'cover',borderRadius:10,border:'1px solid var(--rim)',display:'block'}}/>
-                  <button onClick={()=>setImages(p=>p.filter((_,j)=>j!==i))} style={{position:'absolute',top:2,right:2,background:'var(--red)',color:'#fff',width:20,height:20,borderRadius:'50%',border:'none',fontSize:11,cursor:'pointer',lineHeight:'20px',textAlign:'center',fontWeight:900}}>×</button>
+                  <button onClick={()=>setImages(p=>p.filter((_,j)=>j!==i))} style={{position:'absolute',top:-4,right:-4,background:'var(--red2)',color:'#fff',width:20,height:20,borderRadius:'50%',border:'2px solid var(--card)',fontSize:10,cursor:'pointer',lineHeight:'20px',textAlign:'center',fontWeight:900,display:'flex',alignItems:'center',justifyContent:'center'}}>×</button>
                 </div>
               ))}
-              <label style={{width:72,height:72,background:'var(--mid)',borderRadius:10,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',cursor:'pointer',border:'1.5px dashed var(--rim2)',flexShrink:0,gap:4,transition:'border-color .2s'}}>
+              <label style={{width:72,height:72,background:'var(--mid)',borderRadius:10,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',cursor:'pointer',border:'1.5px dashed var(--rim2)',flexShrink:0,gap:4}}>
                 <i className="fas fa-camera" style={{color:'var(--gold2)',fontSize:20}}/>
-                <span style={{fontSize:9,color:'var(--soft)',fontWeight:600}}>وێنە زیادبکە</span>
+                <span style={{fontSize:9,color:'var(--soft)',fontWeight:600}}>زیادکردن</span>
                 <input type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>addFiles(e.target.files)}/>
               </label>
             </div>
           </div>
 
-          {/* Kurdish title ONLY */}
+          {/* Kurdish title */}
           <div>
-            <label style={{fontSize:11,color:'var(--gold2)',fontWeight:700,display:'block',marginBottom:5,textTransform:'uppercase'}}>
-              🇮🇶 ناونیشانی داشکاندن *
-            </label>
-            <input style={inputStyle} dir="rtl" value={form.title_ckb} onChange={e=>set('title_ckb',e.target.value)} placeholder="بۆ نمونە: برنجی تازە 30% داشکاندن"/>
+            <label style={{fontSize:11,color:'var(--gold2)',fontWeight:700,display:'block',marginBottom:5,textTransform:'uppercase'}}>🇮🇶 ناونیشان (کوردی) *</label>
+            <input style={{...inp}} dir="rtl" value={form.title_ckb} onChange={e=>set('title_ckb',e.target.value)} placeholder="بۆ نمونە: برنجی تازە — هەفتانە"/>
           </div>
 
-          {/* Discount % — starts at 0, if 0 no ribbon shown */}
+          {/* Arabic title */}
+          <div>
+            <label style={{fontSize:11,color:'var(--muted)',fontWeight:600,display:'block',marginBottom:5}}>🇦🇪 ناونیشان (عەرەبی)</label>
+            <input style={{...inp}} dir="rtl" value={form.title_ar} onChange={e=>set('title_ar',e.target.value)} placeholder="مثال: أرز طازج — أسبوعي"/>
+          </div>
+
+          {/* Discount % and Days */}
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
             <div>
-              <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:5}}>
-                داشکاندن % <span style={{fontSize:9,color:'var(--gold2)'}}>( 0 = بێ داشکاندن )</span>
-              </label>
-              <input type="number" min="0" max="99" style={inputStyle} value={form.discount_pct} onChange={e=>set('discount_pct',e.target.value)}/>
+              <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:5}}>داشکاندن % <span style={{fontSize:9,color:'var(--gold2)'}}>(0 = بێ داشکاندن)</span></label>
+              <input type="number" min="0" max="99" style={inp} value={form.discount_pct} onChange={e=>set('discount_pct',e.target.value)}/>
             </div>
             <div>
               <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:5}}>چەند ڕۆژ؟</label>
-              <input type="number" min="1" max="365" style={inputStyle} value={form.discount_days} onChange={e=>set('discount_days',e.target.value)}/>
+              <input type="number" min="1" max="365" style={inp} value={form.discount_days} onChange={e=>set('discount_days',e.target.value)}/>
             </div>
           </div>
 
           {/* Category */}
           <div>
-            <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:7}}>جۆر</label>
+            <label style={{fontSize:11,color:'var(--muted)',display:'block',marginBottom:8}}>جۆری کاڵا</label>
             <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
               {CATS.filter(c=>c!=='all').map(c=>(
-                <button key={c} onClick={()=>set('category',c)} style={{padding:'7px 14px',borderRadius:20,border:'none',fontSize:12,fontWeight:700,cursor:'pointer',fontFamily:'inherit',background:form.category===c?'var(--gold)':'var(--mid)',color:form.category===c?'#fff':'var(--soft)',transition:'all .15s'}}>
+                <button key={c} onClick={()=>set('category',c)} style={{padding:'7px 16px',borderRadius:20,border:'none',fontSize:12,fontWeight:700,cursor:'pointer',fontFamily:'inherit',background:form.category===c?'var(--gold2)':'var(--mid)',color:form.category===c?'#fff':'var(--soft)',transition:'all .15s'}}>
                   {T.ckb.cats[c]}
                 </button>
               ))}
             </div>
           </div>
 
+          {err&&<div style={{background:'rgba(192,57,43,.1)',border:'1px solid rgba(192,57,43,.25)',borderRadius:8,padding:'8px 12px'}}><p style={{color:'#f08080',fontSize:12}}>{err}</p></div>}
+
           <button className="btn btn-gold" onClick={submit}
             disabled={saving||!form.title_ckb.trim()||images.length===0}
             style={{width:'100%',marginTop:4,fontSize:15,padding:'13px'}}>
             {saving
-              ?<><i className="fas fa-spinner fa-spin"/>  {t('uploading')}</>
-              :<><i className="fas fa-check"/>{t('pub')}</>
+              ?<><i className="fas fa-spinner fa-spin"/>{' '}{t('uploading')}</>
+              :<><i className="fas fa-check"/>{' '}{t('pub')}</>
             }
           </button>
-          {(images.length===0||!form.title_ckb.trim())&&(
-            <p style={{textAlign:'center',color:'var(--muted)',fontSize:11,marginTop:-8}}>
-              {images.length===0?'* وێنەیەک زیاد بکە':'* ناونیشان بنووسە'}
-            </p>
-          )}
         </div>
       </div>
     </div>
@@ -709,7 +751,7 @@ const PostModal=({editingPost,onSave,onClose})=>{
 };
 
 /* ════════════════════════════════════════
-   SPONSOR MANAGER
+   SPONSOR MANAGER (Admin)
 ════════════════════════════════════════ */
 const SponsorMgr=({sponsors,onUpdate,onClose})=>{
   const {t}=useApp();
@@ -727,6 +769,7 @@ const SponsorMgr=({sponsors,onUpdate,onClose})=>{
     setList(p=>p.map(s=>s.id===id?{...s,visible:!cur}:s));
   };
   const remove=async id=>{
+    if(!window.confirm('دڵنیایت؟'))return;
     await SB.from('sponsors').delete().eq('id',id);
     setList(p=>p.filter(s=>s.id!==id));
   };
@@ -739,24 +782,22 @@ const SponsorMgr=({sponsors,onUpdate,onClose})=>{
           <button className="btn btn-gold" onClick={()=>{onUpdate(list);onClose();}} style={{padding:'6px 14px',fontSize:13}}>{t('save')}</button>
         </div>
         <div style={{padding:16,display:'flex',flexDirection:'column',gap:10}}>
-          <p style={{fontSize:11,color:'var(--muted)',marginBottom:2}}>
-            Upload wide banner images (landscape, like 400×80px) — they appear in a scrolling strip at the top.
-          </p>
+          <p style={{fontSize:11,color:'var(--muted)',lineHeight:1.5}}>وێنەی بانەری فراوان زیاد بکە (landscape) — لە ستریپی سەرووەوە دەرئێنرێتەوە.</p>
           <div style={{display:'flex',gap:7}}>
             <input className="inp" style={{flex:1}} placeholder={t('iurl')} value={url} onChange={e=>setUrl(e.target.value)} onKeyDown={e=>e.key==='Enter'&&add()}/>
-            <button className="btn btn-gold" onClick={add} style={{padding:'10px 13px',flexShrink:0}}><i className="fas fa-plus"/></button>
+            <button className="btn btn-gold" onClick={add} style={{padding:'10px 14px',flexShrink:0}}><i className="fas fa-plus"/></button>
           </div>
-          {list.map((s,i)=>(
+          {list.map(s=>(
             <div key={s.id} style={{display:'flex',alignItems:'center',gap:9,padding:'8px 0',borderBottom:'1px solid var(--rim)'}}>
-              <img src={s.image_url} alt="" style={{width:80,height:36,objectFit:'cover',borderRadius:6,background:'var(--mid)',flexShrink:0,border:'1px solid var(--rim)'}}/>
-              <div style={{flex:1,fontSize:11,color:'var(--muted)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{s.image_url}</div>
-              <button onClick={()=>toggle(s.id,s.visible)} style={{background:s.visible?'rgba(200,150,42,.15)':'var(--mid)',color:s.visible?'var(--gold2)':'var(--soft)',border:'none',borderRadius:7,padding:'5px 10px',fontSize:11,fontWeight:700,cursor:'pointer',flexShrink:0}}>
+              <img src={s.image_url} alt="" style={{width:90,height:36,objectFit:'cover',borderRadius:7,background:'var(--mid)',flexShrink:0,border:'1px solid var(--rim)'}}/>
+              <div style={{flex:1,fontSize:11,color:'var(--muted)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',direction:'ltr'}}>{s.image_url}</div>
+              <button onClick={()=>toggle(s.id,s.visible)} style={{background:s.visible?'rgba(10,160,100,.15)':'var(--mid)',color:s.visible?'var(--gold2)':'var(--soft)',border:'none',borderRadius:7,padding:'5px 10px',fontSize:11,fontWeight:700,cursor:'pointer',flexShrink:0}}>
                 {s.visible?t('hide'):t('show')}
               </button>
-              <button onClick={()=>remove(s.id)} style={{background:'rgba(192,57,43,.15)',color:'#f08080',border:'none',borderRadius:7,width:28,height:28,cursor:'pointer',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center'}}>×</button>
+              <button onClick={()=>remove(s.id)} style={{background:'rgba(192,57,43,.15)',color:'#f08080',border:'none',borderRadius:7,width:28,height:28,cursor:'pointer',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center',fontSize:12}}>×</button>
             </div>
           ))}
-          {list.length===0&&<p style={{color:'var(--muted)',fontSize:13,textAlign:'center',padding:16}}>No sponsor banners yet.</p>}
+          {list.length===0&&<p style={{color:'var(--muted)',fontSize:13,textAlign:'center',padding:'20px 0'}}>هیچ بانگهێشتکارێک نییە.</p>}
         </div>
       </div>
     </div>
@@ -764,7 +805,7 @@ const SponsorMgr=({sponsors,onUpdate,onClose})=>{
 };
 
 /* ════════════════════════════════════════
-   AUTH MODAL — White clean design
+   AUTH MODAL — Clean white design, NO Google
 ════════════════════════════════════════ */
 const AuthModal=({mode,onClose,onDone})=>{
   const {t}=useApp();
@@ -772,84 +813,75 @@ const AuthModal=({mode,onClose,onDone})=>{
   const [email,setEmail]=useState('');
   const [pass,setPass]=useState('');
   const [err,setErr]=useState('');
+  const [ok,setOk]=useState('');
   const [loading,setLoading]=useState(false);
 
   const submit=async e=>{
     e.preventDefault();
-    setLoading(true);setErr('');
+    setLoading(true);setErr('');setOk('');
     try{
       if(m==='login'){
         const{error}=await SB.auth.signInWithPassword({email:email.trim(),password:pass});
         if(error)throw error;
+        onDone?.();onClose();
       }else{
         const{data,error}=await SB.auth.signUp({email:email.trim(),password:pass});
         if(error)throw error;
         if(data?.user&&!data?.session){
-          setErr('Check your email — we sent you a confirmation link.');
+          setOk('ئیمەیڵت چەک بکەرەوە — لینکی دڵنیاکردنەوەمان نێردووە.');
           setLoading(false);return;
         }
+        onDone?.();onClose();
       }
-      onDone?.();onClose();
     }catch(e){
-      let msg=e.message||'Wrong email or password';
-      if(msg.includes('Invalid login'))msg='Wrong email or password';
-      if(msg.includes('already registered'))msg='This email already has an account. Please Log In.';
-      if(msg.includes('weak'))msg='Password must be at least 6 characters.';
+      let msg=e.message||'هەڵە';
+      if(msg.includes('Invalid login')||msg.includes('invalid'))msg='ئیمەیڵ یان وشەی نهێنی هەڵەیە';
+      if(msg.includes('already registered'))msg='ئەم ئیمەیڵە پێشتر تۆمار کراوە. تکایە بچۆ ژوورەوە.';
+      if(msg.includes('weak')||msg.includes('least 6'))msg='وشەی نهێنی دەبێت کەمی 6 پیت بێت.';
+      if(msg.includes('rate'))msg='تکایە کەمێک چاوەڕێ بکە و دووبارە هەوڵبدەرەوە.';
       setErr(msg);
     }
     setLoading(false);
-  };
-
-  const google=async()=>{
-    const{error}=await SB.auth.signInWithOAuth({
-      provider:'google',
-      options:{redirectTo:window.location.href}
-    });
-    if(error)setErr('Google sign-in not enabled yet. Use email & password instead.');
   };
 
   return(
     <div className="abg" onClick={onClose}>
       <div className="acard" onClick={e=>e.stopPropagation()}>
         <div className="atop">
-          <h2>{m==='login'?'Log In':'Sign Up'}</h2>
-          <p>
-            {m==='login'?"Don't have an account?":'Already a member?'}{' '}
-            <span onClick={()=>{setM(x=>x==='login'?'signup':'login');setErr('');}}>
-              {m==='login'?'Sign Up':'Log In'}
+          <div className="logo-a">B</div>
+          <h2>{m==='login'?'چوونەژوورەوە':'تۆمارکردن'}</h2>
+          <p style={{marginBottom:0}}>
+            {m==='login'?'هەژمارت نییە؟':'ئایا ئەندامیتی؟'}{' '}
+            <span onClick={()=>{setM(x=>x==='login'?'signup':'login');setErr('');setOk('');}}>
+              {m==='login'?'تۆمارکردن':'چوونەژوورەوە'}
             </span>
           </p>
         </div>
         <div className="abody">
-          {/* autocomplete="new-password" prevents browser autofill */}
           <form onSubmit={submit} autoComplete="off">
-            <input type="text" name="fake_user" style={{display:'none'}} autoComplete="username"/>
+            <input type="text" style={{display:'none'}} autoComplete="username"/>
             <div className="afield">
-              <label>Email</label>
-              <input className="ainp" type="email" placeholder="your@email.com"
+              <label>ئیمەیڵ</label>
+              <input className="ainp" type="email" placeholder="you@example.com"
                 value={email} onChange={e=>setEmail(e.target.value)}
                 autoComplete="off" required/>
             </div>
             <div className="afield">
-              <label>Password</label>
+              <label>وشەی نهێنی</label>
               <input className="ainp" type="password" placeholder="••••••••"
                 value={pass} onChange={e=>setPass(e.target.value)}
-                autoComplete="new-password" required/>
+                autoComplete="new-password" required minLength={6}/>
             </div>
-            {err&&(
-              <div style={{background:'#fef2f2',border:'1px solid #fecaca',borderRadius:8,padding:'8px 12px',marginTop:8}}>
-                <p style={{color:'#dc2626',fontSize:12,fontFamily:'Outfit'}}>{err}</p>
-              </div>
-            )}
+            {err&&<div className="errmsg"><p>{err}</p></div>}
+            {ok&&<div className="okmsg"><p>{ok}</p></div>}
             <button type="submit" className="asubmit" disabled={loading}>
-              {loading?<><i className="fas fa-spinner fa-spin" style={{marginInlineEnd:6}}/>Please wait…</>:(m==='login'?'Log In':'Create Account')}
+              {loading?<><i className="fas fa-spinner fa-spin" style={{marginInlineEnd:7}}/>چاوەڕێ بکە…</>
+              :m==='login'?'چوونەژوورەوە':'دروستکردنی هەژمار'}
             </button>
           </form>
-          <div className="adiv">or continue with</div>
-          <button className="sbtn" onClick={google}>
-            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.34-8.16 2.34-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Continue with Google
-          </button>
+          <p style={{textAlign:'center',marginTop:16,fontSize:11,color:'#94a3b8',fontFamily:'Inter'}}>
+            {m==='signup'?'By signing up you agree to our terms.':''}
+          </p>
         </div>
       </div>
     </div>
@@ -868,14 +900,26 @@ const Drawer=({onClose,onAuth,setSpMgr,onAddPost})=>{
     <div className="dbg" onClick={onClose}>
       <div className={`dpanel ${lang==='en'?'ltr':'rtl'}`} onClick={e=>e.stopPropagation()}>
         {/* Logo */}
-        <div style={{padding:'18px 18px 16px',borderBottom:'1px solid rgba(255,255,255,.05)',display:'flex',alignItems:'center',justifyContent:'space-between',flexShrink:0}}>
-          <span style={{fontWeight:900,fontSize:17,background:'linear-gradient(120deg,var(--gold),var(--gold2))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Bilal Bazar</span>
+        <div style={{padding:'18px 18px 15px',borderBottom:'1px solid rgba(255,255,255,.05)',display:'flex',alignItems:'center',justifyContent:'space-between',flexShrink:0}}>
+          <div style={{display:'flex',alignItems:'center',gap:8}}>
+            <div style={{width:34,height:34,borderRadius:9,background:'linear-gradient(135deg,var(--gold),var(--gold2))',display:'flex',alignItems:'center',justifyContent:'center',fontSize:16,fontWeight:900,color:'#fff'}}>B</div>
+            <span style={{fontWeight:900,fontSize:16,background:'linear-gradient(120deg,var(--gold2),var(--gold3))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Bilal Bazar</span>
+          </div>
           <button onClick={onClose} style={{background:'var(--mid)',border:'1px solid var(--rim)',borderRadius:8,width:30,height:30,color:'var(--muted)',cursor:'pointer',fontSize:16,display:'flex',alignItems:'center',justifyContent:'center'}}>×</button>
         </div>
-        {/* Nav */}
+
+        {/* User info */}
+        {user&&(
+          <div style={{padding:'10px 18px',background:'var(--mid)',borderBottom:'1px solid var(--rim)'}}>
+            <p style={{fontSize:11,color:'var(--gold2)',fontWeight:700}}>👤 {user.email}</p>
+            {isAdmin&&<p style={{fontSize:10,color:'var(--gold3)',marginTop:2}}>⭐ ئەدمین</p>}
+          </div>
+        )}
+
+        {/* Nav links */}
         {[
-          {id:'hero',icon:'fa-home',l:t('home'),c:'rgba(200,150,42,.12)',ic:'var(--gold2)'},
-          {id:'deals',icon:'fa-tags',l:t('dtitle').split(' ').slice(0,2).join(' '),c:'rgba(232,180,74,.1)',ic:'var(--gold3)'},
+          {id:'hero',icon:'fa-home',l:t('home'),c:'rgba(10,160,100,.12)',ic:'var(--gold2)'},
+          {id:'deals',icon:'fa-tags',l:t('dtitle'),c:'rgba(232,180,74,.1)',ic:'var(--gold3)'},
           {id:'locs',icon:'fa-map-marker-alt',l:t('locs'),c:'rgba(13,148,136,.1)',ic:'var(--teal2)'},
           {id:'about',icon:'fa-info-circle',l:t('about'),c:'rgba(96,165,250,.1)',ic:'#60a5fa'},
         ].map(x=>(
@@ -883,27 +927,30 @@ const Drawer=({onClose,onAuth,setSpMgr,onAddPost})=>{
             <div className="dico" style={{background:x.c}}><i className={`fas ${x.icon}`} style={{color:x.ic}}/></div>{x.l}
           </button>
         ))}
+
         <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="di">
           <div className="dico" style={{background:'rgba(37,211,102,.1)'}}><i className="fab fa-whatsapp" style={{color:'#25d366'}}/></div>WhatsApp
         </a>
+
         {/* Languages */}
         <div style={{padding:'13px 16px',borderBottom:'1px solid rgba(255,255,255,.04)'}}>
-          <p style={{fontSize:10,color:'var(--muted)',fontWeight:700,marginBottom:8,textTransform:'uppercase',letterSpacing:.7}}>{t('lang')}</p>
+          <p style={{fontSize:10,color:'var(--muted)',fontWeight:700,marginBottom:8,textTransform:'uppercase',letterSpacing:.8}}>{t('lang')}</p>
           <div style={{display:'flex',gap:6}}>
             {[{c:'ckb',l:'کوردی'},{c:'ar',l:'عربی'},{c:'en',l:'EN'}].map(x=>(
-              <button key={x.c} onClick={()=>{sw(x.c);onClose();}} style={{flex:1,padding:'8px 4px',borderRadius:8,border:'none',fontWeight:700,fontSize:12,cursor:'pointer',fontFamily:'inherit',background:lang===x.c?'var(--gold)':'var(--mid)',color:lang===x.c?'#06091a':'var(--soft)',transition:'all .15s'}}>
+              <button key={x.c} onClick={()=>{sw(x.c);onClose();}} style={{flex:1,padding:'8px 4px',borderRadius:8,border:'none',fontWeight:700,fontSize:12,cursor:'pointer',fontFamily:'inherit',background:lang===x.c?'var(--gold2)':'var(--mid)',color:lang===x.c?'#fff':'var(--soft)',transition:'all .15s'}}>
                 {x.l}
               </button>
             ))}
           </div>
         </div>
-        {/* Auth */}
+
+        {/* Auth/Admin */}
         {user?(
           <>
             {isAdmin&&(
               <>
                 <button className="di" onClick={()=>{onAddPost();onClose();}}>
-                  <div className="dico" style={{background:'rgba(200,150,42,.12)'}}><i className="fas fa-plus" style={{color:'var(--gold2)'}}/></div>{t('addPost')}
+                  <div className="dico" style={{background:'rgba(10,160,100,.12)'}}><i className="fas fa-plus" style={{color:'var(--gold2)'}}/></div>{t('addPost')}
                 </button>
                 <button className="di" onClick={()=>{setSpMgr(true);onClose();}}>
                   <div className="dico" style={{background:'rgba(167,139,250,.1)'}}><i className="fas fa-star" style={{color:'#a78bfa'}}/></div>{t('mgSp')}
@@ -917,7 +964,7 @@ const Drawer=({onClose,onAuth,setSpMgr,onAddPost})=>{
         ):(
           <>
             <button className="di" onClick={()=>{onAuth('login');onClose();}}>
-              <div className="dico" style={{background:'rgba(200,150,42,.12)'}}><i className="fas fa-user" style={{color:'var(--gold2)'}}/></div>{t('login')}
+              <div className="dico" style={{background:'rgba(10,160,100,.12)'}}><i className="fas fa-user" style={{color:'var(--gold2)'}}/></div>{t('login')}
             </button>
             <button className="di" onClick={()=>{onAuth('signup');onClose();}}>
               <div className="dico" style={{background:'rgba(13,148,136,.12)'}}><i className="fas fa-user-plus" style={{color:'var(--teal2)'}}/></div>{t('signup')}
@@ -937,7 +984,7 @@ const App=()=>{
   const [posts,setPosts]=useState([]);
   const [sponsors,setSponsors]=useState([]);
   const [cat,setCat]=useState('all');
-  const [shown,setShown]=useState(2);
+  const [shown,setShown]=useState(3);       // ← show 3 initially
   const [loading,setLoading]=useState(true);
   const [active,setActive]=useState('hero');
   const [drawer,setDrawer]=useState(false);
@@ -948,11 +995,10 @@ const App=()=>{
   const [needLogin,setNeedLogin]=useState(false);
   const videoRef=useRef(null);
 
-  /* Load */
   useEffect(()=>{loadPosts();loadSponsors();},[]);
-  useEffect(()=>{setShown(2);},[cat]);
+  useEffect(()=>{setShown(3);},[cat]);   // reset to 3 on cat change
 
-  /* Video play fix */
+  /* Video autoplay */
   useEffect(()=>{
     const v=videoRef.current;
     if(!v)return;
@@ -962,12 +1008,12 @@ const App=()=>{
     return()=>v.removeEventListener('canplay',play);
   },[]);
 
-  /* Intersection observer for active nav */
+  /* Active section highlight */
   useEffect(()=>{
     const ids=['hero','deals','locs','about'];
     const obs=new IntersectionObserver(entries=>{
       entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id);});
-    },{threshold:.2});
+    },{threshold:.18});
     ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
     return()=>obs.disconnect();
   },[]);
@@ -975,8 +1021,7 @@ const App=()=>{
   const loadPosts=async()=>{
     setLoading(true);
     const{data}=await SB.from('posts').select('*').order('created_at',{ascending:false});
-    setPosts(data||[]);
-    setLoading(false);
+    setPosts(data||[]);setLoading(false);
   };
 
   const loadSponsors=async()=>{
@@ -1012,15 +1057,14 @@ const App=()=>{
   return(
     <div className={dir==='rtl'?'rtl':'ltr'}>
 
-      {/* ══ SPONSOR BANNER (horizontal strip at very top, like reference image) ══ */}
+      {/* ══ SPONSOR STRIP ══ */}
       {visSponsor.length>0&&(
         <div className="sp-banner">
           <div className="sp-marquee-wrap">
-            {/* Duplicate for seamless loop */}
             <div className="sp-marquee">
               {[...visSponsor,...visSponsor].map((s,i)=>(
                 <div key={i} className="sp-img-item">
-                  <img src={s.image_url} alt="sponsor" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                  <img src={s.image_url} alt="sponsor"/>
                 </div>
               ))}
             </div>
@@ -1031,28 +1075,35 @@ const App=()=>{
       {/* ══ HEADER ══ */}
       <header className="hdr">
         <div style={{maxWidth:1100,margin:'0 auto',padding:'0 16px',height:52,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          {/* Logo */}
           <div style={{display:'flex',alignItems:'center',gap:9,cursor:'pointer'}} onClick={()=>go('hero')}>
-            <div style={{width:32,height:32,borderRadius:8,background:'linear-gradient(135deg,var(--gold),var(--gold2))',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:900,fontSize:16,color:'#06091a',flexShrink:0}}>B</div>
+            <div style={{width:34,height:34,borderRadius:9,background:'linear-gradient(135deg,var(--gold),var(--gold2))',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:900,fontSize:17,color:'#fff',flexShrink:0}}>B</div>
             <div>
-              <div style={{fontWeight:900,fontSize:15,color:'var(--white)',lineHeight:1}}>Bilal Bazar</div>
-              <div style={{fontSize:8,color:'var(--gold)',fontWeight:700,letterSpacing:1.8,marginTop:1}}>ERBIL · KURDISTAN</div>
+              <div style={{fontWeight:900,fontSize:15,color:'var(--white)',lineHeight:1,fontFamily:'Inter,sans-serif'}}>Bilal Bazar</div>
+              <div style={{fontSize:8,color:'var(--gold2)',fontWeight:700,letterSpacing:2,marginTop:1.5}}>ERBIL · KURDISTAN</div>
             </div>
           </div>
+
           {/* Desktop nav */}
           <nav className="hd" style={{display:'flex',gap:2}}>
             {navItems.map(x=>(
-              <button key={x.id} onClick={()=>go(x.id)} style={{background:'none',border:'none',color:active===x.id?'var(--gold2)':'var(--muted)',fontSize:13,fontWeight:600,padding:'6px 10px',borderRadius:7,cursor:'pointer',transition:'color .15s',fontFamily:'inherit'}}>
+              <button key={x.id} onClick={()=>go(x.id)} style={{background:'none',border:'none',color:active===x.id?'var(--gold2)':'var(--muted)',fontSize:13,fontWeight:600,padding:'6px 11px',borderRadius:7,cursor:'pointer',transition:'color .15s',fontFamily:'inherit'}}>
                 {x.l}
               </button>
             ))}
           </nav>
+
           <div style={{display:'flex',alignItems:'center',gap:8}}>
             {isAdmin&&(
               <button onClick={()=>{setEditing(null);setPostModal(true);}} className="btn btn-gold hd" style={{padding:'7px 13px',fontSize:12}}>
                 <i className="fas fa-plus"/>{t('addPost')}
               </button>
             )}
-            {user&&<div title={user.email} style={{width:28,height:28,borderRadius:'50%',background:'var(--lift)',border:'2px solid var(--gold)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:700,color:'var(--gold2)',flexShrink:0}}>{user.email[0].toUpperCase()}</div>}
+            {user&&(
+              <div title={user.email} style={{width:30,height:30,borderRadius:'50%',background:'var(--lift)',border:'2px solid var(--gold2)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:800,color:'var(--gold2)',flexShrink:0,cursor:'default'}}>
+                {user.email[0].toUpperCase()}
+              </div>
+            )}
             <button onClick={()=>setDrawer(true)} style={{background:'var(--mid)',border:'1px solid var(--rim)',borderRadius:8,width:36,height:36,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--text)',cursor:'pointer',fontSize:14}}>
               <i className="fas fa-bars"/>
             </button>
@@ -1060,110 +1111,112 @@ const App=()=>{
         </div>
       </header>
 
-      {/* ══ HERO WITH VIDEO ══ */}
+      {/* ══ HERO SECTION ══ */}
       <section id="hero">
         <div className="vbg">
-          {/* VIDEO: must be named bg.mp4 in same folder as index.html */}
           <video ref={videoRef} autoPlay muted loop playsInline preload="auto">
             <source src="bg.mp4" type="video/mp4"/>
-            <source src="./bg.mp4" type="video/mp4"/>
           </video>
         </div>
         {/* Orbs */}
-        <div className="orb" style={{width:500,height:500,background:'radial-gradient(circle,rgba(200,150,42,.1),transparent 70%)',top:'10%',insetInlineEnd:'-8%',animation:'glow 5s ease-in-out infinite'}}/>
-        <div className="orb" style={{width:350,height:350,background:'radial-gradient(circle,rgba(13,148,136,.08),transparent 70%)',bottom:'10%',insetInlineStart:'-4%',animation:'glow 6s ease-in-out 1s infinite'}}/>
+        <div className="orb" style={{width:500,height:500,background:'radial-gradient(circle,rgba(10,160,100,.09),transparent 70%)',top:'8%',insetInlineEnd:'-8%',animation:'glow 5s ease-in-out infinite'}}/>
+        <div className="orb" style={{width:380,height:380,background:'radial-gradient(circle,rgba(13,148,136,.07),transparent 70%)',bottom:'10%',insetInlineStart:'-5%',animation:'glow 7s ease-in-out 1.5s infinite'}}/>
 
-        <div style={{position:'relative',zIndex:2,textAlign:'center',padding:'100px 20px 80px',maxWidth:820,margin:'0 auto',width:'100%'}}>
-          {/* Main English brand title */}
+        <div style={{position:'relative',zIndex:2,textAlign:'center',padding:'110px 20px 90px',maxWidth:820,margin:'0 auto',width:'100%'}}>
+
           <div style={{animation:'fadeUp .7s ease .1s both'}}>
             <div className="hero-title">BILAL BAZAR</div>
           </div>
 
-          {/* Decorative line */}
-          <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:14,margin:'10px 0',animation:'fadeUp .7s ease .3s both'}}>
-            <div style={{width:50,height:1,background:'linear-gradient(90deg,transparent,var(--gold2))'}}/>
-            <span style={{fontSize:10,fontWeight:700,letterSpacing:4,color:'var(--gold)',textTransform:'uppercase'}}>ERBIL · EST. 2020</span>
-            <div style={{width:50,height:1,background:'linear-gradient(90deg,var(--gold2),transparent)'}}/>
+          {/* Divider */}
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:14,margin:'12px 0',animation:'fadeUp .7s ease .3s both'}}>
+            <div style={{width:48,height:1,background:'linear-gradient(90deg,transparent,var(--gold2))'}}/>
+            <span style={{fontSize:9,fontWeight:700,letterSpacing:4.5,color:'var(--gold2)',textTransform:'uppercase'}}>ERBIL · EST. 2020</span>
+            <div style={{width:48,height:1,background:'linear-gradient(90deg,var(--gold2),transparent)'}}/>
           </div>
 
-          {/* Kurdish / Arabic name */}
-          <div className="hero-sub" style={{marginBottom:8}}>
+          {/* Brand name in active language */}
+          <div className="hero-sub" style={{marginBottom:10}}>
             {lang==='ckb'?'بیلال بازار':lang==='ar'?'بيلال بازار':'Bilal Bazar'}
           </div>
 
-          {/* Description */}
-          <p className="hero-desc" style={{marginBottom:34,maxWidth:520,margin:'0 auto 34px',animation:'fadeUp .7s ease .68s both'}}>
+          {/* Subtitle */}
+          <p className="hero-desc" style={{maxWidth:500,margin:'0 auto 36px'}}>
             {t('sub')}
           </p>
 
-          {/* CTA buttons */}
+          {/* CTA */}
           <div style={{display:'flex',flexWrap:'wrap',gap:12,justifyContent:'center',animation:'fadeUp .7s ease .88s both'}}>
-            <button onClick={()=>go('deals')} className="btn btn-gold" style={{padding:'14px 30px',borderRadius:30,fontSize:15}}
-              onMouseOver={e=>e.currentTarget.style.transform='translateY(-2px) scale(1.02)'}
-              onMouseOut={e=>e.currentTarget.style.transform=''}
-            >
-              <i className="fas fa-fire" style={{color:'rgba(100,10,0,.7)'}}/>{t('deals')}
+            <button onClick={()=>go('deals')} className="btn btn-gold" style={{padding:'14px 32px',borderRadius:30,fontSize:15,boxShadow:'0 6px 24px rgba(10,160,100,.38)'}}>
+              <i className="fas fa-fire" style={{opacity:.7}}/>{t('deals')}
             </button>
-            <button onClick={()=>go('locs')} style={{background:'rgba(255,255,255,.08)',color:'#fff',border:'1.5px solid rgba(255,255,255,.2)',borderRadius:30,padding:'14px 30px',fontSize:15,fontWeight:700,cursor:'pointer',fontFamily:'inherit',transition:'all .17s'}}
-              onMouseOver={e=>e.currentTarget.style.background='rgba(255,255,255,.15)'}
-              onMouseOut={e=>e.currentTarget.style.background='rgba(255,255,255,.08)'}
+            <button onClick={()=>go('locs')} style={{background:'rgba(255,255,255,.07)',color:'#fff',border:'1.5px solid rgba(255,255,255,.18)',borderRadius:30,padding:'14px 32px',fontSize:15,fontWeight:700,cursor:'pointer',fontFamily:'inherit',transition:'all .18s'}}
+              onMouseOver={e=>e.currentTarget.style.background='rgba(255,255,255,.14)'}
+              onMouseOut={e=>e.currentTarget.style.background='rgba(255,255,255,.07)'}
             >
               <i className="fas fa-map-marker-alt" style={{marginInlineEnd:8}}/>{t('stores')}
             </button>
           </div>
 
           {/* Stats */}
-          <div style={{display:'flex',gap:36,justifyContent:'center',marginTop:58,animation:'fadeUp .7s ease 1.05s both',flexWrap:'wrap'}}>
-            {[{n:'4',l:t('br')},{n:'10K+',l:t('pr')},{n:t('wk'),l:t('dc')}].map(({n,l})=>(
-              <div key={n} style={{textAlign:'center'}}>
-                <div style={{fontWeight:900,fontSize:26,color:'#fff',lineHeight:1}}>{n}</div>
-                <div style={{fontSize:10,color:'var(--gold)',letterSpacing:.8,fontWeight:600,marginTop:3}}>{l}</div>
+          <div style={{display:'flex',gap:38,justifyContent:'center',marginTop:60,animation:'fadeUp .7s ease 1.05s both',flexWrap:'wrap'}}>
+            {[{n:'4',l:t('br')},{n:'10K+',l:t('pr')},{n:t('wk'),l:t('dc')}].map(({n,l},i)=>(
+              <div key={i} style={{textAlign:'center'}}>
+                <div style={{fontWeight:900,fontSize:28,color:'#fff',lineHeight:1,fontFamily:'Inter,sans-serif'}}>{n}</div>
+                <div style={{fontSize:10,color:'var(--gold2)',letterSpacing:.8,fontWeight:700,marginTop:4,textTransform:'uppercase'}}>{l}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Scroll hint */}
-        <div style={{position:'absolute',bottom:20,left:'50%',transform:'translateX(-50%)',zIndex:2,display:'flex',flexDirection:'column',alignItems:'center',gap:5,color:'rgba(255,255,255,.28)',animation:'fadeIn 1s ease 2s both'}}>
+        <div style={{position:'absolute',bottom:22,left:'50%',transform:'translateX(-50%)',zIndex:2,display:'flex',flexDirection:'column',alignItems:'center',gap:6,color:'rgba(255,255,255,.25)',animation:'fadeIn 1s ease 2s both'}}>
           <span style={{fontSize:8,letterSpacing:2.5,textTransform:'uppercase',fontWeight:600}}>scroll</span>
-          <i className="fas fa-chevron-down" style={{fontSize:11,animation:'float 2s ease-in-out infinite'}}/>
+          <i className="fas fa-chevron-down" style={{fontSize:11,animation:'float 2.2s ease-in-out infinite'}}/>
         </div>
       </section>
 
-      {/* ══ DEALS ══ */}
-      <section id="deals" style={{padding:'52px 16px',maxWidth:1100,margin:'0 auto'}}>
+      {/* ══ DEALS SECTION ══ */}
+      <section id="deals" style={{padding:'56px 16px 60px',maxWidth:1100,margin:'0 auto'}}>
         <div ref={r1} className="reveal">
-          <div className="stitle" style={{marginBottom:20}}>
-            <h2 style={{fontWeight:900,fontSize:24,color:'var(--white)'}}>{t('dtitle')}</h2>
-            <span className="gpill">{filtered.length}</span>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:20,flexWrap:'wrap',gap:10}}>
+            <div className="stitle">
+              <h2 style={{fontWeight:900,fontSize:24,color:'var(--white)'}}>{t('dtitle')}</h2>
+              <span className="gpill">{filtered.length}</span>
+            </div>
+            {isAdmin&&(
+              <button className="btn btn-gold" style={{padding:'8px 16px',fontSize:13}} onClick={()=>{setEditing(null);setPostModal(true);}}>
+                <i className="fas fa-plus"/>{t('addPost')}
+              </button>
+            )}
           </div>
 
-          {/* Category pills */}
-          <div style={{display:'flex',gap:7,overflowX:'auto',paddingBottom:14,marginBottom:22}} className="nsb">
+          {/* Category filter */}
+          <div style={{display:'flex',gap:7,overflowX:'auto',paddingBottom:14,marginBottom:24}} className="nsb">
             {CATS.map(c=>(
-              <button key={c} onClick={()=>setCat(c)} style={{padding:'8px 18px',borderRadius:22,border:cat!==c?'1px solid var(--rim)':'none',fontSize:13,fontWeight:700,cursor:'pointer',whiteSpace:'nowrap',fontFamily:'inherit',background:cat===c?'linear-gradient(135deg,var(--gold),var(--gold2))':'var(--mid)',color:cat===c?'#06091a':'var(--soft)',transition:'all .16s',boxShadow:cat===c?'0 4px 14px rgba(200,150,42,.3)':'none'}}>
+              <button key={c} className={`cat-pill ${cat===c?'act':'inact'}`} onClick={()=>setCat(c)}>
                 {t('cats.'+c)}
               </button>
             ))}
           </div>
 
-          {/* Grid */}
+          {/* Loading */}
           {loading?(
             <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))',gap:16}}>
               {[1,2,3].map(i=>(
                 <div key={i} className="card">
-                  <div className="sk" style={{height:210}}/>
+                  <div className="sk" style={{height:200}}/>
                   <div style={{padding:14,display:'flex',flexDirection:'column',gap:8}}>
-                    <div className="sk" style={{height:15,width:'78%'}}/>
-                    <div className="sk" style={{height:12,width:'54%'}}/>
+                    <div className="sk" style={{height:14,width:'75%'}}/>
+                    <div className="sk" style={{height:12,width:'50%'}}/>
                   </div>
                 </div>
               ))}
             </div>
           ):filtered.length===0?(
-            <div style={{textAlign:'center',padding:'60px 20px',color:'var(--muted)'}}>
-              <div style={{fontSize:44,marginBottom:12}}>🏷️</div>
-              <p style={{fontSize:16}}>{t('noDeals')}</p>
+            <div style={{textAlign:'center',padding:'64px 20px',color:'var(--muted)'}}>
+              <div style={{fontSize:46,marginBottom:12}}>🏷️</div>
+              <p style={{fontSize:16,fontWeight:500}}>{t('noDeals')}</p>
             </div>
           ):(
             <>
@@ -1172,20 +1225,21 @@ const App=()=>{
                   <DealCard key={post.id} post={post} onDelete={deletePost} onEdit={p=>{setEditing(p);setPostModal(true);}} onNeedLogin={()=>setNeedLogin(true)}/>
                 ))}
               </div>
-              {/* Show "See More" button after 2 posts if more exist */}
-              {filtered.length>2&&shown<=2&&(
-                <div style={{textAlign:'center',marginTop:24}}>
-                  <button className="btn btn-gold" onClick={()=>setShown(filtered.length)} style={{padding:'12px 32px',borderRadius:30,fontSize:14}}>
-                    <i className="fas fa-chevron-down" style={{marginInlineEnd:7}}/>{t('more')} ({filtered.length-2})
+
+              {/* See More button — shown when there are more than 3 and we haven't expanded yet */}
+              {filtered.length>3&&shown<=3&&(
+                <div style={{textAlign:'center',marginTop:28}}>
+                  <button className="btn btn-gold" onClick={()=>setShown(filtered.length)} style={{padding:'12px 36px',borderRadius:30,fontSize:14}}>
+                    <i className="fas fa-chevron-down" style={{marginInlineEnd:8}}/>{t('more')} ({filtered.length-3})
                   </button>
                 </div>
               )}
-              {/* Show "Show Less" button when expanded */}
-              {shown>2&&filtered.length>2&&(
-                <div style={{textAlign:'center',marginTop:24}}>
-                  <button className="btn btn-ghost" onClick={()=>setShown(2)} style={{padding:'12px 32px',borderRadius:30,fontSize:14}}>
-                    <i className="fas fa-chevron-up" style={{marginInlineEnd:7}}/>
-                    {lang==='ckb'?'داخستن':lang==='ar'?'إخفاء':'Show Less'}
+
+              {/* Show Less */}
+              {shown>3&&filtered.length>3&&(
+                <div style={{textAlign:'center',marginTop:28}}>
+                  <button className="btn btn-ghost" onClick={()=>setShown(3)} style={{padding:'12px 36px',borderRadius:30,fontSize:14}}>
+                    <i className="fas fa-chevron-up" style={{marginInlineEnd:8}}/>{t('less')}
                   </button>
                 </div>
               )}
@@ -1197,28 +1251,28 @@ const App=()=>{
       <div style={{height:1,background:'linear-gradient(90deg,transparent,var(--rim),transparent)'}}/>
 
       {/* ══ LOCATIONS ══ */}
-      <section id="locs" style={{padding:'52px 16px',background:'var(--dark)',borderTop:'1px solid var(--rim)'}}>
+      <section id="locs" style={{padding:'56px 16px 60px',background:'var(--dark)',borderTop:'1px solid var(--rim)'}}>
         <div ref={r2} className="reveal" style={{maxWidth:1100,margin:'0 auto'}}>
-          <div className="stitle" style={{marginBottom:26,justifyContent:'center'}}>
+          <div className="stitle" style={{marginBottom:28,justifyContent:'center'}}>
             <h2 style={{fontWeight:900,fontSize:24,color:'var(--white)'}}>{t('ltitle')}</h2>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))',gap:14}}>
             {LOCS.map(loc=>(
               <a key={loc.id} href={loc.link} target="_blank" rel="noopener noreferrer" className="loccard">
-                <div style={{width:40,height:40,borderRadius:10,background:'rgba(5,150,105,.12)',border:'1px solid rgba(5,150,105,.25)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:14,fontSize:17}}>
+                <div style={{width:42,height:42,borderRadius:11,background:'rgba(10,160,100,.1)',border:'1px solid rgba(10,160,100,.22)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:14,fontSize:18}}>
                   <i className="fas fa-store" style={{color:'var(--gold2)'}}/>
                 </div>
-                <h3 style={{fontWeight:800,fontSize:14,marginBottom:5,color:'var(--white)',lineHeight:1.35}}>{loc[lang]||loc.en}</h3>
-                <p style={{fontSize:12,color:'var(--muted)',marginBottom:13,lineHeight:1.4}}>{loc.addr[lang]||loc.addr.en}</p>
-                <div style={{display:'flex',flexDirection:'column',gap:6,marginBottom:14,fontSize:11,color:'var(--soft)',direction:'ltr',textAlign:'start'}}>
-                  <span style={{direction:'ltr',display:'flex',alignItems:'center',gap:6}}><i className="far fa-clock" style={{color:'var(--gold)',width:14}}/>{loc.hr}</span>
-                  <span style={{direction:'ltr',display:'flex',alignItems:'center',gap:6}}><i className="fas fa-phone" style={{color:'var(--gold)',width:14}}/>{loc.ph}</span>
+                <h3 style={{fontWeight:800,fontSize:14,marginBottom:5,color:'var(--white)',lineHeight:1.38}}>{loc[lang]||loc.en}</h3>
+                <p style={{fontSize:12,color:'var(--muted)',marginBottom:14,lineHeight:1.45}}>{loc.addr[lang]||loc.addr.en}</p>
+                <div style={{display:'flex',flexDirection:'column',gap:6,marginBottom:14,fontSize:11,color:'var(--soft)'}}>
+                  <span style={{direction:'ltr',display:'flex',alignItems:'center',gap:6}}><i className="far fa-clock" style={{color:'var(--gold2)',width:14}}/>{loc.hr}</span>
+                  <span style={{direction:'ltr',display:'flex',alignItems:'center',gap:6}}><i className="fas fa-phone" style={{color:'var(--gold2)',width:14}}/>{loc.ph}</span>
                 </div>
                 <div style={{display:'flex',gap:8}}>
-                  <span style={{flex:1,background:'linear-gradient(135deg,var(--gold),var(--gold2))',color:'#fff',borderRadius:8,padding:'9px 8px',textAlign:'center',fontSize:12,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',gap:5}}>
+                  <span style={{flex:1,background:'linear-gradient(135deg,var(--gold),var(--gold2))',color:'#fff',borderRadius:9,padding:'9px 8px',textAlign:'center',fontSize:12,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',gap:6}}>
                     <i className="fas fa-map-marker-alt"/>{t('openMap')}
                   </span>
-                  <a href={`tel:+964${loc.ph.replace(/^0/,'').replace(/\s/g,'')}`} onClick={e=>e.stopPropagation()} style={{background:'var(--mid)',border:'1px solid var(--rim)',borderRadius:8,padding:'9px 13px',display:'flex',alignItems:'center',color:'var(--soft)',fontSize:14}}>
+                  <a href={`tel:+964${loc.ph.replace(/^0/,'').replace(/\s/g,'')}`} onClick={e=>e.stopPropagation()} style={{background:'var(--mid)',border:'1px solid var(--rim)',borderRadius:9,padding:'9px 14px',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--soft)',fontSize:14,textDecoration:'none'}}>
                     <i className="fas fa-phone"/>
                   </a>
                 </div>
@@ -1231,51 +1285,72 @@ const App=()=>{
       <div style={{height:1,background:'linear-gradient(90deg,transparent,var(--rim),transparent)'}}/>
 
       {/* ══ ABOUT ══ */}
-      <section id="about" style={{padding:'52px 16px',maxWidth:660,margin:'0 auto',textAlign:'center'}}>
+      <section id="about" style={{padding:'56px 16px 60px',maxWidth:700,margin:'0 auto',textAlign:'center'}}>
         <div ref={r3} className="reveal">
-          <div className="stitle" style={{justifyContent:'center',marginBottom:16}}>
+          <div className="stitle" style={{justifyContent:'center',marginBottom:18}}>
             <h2 style={{fontWeight:900,fontSize:24,color:'var(--white)'}}>{t('atitle')}</h2>
           </div>
           <p style={{color:'var(--soft)',fontSize:15,lineHeight:1.9,fontWeight:400}}>{t('atext')}</p>
+
+          {/* Product highlights */}
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(120px,1fr))',gap:10,marginTop:32}}>
+            {[
+              {icon:'🌾',ckb:'برنج',ar:'أرز',en:'Rice'},
+              {icon:'🥩',ckb:'گۆشت',ar:'لحوم',en:'Meat'},
+              {icon:'🌽',ckb:'دانەوێڵە',ar:'حبوب',en:'Cereals'},
+              {icon:'🫒',ckb:'روون',ar:'زيت',en:'Oil'},
+              {icon:'🥛',ckb:'شیرینی',ar:'منتجات ألبان',en:'Dairy'},
+              {icon:'🧴',ckb:'بستەبەند',ar:'معبأ',en:'Packaged'},
+            ].map((x,i)=>(
+              <div key={i} style={{background:'var(--card)',border:'1px solid var(--rim)',borderRadius:12,padding:'14px 8px',textAlign:'center',transition:'all .18s'}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='var(--rim2)';e.currentTarget.style.background='var(--mid)';}}
+                onMouseOut={e=>{e.currentTarget.style.borderColor='var(--rim)';e.currentTarget.style.background='var(--card)';}}>
+                <div style={{fontSize:26,marginBottom:6}}>{x.icon}</div>
+                <div style={{fontSize:12,fontWeight:700,color:'var(--text)'}}>{x[lang]||x.en}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ══ FOOTER ══ */}
-      <footer style={{background:'var(--bg)',borderTop:'1px solid var(--rim)',padding:'34px 16px 70px',textAlign:'center'}}>
-        <div style={{fontWeight:900,fontSize:26,marginBottom:4,background:'linear-gradient(120deg,#fff,var(--gold2))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Bilal Bazar</div>
-        <div style={{fontSize:8,fontWeight:700,letterSpacing:2.8,color:'var(--gold)',marginBottom:8}}>ERBIL · KURDISTAN</div>
-        <div style={{fontFamily:'Noto Sans Arabic',fontSize:14,color:'var(--muted)',marginBottom:20}}>
+      <footer style={{background:'var(--bg)',borderTop:'1px solid var(--rim)',padding:'36px 16px 72px',textAlign:'center'}}>
+        <div style={{fontWeight:900,fontSize:28,marginBottom:5,background:'linear-gradient(120deg,#fff,var(--gold2))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text',fontFamily:'Inter,sans-serif'}}>Bilal Bazar</div>
+        <div style={{fontSize:8,fontWeight:700,letterSpacing:3,color:'var(--gold2)',marginBottom:8,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
+        <div style={{fontFamily:'Noto Sans Arabic',fontSize:14,color:'var(--muted)',marginBottom:22}}>
           {lang==='ckb'?'بیلال بازار':lang==='ar'?'بيلال بازار':'Bilal Bazar'}
         </div>
-        <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(37,211,102,.09)',border:'1px solid rgba(37,211,102,.2)',borderRadius:10,padding:'10px 20px',color:'#25d366',textDecoration:'none',fontSize:14,fontWeight:700,fontFamily:'Outfit,sans-serif',marginBottom:20}}>
-          <i className="fab fa-whatsapp" style={{fontSize:17}}/>WhatsApp
+        <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" style={{display:'inline-flex',alignItems:'center',gap:9,background:'rgba(37,211,102,.08)',border:'1px solid rgba(37,211,102,.2)',borderRadius:12,padding:'11px 22px',color:'#25d366',textDecoration:'none',fontSize:14,fontWeight:700,marginBottom:22}}>
+          <i className="fab fa-whatsapp" style={{fontSize:18}}/>WhatsApp
         </a>
-        <p style={{fontSize:10,color:'var(--rim)'}}>{t('copy')}</p>
+        <p style={{fontSize:11,color:'var(--rim2)'}}>{t('copy')}</p>
       </footer>
 
       {/* ══ MOBILE BOTTOM NAV ══ */}
       <div className="mnav">
         {navItems.map(x=>(
           <button key={x.id} className={`mnb${active===x.id?' act':''}`} onClick={()=>go(x.id)}>
-            <i className={`fas ${x.icon}`} style={{fontSize:18}}/>
+            <i className={`fas ${x.icon}`} style={{fontSize:19}}/>
             {x.l}
           </button>
         ))}
         <button className="mnb" onClick={()=>setDrawer(true)}>
-          <i className="fas fa-bars" style={{fontSize:18}}/>{t('menu')}
+          <i className="fas fa-bars" style={{fontSize:19}}/>{t('menu')}
         </button>
       </div>
 
       {/* ══ FLOATING BUTTONS ══ */}
+      {/* WhatsApp */}
       <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer"
-        style={{position:'fixed',bottom:66,right:16,width:50,height:50,borderRadius:'50%',background:'#25d366',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:22,zIndex:45,boxShadow:'0 4px 20px rgba(37,211,102,.45)',textDecoration:'none',transition:'transform .18s'}}
+        style={{position:'fixed',bottom:68,right:16,width:52,height:52,borderRadius:'50%',background:'#25d366',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:24,zIndex:45,boxShadow:'0 4px 20px rgba(37,211,102,.42)',textDecoration:'none',transition:'transform .18s'}}
         onMouseOver={e=>e.currentTarget.style.transform='scale(1.1)'}
         onMouseOut={e=>e.currentTarget.style.transform='scale(1)'}
       ><i className="fab fa-whatsapp"/></a>
 
+      {/* Admin add button */}
       {isAdmin&&(
         <button onClick={()=>{setEditing(null);setPostModal(true);}}
-          style={{position:'fixed',bottom:66,left:16,width:50,height:50,borderRadius:'50%',background:'linear-gradient(135deg,var(--gold),var(--gold2))',border:'none',display:'flex',alignItems:'center',justifyContent:'center',color:'#06091a',fontSize:22,zIndex:45,cursor:'pointer',boxShadow:'0 4px 20px rgba(200,150,42,.5)',transition:'transform .18s'}}
+          style={{position:'fixed',bottom:68,left:16,width:52,height:52,borderRadius:'50%',background:'linear-gradient(135deg,var(--gold),var(--gold2))',border:'none',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:24,zIndex:45,cursor:'pointer',boxShadow:'0 4px 20px rgba(10,160,100,.45)',transition:'transform .18s'}}
           onMouseOver={e=>e.currentTarget.style.transform='scale(1.1) rotate(90deg)'}
           onMouseOut={e=>e.currentTarget.style.transform='scale(1) rotate(0deg)'}
         ><i className="fas fa-plus"/></button>
@@ -1288,11 +1363,12 @@ const App=()=>{
 
       {needLogin&&(
         <div className="mbg" onClick={()=>setNeedLogin(false)}>
-          <div className="mbox" onClick={e=>e.stopPropagation()} style={{maxWidth:340}}>
-            <div style={{padding:28,textAlign:'center'}}>
-              <div style={{fontSize:44,marginBottom:12}}>❤️</div>
-              <h3 style={{fontWeight:800,fontSize:17,marginBottom:8,color:'var(--white)'}}>{t('loginLike')}</h3>
-              <div style={{display:'flex',gap:8,marginTop:16}}>
+          <div className="mbox" onClick={e=>e.stopPropagation()} style={{maxWidth:330}}>
+            <div style={{padding:30,textAlign:'center'}}>
+              <div style={{fontSize:46,marginBottom:12}}>❤️</div>
+              <h3 style={{fontWeight:800,fontSize:17,marginBottom:6,color:'var(--white)'}}>{t('loginLike')}</h3>
+              <p style={{fontSize:12,color:'var(--muted)',marginBottom:18}}>تۆمار بکە یان بچۆ ژوورەوە بۆ ئەوەی داشکاندنەکان دڵنیا بکەیت</p>
+              <div style={{display:'flex',gap:9}}>
                 <button className="btn btn-gold" style={{flex:1}} onClick={()=>{setNeedLogin(false);setAuthMode('login');}}>{t('login')}</button>
                 <button className="btn btn-ghost" style={{flex:1}} onClick={()=>{setNeedLogin(false);setAuthMode('signup');}}>{t('signup')}</button>
               </div>
