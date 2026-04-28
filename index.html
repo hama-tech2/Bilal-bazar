@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
@@ -201,7 +202,7 @@ a{color:inherit;text-decoration:none}
   background:transparent;color:var(--muted);
   font-size:12px;font-weight:700;cursor:pointer;
   transition:all .14s;white-space:nowrap;font-family:inherit;
-  height:32px;/* fixed height so all buttons align */
+  height:32px;
 }
 .post-actions .act-btn:hover{border-color:var(--accent);color:var(--text)}
 .post-actions .act-btn.liked{background:rgba(239,68,68,.13);color:var(--danger);border-color:rgba(239,68,68,.3)}
@@ -506,7 +507,6 @@ function ProfileModal({onClose}){
           <button className="btn btn-g" onClick={onClose} style={{padding:'5px 10px'}}>×</button>
         </div>
         <div className="mbody" style={{display:'flex',flexDirection:'column',gap:16}}>
-          {/* Avatar selector */}
           <div>
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8,textTransform:'uppercase',letterSpacing:.5}}>{t('profAvatar')}</label>
             <div className="av-sel">
@@ -518,7 +518,6 @@ function ProfileModal({onClose}){
               ))}
             </div>
           </div>
-          {/* Name input */}
           <div>
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>{t('profName')}</label>
             <input className="inp" placeholder={t('profName')} value={name} maxLength={30} onChange={e=>setName(e.target.value)}/>
@@ -649,7 +648,7 @@ function CropModal({file,aspect,onDone,onClose}){
 
   const getXY=e=>e.touches?{cx:e.touches[0].clientX,cy:e.touches[0].clientY}:{cx:e.clientX,cy:e.clientY};
   const onS=e=>{setDrag(true);const{cx,cy}=getXY(e);dr.current={sx:cx,sy:cy,cx:crop.x,cy:crop.y};};
-  const onM=e=>{if(!drag)return;const{cx,cy}=getXY(e);const dx=cx-dr.current.sx,dy=cy-dr.current.sy;const{rw,rh,cw,ch}=sr.current;setCrop({x:Math.max(0,Math.min(rw-cw,dr.current.cx+dx)),y:Math.max(0,Math.min(rh-ch,dr.current.cy+dy));});};
+  const onM=e=>{if(!drag)return;const{cx,cy}=getXY(e);const dx=cx-dr.current.sx,dy=cy-dr.current.sy;const{rw,rh,cw,ch}=sr.current;setCrop({x:Math.max(0,Math.min(rw-cw,dr.current.cx+dx)),y:Math.max(0,Math.min(rh-ch,dr.current.cy+dy))});};
   const onE=()=>setDrag(false);
 
   const confirm=()=>{
@@ -903,21 +902,16 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit}){
         <h3 style={{fontWeight:800,fontSize:15,lineHeight:1.35,marginBottom:10,fontFamily:'Noto Sans Arabic,Outfit,sans-serif'}}>{title}</h3>
         <div style={{marginBottom:12}}><Countdown iso={post.created_at} days={post.discount_days}/></div>
 
-        {/* ACTION ROW — all buttons same height, same size, one line */}
         <div className="post-actions">
-          {/* LIKE */}
           <button onClick={handleLike} className={`act-btn${liked?' liked':''}`}>
             <i className={liked?'fas fa-heart':'far fa-heart'}/>{likes>0?` ${likes}`:''}
           </button>
-          {/* COMMENT */}
           <button onClick={()=>setShowCmt(s=>!s)} className={`act-btn${showCmt?' active':''}`}>
             <i className="fas fa-comment-alt"/> {t('cmt')}
           </button>
-          {/* SHARE */}
           <button onClick={handleShare} className="act-btn">
             <i className="fas fa-share-alt"/>{copied?' ✓':' '+t('share')}
           </button>
-          {/* ADMIN CONTROLS */}
           {isAdmin&&(
             <div className="admin-btns">
               <button onClick={()=>onEdit(post)} className="btn btn-g" style={{padding:'4px 8px',fontSize:11,height:32}}><i className="fas fa-pencil-alt"/></button>
@@ -1023,15 +1017,13 @@ function PostModal({editing,onSave,onClose}){
 
 /* ════════════════════════════════════════════════════════════
    SPONSOR MODAL — FULLY FIXED
-   Flow: Gallery button → pick 1 file → preview → crop (images)
-         → optional link → Upload → saved to Supabase
 ════════════════════════════════════════════════════════════ */
 function SpModal({sponsors,onUpdate,onClose}){
   const{t,toast}=useApp();
   const[list,setList]=useState(sponsors);
   const[link,setLink]=useState('');
-  const[picked,setPicked]=useState(null);        // raw File
-  const[preview,setPreview]=useState(null);      // object URL
+  const[picked,setPicked]=useState(null);
+  const[preview,setPreview]=useState(null);
   const[isVid,setIsVid]=useState(false);
   const[cropOpen,setCropOpen]=useState(false);
   const[busy,setBusy]=useState(false);
@@ -1048,8 +1040,8 @@ function SpModal({sponsors,onUpdate,onClose}){
     const url=URL.createObjectURL(f);
     const vid=f.type.startsWith('video/');
     setPicked(f);setPreview(url);setIsVid(vid);
-    if(!vid)setCropOpen(true);   // auto-open crop for images
-    e.target.value='';          // reset so same file can be re-picked
+    if(!vid)setCropOpen(true);
+    e.target.value='';
   };
 
   const clearPick=()=>{
@@ -1057,7 +1049,6 @@ function SpModal({sponsors,onUpdate,onClose}){
     setPicked(null);setPreview(null);setIsVid(false);setCropOpen(false);
   };
 
-  /* After image crop confirmed */
   const onCropped=async blob=>{
     setCropOpen(false);setBusy(true);
     try{
@@ -1067,7 +1058,6 @@ function SpModal({sponsors,onUpdate,onClose}){
     setBusy(false);clearPick();
   };
 
-  /* Upload video directly */
   const uploadVid=async()=>{
     if(!picked)return;
     setBusy(true);
@@ -1080,7 +1070,7 @@ function SpModal({sponsors,onUpdate,onClose}){
   };
 
   const save=async mediaUrl=>{
-    const trimmedLink=link.trim()||null;  /* null if empty — link is truly optional */
+    const trimmedLink=link.trim()||null;
     const{data,error}=await SB.from('sponsors')
       .insert({image_url:mediaUrl,visible:true,link_url:trimmedLink,sort_order:list.length})
       .select().single();
@@ -1113,20 +1103,16 @@ function SpModal({sponsors,onUpdate,onClose}){
             Images will be cropped to 4:1. Link is optional.
           </p>
 
-          {/* Step 1: Gallery button */}
           {!picked&&(
             <button className="btn btn-g wf" onClick={openGallery} style={{padding:'14px',gap:10,fontSize:14,borderStyle:'dashed',borderRadius:12}}>
               <i className="fas fa-images acc" style={{fontSize:18}}/>{t('gallery')}
             </button>
           )}
-          {/* Hidden file input */}
           <input ref={fileRef} type="file" accept="image/*,video/mp4,video/webm,video/mov,video/quicktime" style={{display:'none'}} onChange={onPick}/>
 
-          {/* VIDEO preview + confirm */}
           {picked&&isVid&&preview&&(
             <div style={{borderRadius:12,border:'1px solid var(--border)',overflow:'hidden',background:'var(--bg)'}}>
               <video src={preview} controls muted style={{width:'100%',maxHeight:110,objectFit:'contain',display:'block'}}/>
-              {/* Step 2 (video): optional link */}
               <div style={{padding:'10px 12px',borderTop:'1px solid var(--border)'}}>
                 <input className="inp" placeholder={t('spLink')} value={link} onChange={e=>setLink(e.target.value)} style={{marginBottom:8}}/>
                 <div style={{display:'flex',gap:8}}>
@@ -1139,7 +1125,6 @@ function SpModal({sponsors,onUpdate,onClose}){
             </div>
           )}
 
-          {/* IMAGE: after crop, show confirmation state with link */}
           {picked&&!isVid&&preview&&!cropOpen&&(
             <div style={{display:'flex',alignItems:'center',gap:10,padding:'10px 12px',border:'1px solid var(--border)',borderRadius:10,background:'var(--bg)'}}>
               <img src={preview} alt="preview" style={{width:90,height:30,objectFit:'contain',borderRadius:5,flexShrink:0}}/>
@@ -1148,13 +1133,10 @@ function SpModal({sponsors,onUpdate,onClose}){
             </div>
           )}
 
-          {/* Step 2 (image after crop): optional link, then upload */}
           {picked&&!isVid&&!cropOpen&&preview&&(
             <div style={{display:'flex',flexDirection:'column',gap:8}}>
               <input className="inp" placeholder={t('spLink')} value={link} onChange={e=>setLink(e.target.value)}/>
               <button className="btn btn-p wf" disabled={busy} onClick={async()=>{
-                /* image was already cropped — onCropped handled upload
-                   but if user skipped crop somehow, re-open crop */
                 setCropOpen(true);
               }} style={{padding:'11px'}}>
                 {busy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:'Re-adjust crop'}
@@ -1162,12 +1144,10 @@ function SpModal({sponsors,onUpdate,onClose}){
             </div>
           )}
 
-          {/* Crop modal for images */}
           {cropOpen&&picked&&!isVid&&(
             <CropModal file={picked} aspect={4} onDone={onCropped} onClose={()=>{setCropOpen(false);clearPick();}}/>
           )}
 
-          {/* Existing sponsors list */}
           {list.length>0&&(
             <div>
               <p style={{fontSize:11,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Current Sponsors</p>
@@ -1212,7 +1192,6 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
           <button className="btn btn-g" style={{padding:'5px 9px'}} onClick={onClose}>×</button>
         </div>
 
-        {/* User info */}
         {user&&(
           <div style={{padding:'10px 18px',background:'var(--elevated)',borderBottom:'1px solid var(--border)',display:'flex',alignItems:'center',gap:10,cursor:'pointer'}} onClick={()=>{onProfile();onClose();}}>
             <span style={{fontSize:22}}>{AVATARS[profile?.avatar||'male']}</span>
@@ -1310,9 +1289,6 @@ function App(){
   useEffect(()=>{setShown(3);},[cat]);
   useEffect(()=>{const id=setInterval(loadPosts,30000);return()=>clearInterval(id);},[loadPosts]);
 
-  /* ══ BACKGROUND VIDEO AUTOPLAY FIX ══
-     Uses the raw.githubusercontent.com URL for reliable CORS-free streaming.
-     Tries to play on multiple events to cover mobile browsers.            */
   useEffect(()=>{
     const v=vidRef.current;if(!v)return;
     const play=()=>v.play().catch(()=>{});
@@ -1351,10 +1327,8 @@ function App(){
   return(
     <div className={dir==='rtl'?'rtl':'ltr'}>
 
-      {/* ── SPONSOR STRIP ── */}
       <SpStrip sponsors={sponsors}/>
 
-      {/* ── HEADER ── */}
       <header className="hdr">
         <div className="c flex ac jb" style={{height:52}}>
           <div style={{display:'flex',alignItems:'center',gap:9,cursor:'pointer'}} onClick={()=>go('hero')}>
@@ -1381,30 +1355,20 @@ function App(){
         </div>
       </header>
 
-      {/* ════════════════════════════════════════════════════
-          HERO — FIXED BLACK SCREEN
-          video uses raw.githubusercontent.com (no CORS issues)
-          z-index stack: video(0) → overlay::after(1) → content(2)
-          fallback gradient prevents black flash on slow connections
-      ════════════════════════════════════════════════════ */}
       <section id="hero">
         <div className="hero-vid">
           <video
             ref={vidRef}
             autoPlay muted loop playsInline preload="auto"
           >
-            {/* PRIMARY: raw.githubusercontent.com — streams reliably in browsers */}
             <source src={VIDEO_URL} type="video/mp4"/>
-            {/* FALLBACK: relative path (works when served from same domain) */}
             <source src="mb.mp4" type="video/mp4"/>
           </video>
         </div>
 
-        {/* decorative orbs — z-index 2, above overlay */}
         <div style={{position:'absolute',width:520,height:520,borderRadius:'50%',background:'radial-gradient(circle,rgba(16,185,129,.07),transparent 70%)',top:'6%',insetInlineEnd:'-7%',filter:'blur(72px)',animation:'glow 5s ease-in-out infinite',zIndex:2,pointerEvents:'none'}}/>
         <div style={{position:'absolute',width:380,height:380,borderRadius:'50%',background:'radial-gradient(circle,rgba(52,211,153,.05),transparent 70%)',bottom:'9%',insetInlineStart:'-5%',filter:'blur(72px)',animation:'glow 7s ease-in-out 1.5s infinite',zIndex:2,pointerEvents:'none'}}/>
 
-        {/* hero content — z-index 2 */}
         <div className="hero-body">
           <h1 className="hero-title">BILAL BAZAR</h1>
           <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:14,margin:'10px 0'}}>
@@ -1438,7 +1402,6 @@ function App(){
         </div>
       </section>
 
-      {/* ── DEALS ── */}
       <section id="deals" style={{padding:'50px 0',background:'var(--bg)'}}>
         <div className="c">
           <div className="stitle">
@@ -1493,7 +1456,6 @@ function App(){
 
       <div className="divline"/>
 
-      {/* ── LOCATIONS ── */}
       <section id="locs" style={{padding:'50px 0',background:'var(--surface)',borderTop:'1px solid var(--border)'}}>
         <div className="c">
           <div className="stitle" style={{justifyContent:'center'}}><h2>{t('ltitle')}</h2></div>
@@ -1525,7 +1487,6 @@ function App(){
 
       <div className="divline"/>
 
-      {/* ── ABOUT ── */}
       <section id="about" style={{padding:'50px 16px',maxWidth:700,margin:'0 auto',textAlign:'center'}}>
         <div className="stitle" style={{justifyContent:'center'}}><h2>{t('atitle')}</h2></div>
         <p style={{color:'var(--soft)',fontSize:15,lineHeight:1.88}}>{t('atext')}</p>
@@ -1539,7 +1500,6 @@ function App(){
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
       <footer style={{background:'var(--bg)',borderTop:'1px solid var(--border)',padding:'36px 16px 74px',textAlign:'center'}}>
         <div style={{fontWeight:900,fontSize:28,marginBottom:5,background:'linear-gradient(120deg,#fff,var(--accent))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Bilal Bazar</div>
         <div style={{fontSize:8,fontWeight:700,letterSpacing:3,color:'var(--accent)',marginBottom:8,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
@@ -1552,7 +1512,6 @@ function App(){
         <p style={{fontSize:10,color:'var(--border2)'}}>{t('copy')}</p>
       </footer>
 
-      {/* ── MOBILE NAV ── */}
       <div className="mnav md">
         {nav.map(x=>(
           <button key={x.id} className={`mnb ${active===x.id?'act':''}`} onClick={()=>go(x.id)}>
@@ -1564,11 +1523,9 @@ function App(){
         </button>
       </div>
 
-      {/* ── FABs ── */}
       <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
       {isAdmin&&<button className="fab-add" onClick={()=>{setEditing(null);setPostModal(true);}}><i className="fas fa-plus"/></button>}
 
-      {/* ── MODALS ── */}
       {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
       {authOpen&&<AuthModal onClose={()=>setAuthOpen(false)}/>}
       {profileOpen&&<ProfileModal onClose={()=>setProfileOpen(false)}/>}
