@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
@@ -31,7 +32,6 @@ a{color:inherit;text-decoration:none}
 .nsb{-ms-overflow-style:none;scrollbar-width:none}
 .nsb::-webkit-scrollbar{display:none}
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes shimmer{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
@@ -43,7 +43,7 @@ a{color:inherit;text-decoration:none}
 @keyframes slideR{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:none}}
 @keyframes slideL{from{opacity:0;transform:translateX(-100%)}to{opacity:1;transform:none}}
 
-/* FLOATING SPONSOR: slides in from left, pauses, fades back */
+/* FLOATING SPONSOR */
 @keyframes spSlide{
   0%  {opacity:0;transform:translateX(calc(-100% - 20px))}
   16% {opacity:1;transform:translateX(16px)}
@@ -69,7 +69,6 @@ a{color:inherit;text-decoration:none}
   padding:1px 5px;border-radius:3px;
 }
 
-/* ── LAYOUT ── */
 .c{max-width:1100px;margin:0 auto;padding:0 16px}
 .flex{display:flex} .col{flex-direction:column}
 .ac{align-items:center} .jb{justify-content:space-between} .jc{justify-content:center}
@@ -82,7 +81,6 @@ a{color:inherit;text-decoration:none}
 .tc{text-align:center} .muted{color:var(--muted)} .acc{color:var(--accent)}
 .bold{font-weight:700} .xbold{font-weight:900} .sm{font-size:12px} .xs{font-size:11px}
 
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit;text-decoration:none}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 .btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#02140d}
@@ -99,13 +97,11 @@ a{color:inherit;text-decoration:none}
 .inp:focus{border-color:var(--accent)}
 .inp::placeholder{color:var(--muted)}
 
-/* ── TOAST ── */
 .toast-wrap{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:6px;pointer-events:none}
 .toast{padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;min-width:190px;text-align:center;animation:toastIn .3s ease;backdrop-filter:blur(8px)}
 .t-ok{background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.3);color:var(--accent3)}
 .t-err{background:rgba(239,68,68,.18);border:1px solid rgba(239,68,68,.28);color:#fca5a5}
 
-/* ── MODAL ── */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(7px);z-index:80;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:540px){.ov{align-items:center;padding:20px}}
 .mbox{background:var(--elevated);border:1px solid var(--border);width:100%;max-width:500px;max-height:93vh;overflow-y:auto;border-radius:20px 20px 0 0;animation:slideUp .24s ease}
@@ -114,7 +110,6 @@ a{color:inherit;text-decoration:none}
 .mhdr h3{font-weight:800;font-size:15px}
 .mbody{padding:18px 20px}
 
-/* ── DRAWER ── */
 .dov{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.8);backdrop-filter:blur(4px)}
 .dpanel{position:absolute;top:0;bottom:0;width:min(290px,85vw);background:var(--surface);border-inline-end:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
 .rtl .dpanel{right:0;animation:slideR .22s ease}
@@ -123,23 +118,13 @@ a{color:inherit;text-decoration:none}
 .di:hover{background:var(--elevated)}
 .dico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 
-/* ── MOBILE NAV ── */
 .mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,10,8,.97);border-top:1px solid var(--border);backdrop-filter:blur(14px);display:flex;justify-content:space-around;height:54px;padding-bottom:env(safe-area-inset-bottom)}
 .mnb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--muted);background:none;border:none;cursor:pointer;font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;transition:color .14s}
 .mnb.act{color:var(--accent)}
 
-/* sp-strip removed – replaced by floating sponsor */
-
-/* ── HEADER ── */
 .hdr{position:sticky;top:0;z-index:40;background:rgba(6,10,8,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 
-/* ══════════════════════════════════════════
-   HERO SECTION — BLACK SCREEN FIX
-   Correct z-index layering:
-     z-index 0 → video
-     z-index 1 → ::after dark overlay
-     z-index 2 → orbs + hero-body content
-══════════════════════════════════════════ */
+/* HERO */
 #hero{
   position:relative;
   min-height:100vh;
@@ -148,7 +133,6 @@ a{color:inherit;text-decoration:none}
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  /* fallback gradient — prevents black flash while video loads */
   background:linear-gradient(150deg,#071510 0%,#0b1e15 50%,#060a08 100%);
 }
 .hero-vid{position:absolute;inset:0;z-index:0}
@@ -158,12 +142,10 @@ a{color:inherit;text-decoration:none}
   object-fit:cover;object-position:center;
   display:block;pointer-events:none;
 }
-/* dark overlay — above video (z:1), below content (z:2) */
 .hero-vid::after{
   content:'';position:absolute;inset:0;z-index:1;
   background:linear-gradient(to bottom,rgba(4,9,6,.78) 0%,rgba(4,9,6,.28) 44%,rgba(4,9,6,.88) 100%);
 }
-/* content — MUST be z-index 2 to sit above video AND overlay */
 .hero-body{
   position:relative;z-index:2;
   text-align:center;padding:108px 20px 88px;
@@ -175,7 +157,6 @@ a{color:inherit;text-decoration:none}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;animation:fadeUp .7s ease .78s both}
 .hero-stats{display:flex;gap:40px;justify-content:center;margin-top:52px;flex-wrap:wrap;animation:fadeUp .7s ease .98s both}
 
-/* ── POST IMAGE GRID ── */
 .pimg{position:relative}
 .fi{background:var(--border);overflow:hidden;cursor:pointer}
 .fi img{width:100%;height:100%;object-fit:cover;transition:transform .32s}
@@ -188,20 +169,17 @@ a{color:inherit;text-decoration:none}
 .g5i{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:2px;height:198px}
 .more-over{position:absolute;inset:0;background:rgba(4,9,6,.58);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff}
 
-/* circular discount badge */
 .disc{position:absolute;top:10px;right:10px;z-index:5;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--danger),var(--danger2));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:12px;line-height:1;text-align:center;box-shadow:0 4px 14px rgba(185,28,28,.48)}
 .ltr .disc{right:auto;left:10px}
 .expover{position:absolute;inset:0;background:rgba(4,9,6,.65);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:5}
 .expover span{background:var(--danger);color:#fff;padding:7px 18px;border-radius:6px;font-weight:900;font-size:13px}
 
-/* ── COUNTDOWN ── */
 .cdown{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18)}
 .cb{text-align:center;min-width:24px}
 .cn{font-weight:900;font-size:16px;line-height:1;color:#fff}
 .cl{font-size:7px;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
 .cs{color:rgba(16,185,129,.45);font-weight:900;font-size:13px;align-self:center;margin-bottom:2px}
 
-/* ── POST ACTION ROW (fixed alignment) ── */
 .post-actions{
   display:flex;align-items:center;
   gap:6px;flex-wrap:nowrap;
@@ -221,48 +199,37 @@ a{color:inherit;text-decoration:none}
 .post-actions .act-btn.active{color:var(--accent);border-color:var(--accent)}
 .post-actions .admin-btns{display:flex;gap:4px;margin-inline-start:auto}
 
-/* ── LIGHTBOX ── */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;display:flex;align-items:center;justify-content:center}
 .lb img{max-width:93vw;max-height:88vh;object-fit:contain;border-radius:10px}
 .lbc{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.08);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .lbn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
-/* ── COMMENTS ── */
-.cm-list{display:flex;flex-direction:column;gap:7px;max-height:160px;overflow-y:auto}
+.cm-list{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow-y:auto}
 .cm-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
 .cm-meta{font-size:10px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:7px}
-.cm-name{font-weight:800;font-size:13px;color:var(--accent)}
-.cm-date{font-size:9px;color:var(--muted);margin-inline-start:auto}
 .cm-txt{font-size:12px;line-height:1.5;color:var(--soft);padding-inline-start:30px;word-break:break-word}
 .av-icon{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.2);flex-shrink:0}
-.cm-login{display:flex;gap:8px;margin-top:10px}
 .cm-char{font-size:9px;color:var(--muted);text-align:end;margin-top:3px}
 
-/* ── SKELETON ── */
 .sk{background:linear-gradient(90deg,var(--border) 25%,var(--elevated) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
 
-/* ── SECTION TITLE ── */
 .stitle{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .stitle::before{content:'';width:26px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));flex-shrink:0}
 .stitle h2{font-weight:900;font-size:24px}
 
-/* ── LOCATION CARD ── */
 .lcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s,box-shadow .2s}
 .lcard:hover{border-color:rgba(16,185,129,.28);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.42)}
 
-/* ── ABOUT FEATURES ── */
 .feats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 .feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 14px;width:138px;text-align:center;transition:border-color .2s}
 .feat:hover{border-color:var(--accent)}
 .feat-ico{width:40px;height:40px;border-radius:10px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:17px;color:var(--accent)}
 
-/* ── FAB ── */
 .fab-wa{position:fixed;bottom:66px;right:16px;width:50px;height:50px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;z-index:45;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .18s;text-decoration:none}
 .fab-wa:hover{transform:scale(1.1)}
 .fab-add{position:fixed;bottom:66px;left:16px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;display:flex;align-items:center;justify-content:center;color:#02140d;font-size:22px;z-index:45;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,.42);transition:transform .18s}
 .fab-add:hover{transform:scale(1.1) rotate(90deg)}
 
-/* ── AVATAR SELECTOR ── */
 .av-sel{display:flex;gap:10px;justify-content:center;margin-top:8px}
 .av-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 18px;border-radius:12px;border:2px solid var(--border);cursor:pointer;transition:all .15s;background:var(--bg);font-size:11px;font-weight:700;color:var(--muted)}
 .av-opt.chosen{border-color:var(--accent);background:rgba(16,185,129,.08);color:var(--accent)}
@@ -276,7 +243,6 @@ a{color:inherit;text-decoration:none}
   .g2i,.g3i,.g4i,.g5i{height:168px!important}
   .hero-body{padding:88px 16px 68px!important}
   .hero-stats{gap:22px!important}
-  .sp-strip{height:60px!important}
 }
 @media(min-width:641px){.md{display:none!important}}
 </style>
@@ -286,20 +252,14 @@ a{color:inherit;text-decoration:none}
 <script type="text/babel">
 const{useState,useEffect,useRef,useCallback,useContext,useMemo}=React;
 
-/* ══════════════════════════════════════════
-   SUPABASE CONFIG
-══════════════════════════════════════════ */
 const SB_URL='https://dtodkjkwddpmpznckrlf.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0b2Rramt3ZGRwbXB6bmNrcmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NDg4NTYsImV4cCI6MjA5MjQyNDg1Nn0.tdS1c39yykF-RKFuXqBKKaKtEjzd8TPeN9xqOkHkVvo';
 const SB=supabase.createClient(SB_URL,SB_KEY);
 const ADMIN='bilbazarlal836583@gmail.com';
 
-/* ── VIDEO URL: use raw.githubusercontent.com for reliable streaming ── */
-const VIDEO_URL='https://github.com/hama-tech2/Bilal-bazar/raw/refs/heads/main/mg.mp4';
+/* Fixed: use raw.githubusercontent.com for reliable video streaming */
+const VIDEO_URL='https://raw.githubusercontent.com/hama-tech2/Bilal-bazar/main/mg.mp4';
 
-/* ══════════════════════════════════════════
-   TRANSLATIONS
-══════════════════════════════════════════ */
 const TX={
   ckb:{
     sub:'هەموو ئەوەی پێویستتە — هەر هەفتەیەک داشکاندنی نوێ',
@@ -325,7 +285,7 @@ const TX={
     spLink:'لینک (ئارەزوومەندانە)',crop:'بڕینی وێنە',upload:'بارکردن',
     hide:'شاردنەوە',show:'پیشاندان',
     profile:'پرۆفایل',profName:'ناوت',profAvatar:'ئاڤاتار',profSave:'هەڵگرتنی پرۆفایل',
-    male:'کوڕ',female:'کچ',gallery:'گالەری',
+    male:'کوڕ',female:'کچ',gallery:'گالەری',done:'تەواوکردن',
   },
   ar:{
     sub:'كل ما تحتاجه — خصومات جديدة كل أسبوع',
@@ -351,7 +311,7 @@ const TX={
     spLink:'رابط (اختياري)',crop:'قص الصورة',upload:'رفع',
     hide:'إخفاء',show:'إظهار',
     profile:'الملف الشخصي',profName:'الاسم',profAvatar:'الصورة الرمزية',profSave:'حفظ الملف',
-    male:'ذكر',female:'أنثى',gallery:'المعرض',
+    male:'ذكر',female:'أنثى',gallery:'المعرض',done:'تأكيد',
   },
   en:{
     sub:'Everything you need — fresh discounts every week',
@@ -377,7 +337,7 @@ const TX={
     spLink:'Link (optional)',crop:'Crop Image',upload:'Upload',
     hide:'Hide',show:'Show',
     profile:'Profile',profName:'Your Name',profAvatar:'Avatar',profSave:'Save Profile',
-    male:'Male',female:'Female',gallery:'Gallery',
+    male:'Male',female:'Female',gallery:'Gallery',done:'Done',
   }
 };
 
@@ -399,9 +359,6 @@ const LOCS=[
    link:'https://maps.app.goo.gl/gd7Hb4tBcRgLuey57',ph:'0750 919 3030',hr:'8:00 AM – 12:00 PM'},
 ];
 
-/* ══════════════════════════════════════════
-   CONTEXT
-══════════════════════════════════════════ */
 const Ctx=React.createContext();
 function Provider({children}){
   const[lang,setLang]=useState('ckb');
@@ -467,7 +424,6 @@ function Provider({children}){
 }
 const useApp=()=>useContext(Ctx);
 
-/* ── HELPERS ── */
 function tleft(iso,days){
   const d=new Date(iso).getTime()+days*86400000-Date.now();
   if(d<=0)return null;
@@ -476,7 +432,6 @@ function tleft(iso,days){
 function parseImgs(v){try{return Array.isArray(v)?v:JSON.parse(v||'[]')}catch{return[]}}
 function isVideoUrl(url=''){return/\.(mp4|webm|mov|ogg|m4v)(\?|$)/i.test(url)}
 
-/* Upload blob/File to Supabase Storage; base64 fallback for images */
 async function uploadToStorage(bucket,fileOrBlob,ext='jpg'){
   const name=`${Date.now()}_${Math.random().toString(36).slice(2,7)}.${ext}`;
   const ctype=fileOrBlob instanceof Blob&&fileOrBlob.type?fileOrBlob.type:`image/${ext}`;
@@ -485,7 +440,6 @@ async function uploadToStorage(bucket,fileOrBlob,ext='jpg'){
   return SB.storage.from(bucket).getPublicUrl(name).data.publicUrl;
 }
 
-/* ── TOASTS ── */
 function Toasts({toasts}){
   return(
     <div className="toast-wrap">
@@ -494,9 +448,6 @@ function Toasts({toasts}){
   );
 }
 
-/* ═══════════════════════════════════════════════
-   PROFILE MODAL — name (max 30 chars) + avatar
-═══════════════════════════════════════════════ */
 function ProfileModal({onClose}){
   const{t,user,profile,setProfile,toast}=useApp();
   const[name,setName]=useState(profile?.name||'');
@@ -506,7 +457,7 @@ function ProfileModal({onClose}){
   const save=async()=>{
     if(!user)return;
     setSaving(true);
-    const payload={id:user.id,name:name.trim().slice(0,30),avatar};
+    const payload={id:user.id,name:name.trim().slice(0,20),avatar};
     const{data,error}=await SB.from('profiles').upsert(payload,{onConflict:'id'}).select().single();
     setSaving(false);
     if(error){toast(error.message,false);return;}
@@ -536,8 +487,8 @@ function ProfileModal({onClose}){
           </div>
           <div>
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>{t('profName')}</label>
-            <input className="inp" placeholder={t('profName')} value={name} maxLength={30} onChange={e=>setName(e.target.value)}/>
-            <p style={{fontSize:10,color:'var(--muted)',marginTop:4,textAlign:'end'}}>{name.length}/30</p>
+            <input className="inp" placeholder={t('profName')} value={name} maxLength={20} onChange={e=>setName(e.target.value)}/>
+            <p style={{fontSize:10,color:'var(--muted)',marginTop:4,textAlign:'end'}}>{name.length}/20</p>
           </div>
           <button className="btn btn-p wf" onClick={save} disabled={saving} style={{padding:'12px',fontSize:14}}>
             {saving?<><i className="fas fa-spinner fa-spin"/> Saving…</>:t('profSave')}
@@ -548,9 +499,6 @@ function ProfileModal({onClose}){
   );
 }
 
-/* ══════════════════════════════════════════
-   AUTH MODAL
-══════════════════════════════════════════ */
 function AuthModal({onClose}){
   const{t,toast,loadProfile}=useApp();
   const[mode,setMode]=useState('login');
@@ -632,9 +580,6 @@ function AuthModal({onClose}){
   );
 }
 
-/* ══════════════════════════════════════════
-   CROP MODAL (images only, 4:1 aspect)
-══════════════════════════════════════════ */
 function CropModal({file,aspect,onDone,onClose}){
   const{t}=useApp();
   const[img,setImg]=useState(null);
@@ -708,7 +653,6 @@ function CropModal({file,aspect,onDone,onClose}){
   );
 }
 
-/* ── LIGHTBOX ── */
 function Lightbox({imgs,start,onClose}){
   const[i,setI]=useState(start);
   useEffect(()=>{
@@ -728,16 +672,18 @@ function Lightbox({imgs,start,onClose}){
   );
 }
 
-/* ══════════════════════════════════════════════════════════
-   SPONSOR STRIP — supports image AND video with animation
-══════════════════════════════════════════════════════════ */
+/* ── SPONSOR STRIP (floating, animated) ── */
 function SpStrip({sponsors}){
   const[idx,setIdx]=useState(0);
-  const[key,setKey]=useState(0);
+  const[animKey,setAnimKey]=useState(0);
 
   useEffect(()=>{
     if(sponsors.length<=1)return;
-    const id=setInterval(()=>{setIdx(i=>(i+1)%sponsors.length);setKey(k=>k+1);},6500);
+    /* rotate every 9s to match spSlide animation duration */
+    const id=setInterval(()=>{
+      setIdx(i=>(i+1)%sponsors.length);
+      setAnimKey(k=>k+1);
+    },9000);
     return()=>clearInterval(id);
   },[sponsors.length]);
 
@@ -746,23 +692,23 @@ function SpStrip({sponsors}){
   const vid=isVideoUrl(s.image_url);
 
   const media=vid
-    ?<video src={s.image_url} autoPlay muted loop playsInline style={{maxHeight:'100%',maxWidth:'100%',objectFit:'contain',borderRadius:6}}/>
-    :<img src={s.image_url} alt="sponsor" style={{maxHeight:'100%',maxWidth:'100%',objectFit:'contain',borderRadius:6}}/>;
+    ?<video src={s.image_url} autoPlay muted loop playsInline/>
+    :<img src={s.image_url} alt="sponsor"/>;
 
   const inner=s.link_url
-    ?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',height:'100%'}}>{media}</a>
-    :media;
+    ?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'flex',width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}>{media}</a>
+    :<div style={{display:'flex',width:'100%',height:'100%',alignItems:'center',justifyContent:'center'}}>{media}</div>;
 
   return(
-    <div className="sp-strip">
-      <div key={key} className="sp-slide" style={{animation:'spShow 6.5s ease-in-out forwards'}}>
+    <div className="sp-float-wrap">
+      <div key={animKey} className="sp-float-inner">
+        <span className="sp-float-label">AD</span>
         {inner}
       </div>
     </div>
   );
 }
 
-/* ── COUNTDOWN ── */
 function Countdown({iso,days}){
   const{t}=useApp();
   const[tl,setTl]=useState(()=>tleft(iso,days));
@@ -780,9 +726,8 @@ function Countdown({iso,days}){
   );
 }
 
-/* ══════════════════════════════════════════
-   COMMENTS — shows profile name + avatar
-══════════════════════════════════════════ */
+/* ── COMMENTS (fixed: separate profile fetch, 200-char limit) ── */
+const MAX_CMT=200;
 function Comments({postId,user}){
   const{t,profile,toast}=useApp();
   const[list,setList]=useState([]);
@@ -791,39 +736,59 @@ function Comments({postId,user}){
   const[fetched,setFetched]=useState(false);
 
   useEffect(()=>{
-    SB.from('comments')
-      .select('id,content,created_at,user_id,profiles(name,avatar)')
-      .eq('post_id',postId)
-      .order('created_at')
-      .then(({data})=>{setList(data||[]);setFetched(true);});
+    let cancelled=false;
+    async function load(){
+      const{data:comments}=await SB.from('comments')
+        .select('id,content,created_at,user_id')
+        .eq('post_id',postId)
+        .order('created_at');
+      if(cancelled||!comments){if(!cancelled)setFetched(true);return;}
+      /* fetch profiles separately to avoid FK requirement */
+      const uids=[...new Set(comments.map(c=>c.user_id).filter(Boolean))];
+      let pm={};
+      if(uids.length){
+        const{data:profs}=await SB.from('profiles').select('id,name,avatar').in('id',uids);
+        (profs||[]).forEach(p=>{pm[p.id]=p;});
+      }
+      if(!cancelled){
+        setList(comments.map(c=>({...c,profiles:pm[c.user_id]||null})));
+        setFetched(true);
+      }
+    }
+    load();
+    return()=>{cancelled=true;};
   },[postId]);
 
   const submit=async e=>{
-    e.preventDefault();if(!text.trim()||!user)return;
+    e.preventDefault();
+    const trimmed=text.trim();
+    if(!trimmed||!user)return;
     setBusy(true);
     const{data,error}=await SB.from('comments')
-      .insert({post_id:postId,user_id:user.id,content:text.trim()})
-      .select('id,content,created_at,user_id,profiles(name,avatar)')
+      .insert({post_id:postId,user_id:user.id,content:trimmed.slice(0,MAX_CMT)})
+      .select('id,content,created_at,user_id')
       .single();
     setBusy(false);
     if(error){toast(error.message,false);return;}
-    setList(p=>[...p,data]);setText('');
+    const newItem={...data,profiles:{name:profile?.name||'User',avatar:profile?.avatar||'male'}};
+    setList(p=>[...p,newItem]);
+    setText('');
   };
 
   return(
     <div style={{borderTop:'1px solid var(--border)',paddingTop:10,marginTop:10}}>
-      <div className="cm-list">
-        {!fetched&&<p style={{fontSize:11,color:'var(--muted)'}}>Loading…</p>}
-        {fetched&&!list.length&&<p style={{fontSize:11,color:'var(--muted)'}}>{t('noCmt')}</p>}
+      <div className="cm-list nsb">
+        {!fetched&&<p style={{fontSize:11,color:'var(--muted)',padding:'4px 0'}}>Loading…</p>}
+        {fetched&&!list.length&&<p style={{fontSize:11,color:'var(--muted)',padding:'4px 0'}}>{t('noCmt')}</p>}
         {list.map(c=>{
           const av=c.profiles?.avatar||'male';
-          const nm=c.profiles?.name||'User';
+          const nm=(c.profiles?.name||'User').slice(0,20);
           return(
             <div key={c.id} className="cm-item">
               <div className="cm-meta">
                 <span className="av-icon">{AVATARS[av]||'👤'}</span>
-                <span style={{fontWeight:700,color:'var(--soft)'}}>{nm}</span>
-                <span style={{marginInlineStart:'auto'}}>{new Date(c.created_at).toLocaleDateString()}</span>
+                <span style={{fontWeight:800,fontSize:12,color:'var(--accent3)'}}>{nm}</span>
+                <span style={{marginInlineStart:'auto',fontSize:9,color:'var(--muted)'}}>{new Date(c.created_at).toLocaleDateString()}</span>
               </div>
               <div className="cm-txt">{c.content}</div>
             </div>
@@ -831,20 +796,28 @@ function Comments({postId,user}){
         })}
       </div>
       {user?(
-        <form onSubmit={submit} style={{display:'flex',gap:8,marginTop:8}}>
-          <input className="inp" placeholder={t('addCmt')} value={text} onChange={e=>setText(e.target.value)} style={{fontSize:12,padding:'8px 10px'}}/>
-          <button className="btn btn-p" disabled={busy||!text.trim()} style={{padding:'8px 12px',fontSize:12,flexShrink:0}}>
-            <i className="fas fa-paper-plane"/>
-          </button>
+        <form onSubmit={submit} style={{marginTop:8}}>
+          <div style={{display:'flex',gap:8}}>
+            <input
+              className="inp"
+              placeholder={t('addCmt')}
+              value={text}
+              maxLength={MAX_CMT}
+              onChange={e=>setText(e.target.value)}
+              style={{fontSize:12,padding:'8px 10px'}}
+            />
+            <button className="btn btn-p" disabled={busy||!text.trim()} style={{padding:'8px 12px',fontSize:12,flexShrink:0}}>
+              <i className="fas fa-paper-plane"/>
+            </button>
+          </div>
+          <div className="cm-char">{text.length}/{MAX_CMT}</div>
         </form>
       ):<p style={{fontSize:11,color:'var(--muted)',marginTop:8}}>{t('loginFirst')}</p>}
     </div>
   );
 }
 
-/* ══════════════════════════════════════════
-   DEAL CARD — fixed action row alignment
-══════════════════════════════════════════ */
+/* ── DEAL CARD ── */
 function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit}){
   const{t,dir,toast}=useApp();
   const[liked,setLiked]=useState(false);
@@ -917,7 +890,6 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit}){
       <div style={{padding:'13px 14px 14px'}}>
         <h3 style={{fontWeight:800,fontSize:15,lineHeight:1.35,marginBottom:10,fontFamily:'Noto Sans Arabic,Outfit,sans-serif'}}>{title}</h3>
         <div style={{marginBottom:12}}><Countdown iso={post.created_at} days={post.discount_days}/></div>
-
         <div className="post-actions">
           <button onClick={handleLike} className={`act-btn${liked?' liked':''}`}>
             <i className={liked?'fas fa-heart':'far fa-heart'}/>{likes>0?` ${likes}`:''}
@@ -941,7 +913,6 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit}){
   );
 }
 
-/* ── POST MODAL ── */
 function PostModal({editing,onSave,onClose}){
   const{t,toast}=useApp();
   const[imgs,setImgs]=useState(()=>editing?parseImgs(editing.images):[]);
@@ -989,7 +960,7 @@ function PostModal({editing,onSave,onClose}){
                 <label style={{width:64,height:64,borderRadius:8,border:'1.5px dashed var(--border2)',background:'var(--bg)',flexShrink:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:4,cursor:upBusy?'wait':'pointer'}}>
                   {upBusy?<i className="fas fa-spinner fa-spin acc"/>:<i className="fas fa-camera acc"/>}
                   <span style={{fontSize:9,color:'var(--muted)'}}>{upBusy?'…':'Add'}</span>
-                  <input type="file" accept="image/*" style={{display:'none'}} disabled={upBusy} onChange={e=>{const f=e.target.files[0];if(f)setCropFile(f);}}/>
+                  <input type="file" accept="image/*" style={{display:'none'}} disabled={upBusy} onChange={e=>{const f=e.target.files[0];if(f)setCropFile(f);e.target.value='';}}/>
                 </label>
               )}
             </div>
@@ -1031,69 +1002,88 @@ function PostModal({editing,onSave,onClose}){
   );
 }
 
-/* ════════════════════════════════════════════════════════════
-   SPONSOR MODAL — FULLY FIXED
-════════════════════════════════════════════════════════════ */
+/* ── SPONSOR MODAL (fixed: staged upload — crop/preview → link → DONE) ── */
 function SpModal({sponsors,onUpdate,onClose}){
   const{t,toast}=useApp();
   const[list,setList]=useState(sponsors);
   const[link,setLink]=useState('');
+  /* raw picked file */
   const[picked,setPicked]=useState(null);
-  const[preview,setPreview]=useState(null);
+  const[pickedPreview,setPickedPreview]=useState(null);
   const[isVid,setIsVid]=useState(false);
+  /* cropped blob (image only) — set after crop, triggers confirm step */
+  const[croppedBlob,setCroppedBlob]=useState(null);
+  const[croppedPreview,setCroppedPreview]=useState(null);
   const[cropOpen,setCropOpen]=useState(false);
   const[busy,setBusy]=useState(false);
   const fileRef=useRef(null);
 
-  useEffect(()=>()=>{if(preview)URL.revokeObjectURL(preview);},[preview]);
+  /* cleanup object URLs on unmount */
+  useEffect(()=>()=>{
+    if(pickedPreview)URL.revokeObjectURL(pickedPreview);
+    if(croppedPreview)URL.revokeObjectURL(croppedPreview);
+  },[]);
 
-  const openGallery=()=>{if(fileRef.current)fileRef.current.click();};
+  const clearAll=()=>{
+    if(pickedPreview)URL.revokeObjectURL(pickedPreview);
+    if(croppedPreview)URL.revokeObjectURL(croppedPreview);
+    setPicked(null);setPickedPreview(null);setIsVid(false);
+    setCroppedBlob(null);setCroppedPreview(null);
+    setCropOpen(false);setLink('');
+  };
 
   const onPick=e=>{
     const f=e.target.files[0];
     if(!f)return;
-    if(preview)URL.revokeObjectURL(preview);
+    clearAll();
     const url=URL.createObjectURL(f);
     const vid=f.type.startsWith('video/');
-    setPicked(f);setPreview(url);setIsVid(vid);
+    setPicked(f);setPickedPreview(url);setIsVid(vid);
     if(!vid)setCropOpen(true);
     e.target.value='';
   };
 
-  const clearPick=()=>{
-    if(preview)URL.revokeObjectURL(preview);
-    setPicked(null);setPreview(null);setIsVid(false);setCropOpen(false);
+  /* called by CropModal with cropped blob — store, don't upload yet */
+  const onCropped=blob=>{
+    setCropOpen(false);
+    if(croppedPreview)URL.revokeObjectURL(croppedPreview);
+    const url=URL.createObjectURL(blob);
+    setCroppedBlob(blob);
+    setCroppedPreview(url);
   };
 
-  const onCropped=async blob=>{
-    setCropOpen(false);setBusy(true);
-    try{
-      const url=await uploadToStorage('images',blob,'jpg');
-      await save(url);
-    }catch(e){toast(e.message||'Image upload failed. Check Supabase Storage bucket "images".',false);}
-    setBusy(false);clearPick();
-  };
-
-  const uploadVid=async()=>{
-    if(!picked)return;
-    setBusy(true);
-    try{
-      const ext=(picked.name.split('.').pop()||'mp4').toLowerCase();
-      const url=await uploadToStorage('images',picked,ext);
-      await save(url);
-    }catch(e){toast(e.message||'Video upload failed. Check Supabase Storage.',false);}
-    setBusy(false);clearPick();
-  };
-
-  const save=async mediaUrl=>{
+  const saveToDb=async mediaUrl=>{
     const trimmedLink=link.trim()||null;
     const{data,error}=await SB.from('sponsors')
       .insert({image_url:mediaUrl,visible:true,link_url:trimmedLink,sort_order:list.length})
       .select().single();
     if(error)throw new Error(error.message);
     setList(p=>[...p,data]);
-    setLink('');
     toast('Sponsor added ✓');
+    clearAll();
+  };
+
+  /* DONE button for image */
+  const doUploadImage=async()=>{
+    if(!croppedBlob)return;
+    setBusy(true);
+    try{
+      const url=await uploadToStorage('images',croppedBlob,'jpg');
+      await saveToDb(url);
+    }catch(e){toast(e.message||'Image upload failed. Check Supabase Storage bucket "images".',false);}
+    setBusy(false);
+  };
+
+  /* DONE button for video */
+  const doUploadVideo=async()=>{
+    if(!picked)return;
+    setBusy(true);
+    try{
+      const ext=(picked.name.split('.').pop()||'mp4').toLowerCase();
+      const url=await uploadToStorage('images',picked,ext);
+      await saveToDb(url);
+    }catch(e){toast(e.message||'Video upload failed.',false);}
+    setBusy(false);
   };
 
   const toggle=async(id,cur)=>{
@@ -1105,6 +1095,9 @@ function SpModal({sponsors,onUpdate,onClose}){
     await SB.from('sponsors').delete().eq('id',id);
     setList(p=>p.filter(s=>s.id!==id));
   };
+
+  /* are we in the "confirm before upload" step? */
+  const confirmStep=(croppedBlob&&!cropOpen)||(picked&&isVid);
 
   return(
     <div className="ov" onClick={onClose}>
@@ -1119,51 +1112,60 @@ function SpModal({sponsors,onUpdate,onClose}){
             Images will be cropped to 4:1. Link is optional.
           </p>
 
+          {/* Step 1 — pick file (only shown when nothing is picked yet) */}
           {!picked&&(
-            <button className="btn btn-g wf" onClick={openGallery} style={{padding:'14px',gap:10,fontSize:14,borderStyle:'dashed',borderRadius:12}}>
+            <button className="btn btn-g wf" onClick={()=>fileRef.current&&fileRef.current.click()} style={{padding:'14px',gap:10,fontSize:14,borderStyle:'dashed',borderRadius:12}}>
               <i className="fas fa-images acc" style={{fontSize:18}}/>{t('gallery')}
             </button>
           )}
           <input ref={fileRef} type="file" accept="image/*,video/mp4,video/webm,video/mov,video/quicktime" style={{display:'none'}} onChange={onPick}/>
 
-          {picked&&isVid&&preview&&(
-            <div style={{borderRadius:12,border:'1px solid var(--border)',overflow:'hidden',background:'var(--bg)'}}>
-              <video src={preview} controls muted style={{width:'100%',maxHeight:110,objectFit:'contain',display:'block'}}/>
-              <div style={{padding:'10px 12px',borderTop:'1px solid var(--border)'}}>
-                <input className="inp" placeholder={t('spLink')} value={link} onChange={e=>setLink(e.target.value)} style={{marginBottom:8}}/>
+          {/* Crop modal — shown immediately after picking image */}
+          {cropOpen&&picked&&!isVid&&(
+            <CropModal file={picked} aspect={4} onDone={onCropped} onClose={()=>{setCropOpen(false);clearAll();}}/>
+          )}
+
+          {/* Step 2 — confirm step: preview + optional link + DONE */}
+          {confirmStep&&(
+            <div style={{border:'1px solid var(--border)',borderRadius:12,overflow:'hidden',background:'var(--bg)'}}>
+              {/* Preview */}
+              <div style={{background:'#111',padding:'10px',display:'flex',justifyContent:'center'}}>
+                {isVid&&pickedPreview
+                  ?<video src={pickedPreview} controls muted style={{maxHeight:90,maxWidth:'100%',objectFit:'contain',borderRadius:6}}/>
+                  :croppedPreview
+                    ?<img src={croppedPreview} alt="preview" style={{maxHeight:60,maxWidth:'100%',objectFit:'contain',borderRadius:6}}/>
+                    :null
+                }
+              </div>
+              <div style={{padding:'12px'}}>
+                <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.4}}>{t('spLink')}</label>
+                <input
+                  className="inp"
+                  placeholder="https://..."
+                  value={link}
+                  onChange={e=>setLink(e.target.value)}
+                  style={{marginBottom:10}}
+                  dir="ltr"
+                />
                 <div style={{display:'flex',gap:8}}>
-                  <button className="btn btn-g f1" onClick={clearPick} disabled={busy}>{t('cancel')}</button>
-                  <button className="btn btn-p f1" onClick={uploadVid} disabled={busy}>
-                    {busy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:<><i className="fas fa-upload"/> Upload Video</>}
+                  <button className="btn btn-g f1" onClick={clearAll} disabled={busy}>{t('cancel')}</button>
+                  <button className="btn btn-p f1" onClick={isVid?doUploadVideo:doUploadImage} disabled={busy}>
+                    {busy
+                      ?<><i className="fas fa-spinner fa-spin"/> Uploading…</>
+                      :<><i className="fas fa-check"/> {t('done')}</>
+                    }
                   </button>
                 </div>
+                {!isVid&&croppedBlob&&(
+                  <button className="btn btn-g wf" style={{marginTop:8,fontSize:11}} onClick={()=>{setCroppedBlob(null);setCroppedPreview(null);setCropOpen(true);}}>
+                    <i className="fas fa-crop-alt"/> Re-adjust crop
+                  </button>
+                )}
               </div>
             </div>
           )}
 
-          {picked&&!isVid&&preview&&!cropOpen&&(
-            <div style={{display:'flex',alignItems:'center',gap:10,padding:'10px 12px',border:'1px solid var(--border)',borderRadius:10,background:'var(--bg)'}}>
-              <img src={preview} alt="preview" style={{width:90,height:30,objectFit:'contain',borderRadius:5,flexShrink:0}}/>
-              <span style={{fontSize:12,color:'var(--soft)',flex:1}}>Ready to upload</span>
-              <button className="btn btn-g xs" onClick={clearPick} style={{padding:'4px 8px'}}>×</button>
-            </div>
-          )}
-
-          {picked&&!isVid&&!cropOpen&&preview&&(
-            <div style={{display:'flex',flexDirection:'column',gap:8}}>
-              <input className="inp" placeholder={t('spLink')} value={link} onChange={e=>setLink(e.target.value)}/>
-              <button className="btn btn-p wf" disabled={busy} onClick={async()=>{
-                setCropOpen(true);
-              }} style={{padding:'11px'}}>
-                {busy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:'Re-adjust crop'}
-              </button>
-            </div>
-          )}
-
-          {cropOpen&&picked&&!isVid&&(
-            <CropModal file={picked} aspect={4} onDone={onCropped} onClose={()=>{setCropOpen(false);clearPick();}}/>
-          )}
-
+          {/* Current sponsors list */}
           {list.length>0&&(
             <div>
               <p style={{fontSize:11,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Current Sponsors</p>
@@ -1191,7 +1193,6 @@ function SpModal({sponsors,onUpdate,onClose}){
   );
 }
 
-/* ── DRAWER ── */
 function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   const{t,lang,sw,user,profile,isAdmin}=useApp();
   const go=id=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'});onClose();};
@@ -1264,9 +1265,6 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   );
 }
 
-/* ══════════════════════════════════════════
-   APP
-══════════════════════════════════════════ */
 function App(){
   const{t,lang,dir,user,isAdmin,toast}=useApp();
   const[posts,setPosts]=useState([]);
@@ -1283,9 +1281,9 @@ function App(){
   const[profileOpen,setProfileOpen]=useState(false);
   const[needLogin,setNeedLogin]=useState(false);
   const vidRef=useRef(null);
+  const initDone=useRef(false);
 
   const loadPosts=useCallback(async()=>{
-    setLoading(true);
     try{
       const{data,error}=await SB.from('posts').select('*').order('created_at',{ascending:false});
       if(error)throw error;
@@ -1301,18 +1299,28 @@ function App(){
     }catch{}
   },[]);
 
-  useEffect(()=>{loadPosts();loadSponsors();},[]);
+  /* single initial load — no double fetch */
+  useEffect(()=>{
+    if(initDone.current)return;
+    initDone.current=true;
+    loadPosts();
+    loadSponsors();
+    /* refresh every 60 seconds (reduced from 30 to limit flicker) */
+    const id=setInterval(()=>{loadPosts();loadSponsors();},60000);
+    return()=>clearInterval(id);
+  },[]);
+
   useEffect(()=>{setShown(3);},[cat]);
-  useEffect(()=>{const id=setInterval(loadPosts,30000);return()=>clearInterval(id);},[loadPosts]);
 
   useEffect(()=>{
-    const v=vidRef.current;if(!v)return;
-    const play=()=>v.play().catch(()=>{});
-    play();
-    v.addEventListener('canplay',play,{once:true});
-    v.addEventListener('loadeddata',play,{once:true});
+    const v=vidRef.current;
+    if(!v)return;
+    const tryPlay=()=>v.play().catch(()=>{});
+    v.addEventListener('canplay',tryPlay,{once:true});
+    v.addEventListener('loadeddata',tryPlay,{once:true});
     v.load();
-    return()=>{v.removeEventListener('canplay',play);v.removeEventListener('loadeddata',play);};
+    tryPlay();
+    return()=>{v.removeEventListener('canplay',tryPlay);v.removeEventListener('loadeddata',tryPlay);};
   },[]);
 
   useEffect(()=>{
@@ -1375,10 +1383,13 @@ function App(){
         <div className="hero-vid">
           <video
             ref={vidRef}
-            autoPlay muted loop playsInline preload="auto"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
           >
             <source src={VIDEO_URL} type="video/mp4"/>
-            <source src="mg.mp4" type="video/mp4"/>
           </video>
         </div>
 
