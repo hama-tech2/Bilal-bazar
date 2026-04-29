@@ -42,66 +42,34 @@ a{color:inherit;text-decoration:none}
 @keyframes slideR{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:none}}
 @keyframes slideL{from{opacity:0;transform:translateX(-100%)}to{opacity:1;transform:none}}
 
-/* ── TOP SPONSOR BANNER ── */
+/* ══ TOP SPONSOR BANNER ══ */
 .sp-top-wrap{
-  position:relative;width:100%;overflow:hidden;
-  height:74px;
-  background:var(--surface);
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
+  position:relative;width:100%;overflow:hidden;height:74px;
+  background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;
 }
 @media(min-width:641px){.sp-top-wrap{height:90px}}
-.sp-top-slide{
-  position:absolute;inset:0;
-  transition:opacity .55s ease;
-}
-.sp-top-slide img,.sp-top-slide video{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
-}
+.sp-top-slide{position:absolute;inset:0;transition:opacity .55s ease}
+.sp-top-slide img,.sp-top-slide video{width:100%;height:100%;object-fit:cover;display:block}
 .sp-top-slide a{display:block;width:100%;height:100%}
-.sp-top-label{
-  position:absolute;top:4px;right:6px;z-index:3;
-  font-size:7px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
-  color:rgba(255,255,255,.5);background:rgba(0,0,0,.3);
-  padding:1px 5px;border-radius:3px;pointer-events:none;
-}
+.sp-top-label{position:absolute;top:4px;right:6px;z-index:3;font-size:7px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px;pointer-events:none}
 
-/* ── FLOAT SPONSOR (bottom-left, JS-timed) ── */
-.sp-float-wrap{
-  position:fixed;bottom:72px;left:0;z-index:44;
-  pointer-events:none;
-  transition:opacity .55s ease;
-}
-.sp-float-inner{
-  position:relative;width:190px;height:54px;
-  border-radius:0 12px 12px 0;overflow:hidden;
-  background:#fff;
-  box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.1);
-  pointer-events:auto;will-change:opacity;
-}
+/* ══ FLOAT SPONSOR ══ */
+.sp-float-wrap{position:fixed;bottom:72px;left:0;z-index:44;pointer-events:none;transition:opacity .55s ease}
+.sp-float-inner{position:relative;width:190px;height:54px;border-radius:0 12px 12px 0;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.5);pointer-events:auto}
 .sp-float-inner img{width:100%;height:100%;object-fit:contain;display:block}
 .sp-float-inner video{width:100%;height:100%;object-fit:cover;display:block}
-.sp-float-label{
-  position:absolute;top:3px;right:5px;z-index:3;
-  font-size:6px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
-  color:rgba(0,0,0,.3);background:rgba(255,255,255,.7);
-  padding:1px 4px;border-radius:2px;pointer-events:none;
-}
-@media(min-width:641px){
-  .sp-float-inner{width:220px;height:64px}
-}
+.sp-float-label{position:absolute;top:3px;right:5px;z-index:3;font-size:6px;font-weight:800;text-transform:uppercase;color:rgba(0,0,0,.3);background:rgba(255,255,255,.7);padding:1px 4px;border-radius:2px;pointer-events:none}
+@media(min-width:641px){.sp-float-inner{width:220px;height:64px}}
 
-/* ── LAYOUT ── */
+/* ══ LAYOUT ══ */
 .c{max-width:1100px;margin:0 auto;padding:0 16px}
 .flex{display:flex}.col{flex-direction:column}
 .ac{align-items:center}.jb{justify-content:space-between}.jc{justify-content:center}
 .gap2{gap:8px}.gap3{gap:12px}.gap4{gap:16px}
 .f1{flex:1}.wf{width:100%}
 .tc{text-align:center}.muted{color:var(--muted)}.acc{color:var(--accent)}
-.bold{font-weight:700}.sm{font-size:12px}.xs{font-size:11px}
 
-/* ── BUTTONS ── */
+/* ══ BUTTONS ══ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit;text-decoration:none}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 .btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#02140d}
@@ -110,10 +78,9 @@ a{color:inherit;text-decoration:none}
 .btn-g:hover{border-color:var(--accent);color:var(--text)}
 .btn-d{background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.22)}
 .btn-d:hover{background:rgba(239,68,68,.2)}
-
 .badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(16,185,129,.1);color:var(--accent);border:1px solid rgba(16,185,129,.18)}
 
-/* ── CARD — GPU layer prevents hover lag ── */
+/* ══ CARD — GPU layer, no hover lag ══ */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s;will-change:transform;transform:translateZ(0);contain:layout style}
 .card:hover{border-color:rgba(16,185,129,.28);box-shadow:0 10px 32px rgba(0,0,0,.42)}
 body.lb-open .card{pointer-events:none}
@@ -122,13 +89,13 @@ body.lb-open .card{pointer-events:none}
 .inp:focus{border-color:var(--accent)}
 .inp::placeholder{color:var(--muted)}
 
-/* ── TOAST ── */
+/* ══ TOAST ══ */
 .toast-wrap{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:6px;pointer-events:none}
 .toast{padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;min-width:190px;text-align:center;animation:toastIn .3s ease}
 .t-ok{background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.3);color:var(--accent3)}
 .t-err{background:rgba(239,68,68,.18);border:1px solid rgba(239,68,68,.28);color:#fca5a5}
 
-/* ── MODAL ── */
+/* ══ MODAL ══ */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:80;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:540px){.ov{align-items:center;padding:20px}}
 .mbox{background:var(--elevated);border:1px solid var(--border);width:100%;max-width:500px;max-height:93vh;overflow-y:auto;border-radius:20px 20px 0 0;animation:slideUp .22s ease}
@@ -137,7 +104,7 @@ body.lb-open .card{pointer-events:none}
 .mhdr h3{font-weight:800;font-size:15px}
 .mbody{padding:18px 20px}
 
-/* ── DRAWER ── */
+/* ══ DRAWER ══ */
 .dov{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.8)}
 .dpanel{position:absolute;top:0;bottom:0;width:min(290px,85vw);background:var(--surface);border-inline-end:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
 .rtl .dpanel{right:0;animation:slideR .22s ease}
@@ -146,17 +113,18 @@ body.lb-open .card{pointer-events:none}
 .di:hover{background:var(--elevated)}
 .dico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 
-/* ── MOBILE NAV ── */
+/* ══ MOBILE NAV ══ */
 .mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,10,8,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;height:54px;padding-bottom:env(safe-area-inset-bottom)}
 .mnb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--muted);background:none;border:none;cursor:pointer;font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;transition:color .14s}
 .mnb.act{color:var(--accent)}
 
-/* ── HEADER ── */
+/* ══ HEADER ══ */
 .hdr{position:sticky;top:0;z-index:40;background:rgba(6,10,8,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 
-/* ── HERO ── */
+/* ══ HERO ══ */
 #hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(150deg,#071510 0%,#0b1e15 50%,#060a08 100%)}
 .hero-vid{position:absolute;inset:0;z-index:0}
+/* ── VIDEO: fills entire hero, fixed cover ── */
 .hero-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none}
 .hero-vid::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(4,9,6,.78) 0%,rgba(4,9,6,.25) 44%,rgba(4,9,6,.88) 100%)}
 .hero-body{position:relative;z-index:2;text-align:center;padding:108px 20px 88px;max-width:860px;margin:0 auto;width:100%}
@@ -166,32 +134,56 @@ body.lb-open .card{pointer-events:none}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;animation:fadeUp .7s ease .78s both}
 .hero-stats{display:flex;gap:40px;justify-content:center;margin-top:52px;flex-wrap:wrap;animation:fadeUp .7s ease .98s both}
 
-/* ── POST IMAGE GRID ── */
+/* ══════════════════════════════════════════
+   PRODUCT IMAGE GRID
+   Max 6 images shown, all same-size within each row.
+   g1: 1 image  → full width tall
+   g2i: 2 images → 2 equal cols
+   g3i: 3 images → 3 equal cols
+   g4i: 4 images → 2×2 equal grid
+   g5i: 5 images → 3 top + 2 bottom (6-col base, no empty cells)
+   g6i: 6 images → 3×2 equal grid (perfect)
+══════════════════════════════════════════ */
 .pimg{position:relative}
-.fi{background:var(--border);overflow:hidden;cursor:pointer}
-.fi img{width:100%;height:100%;object-fit:cover;transition:transform .28s}
+.fi{background:var(--border);overflow:hidden;cursor:pointer;position:relative}
+.fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
 .fi:hover img{transform:scale(1.04)}
-.g1{height:260px}
-.g2i{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:220px}
-.g3i{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.65fr 1fr;gap:2px;height:244px}
-.g3i .fi:first-child{grid-column:1/3}
-.g4i{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:244px}
-.g5i{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:2px;height:220px}
-.more-over{position:absolute;inset:0;background:rgba(4,9,6,.58);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff}
 
+.g1{height:258px}
+.g2i{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:200px}
+.g3i{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;height:180px}
+.g4i{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:220px}
+/* 5 images: 3 equal on top row, 2 equal on bottom row — no empty cells */
+.g5i{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:200px}
+.g5i .fi:nth-child(1){grid-column:1/3}
+.g5i .fi:nth-child(2){grid-column:3/5}
+.g5i .fi:nth-child(3){grid-column:5/7}
+.g5i .fi:nth-child(4){grid-column:1/4}
+.g5i .fi:nth-child(5){grid-column:4/7}
+/* 6 images: perfectly equal 3×2 */
+.g6i{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:220px}
+
+@media(max-width:640px){
+  .g1{height:210px!important}
+  .g2i{height:170px!important}
+  .g3i{height:150px!important}
+  .g4i,.g5i,.g6i{height:180px!important}
+}
+
+/* Discount badge */
 .disc{position:absolute;top:10px;right:10px;z-index:5;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--danger),var(--danger2));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:12px;line-height:1;text-align:center;box-shadow:0 4px 14px rgba(185,28,28,.48)}
 .ltr .disc{right:auto;left:10px}
 .exp-ribbon{position:absolute;top:0;left:0;right:0;background:rgba(170,20,20,.82);padding:5px;text-align:center;z-index:4;pointer-events:none}
 .exp-ribbon span{color:#fff;font-weight:900;font-size:11px;letter-spacing:.5px}
 
-/* ── COUNTDOWN ── */
+/* ══ COUNTDOWN ══ */
 .cdown{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18)}
 .cb{text-align:center;min-width:24px}
 .cn{font-weight:900;font-size:16px;line-height:1;color:#fff}
 .cl{font-size:7px;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
 .cs{color:rgba(16,185,129,.45);font-weight:900;font-size:13px;align-self:center;margin-bottom:2px}
 
-/* ── POST ACTIONS ── */
+/* ══ POST ACTIONS ══ */
 .post-actions{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;padding-top:10px;border-top:1px solid var(--border)}
 .act-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .14s;white-space:nowrap;font-family:inherit;height:32px}
 .act-btn:hover{border-color:var(--accent);color:var(--text)}
@@ -199,22 +191,27 @@ body.lb-open .card{pointer-events:none}
 .act-btn.active{color:var(--accent);border-color:var(--accent)}
 .admin-btns{display:flex;gap:4px;margin-inline-start:auto}
 
-/* ── GLOBAL LIGHTBOX ── */
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease}
-.lb img{max-width:93vw;max-height:88vh;object-fit:contain;border-radius:10px;display:block}
-.lbc{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.08);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
-.lbn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
+/* ══ GLOBAL LIGHTBOX — full screen image viewer ══ */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;touch-action:pan-y}
+.lbc{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.1);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
+.lb-img{max-width:93vw;max-height:88vh;object-fit:contain;border-radius:10px;display:block;user-select:none;-webkit-user-drag:none}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;width:46px;height:46px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s}
+.lb-nav:hover{background:rgba(255,255,255,.2)}
+.lb-counter{position:absolute;top:14px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:13px;font-weight:700;z-index:2;background:rgba(0,0,0,.45);padding:3px 12px;border-radius:20px;pointer-events:none}
+/* Left/right tap zones on image */
+.lb-zone{position:absolute;top:0;height:100%;width:50%;cursor:pointer;z-index:1}
+.lb-zone-l{left:0}
+.lb-zone-r{right:0}
 
-/* ── COMMENTS ── */
+/* ══ COMMENTS ══ */
 .cm-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;padding-inline-end:2px}
 .cm-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
-.cm-item.cm-reply{margin-inline-start:20px;border-color:rgba(16,185,129,.18);background:rgba(16,185,129,.04)}
-.cm-meta{display:flex;align-items:center;gap:7px;margin-bottom:6px}
-.cm-name{font-weight:800;font-size:12px;color:var(--accent);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cm-admin-badge{font-size:9px;font-weight:800;background:rgba(16,185,129,.18);color:var(--accent);padding:1px 5px;border-radius:4px;border:1px solid rgba(16,185,129,.25);flex-shrink:0}
+.cm-reply-item{background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.18);border-radius:10px;padding:8px 11px;margin-inline-start:24px;margin-top:5px}
+.cm-meta{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.cm-name{font-weight:800;font-size:12px;color:var(--accent);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cm-admin-tag{font-size:9px;font-weight:800;background:rgba(16,185,129,.15);color:var(--accent);padding:1px 5px;border-radius:4px;border:1px solid rgba(16,185,129,.25);flex-shrink:0}
 .cm-date{font-size:9px;color:var(--muted);margin-inline-start:auto;flex-shrink:0}
 .cm-txt{font-size:12px;line-height:1.5;color:var(--soft);word-break:break-word}
-.cm-reply-txt{padding-inline-start:30px}
 .cm-char{font-size:9px;color:var(--muted);text-align:end;margin-top:3px}
 .cm-input-row{display:flex;align-items:center;gap:7px;margin-top:10px;background:var(--elevated);border:1px solid var(--border);border-radius:10px;padding:6px 10px}
 .cm-input-row input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:12px;font-family:inherit}
@@ -222,17 +219,17 @@ body.lb-open .card{pointer-events:none}
 .cm-input-row button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;padding:2px 4px;flex-shrink:0}
 .cm-input-row button:disabled{opacity:.35;cursor:not-allowed}
 .cm-login-box{margin-top:10px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
-.cm-reply-form{margin-inline-start:20px;margin-top:6px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:10px;padding:8px 10px}
+.cm-reply-form{margin-inline-start:24px;margin-top:5px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:10px;padding:8px 10px}
 
-/* ── SKELETON ── */
+/* ══ SKELETON ══ */
 .sk{background:linear-gradient(90deg,var(--border) 25%,var(--elevated) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
 
-/* ── SECTION TITLE ── */
+/* ══ SECTION TITLE ══ */
 .stitle{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .stitle::before{content:'';width:26px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));flex-shrink:0}
 .stitle h2{font-weight:900;font-size:24px}
 
-/* ── LOCATION CARD ── */
+/* ══ LOCATION CARD ══ */
 .lcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s,box-shadow .2s}
 .lcard:hover{border-color:rgba(16,185,129,.28);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.42)}
 
@@ -253,20 +250,16 @@ body.lb-open .card{pointer-events:none}
 
 .divline{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
-/* ── SPONSOR PLACEMENT TOGGLE ── */
 .pl-toggle{display:flex;gap:8px;margin-bottom:2px}
 .pl-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .pl-btn.sel{border-color:var(--accent);background:rgba(16,185,129,.08);color:var(--accent)}
 .pl-btn i{font-size:16px}
 
-/* ── ADMIN AVATAR UPLOAD ── */
-.admin-av-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.14);border-radius:12px}
-.admin-av-img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
+.admin-av-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.14);border-radius:12px}
+.admin-av-img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
 
 @media(max-width:640px){
   .hd{display:none!important}
-  .g1{height:210px!important}
-  .g2i,.g3i,.g4i,.g5i{height:188px!important}
   .hero-body{padding:88px 16px 68px!important}
   .hero-stats{gap:22px!important}
 }
@@ -278,14 +271,20 @@ body.lb-open .card{pointer-events:none}
 <script type="text/babel">
 const{useState,useEffect,useRef,useCallback,useContext,useMemo}=React;
 
+/* ══ SUPABASE ══ */
 const SB_URL='https://dtodkjkwddpmpznckrlf.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0b2Rramt3ZGRwbXB6bmNrcmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NDg4NTYsImV4cCI6MjA5MjQyNDg1Nn0.tdS1c39yykF-RKFuXqBKKaKtEjzd8TPeN9xqOkHkVvo';
 const SB=supabase.createClient(SB_URL,SB_KEY);
 const ADMIN='bilbazarlal836583@gmail.com';
-/* ── BACKGROUND VIDEO — single correct URL ── */
-const VIDEO_URL='https://cdn.jsdelivr.net/gh/hama-tech2/Bilal-bazar@main/bg.mp4';
+
+/* ══ VIDEO URL — single correct source ══ */
+const VIDEO_URL='https://github.com/hama-tech2/Bilal-bazar/raw/refs/heads/main/mg.mp4';
+
 const MAX_COMMENT=150;
-const MAX_IMGS=30;
+const MAX_IMGS=30; /* post can hold up to 30 images; thumbnail shows max 6 */
+
+/* ══ CATEGORIES — includes cleaning ══ */
+const CATS=['all','rice','meat','cereal','cleaning','other'];
 
 const TX={
   ckb:{
@@ -302,10 +301,10 @@ const TX={
     share:'هاوبەشی',like:'دڵنیا',loginFirst:'تکایە چوونەژوورەوە بۆ سەرنج',
     cmt:'سەرنج',addCmt:'سەرنجت بنووسە...',noCmt:'هیچ سەرنجێک نییە',
     addPost:'پۆستی نوێ',edit:'دەستکاری',del:'سڕینەوە',mgSp:'بانگهێشتکارەکان',
-    pub:'بڵاوکردنەوە',cancel:'هەڵوەشاندنەوە',save:'هەڵگرتن',uploading:'بارکردن...',
+    pub:'بڵاوکردنەوە',cancel:'هەڵوەشاندنەوە',save:'هەڵگرتن',
     wc:'ئیمەیڵ یان وشەی نهێنی هەڵەیە',noAcc:'هەژمارت نییە؟',haveAcc:'ئایا ئەندامیتی؟',
     lang:'زمانەکان',
-    cats:{all:'هەموو',rice:'برنج',meat:'گۆشت',cereal:'دانەوێڵە',other:'هی تر'},
+    cats:{all:'هەموو',rice:'برنج',meat:'گۆشت',cereal:'دانەوێڵە',cleaning:'مادەی پاككردنەوە',other:'هی تر'},
     br:'لق',pr:'کاڵا',wk:'هەفتانە',dc:'داشکاندن',
     openMap:'نەخشە',call:'پەیوەندی',
     feat1:'کاڵای تازە',feat2:'باشترین نرخ',feat3:'کوالێتی بەرز',
@@ -330,10 +329,10 @@ const TX={
     share:'مشاركة',like:'إعجاب',loginFirst:'سجّل دخولك للتعليق',
     cmt:'تعليق',addCmt:'اكتب تعليقاً...',noCmt:'لا توجد تعليقات',
     addPost:'إضافة منشور',edit:'تعديل',del:'حذف',mgSp:'الرعاة',
-    pub:'نشر',cancel:'إلغاء',save:'حفظ',uploading:'جاري...',
+    pub:'نشر',cancel:'إلغاء',save:'حفظ',
     wc:'بيانات خاطئة',noAcc:'ليس لديك حساب؟',haveAcc:'هل أنت عضو؟',
     lang:'اللغات',
-    cats:{all:'الكل',rice:'أرز',meat:'لحوم',cereal:'حبوب',other:'أخرى'},
+    cats:{all:'الكل',rice:'أرز',meat:'لحوم',cereal:'حبوب',cleaning:'مادة تنظيف',other:'أخرى'},
     br:'فروع',pr:'منتج',wk:'أسبوعي',dc:'خصومات',
     openMap:'الخريطة',call:'اتصال',
     feat1:'منتجات طازجة',feat2:'أفضل الأسعار',feat3:'جودة عالية',
@@ -358,10 +357,10 @@ const TX={
     share:'Share',like:'Like',loginFirst:'Log in to comment',
     cmt:'Comment',addCmt:'Write a comment...',noCmt:'No comments yet',
     addPost:'Add Post',edit:'Edit',del:'Delete',mgSp:'Sponsors',
-    pub:'Publish',cancel:'Cancel',save:'Save',uploading:'Uploading...',
+    pub:'Publish',cancel:'Cancel',save:'Save',
     wc:'Wrong email or password',noAcc:"Don't have an account?",haveAcc:'Already a member?',
     lang:'Languages',
-    cats:{all:'All',rice:'Rice',meat:'Meat',cereal:'Cereals',other:'Other'},
+    cats:{all:'All',rice:'Rice',meat:'Meat',cereal:'Cereals',cleaning:'Cleaning Agent',other:'Other'},
     br:'Branches',pr:'Products',wk:'Weekly',dc:'Discounts',
     openMap:'Map',call:'Call',
     feat1:'Fresh Products',feat2:'Best Prices',feat3:'Top Quality',
@@ -374,7 +373,6 @@ const TX={
   }
 };
 
-const CATS=['all','rice','meat','cereal','other'];
 const AVATARS={male:'👨',female:'👩'};
 
 const LOCS=[
@@ -392,9 +390,7 @@ const LOCS=[
    link:'https://maps.app.goo.gl/gd7Hb4tBcRgLuey57',ph:'0750 919 3030',hr:'8:00 AM – 12:00 PM'},
 ];
 
-/* ══════════════════════════════════════════
-   CONTEXT
-══════════════════════════════════════════ */
+/* ══ CONTEXT ══ */
 const Ctx=React.createContext();
 function Provider({children}){
   const[lang,setLang]=useState('ckb');
@@ -450,13 +446,13 @@ function Provider({children}){
   return(
     <Ctx.Provider value={{lang,t,sw,dir,user,profile,setProfile,isAdmin,ready,toast,loadProfile}}>
       {children}
-      <Toasts toasts={toasts}/>
+      <div className="toast-wrap">{toasts.map(x=><div key={x.id} className={`toast ${x.ok?'t-ok':'t-err'}`}>{x.msg}</div>)}</div>
     </Ctx.Provider>
   );
 }
 const useApp=()=>useContext(Ctx);
 
-/* ── HELPERS ── */
+/* ══ HELPERS ══ */
 function tleft(iso,days){
   const d=new Date(iso).getTime()+days*86400000-Date.now();
   if(d<=0)return null;
@@ -473,25 +469,19 @@ async function uploadToStorage(bucket,fileOrBlob,ext='jpg'){
   return SB.storage.from(bucket).getPublicUrl(name).data.publicUrl;
 }
 
-/* Avatar display — shows custom photo or emoji */
-function Av({profile,size=24,emojiSize=13}){
+/* Avatar — shows custom photo or emoji */
+function Av({profile,size=24,emojiSz=13}){
   if(profile?.avatar_url){
     return<img src={profile.avatar_url} style={{width:size,height:size,borderRadius:'50%',objectFit:'cover',border:'1px solid rgba(16,185,129,.2)',flexShrink:0,display:'inline-block'}}/>;
   }
   return(
-    <span style={{width:size,height:size,borderRadius:'50%',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:emojiSize,background:'rgba(16,185,129,.1)',border:'1px solid rgba(16,185,129,.2)',flexShrink:0}}>
+    <span style={{width:size,height:size,borderRadius:'50%',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:emojiSz,background:'rgba(16,185,129,.1)',border:'1px solid rgba(16,185,129,.2)',flexShrink:0}}>
       {AVATARS[profile?.avatar||'male']||'👤'}
     </span>
   );
 }
 
-function Toasts({toasts}){
-  return<div className="toast-wrap">{toasts.map(x=><div key={x.id} className={`toast ${x.ok?'t-ok':'t-err'}`}>{x.msg}</div>)}</div>;
-}
-
-/* ════════════════════════════════════════
-   PROFILE MODAL — admin gets photo upload
-════════════════════════════════════════ */
+/* ══ PROFILE MODAL ══ */
 function ProfileModal({onClose}){
   const{t,user,profile,setProfile,toast,isAdmin}=useApp();
   const[name,setName]=useState(profile?.name||'');
@@ -505,11 +495,10 @@ function ProfileModal({onClose}){
     const f=e.target.files[0];if(!f)return;
     setUpBusy(true);
     try{
-      const url=await uploadToStorage('avatars',f,f.name.split('.').pop()||'jpg');
+      const url=await uploadToStorage('avatars',f,(f.name.split('.').pop()||'jpg').toLowerCase());
       setAvatarUrl(url);toast('Photo uploaded ✓');
     }catch(err){toast(err.message||'Upload failed',false);}
-    setUpBusy(false);
-    e.target.value='';
+    setUpBusy(false);e.target.value='';
   };
 
   const save=async()=>{
@@ -526,16 +515,13 @@ function ProfileModal({onClose}){
       <div className="mbox" style={{maxWidth:360}} onClick={e=>e.stopPropagation()}>
         <div className="mhdr"><h3>{t('profile')}</h3><button className="btn btn-g" onClick={onClose} style={{padding:'5px 10px'}}>×</button></div>
         <div className="mbody" style={{display:'flex',flexDirection:'column',gap:16}}>
-
-          {/* Admin photo upload — only for admin */}
+          {/* Admin-only photo upload */}
           {isAdmin&&(
             <div className="admin-av-wrap">
               <label style={{fontSize:11,fontWeight:700,color:'var(--accent)',textTransform:'uppercase',letterSpacing:.5}}>{t('adminPhoto')}</label>
               {avatarUrl
-                ?<img src={avatarUrl} className="admin-av-img" alt="admin avatar"/>
-                :<div style={{width:64,height:64,borderRadius:'50%',background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:26}}>
-                    {AVATARS[avatar]||'👤'}
-                  </div>
+                ?<img src={avatarUrl} className="admin-av-img" alt=""/>
+                :<div style={{width:72,height:72,borderRadius:'50%',background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:28}}>{AVATARS[avatar]||'👤'}</div>
               }
               <button className="btn btn-g" style={{padding:'7px 14px',fontSize:12}} onClick={()=>fileRef.current?.click()} disabled={upBusy}>
                 {upBusy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:<><i className="fas fa-camera"/> Upload Photo</>}
@@ -543,7 +529,6 @@ function ProfileModal({onClose}){
               <input ref={fileRef} type="file" accept="image/*" style={{display:'none'}} onChange={uploadPhoto}/>
             </div>
           )}
-
           <div>
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8,textTransform:'uppercase',letterSpacing:.5}}>{t('profAvatar')}</label>
             <div className="av-sel">
@@ -568,7 +553,7 @@ function ProfileModal({onClose}){
   );
 }
 
-/* ── AUTH MODAL ── */
+/* ══ AUTH MODAL ══ */
 function AuthModal({onClose}){
   const{t,toast,loadProfile}=useApp();
   const[mode,setMode]=useState('login');
@@ -587,14 +572,14 @@ function AuthModal({onClose}){
       }else{
         const{data,error}=await SB.auth.signUp({email:email.trim(),password:pass});
         if(error)throw error;
-        if(data?.user&&!data?.session)toast('Check your email for confirmation ✓');
+        if(data?.user&&!data?.session)toast('Check your email ✓');
         else{toast('Account created ✓');onClose();}
       }
     }catch(e){
       let m=e.message||'';
       if(m.includes('Invalid login')||m.includes('invalid'))m=t('wc');
-      if(m.includes('registered'))m='This email is already registered.';
-      if(m.includes('weak')||m.includes('6 char'))m='Password must be at least 6 characters.';
+      if(m.includes('registered'))m='Email already registered.';
+      if(m.includes('weak')||m.includes('6 char'))m='Password must be at least 6 chars.';
       toast(m,false);
     }
     setLoading(false);
@@ -603,7 +588,7 @@ function AuthModal({onClose}){
   const google=async()=>{
     setLoading(true);
     const{error}=await SB.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin+window.location.pathname}});
-    if(error){toast('Google login not enabled. Use email instead.',false);setLoading(false);}
+    if(error){toast('Google login not enabled.',false);setLoading(false);}
   };
 
   return(
@@ -647,7 +632,7 @@ function AuthModal({onClose}){
   );
 }
 
-/* ── CROP MODAL ── */
+/* ══ CROP MODAL ══ */
 function CropModal({file,aspect,onDone,onClose}){
   const{t}=useApp();
   const[img,setImg]=useState(null);
@@ -679,7 +664,6 @@ function CropModal({file,aspect,onDone,onClose}){
   const onS=e=>{setDrag(true);const{cx,cy}=getXY(e);dr.current={sx:cx,sy:cy,cx:crop.x,cy:crop.y};};
   const onM=e=>{if(!drag)return;const{cx,cy}=getXY(e);const dx=cx-dr.current.sx,dy=cy-dr.current.sy;const{rw,rh,cw,ch}=sr.current;setCrop({x:Math.max(0,Math.min(rw-cw,dr.current.cx+dx)),y:Math.max(0,Math.min(rh-ch,dr.current.cy+dy))});};
   const onE=()=>setDrag(false);
-
   const confirm=()=>{
     if(!img)return;
     const{scale,cw,ch}=sr.current;
@@ -690,12 +674,7 @@ function CropModal({file,aspect,onDone,onClose}){
     cv.getContext('2d').drawImage(img,sx,sy,sw,sh,0,0,outW,outH);
     cv.toBlob(b=>{if(b)onDone(b);},'image/jpeg',.92);
   };
-
-  if(!img)return(
-    <div className="ov"><div className="mbox" style={{maxWidth:320,textAlign:'center'}} onClick={e=>e.stopPropagation()}>
-      <div className="mbody"><i className="fas fa-spinner fa-spin acc" style={{fontSize:28}}/><p style={{color:'var(--muted)',marginTop:12,fontSize:13}}>Loading…</p></div>
-    </div></div>
-  );
+  if(!img)return<div className="ov"><div className="mbox" style={{maxWidth:320,textAlign:'center'}} onClick={e=>e.stopPropagation()}><div className="mbody"><i className="fas fa-spinner fa-spin acc" style={{fontSize:28}}/></div></div></div>;
   const{rw,rh,cw,ch}=sr.current;
   return(
     <div className="ov" onClick={onClose}>
@@ -720,11 +699,17 @@ function CropModal({file,aspect,onDone,onClose}){
 }
 
 /* ══════════════════════════════════════════
-   GLOBAL LIGHTBOX — single instance in App
-   Prevents multi-card glitch completely
+   GLOBAL LIGHTBOX
+   - Single instance in App (prevents multi-card glitch)
+   - Touch swipe left/right
+   - Click left/right half of image to navigate
+   - Keyboard ←/→/Esc
+   - Auto-close when another product opens
 ══════════════════════════════════════════ */
 function GlobalLightbox({imgs,startIdx,onClose}){
   const[i,setI]=useState(startIdx);
+  const ts=useRef(null);
+
   useEffect(()=>{
     document.body.classList.add('lb-open');
     const h=e=>{
@@ -736,67 +721,78 @@ function GlobalLightbox({imgs,startIdx,onClose}){
     return()=>{document.body.classList.remove('lb-open');window.removeEventListener('keydown',h);};
   },[imgs,onClose]);
 
+  const prev=()=>setI(x=>(x-1+imgs.length)%imgs.length);
+  const next=()=>setI(x=>(x+1)%imgs.length);
+
+  /* Touch swipe */
+  const onTouchStart=e=>{ts.current=e.touches[0].clientX;};
+  const onTouchEnd=e=>{
+    if(ts.current===null)return;
+    const dx=e.changedTouches[0].clientX-ts.current;
+    if(Math.abs(dx)>40){dx<0?next():prev();}
+    ts.current=null;
+  };
+
+  /* Click half of image to navigate */
+  const onImgClick=e=>{
+    if(imgs.length<=1){onClose();return;}
+    e.stopPropagation();
+    const{left,width}=e.currentTarget.getBoundingClientRect();
+    (e.clientX-left)<width/2?prev():next();
+  };
+
   return(
-    <div className="lb" onClick={onClose}>
+    <div className="lb" onClick={onClose} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <button className="lbc" onClick={e=>{e.stopPropagation();onClose();}}>×</button>
-      {imgs.length>1&&<div style={{position:'absolute',top:14,left:'50%',transform:'translateX(-50%)',color:'rgba(255,255,255,.5)',fontSize:12,fontWeight:600,zIndex:2,pointerEvents:'none'}}>{i+1}/{imgs.length}</div>}
-      <img src={imgs[i]} alt="" onClick={e=>e.stopPropagation()}/>
+      {imgs.length>1&&(
+        <div className="lb-counter">{i+1} / {imgs.length}</div>
+      )}
+      <img
+        src={imgs[i]} alt=""
+        className="lb-img"
+        onClick={onImgClick}
+        style={{cursor:imgs.length>1?'pointer':'zoom-out'}}
+      />
       {imgs.length>1&&<>
-        <button className="lbn" style={{left:10}} onClick={e=>{e.stopPropagation();setI(x=>(x-1+imgs.length)%imgs.length);}}>‹</button>
-        <button className="lbn" style={{right:10}} onClick={e=>{e.stopPropagation();setI(x=>(x+1)%imgs.length);}}>›</button>
+        <button className="lb-nav" style={{left:10}} onClick={e=>{e.stopPropagation();prev();}}>‹</button>
+        <button className="lb-nav" style={{right:10}} onClick={e=>{e.stopPropagation();next();}}>›</button>
       </>}
     </div>
   );
 }
 
-/* ══════════════════════════════════════════
-   TOP SPONSOR — fills area, infinite fade rotation
-══════════════════════════════════════════ */
+/* ══ TOP SPONSOR ══ */
 function SpTop({sponsors}){
   const[idx,setIdx]=useState(0);
   const[opacity,setOpacity]=useState(1);
   const SHOW=6000,FADE=500;
-
   useEffect(()=>{
     if(sponsors.length<=1)return;
     const id=setInterval(()=>{
       setOpacity(0);
-      setTimeout(()=>{
-        setIdx(i=>(i+1)%sponsors.length);
-        setOpacity(1);
-      },FADE);
+      setTimeout(()=>{setIdx(i=>(i+1)%sponsors.length);setOpacity(1);},FADE);
     },SHOW);
     return()=>clearInterval(id);
   },[sponsors.length]);
-
   if(!sponsors.length)return null;
   const s=sponsors[idx];
   const vid=isVideoUrl(s.image_url);
   const media=vid
     ?<video src={s.image_url} autoPlay muted loop playsInline style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
     :<img src={s.image_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>;
-  const inner=s.link_url
-    ?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>
-    :media;
-
+  const inner=s.link_url?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>:media;
   return(
     <div className="sp-top-wrap">
-      <div className="sp-top-slide" style={{opacity,transition:`opacity ${FADE}ms ease`}}>
-        {inner}
-      </div>
+      <div className="sp-top-slide" style={{opacity,transition:`opacity ${FADE}ms ease`}}>{inner}</div>
       <span className="sp-top-label">Ad</span>
     </div>
   );
 }
 
-/* ══════════════════════════════════════════
-   FLOAT SPONSOR — smaller, shows 7s every 22s
-══════════════════════════════════════════ */
+/* ══ FLOAT SPONSOR ══ */
 function SpFloat({sponsors}){
   const[visible,setVisible]=useState(false);
   const[idx,setIdx]=useState(0);
-  const SHOW=7000,HIDE=22000,INIT=5000;
-
   useEffect(()=>{
     if(!sponsors.length)return;
     let t;
@@ -805,29 +801,20 @@ function SpFloat({sponsors}){
       t=setTimeout(()=>{
         setVisible(false);
         setIdx(i=>(i+1)%sponsors.length);
-        t=setTimeout(cycle,HIDE);
-      },SHOW);
+        t=setTimeout(cycle,22000);
+      },7000);
     };
-    t=setTimeout(cycle,INIT);
+    t=setTimeout(cycle,5000);
     return()=>clearTimeout(t);
   },[sponsors.length]);
-
   if(!sponsors.length)return null;
   const s=sponsors[idx];
   const vid=isVideoUrl(s.image_url);
-  const media=vid
-    ?<video src={s.image_url} autoPlay muted loop playsInline/>
-    :<img src={s.image_url} alt=""/>;
-  const inner=s.link_url
-    ?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>
-    :media;
-
+  const media=vid?<video src={s.image_url} autoPlay muted loop playsInline/>:<img src={s.image_url} alt=""/>;
+  const inner=s.link_url?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>:media;
   return(
     <div className="sp-float-wrap" style={{opacity:visible?1:0,pointerEvents:visible?'auto':'none',transition:'opacity .55s ease'}}>
-      <div className="sp-float-inner">
-        <span className="sp-float-label">Ad</span>
-        {inner}
-      </div>
+      <div className="sp-float-inner"><span className="sp-float-label">Ad</span>{inner}</div>
     </div>
   );
 }
@@ -838,7 +825,7 @@ function SponsorsDisplay({sponsors}){
   return<><SpTop sponsors={top}/><SpFloat sponsors={bot}/></>;
 }
 
-/* ── COUNTDOWN ── */
+/* ══ COUNTDOWN ══ */
 function Countdown({iso,days}){
   const{t}=useApp();
   const[tl,setTl]=useState(()=>tleft(iso,days));
@@ -858,11 +845,9 @@ function Countdown({iso,days}){
 
 /* ══════════════════════════════════════════
    COMMENTS
-   - Separate queries (no FK join = no error)
-   - Admin reply button → reply form inline
-   - is_admin_reply badge
-   - parent_id nesting (one level)
-   - Character limit
+   - Two-step fetch (no FK join → no schema error)
+   - Admin can reply (is_admin_reply, parent_id)
+   - Normal users cannot reply
 ══════════════════════════════════════════ */
 function Comments({postId,user,onLogin}){
   const{t,profile,toast,isAdmin}=useApp();
@@ -870,7 +855,7 @@ function Comments({postId,user,onLogin}){
   const[text,setText]=useState('');
   const[busy,setBusy]=useState(false);
   const[fetched,setFetched]=useState(false);
-  const[replyTo,setReplyTo]=useState(null); // comment id
+  const[replyTo,setReplyTo]=useState(null);
   const[replyText,setReplyText]=useState('');
   const[replyBusy,setReplyBusy]=useState(false);
 
@@ -894,11 +879,11 @@ function Comments({postId,user,onLogin}){
 
   const submit=async e=>{
     e.preventDefault();
-    const trimmed=text.trim();
-    if(!trimmed||!user||trimmed.length>MAX_COMMENT)return;
+    const tr=text.trim();
+    if(!tr||!user||tr.length>MAX_COMMENT)return;
     setBusy(true);
     const{data,error}=await SB.from('comments')
-      .insert({post_id:postId,user_id:user.id,content:trimmed,parent_id:null,is_admin_reply:false})
+      .insert({post_id:postId,user_id:user.id,content:tr,parent_id:null,is_admin_reply:false})
       .select('id,content,created_at,user_id,parent_id,is_admin_reply').single();
     setBusy(false);
     if(error){toast(error.message,false);return;}
@@ -907,11 +892,11 @@ function Comments({postId,user,onLogin}){
   };
 
   const submitReply=async(parentId)=>{
-    const trimmed=replyText.trim();
-    if(!trimmed||!user||trimmed.length>MAX_COMMENT)return;
+    const tr=replyText.trim();
+    if(!tr||!user||tr.length>MAX_COMMENT)return;
     setReplyBusy(true);
     const{data,error}=await SB.from('comments')
-      .insert({post_id:postId,user_id:user.id,content:trimmed,parent_id:parentId,is_admin_reply:true})
+      .insert({post_id:postId,user_id:user.id,content:tr,parent_id:parentId,is_admin_reply:true})
       .select('id,content,created_at,user_id,parent_id,is_admin_reply').single();
     setReplyBusy(false);
     if(error){toast(error.message,false);return;}
@@ -931,28 +916,8 @@ function Comments({postId,user,onLogin}){
     </div>
   );
 
-  const myAv=profile?.avatar||'male';
   const topLevel=list.filter(c=>!c.parent_id);
   const getReplies=pid=>list.filter(c=>c.parent_id===pid);
-
-  const renderComment=(c,isReply=false)=>(
-    <div key={c.id} className={`cm-item${isReply?' cm-reply':''}`}>
-      <div className="cm-meta">
-        <Av profile={c.profile} size={isReply?22:26} emojiSize={isReply?12:14}/>
-        <span className="cm-name">{c.profile?.name||'User'}</span>
-        {c.is_admin_reply&&<span className="cm-admin-badge">Admin</span>}
-        <span className="cm-date">{new Date(c.created_at).toLocaleDateString()}</span>
-      </div>
-      <div className={`cm-txt${isReply?' cm-reply-txt':''}`}>{c.content}</div>
-      {/* Admin reply button — only on top-level comments, only for admin */}
-      {isAdmin&&!isReply&&(
-        <button style={{background:'none',border:'none',cursor:'pointer',color:'var(--accent)',fontSize:10,fontWeight:700,marginTop:5,padding:'2px 0'}}
-          onClick={()=>setReplyTo(replyTo===c.id?null:c.id)}>
-          <i className="fas fa-reply" style={{marginInlineEnd:4}}/>{t('reply')}
-        </button>
-      )}
-    </div>
-  );
 
   return(
     <div style={{borderTop:'1px solid var(--border)',paddingTop:10,marginTop:10}}>
@@ -961,22 +926,40 @@ function Comments({postId,user,onLogin}){
         {fetched&&!topLevel.length&&<p style={{fontSize:11,color:'var(--muted)',padding:'6px 0'}}>{t('noCmt')}</p>}
         {topLevel.map(c=>(
           <div key={c.id}>
-            {renderComment(c,false)}
-            {/* Replies */}
-            {getReplies(c.id).map(r=>renderComment(r,true))}
+            <div className="cm-item">
+              <div className="cm-meta">
+                <Av profile={c.profile} size={24} emojiSz={13}/>
+                <span className="cm-name">{c.profile?.name||'User'}</span>
+                <span className="cm-date">{new Date(c.created_at).toLocaleDateString()}</span>
+              </div>
+              <div className="cm-txt">{c.content}</div>
+              {/* Reply button — admin only */}
+              {isAdmin&&(
+                <button style={{background:'none',border:'none',cursor:'pointer',color:'var(--accent)',fontSize:10,fontWeight:700,marginTop:5,padding:'2px 0'}}
+                  onClick={()=>setReplyTo(replyTo===c.id?null:c.id)}>
+                  <i className="fas fa-reply" style={{marginInlineEnd:4}}/>{t('reply')}
+                </button>
+              )}
+            </div>
+            {/* Replies to this comment */}
+            {getReplies(c.id).map(r=>(
+              <div key={r.id} className="cm-reply-item">
+                <div className="cm-meta">
+                  <Av profile={r.profile} size={22} emojiSz={12}/>
+                  <span className="cm-name">{r.profile?.name||'Admin'}</span>
+                  <span className="cm-admin-tag">Admin</span>
+                  <span className="cm-date">{new Date(r.created_at).toLocaleDateString()}</span>
+                </div>
+                <div className="cm-txt">{r.content}</div>
+              </div>
+            ))}
             {/* Admin reply form */}
             {replyTo===c.id&&(
               <div className="cm-reply-form">
                 <div style={{display:'flex',gap:6,alignItems:'center'}}>
-                  <Av profile={profile} size={20} emojiSize={12}/>
-                  <input
-                    className="inp"
-                    placeholder="Write reply…"
-                    value={replyText}
-                    onChange={e=>setReplyText(e.target.value.slice(0,MAX_COMMENT))}
-                    style={{fontSize:11,padding:'6px 8px',flex:1}}
-                    autoFocus
-                  />
+                  <Av profile={profile} size={20} emojiSz={11}/>
+                  <input className="inp" style={{fontSize:11,padding:'6px 8px',flex:1}} placeholder="Write reply…"
+                    value={replyText} onChange={e=>setReplyText(e.target.value.slice(0,MAX_COMMENT))} autoFocus/>
                   <button className="btn btn-p" style={{padding:'6px 10px',fontSize:11,height:30,flexShrink:0}}
                     onClick={()=>submitReply(c.id)} disabled={replyBusy||!replyText.trim()}>
                     {replyBusy?<i className="fas fa-spinner fa-spin"/>:<i className="fas fa-paper-plane"/>}
@@ -990,10 +973,12 @@ function Comments({postId,user,onLogin}){
           </div>
         ))}
       </div>
+      {/* New comment input */}
       <form onSubmit={submit}>
         <div className="cm-input-row">
-          <Av profile={profile} size={22} emojiSize={13}/>
-          <input placeholder={t('addCmt')} value={text} onChange={e=>setText(e.target.value.slice(0,MAX_COMMENT))} maxLength={MAX_COMMENT}/>
+          <Av profile={profile} size={22} emojiSz={12}/>
+          <input placeholder={t('addCmt')} value={text}
+            onChange={e=>setText(e.target.value.slice(0,MAX_COMMENT))} maxLength={MAX_COMMENT}/>
           <button type="submit" disabled={busy||!text.trim()}>
             {busy?<i className="fas fa-spinner fa-spin"/>:<i className="fas fa-paper-plane"/>}
           </button>
@@ -1006,16 +991,20 @@ function Comments({postId,user,onLogin}){
 
 /* ══════════════════════════════════════════
    DEAL CARD
-   - No internal lightbox (uses global onOpenLb)
-   - Expired = ribbon only, images still clickable
-   - activeCmt/setActiveCmt from App = single open
+   - No internal lightbox → uses global onOpenLb
+   - Max 6 images in thumbnail, all images in lightbox
+   - activeCmt from App = only ONE comment section open
+   - Expired = ribbon only (still clickable)
 ══════════════════════════════════════════ */
 function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,setActiveCmt}){
   const{t,dir,toast}=useApp();
   const[liked,setLiked]=useState(false);
   const[likes,setLikes]=useState(post.like_count||0);
   const[copied,setCopied]=useState(false);
-  const imgs=parseImgs(post.images);
+  const allImgs=parseImgs(post.images);
+  /* Show max 6 in thumbnail; all in lightbox */
+  const thumbImgs=allImgs.slice(0,6);
+  const n=thumbImgs.length;
   const expired=!tleft(post.created_at,post.discount_days);
   const title=post.title_ckb||post.title_en||'Bilal Bazar';
   const showCmt=activeCmt===post.id;
@@ -1031,13 +1020,13 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
     try{
       if(liked){
         await SB.from('likes').delete().eq('post_id',post.id).eq('user_id',user.id);
-        const n=Math.max(0,likes-1);await SB.from('posts').update({like_count:n}).eq('id',post.id);
-        setLiked(false);setLikes(n);
+        const nv=Math.max(0,likes-1);await SB.from('posts').update({like_count:nv}).eq('id',post.id);
+        setLiked(false);setLikes(nv);
       }else{
         const{error}=await SB.from('likes').insert({post_id:post.id,user_id:user.id});
         if(error)throw error;
-        const n=likes+1;await SB.from('posts').update({like_count:n}).eq('id',post.id);
-        setLiked(true);setLikes(n);
+        const nv=likes+1;await SB.from('posts').update({like_count:nv}).eq('id',post.id);
+        setLiked(true);setLikes(nv);
       }
     }catch(e){toast(e.message||'Like failed',false);}
   };
@@ -1047,9 +1036,8 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
     else if(navigator.clipboard){await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000);}
   };
 
-  const n=imgs.length;
-  const gc=n===1?'g1':n===2?'g2i':n===3?'g3i':n===4?'g4i':'g5i';
-  const vis=Math.min(n,5);
+  /* Grid class based on count */
+  const gc=n===0?'':n===1?'g1':n===2?'g2i':n===3?'g3i':n===4?'g4i':n===5?'g5i':'g6i';
 
   return(
     <div className="card">
@@ -1057,12 +1045,13 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
         {n===0
           ?<div style={{height:210,background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:36}}>🏷️</div>
           :n===1
-          ?<div className="fi g1" onClick={()=>onOpenLb(imgs,0)}><img src={imgs[0]} alt="" loading="lazy"/></div>
+          /* Single image — full height, click opens lightbox at index 0 */
+          ?<div className={`fi ${gc}`} onClick={()=>onOpenLb(allImgs,0)}><img src={thumbImgs[0]} alt="" loading="lazy"/></div>
+          /* Multiple images — grid */
           :<div className={gc}>
-            {imgs.slice(0,vis).map((img,i)=>(
-              <div key={i} className="fi" onClick={()=>onOpenLb(imgs,i)}>
+            {thumbImgs.map((img,idx)=>(
+              <div key={idx} className="fi" onClick={()=>onOpenLb(allImgs,idx)}>
                 <img src={img} alt="" loading="lazy"/>
-                {n>5&&i===vis-1&&<div className="more-over">+{n-4}</div>}
               </div>
             ))}
           </div>
@@ -1075,6 +1064,7 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
         )}
         {expired&&<div className="exp-ribbon"><span>{t('finished')}</span></div>}
       </div>
+
       <div style={{padding:'13px 14px 14px'}}>
         <h3 style={{fontWeight:800,fontSize:15,lineHeight:1.35,marginBottom:10,fontFamily:'Noto Sans Arabic,Outfit,sans-serif'}}>{title}</h3>
         <div style={{marginBottom:12}}><Countdown iso={post.created_at} days={post.discount_days}/></div>
@@ -1101,12 +1091,9 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
   );
 }
 
-/* ══════════════════════════════════════════
-   POST MODAL — up to 30 images, no reset on edit
-══════════════════════════════════════════ */
+/* ══ POST MODAL — up to MAX_IMGS images ══ */
 function PostModal({editing,onSave,onClose}){
   const{t,toast}=useApp();
-  /* FIX: preserve ALL images when editing */
   const[imgs,setImgs]=useState(()=>editing?parseImgs(editing.images):[]);
   const[form,setForm]=useState({
     title_ckb:editing?.title_ckb||'',
@@ -1124,8 +1111,7 @@ function PostModal({editing,onSave,onClose}){
     setCropFile(null);setUpBusy(true);
     try{
       const url=await uploadToStorage('posts-images',blob,'jpg');
-      /* FIX: append to existing list, never replace */
-      setImgs(p=>[...p,url]);
+      setImgs(p=>[...p,url]); /* append — never replace */
       toast('Image added ✓');
     }catch(e){toast(e.message||'Upload failed',false);}
     setUpBusy(false);
@@ -1156,7 +1142,6 @@ function PostModal({editing,onSave,onClose}){
             <label style={{fontSize:11,fontWeight:700,color:'var(--accent)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>
               Images * <span style={{color:'var(--muted)',fontWeight:400}}>({imgs.length}/{MAX_IMGS})</span>
             </label>
-            {/* FIX: scrollable row for many images */}
             <div style={{display:'flex',gap:8,overflowX:'auto',paddingBottom:6}} className="nsb">
               {imgs.map((img,i)=>(
                 <div key={i} style={{position:'relative',flexShrink:0}}>
@@ -1164,12 +1149,12 @@ function PostModal({editing,onSave,onClose}){
                   <button onClick={()=>setImgs(p=>p.filter((_,j)=>j!==i))} style={{position:'absolute',top:-4,right:-4,width:17,height:17,borderRadius:'50%',background:'var(--danger)',color:'#fff',border:'2px solid var(--elevated)',fontSize:8,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:900}}>×</button>
                 </div>
               ))}
-              {/* FIX: cap at MAX_IMGS (30), not 5 */}
               {imgs.length<MAX_IMGS&&(
                 <label style={{width:62,height:62,borderRadius:8,border:'1.5px dashed var(--border2)',background:'var(--bg)',flexShrink:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:3,cursor:upBusy?'wait':'pointer'}}>
                   {upBusy?<i className="fas fa-spinner fa-spin acc"/>:<i className="fas fa-camera acc"/>}
                   <span style={{fontSize:8,color:'var(--muted)'}}>{upBusy?'…':'Add'}</span>
-                  <input type="file" accept="image/*" style={{display:'none'}} disabled={upBusy} onChange={e=>{const f=e.target.files[0];if(f)setCropFile(f);e.target.value='';}}/>
+                  <input type="file" accept="image/*" style={{display:'none'}} disabled={upBusy}
+                    onChange={e=>{const f=e.target.files[0];if(f)setCropFile(f);e.target.value='';}}/>
                 </label>
               )}
             </div>
@@ -1198,7 +1183,9 @@ function PostModal({editing,onSave,onClose}){
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8}}>Category</label>
             <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
               {CATS.filter(c=>c!=='all').map(c=>(
-                <button key={c} onClick={()=>set('category',c)} className={`btn ${form.category===c?'btn-p':'btn-g'}`} style={{borderRadius:20,padding:'7px 14px',fontSize:12}}>{TX.ckb.cats[c]}</button>
+                <button key={c} onClick={()=>set('category',c)} className={`btn ${form.category===c?'btn-p':'btn-g'}`} style={{borderRadius:20,padding:'7px 14px',fontSize:12}}>
+                  {TX.ckb.cats[c]}
+                </button>
               ))}
             </div>
           </div>
@@ -1211,7 +1198,7 @@ function PostModal({editing,onSave,onClose}){
   );
 }
 
-/* ── SPONSOR MODAL — 3-step: pick → crop → link+done ── */
+/* ══ SPONSOR MODAL ══ */
 function SpModal({sponsors,onUpdate,onClose}){
   const{t,toast}=useApp();
   const[list,setList]=useState(sponsors);
@@ -1238,33 +1225,25 @@ function SpModal({sponsors,onUpdate,onClose}){
     const url=URL.createObjectURL(f);
     const vid=f.type.startsWith('video/');
     setPicked(f);setPreview(url);setIsVid(vid);
-    setStep(vid?'link':'crop');
-    e.target.value='';
+    setStep(vid?'link':'crop');e.target.value='';
   };
 
   const onCropped=blob=>{
     if(preview&&preview.startsWith('blob:'))URL.revokeObjectURL(preview);
-    setCroppedBlob(blob);
-    setPreview(URL.createObjectURL(blob));
-    setStep('link');
+    setCroppedBlob(blob);setPreview(URL.createObjectURL(blob));setStep('link');
   };
 
   const handleDone=async()=>{
     setBusy(true);
     try{
       let mediaUrl;
-      if(isVid){
-        const ext=(picked.name.split('.').pop()||'mp4').toLowerCase();
-        mediaUrl=await uploadToStorage('images',picked,ext);
-      }else{
-        mediaUrl=await uploadToStorage('images',croppedBlob,'jpg');
-      }
+      if(isVid){const ext=(picked.name.split('.').pop()||'mp4').toLowerCase();mediaUrl=await uploadToStorage('images',picked,ext);}
+      else{mediaUrl=await uploadToStorage('images',croppedBlob,'jpg');}
       const{data,error}=await SB.from('sponsors')
         .insert({image_url:mediaUrl,visible:true,link_url:link.trim()||null,sort_order:list.length,placement})
         .select().single();
       if(error)throw new Error(error.message);
-      setList(p=>[...p,data]);
-      toast('Sponsor added ✓');reset();
+      setList(p=>[...p,data]);toast('Sponsor added ✓');reset();
     }catch(e){toast(e.message||'Upload failed. Check Storage bucket "images".',false);}
     setBusy(false);
   };
@@ -1276,8 +1255,7 @@ function SpModal({sponsors,onUpdate,onClose}){
   const remove=async id=>{
     if(!window.confirm('Remove this sponsor?'))return;
     await SB.from('sponsors').delete().eq('id',id);
-    setList(p=>p.filter(s=>s.id!==id));
-    toast('Removed');
+    setList(p=>p.filter(s=>s.id!==id));toast('Removed');
   };
 
   return(
@@ -1288,82 +1266,56 @@ function SpModal({sponsors,onUpdate,onClose}){
           <button className="btn btn-g" style={{padding:'5px 10px'}} onClick={()=>{onUpdate(list);onClose();}}>✓ {t('save')}</button>
         </div>
         <div className="mbody" style={{display:'flex',flexDirection:'column',gap:16}}>
-
           {step==='pick'&&(
             <>
-              <p style={{fontSize:12,color:'var(--muted)',lineHeight:1.6}}>Choose a <strong style={{color:'var(--soft)'}}>banner</strong> image or video for your sponsor.</p>
+              <p style={{fontSize:12,color:'var(--muted)',lineHeight:1.6}}>Choose a banner image or video.</p>
               <div>
                 <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8,textTransform:'uppercase',letterSpacing:.5}}>{t('spPlace')}</label>
                 <div className="pl-toggle">
-                  <button className={`pl-btn${placement==='top'?' sel':''}`} onClick={()=>setPlacement('top')}>
-                    <i className="fas fa-arrow-up"/><span>{t('spTop')}</span>
-                  </button>
-                  <button className={`pl-btn${placement==='float'?' sel':''}`} onClick={()=>setPlacement('float')}>
-                    <i className="fas fa-layer-group"/><span>{t('spFloat')}</span>
-                  </button>
+                  <button className={`pl-btn${placement==='top'?' sel':''}`} onClick={()=>setPlacement('top')}><i className="fas fa-arrow-up"/><span>{t('spTop')}</span></button>
+                  <button className={`pl-btn${placement==='float'?' sel':''}`} onClick={()=>setPlacement('float')}><i className="fas fa-layer-group"/><span>{t('spFloat')}</span></button>
                 </div>
               </div>
-              <button className="btn btn-g wf" onClick={()=>fileRef.current?.click()}
-                style={{padding:'20px',gap:10,fontSize:14,borderStyle:'dashed',borderRadius:14,flexDirection:'column'}}>
-                <i className="fas fa-images acc" style={{fontSize:22}}/>
-                <span>{t('gallery')}</span>
+              <button className="btn btn-g wf" onClick={()=>fileRef.current?.click()} style={{padding:'20px',gap:10,fontSize:14,borderStyle:'dashed',borderRadius:14,flexDirection:'column'}}>
+                <i className="fas fa-images acc" style={{fontSize:22}}/><span>{t('gallery')}</span>
                 <span style={{fontSize:10,color:'var(--muted)',fontWeight:400}}>Image or Video · Link optional</span>
               </button>
               <input ref={fileRef} type="file" accept="image/*,video/mp4,video/webm,video/mov,video/quicktime" style={{display:'none'}} onChange={onPick}/>
             </>
           )}
-
-          {step==='crop'&&picked&&!isVid&&(
-            <CropModal file={picked} aspect={4} onDone={onCropped} onClose={reset}/>
-          )}
-
+          {step==='crop'&&picked&&!isVid&&<CropModal file={picked} aspect={4} onDone={onCropped} onClose={reset}/>}
           {step==='link'&&preview&&(
             <div style={{display:'flex',flexDirection:'column',gap:14}}>
               <div style={{borderRadius:10,overflow:'hidden',border:'1px solid var(--border)',background:'#000'}}>
-                {isVid
-                  ?<video src={preview} controls muted style={{width:'100%',maxHeight:100,objectFit:'contain',display:'block'}}/>
-                  :<img src={preview} alt="" style={{width:'100%',height:65,objectFit:'cover',display:'block'}}/>
-                }
-              </div>
-              <div style={{display:'flex',gap:6,padding:'4px 10px',background:'var(--bg)',borderRadius:8,border:'1px solid var(--border)',alignItems:'center'}}>
-                <i className={`fas ${placement==='top'?'fa-arrow-up':'fa-layer-group'}`} style={{color:'var(--accent)',fontSize:11}}/>
-                <span style={{fontSize:11,color:'var(--muted)'}}>{t(placement==='top'?'spTop':'spFloat')}</span>
+                {isVid?<video src={preview} controls muted style={{width:'100%',maxHeight:100,objectFit:'contain',display:'block'}}/>
+                  :<img src={preview} alt="" style={{width:'100%',height:65,objectFit:'cover',display:'block'}}/>}
               </div>
               <div>
                 <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>{t('spLink')}</label>
                 <input className="inp" placeholder="https://... (optional)" value={link} onChange={e=>setLink(e.target.value)} style={{fontSize:13}} dir="ltr"/>
               </div>
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
-                <button className="btn btn-g" onClick={reset} disabled={busy} style={{padding:'12px'}}>
-                  <i className="fas fa-times"/> Change
-                </button>
+                <button className="btn btn-g" onClick={reset} disabled={busy} style={{padding:'12px'}}><i className="fas fa-times"/> Change</button>
                 <button className="btn btn-p" onClick={handleDone} disabled={busy} style={{padding:'12px',fontSize:14}}>
                   {busy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:<><i className="fas fa-check"/> Done</>}
                 </button>
               </div>
             </div>
           )}
-
           {list.length>0&&(
-            <div style={{marginTop:4}}>
-              <p style={{fontSize:11,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>
-                Current Sponsors ({list.length})
-              </p>
+            <div>
+              <p style={{fontSize:11,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Current Sponsors ({list.length})</p>
               {list.map(s=>(
                 <div key={s.id} style={{display:'flex',alignItems:'center',gap:8,padding:'9px 0',borderBottom:'1px solid var(--border)'}}>
                   {isVideoUrl(s.image_url)
-                    ?<div style={{width:76,height:26,background:'var(--border)',borderRadius:5,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                        <i className="fas fa-film" style={{color:'var(--muted)',fontSize:12}}/>
-                      </div>
+                    ?<div style={{width:76,height:26,background:'var(--border)',borderRadius:5,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}><i className="fas fa-film" style={{color:'var(--muted)',fontSize:12}}/></div>
                     :<img src={s.image_url} alt="" style={{width:76,height:26,objectFit:'cover',borderRadius:5,border:'1px solid var(--border)',flexShrink:0}}/>
                   }
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{fontSize:9,color:'var(--accent)',fontWeight:700,marginBottom:1}}>{s.placement==='top'?'Top':'Float'}</div>
                     <div style={{fontSize:10,color:'var(--muted)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',direction:'ltr'}}>{s.link_url||'No link'}</div>
                   </div>
-                  <button className="btn btn-g" style={{padding:'3px 7px',flexShrink:0,fontSize:10,height:24}} onClick={()=>toggle(s.id,s.visible)}>
-                    {s.visible?t('hide'):t('show')}
-                  </button>
+                  <button className="btn btn-g" style={{padding:'3px 7px',flexShrink:0,fontSize:10,height:24}} onClick={()=>toggle(s.id,s.visible)}>{s.visible?t('hide'):t('show')}</button>
                   <button className="btn btn-d" style={{padding:'3px 7px',flexShrink:0,fontSize:12,height:24}} onClick={()=>remove(s.id)}>×</button>
                 </div>
               ))}
@@ -1376,12 +1328,11 @@ function SpModal({sponsors,onUpdate,onClose}){
   );
 }
 
-/* ── DRAWER ── */
+/* ══ DRAWER ══ */
 function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   const{t,lang,sw,user,profile,isAdmin}=useApp();
   const go=id=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'});onClose();};
   const logout=async()=>{await SB.auth.signOut();onClose();};
-
   return(
     <div className="dov" onClick={onClose}>
       <div className={`dpanel ${lang==='en'?'ltr':'rtl'}`} onClick={e=>e.stopPropagation()}>
@@ -1392,17 +1343,15 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
           </div>
           <button className="btn btn-g" style={{padding:'5px 9px'}} onClick={onClose}>×</button>
         </div>
-
         {user&&(
           <div style={{padding:'10px 18px',background:'var(--elevated)',borderBottom:'1px solid var(--border)',display:'flex',alignItems:'center',gap:10,cursor:'pointer'}} onClick={()=>{onProfile();onClose();}}>
-            <Av profile={profile} size={32} emojiSize={18}/>
+            <Av profile={profile} size={32} emojiSz={18}/>
             <div>
               <p style={{fontSize:12,fontWeight:700,color:isAdmin?'var(--accent)':'var(--soft)'}}>{profile?.name||user.email.split('@')[0]}</p>
               <p style={{fontSize:9,color:'var(--muted)'}}>{isAdmin?'⭐ Admin':'Edit Profile →'}</p>
             </div>
           </div>
         )}
-
         {[
           {id:'hero',i:'fa-home',l:t('home'),bg:'rgba(16,185,129,.12)',ic:'var(--accent)'},
           {id:'deals',i:'fa-tags',l:t('dtitle'),bg:'rgba(245,212,96,.1)',ic:'#f5d460'},
@@ -1413,11 +1362,9 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
             <div className="dico" style={{background:x.bg}}><i className={`fas ${x.i}`} style={{color:x.ic,fontSize:13}}/></div>{x.l}
           </button>
         ))}
-
         <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="di">
           <div className="dico" style={{background:'rgba(37,211,102,.1)'}}><i className="fab fa-whatsapp" style={{color:'#25d366',fontSize:14}}/></div>WhatsApp
         </a>
-
         <div style={{padding:'12px 18px',borderBottom:'1px solid rgba(255,255,255,.04)'}}>
           <p style={{fontSize:10,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.8,marginBottom:8}}>{t('lang')}</p>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:6}}>
@@ -1426,7 +1373,6 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
             ))}
           </div>
         </div>
-
         {user?(
           <>
             {isAdmin&&<>
@@ -1451,10 +1397,9 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
 
 /* ══════════════════════════════════════════
    APP
-   - Global lightbox (one at a time)
-   - Global activeCmt (one at a time)
+   - One global lightbox, one active comment section
    - Silent background poll (no skeleton flash)
-   - Video: single source, no duplicates
+   - Background video with correct single source
 ══════════════════════════════════════════ */
 function App(){
   const{t,lang,dir,user,profile,isAdmin,toast}=useApp();
@@ -1471,13 +1416,11 @@ function App(){
   const[spOpen,setSpOpen]=useState(false);
   const[profileOpen,setProfileOpen]=useState(false);
   const[needLogin,setNeedLogin]=useState(false);
-  /* ── Global lightbox state ── */
-  const[globalLb,setGlobalLb]=useState(null);
-  /* ── Single active comment section ── */
+  const[globalLb,setGlobalLb]=useState(null); /* {imgs, idx} */
   const[activeCmt,setActiveCmt]=useState(null);
   const vidRef=useRef(null);
-  const firstLoad=useRef(true);
 
+  /* ── Load posts: silent=true means no skeleton shown ── */
   const loadPosts=useCallback(async(silent=false)=>{
     if(!silent)setLoading(true);
     try{
@@ -1485,28 +1428,28 @@ function App(){
       if(error)throw error;
       setPosts(data||[]);
     }catch(e){if(!silent)toast('Failed to load posts',false);}
-    if(!silent){setLoading(false);firstLoad.current=false;}
+    if(!silent)setLoading(false);
   },[toast]);
 
   const loadSponsors=useCallback(async()=>{
-    try{
-      const{data}=await SB.from('sponsors').select('*').eq('visible',true).order('sort_order');
-      setSponsors(data||[]);
-    }catch{}
+    try{const{data}=await SB.from('sponsors').select('*').eq('visible',true).order('sort_order');setSponsors(data||[]);}
+    catch{}
   },[]);
 
   useEffect(()=>{loadPosts(false);loadSponsors();},[]);
   useEffect(()=>{setShown(3);},[cat]);
-  /* Silent background poll every 90s — no skeleton flicker */
+  /* Silent poll every 90s — no skeleton flash */
   useEffect(()=>{const id=setInterval(()=>loadPosts(true),90000);return()=>clearInterval(id);},[loadPosts]);
 
-  /* ── BACKGROUND VIDEO — autoplay, single source ── */
+  /* ══ BACKGROUND VIDEO — autoplay, muted, single source ══ */
   useEffect(()=>{
     const v=vidRef.current;if(!v)return;
+    v.muted=true;
     const play=()=>v.play().catch(()=>{});
     play();
     v.addEventListener('canplay',play,{once:true});
-    return()=>v.removeEventListener('canplay',play);
+    v.addEventListener('loadedmetadata',play,{once:true});
+    return()=>{v.removeEventListener('canplay',play);v.removeEventListener('loadedmetadata',play);};
   },[]);
 
   useEffect(()=>{
@@ -1525,6 +1468,7 @@ function App(){
 
   const filtered=useMemo(()=>cat==='all'?posts:posts.filter(p=>p.category===cat),[posts,cat]);
   const visible=filtered.slice(0,shown);
+
   const go=id=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
   const nav=[
     {id:'hero',i:'fa-home',l:t('home')},
@@ -1552,7 +1496,8 @@ function App(){
           </div>
           <nav className="hd flex gap2">
             {nav.map(x=>(
-              <button key={x.id} onClick={()=>go(x.id)} className="btn btn-g" style={{padding:'6px 10px',fontSize:13,color:active===x.id?'var(--accent)':'var(--muted)',borderColor:'transparent'}}>{x.l}</button>
+              <button key={x.id} onClick={()=>go(x.id)} className="btn btn-g"
+                style={{padding:'6px 10px',fontSize:13,color:active===x.id?'var(--accent)':'var(--muted)',borderColor:'transparent'}}>{x.l}</button>
             ))}
           </nav>
           <div style={{display:'flex',alignItems:'center',gap:8}}>
@@ -1572,8 +1517,15 @@ function App(){
 
       <section id="hero">
         <div className="hero-vid">
-          {/* ── VIDEO: single source, correct URL ── */}
-          <video ref={vidRef} autoPlay muted loop playsInline preload="auto">
+          {/* ══ BACKGROUND VIDEO — single correct source ══ */}
+          <video
+            ref={vidRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
             <source src={VIDEO_URL} type="video/mp4"/>
           </video>
         </div>
@@ -1631,8 +1583,7 @@ function App(){
                 <div key={i} className="card">
                   <div className="sk" style={{height:210}}/>
                   <div style={{padding:14,display:'flex',flexDirection:'column',gap:8}}>
-                    <div className="sk" style={{height:13,width:'72%'}}/>
-                    <div className="sk" style={{height:11,width:'46%'}}/>
+                    <div className="sk" style={{height:13,width:'72%'}}/><div className="sk" style={{height:11,width:'46%'}}/>
                   </div>
                 </div>
               ))}
@@ -1694,12 +1645,8 @@ function App(){
                   <span style={{display:'flex',alignItems:'center',gap:6}}><i className="fas fa-phone acc" style={{width:14}}/>{loc.ph}</span>
                 </div>
                 <div style={{display:'flex',gap:8}}>
-                  <span className="btn btn-p f1" style={{padding:'9px 8px',fontSize:12,borderRadius:8}}>
-                    <i className="fas fa-map-marker-alt"/> {t('openMap')}
-                  </span>
-                  <a href={`tel:+964${loc.ph.replace(/^0/,'').replace(/\s/g,'')}`} onClick={e=>e.stopPropagation()} className="btn btn-g" style={{padding:'9px 13px'}}>
-                    <i className="fas fa-phone"/>
-                  </a>
+                  <span className="btn btn-p f1" style={{padding:'9px 8px',fontSize:12,borderRadius:8}}><i className="fas fa-map-marker-alt"/> {t('openMap')}</span>
+                  <a href={`tel:+964${loc.ph.replace(/^0/,'').replace(/\s/g,'')}`} onClick={e=>e.stopPropagation()} className="btn btn-g" style={{padding:'9px 13px'}}><i className="fas fa-phone"/></a>
                 </div>
               </a>
             ))}
@@ -1748,7 +1695,7 @@ function App(){
       <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
       {isAdmin&&<button className="fab-add" onClick={()=>{setEditing(null);setPostModal(true);}}><i className="fas fa-plus"/></button>}
 
-      {/* ── GLOBAL LIGHTBOX — single instance ── */}
+      {/* Global single lightbox */}
       {globalLb&&<GlobalLightbox imgs={globalLb.imgs} startIdx={globalLb.idx} onClose={handleCloseLb}/>}
 
       {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
