@@ -730,9 +730,9 @@ function SpFloat({sponsors}){
   const vid=isVideoUrl(s.image_url);
 
   const media=vid
-    <video autoPlay muted loop playsInline id="bgVideo">
-  <source src={VIDEO_URL} type="video/mp4" />
-</video>
+    ?<video src={s.image_url} autoPlay muted loop playsInline/>
+    :<img src={s.image_url} alt=""/>;
+  
   const inner=s.link_url
     ?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>
     :<>{media}</>;
