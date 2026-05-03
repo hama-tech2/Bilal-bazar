@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>بیلال بازار | Bilal Bazar</title>
+<title>هالال ماركت | Halal Market</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060a08;--surface:#0e1712;--elevated:#131e17;
-  --border:#1c2d22;--border2:#253d2d;
-  --text:#dff0e8;--muted:#5a8a6e;--soft:#98c4aa;
-  --accent:#10b981;--accent2:#059669;--accent3:#6ee7b7;
+  --bg:#060807;--surface:#0c1009;--elevated:#121610;
+  --border:#1c2a1e;--border2:#243026;
+  --text:#ede9e0;--muted:#6b8a72;--soft:#a4bfaa;
+  --gold:#c8962c;--gold2:#a67820;--gold3:#e8c06a;--gold4:rgba(200,150,44,.08);
+  --green:#22c55e;--green2:#16a34a;--green3:#86efac;
   --danger:#ef4444;--danger2:#b91c1c;
+  --logo:url('https://github.com/hama-tech2/Bilal-bazar/blob/main/halal-market-logo.png?raw=true');
+  --hero:url('https://github.com/hama-tech2/Bilal-bazar/blob/main/hero-halal-market.jpg?raw=true');
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -27,76 +30,103 @@ a{color:inherit;text-decoration:none}
 .rtl{direction:rtl}.ltr{direction:ltr}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px}
+::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:2px}
 .nsb{-ms-overflow-style:none;scrollbar-width:none}
 .nsb::-webkit-scrollbar{display:none}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes shimmer{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
-@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@keyframes toastIn{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translate(-50%,0)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes glow{0%,100%{opacity:.4}50%{opacity:.8}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 @keyframes slideR{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:none}}
 @keyframes slideL{from{opacity:0;transform:translateX(-100%)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(200,150,44,.35)}70%{box-shadow:0 0 0 12px rgba(200,150,44,0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ══ TOP SPONSOR BANNER ══ */
-.sp-top-wrap{
-  position:relative;width:100%;overflow:hidden;height:74px;
-  background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;
-}
-@media(min-width:641px){.sp-top-wrap{height:90px}}
-.sp-top-slide{position:absolute;inset:0;transition:opacity .55s ease}
-.sp-top-slide img,.sp-top-slide video{width:100%;height:100%;object-fit:cover;display:block}
-.sp-top-slide a{display:block;width:100%;height:100%}
-.sp-top-label{position:absolute;top:4px;right:6px;z-index:3;font-size:7px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px;pointer-events:none}
-
-/* ══ FLOAT SPONSOR ══ */
-.sp-float-wrap{position:fixed;bottom:72px;left:0;z-index:44;pointer-events:none;transition:opacity .55s ease}
-.sp-float-inner{position:relative;width:190px;height:54px;border-radius:0 12px 12px 0;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.5);pointer-events:auto}
-.sp-float-inner img{width:100%;height:100%;object-fit:contain;display:block}
-.sp-float-inner video{width:100%;height:100%;object-fit:cover;display:block}
-.sp-float-label{position:absolute;top:3px;right:5px;z-index:3;font-size:6px;font-weight:800;text-transform:uppercase;color:rgba(0,0,0,.3);background:rgba(255,255,255,.7);padding:1px 4px;border-radius:2px;pointer-events:none}
-@media(min-width:641px){.sp-float-inner{width:220px;height:64px}}
-
-/* ══ LAYOUT ══ */
+/* ── LAYOUT ── */
 .c{max-width:1100px;margin:0 auto;padding:0 16px}
 .flex{display:flex}.col{flex-direction:column}
 .ac{align-items:center}.jb{justify-content:space-between}.jc{justify-content:center}
 .gap2{gap:8px}.gap3{gap:12px}.gap4{gap:16px}
 .f1{flex:1}.wf{width:100%}
-.tc{text-align:center}.muted{color:var(--muted)}.acc{color:var(--accent)}
+.tc{text-align:center}.muted{color:var(--muted)}.gold{color:var(--gold)}
 
-/* ══ BUTTONS ══ */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit;text-decoration:none}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
-.btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#02140d}
-.btn-p:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px)}
+/* ── BADGE TICKER ── */
+.ticker-wrap{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));height:34px;overflow:hidden;display:flex;align-items:center}
+.ticker-inner{display:flex;white-space:nowrap;animation:marquee 22s linear infinite}
+.ticker-inner span{padding:0 28px;font-size:12px;font-weight:700;color:#1a0e00;letter-spacing:.4px}
+.ticker-inner span::before{content:'★ ';opacity:.6}
+
+/* ── HEADER ── */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(6,8,7,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-img{width:38px;height:38px;object-fit:contain;border-radius:8px}
+.logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;background:linear-gradient(120deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-sub{font-size:7.5px;font-weight:600;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;margin-top:-2px}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(6,8,7,.85) 0%,rgba(6,8,7,.55) 45%,rgba(6,8,7,.90) 100%)}
+.hero-body{position:relative;z-index:2;text-align:center;padding:110px 20px 90px;max-width:800px;margin:0 auto;width:100%}
+.hero-logo{width:84px;height:84px;object-fit:contain;margin:0 auto 20px;border-radius:16px;box-shadow:0 0 0 1px rgba(200,150,44,.3),0 12px 48px rgba(0,0,0,.6);animation:fadeUp .6s ease both}
+.hero-title{font-family:'Syne',sans-serif;font-weight:900;font-size:clamp(42px,9vw,96px);letter-spacing:-2px;line-height:.9;background:linear-gradient(130deg,#fff 0%,var(--gold3) 40%,var(--gold) 70%,#fff 100%);background-size:260% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp .7s ease .12s both;margin-bottom:4px}
+.hero-ar{font-family:'Noto Sans Arabic',sans-serif;font-weight:800;font-size:clamp(14px,2.5vw,20px);color:rgba(232,192,106,.8);animation:fadeUp .7s ease .28s both;margin-bottom:12px}
+.hero-desc{color:rgba(220,215,200,.62);font-size:clamp(13px,1.8vw,15px);line-height:1.8;margin:0 auto 30px;max-width:460px;animation:fadeUp .7s ease .44s both}
+.hero-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;animation:fadeUp .7s ease .58s both}
+.hero-trust{display:flex;gap:28px;justify-content:center;margin-top:48px;flex-wrap:wrap;animation:fadeUp .7s ease .74s both}
+.hero-trust-item{text-align:center}
+.hero-trust-n{font-family:'Syne',sans-serif;font-weight:900;font-size:28px;color:#fff;line-height:1}
+.hero-trust-l{font-size:9px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 20px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .16s;white-space:nowrap;font-family:inherit;text-decoration:none}
+.btn:disabled{opacity:.38;cursor:not-allowed;transform:none!important}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00;box-shadow:0 4px 18px rgba(200,150,44,.28)}
+.btn-gold:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,150,44,.38)}
+.btn-green{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;box-shadow:0 4px 18px rgba(34,197,94,.22)}
+.btn-green:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--soft)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--text);background:rgba(200,150,44,.08)}
 .btn-g{background:transparent;border:1px solid var(--border);color:var(--muted)}
-.btn-g:hover{border-color:var(--accent);color:var(--text)}
-.btn-d{background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.22)}
-.btn-d:hover{background:rgba(239,68,68,.2)}
-.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(16,185,129,.1);color:var(--accent);border:1px solid rgba(16,185,129,.18)}
+.btn-g:hover{border-color:var(--gold);color:var(--text)}
+.btn-d{background:rgba(239,68,68,.1);color:var(--danger);border:1px solid rgba(239,68,68,.2)}
+.btn-d:hover{background:rgba(239,68,68,.18)}
+.btn-p{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff}
+.btn-p:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:var(--gold4);color:var(--gold);border:1px solid rgba(200,150,44,.2)}
 
-/* ══ CARD ══ */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s;will-change:transform;transform:translateZ(0);contain:layout style}
-.card:hover{border-color:rgba(16,185,129,.28);box-shadow:0 10px 32px rgba(0,0,0,.42)}
+/* ── CARD ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s;will-change:transform;contain:layout style}
+.card:hover{border-color:rgba(200,150,44,.25);box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 0 1px rgba(200,150,44,.08)}
 body.lb-open .card{pointer-events:none}
 
 .inp{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;font-family:inherit}
-.inp:focus{border-color:var(--accent)}
+.inp:focus{border-color:var(--gold)}
 .inp::placeholder{color:var(--muted)}
 
-/* ══ TOAST ══ */
+/* ── SECTION TITLE ── */
+.stitle{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.stitle-bar{width:4px;height:32px;border-radius:2px;background:linear-gradient(180deg,var(--gold3),var(--gold2));flex-shrink:0}
+.stitle h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(20px,3.5vw,28px)}
+.stitle-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ── TOAST ── */
 .toast-wrap{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:6px;pointer-events:none}
 .toast{padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;min-width:190px;text-align:center;animation:toastIn .3s ease}
-.t-ok{background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.3);color:var(--accent3)}
-.t-err{background:rgba(239,68,68,.18);border:1px solid rgba(239,68,68,.28);color:#fca5a5}
+.t-ok{background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.28);color:#86efac}
+.t-err{background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.25);color:#fca5a5}
 
-/* ══ MODAL ══ */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:80;display:flex;align-items:flex-end;justify-content:center}
+/* ── MODAL ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:80;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:540px){.ov{align-items:center;padding:20px}}
 .mbox{background:var(--elevated);border:1px solid var(--border);width:100%;max-width:500px;max-height:93vh;overflow-y:auto;border-radius:20px 20px 0 0;animation:slideUp .22s ease}
 @media(min-width:540px){.mbox{border-radius:20px;animation:scaleIn .18s ease}}
@@ -104,7 +134,7 @@ body.lb-open .card{pointer-events:none}
 .mhdr h3{font-weight:800;font-size:15px}
 .mbody{padding:18px 20px}
 
-/* ══ DRAWER ══ */
+/* ── DRAWER ── */
 .dov{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.8)}
 .dpanel{position:absolute;top:0;bottom:0;width:min(290px,85vw);background:var(--surface);border-inline-end:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
 .rtl .dpanel{right:0;animation:slideR .22s ease}
@@ -113,73 +143,61 @@ body.lb-open .card{pointer-events:none}
 .di:hover{background:var(--elevated)}
 .dico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 
-/* ══ MOBILE NAV ══ */
-.mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,10,8,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;height:54px;padding-bottom:env(safe-area-inset-bottom)}
-.mnb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--muted);background:none;border:none;cursor:pointer;font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;transition:color .14s}
-.mnb.act{color:var(--accent)}
+/* ── MOBILE NAV ── */
+.mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,8,7,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;height:58px;padding-bottom:env(safe-area-inset-bottom)}
+.mnb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);background:none;border:none;cursor:pointer;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;transition:color .14s}
+.mnb.act{color:var(--gold)}
+.mnb.act i{color:var(--gold)}
+.mnb i{font-size:19px;transition:color .14s}
 
-/* ══ HEADER ══ */
-.hdr{position:sticky;top:0;z-index:40;background:rgba(6,10,8,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+/* ── SPONSOR BANNER ── */
+.sp-top-wrap{position:relative;width:100%;overflow:hidden;height:72px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+@media(min-width:641px){.sp-top-wrap{height:88px}}
+.sp-top-slide{position:absolute;inset:0;transition:opacity .55s ease}
+.sp-top-slide img,.sp-top-slide video{width:100%;height:100%;object-fit:cover;display:block}
+.sp-top-slide a{display:block;width:100%;height:100%}
+.sp-top-label{position:absolute;top:4px;right:6px;z-index:3;font-size:7px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(0,0,0,.32);padding:1px 5px;border-radius:3px;pointer-events:none}
+.sp-float-wrap{position:fixed;bottom:72px;left:0;z-index:44;pointer-events:none;transition:opacity .55s ease}
+.sp-float-inner{position:relative;width:188px;height:52px;border-radius:0 12px 12px 0;overflow:hidden;background:#fff;box-shadow:0 4px 22px rgba(0,0,0,.5);pointer-events:auto}
+.sp-float-inner img{width:100%;height:100%;object-fit:contain;display:block}
+.sp-float-label{position:absolute;top:3px;right:5px;z-index:3;font-size:6px;font-weight:800;text-transform:uppercase;color:rgba(0,0,0,.28);background:rgba(255,255,255,.7);padding:1px 4px;border-radius:2px;pointer-events:none}
 
-/* ══ HERO ══ */
-#hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(150deg,#071510 0%,#0b1e15 50%,#060a08 100%)}
-.hero-vid{position:absolute;inset:0;z-index:0}
-.hero-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none}
-.hero-vid::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(4,9,6,.78) 0%,rgba(4,9,6,.25) 44%,rgba(4,9,6,.88) 100%)}
-.hero-body{position:relative;z-index:2;text-align:center;padding:108px 20px 88px;max-width:860px;margin:0 auto;width:100%}
-.hero-title{font-weight:900;font-size:clamp(46px,9.5vw,100px);letter-spacing:-2px;line-height:.93;background:linear-gradient(130deg,#fff 0%,#aaf0d0 38%,var(--accent) 65%,#fff 100%);background-size:280% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp .7s ease .1s both}
-.hero-sub{font-weight:900;font-size:clamp(15px,2.8vw,22px);color:rgba(245,212,96,.84);margin-top:10px;font-family:'Noto Sans Arabic',sans-serif;animation:fadeUp .7s ease .36s both}
-.hero-desc{color:rgba(214,236,255,.6);font-size:clamp(13px,2vw,15px);line-height:1.78;margin:14px auto 34px;max-width:500px;animation:fadeUp .7s ease .58s both}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;animation:fadeUp .7s ease .78s both}
-.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:52px;flex-wrap:wrap;animation:fadeUp .7s ease .98s both}
-
-/* ══ PRODUCT IMAGE GRID ══ */
+/* ── PRODUCT IMAGE GRID ── */
 .pimg{position:relative}
 .fi{background:var(--border);overflow:hidden;cursor:pointer;position:relative}
-.fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
-.fi:hover img{transform:scale(1.04)}
+.fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .28s}
+.fi:hover img{transform:scale(1.05)}
+.g1{height:252px}.g2i{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:196px}
+.g3i{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;height:175px}
+.g4i{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:215px}
+.g5i{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:196px}
+.g5i .fi:nth-child(1){grid-column:1/3}.g5i .fi:nth-child(2){grid-column:3/5}.g5i .fi:nth-child(3){grid-column:5/7}
+.g5i .fi:nth-child(4){grid-column:1/4}.g5i .fi:nth-child(5){grid-column:4/7}
+.g6i{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:215px}
+@media(max-width:640px){.g1{height:205px!important}.g2i{height:165px!important}.g3i{height:145px!important}.g4i,.g5i,.g6i{height:175px!important}}
 
-.g1{height:258px}
-.g2i{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:200px}
-.g3i{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;height:180px}
-.g4i{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:220px}
-.g5i{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:200px}
-.g5i .fi:nth-child(1){grid-column:1/3}
-.g5i .fi:nth-child(2){grid-column:3/5}
-.g5i .fi:nth-child(3){grid-column:5/7}
-.g5i .fi:nth-child(4){grid-column:1/4}
-.g5i .fi:nth-child(5){grid-column:4/7}
-.g6i{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:220px}
-
-@media(max-width:640px){
-  .g1{height:210px!important}
-  .g2i{height:170px!important}
-  .g3i{height:150px!important}
-  .g4i,.g5i,.g6i{height:180px!important}
-}
-
-/* Discount badge */
-.disc{position:absolute;top:10px;right:10px;z-index:5;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--danger),var(--danger2));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:12px;line-height:1;text-align:center;box-shadow:0 4px 14px rgba(185,28,28,.48)}
+/* ── DISCOUNT BADGE ── */
+.disc{position:absolute;top:10px;right:10px;z-index:5;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--danger),var(--danger2));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:12px;line-height:1;text-align:center;box-shadow:0 4px 14px rgba(185,28,28,.48)}
 .ltr .disc{right:auto;left:10px}
-.exp-ribbon{position:absolute;top:0;left:0;right:0;background:rgba(170,20,20,.82);padding:5px;text-align:center;z-index:4;pointer-events:none}
+.exp-ribbon{position:absolute;top:0;left:0;right:0;background:rgba(160,20,20,.82);padding:5px;text-align:center;z-index:4;pointer-events:none}
 .exp-ribbon span{color:#fff;font-weight:900;font-size:11px;letter-spacing:.5px}
 
-/* ══ COUNTDOWN ══ */
-.cdown{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18)}
+/* ── COUNTDOWN ── */
+.cdown{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:8px;background:rgba(200,150,44,.08);border:1px solid rgba(200,150,44,.18)}
 .cb{text-align:center;min-width:24px}
 .cn{font-weight:900;font-size:16px;line-height:1;color:#fff}
-.cl{font-size:7px;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
-.cs{color:rgba(16,185,129,.45);font-weight:900;font-size:13px;align-self:center;margin-bottom:2px}
+.cl{font-size:7px;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
+.cs{color:rgba(200,150,44,.4);font-weight:900;font-size:13px;align-self:center;margin-bottom:2px}
 
-/* ══ POST ACTIONS ══ */
+/* ── POST ACTIONS ── */
 .post-actions{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;padding-top:10px;border-top:1px solid var(--border)}
 .act-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .14s;white-space:nowrap;font-family:inherit;height:32px}
-.act-btn:hover{border-color:var(--accent);color:var(--text)}
-.act-btn.liked{background:rgba(239,68,68,.13);color:var(--danger);border-color:rgba(239,68,68,.3)}
-.act-btn.active{color:var(--accent);border-color:var(--accent)}
+.act-btn:hover{border-color:var(--gold);color:var(--text)}
+.act-btn.liked{background:rgba(239,68,68,.12);color:var(--danger);border-color:rgba(239,68,68,.28)}
+.act-btn.active{color:var(--green);border-color:var(--green)}
 .admin-btns{display:flex;gap:4px;margin-inline-start:auto}
 
-/* ══ GLOBAL LIGHTBOX ══ */
+/* ── LIGHTBOX ── */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;touch-action:pan-y}
 .lbc{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.1);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
 .lb-img{max-width:93vw;max-height:88vh;object-fit:contain;border-radius:10px;display:block;user-select:none;-webkit-user-drag:none}
@@ -187,92 +205,114 @@ body.lb-open .card{pointer-events:none}
 .lb-nav:hover{background:rgba(255,255,255,.2)}
 .lb-counter{position:absolute;top:14px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:13px;font-weight:700;z-index:2;background:rgba(0,0,0,.45);padding:3px 12px;border-radius:20px;pointer-events:none}
 
-/* ══ COMMENTS ══ */
+/* ── COMMENTS ── */
 .cm-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;padding-inline-end:2px}
 .cm-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
-.cm-reply-item{background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.18);border-radius:10px;padding:8px 11px;margin-inline-start:24px;margin-top:5px}
+.cm-reply-item{background:rgba(200,150,44,.03);border:1px solid rgba(200,150,44,.14);border-radius:10px;padding:8px 11px;margin-inline-start:24px;margin-top:5px}
 .cm-meta{display:flex;align-items:center;gap:7px;margin-bottom:5px}
-.cm-name{font-weight:800;font-size:12px;color:var(--accent);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cm-admin-tag{font-size:9px;font-weight:800;background:rgba(16,185,129,.15);color:var(--accent);padding:1px 5px;border-radius:4px;border:1px solid rgba(16,185,129,.25);flex-shrink:0}
+.cm-name{font-weight:800;font-size:12px;color:var(--gold);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cm-admin-tag{font-size:9px;font-weight:800;background:rgba(200,150,44,.12);color:var(--gold);padding:1px 5px;border-radius:4px;border:1px solid rgba(200,150,44,.22);flex-shrink:0}
 .cm-date{font-size:9px;color:var(--muted);margin-inline-start:auto;flex-shrink:0}
 .cm-txt{font-size:12px;line-height:1.5;color:var(--soft);word-break:break-word}
 .cm-char{font-size:9px;color:var(--muted);text-align:end;margin-top:3px}
 .cm-input-row{display:flex;align-items:center;gap:7px;margin-top:10px;background:var(--elevated);border:1px solid var(--border);border-radius:10px;padding:6px 10px}
 .cm-input-row input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:12px;font-family:inherit}
 .cm-input-row input::placeholder{color:var(--muted)}
-.cm-input-row button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:14px;padding:2px 4px;flex-shrink:0}
+.cm-input-row button{background:none;border:none;cursor:pointer;color:var(--gold);font-size:14px;padding:2px 4px;flex-shrink:0}
 .cm-input-row button:disabled{opacity:.35;cursor:not-allowed}
 .cm-login-box{margin-top:10px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
-.cm-reply-form{margin-inline-start:24px;margin-top:5px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.15);border-radius:10px;padding:8px 10px}
-
-/* ══ COMMENT DELETE BUTTON (NEW) ══ */
-.cm-del-btn{
-  background:none;border:none;cursor:pointer;
-  color:rgba(255,255,255,.18);font-size:13px;font-weight:900;
-  padding:0 3px;line-height:1;transition:color .12s;
-  flex-shrink:0;margin-inline-start:4px;
-  display:inline-flex;align-items:center;justify-content:center;
-  width:18px;height:18px;border-radius:4px;
-}
+.cm-reply-form{margin-inline-start:24px;margin-top:5px;background:rgba(200,150,44,.03);border:1px solid rgba(200,150,44,.13);border-radius:10px;padding:8px 10px}
+.cm-del-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.16);font-size:13px;font-weight:900;padding:0 3px;line-height:1;transition:color .12s;flex-shrink:0;margin-inline-start:4px;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px}
 .cm-del-btn:hover{color:var(--danger);background:rgba(239,68,68,.1)}
 
-/* ══ TITLE SEE-MORE BUTTON (NEW) ══ */
-.title-toggle{
-  display:inline;background:none;border:none;cursor:pointer;
-  color:var(--accent);font-size:11px;font-weight:700;
-  padding:1px 5px;margin-inline-start:4px;
-  font-family:inherit;vertical-align:baseline;line-height:inherit;
-  opacity:.85;
-}
+/* ── TITLE TOGGLE ── */
+.title-toggle{display:inline;background:none;border:none;cursor:pointer;color:var(--gold);font-size:11px;font-weight:700;padding:1px 5px;margin-inline-start:4px;font-family:inherit;vertical-align:baseline;line-height:inherit;opacity:.85}
 .title-toggle:hover{opacity:1;text-decoration:underline}
 
-/* ══ SKELETON ══ */
-.sk{background:linear-gradient(90deg,var(--border) 25%,var(--elevated) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
+/* ── SKELETON ── */
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--elevated) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;border-radius:8px}
 
-/* ══ SECTION TITLE ══ */
-.stitle{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.stitle::before{content:'';width:26px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));flex-shrink:0}
-.stitle h2{font-weight:900;font-size:24px}
+/* ── CATEGORY CARDS ── */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(min-width:560px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:800px){.cat-grid{grid-template-columns:repeat(6,1fr)}}
+.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s}
+.cat-card:hover,.cat-card.active{border-color:var(--gold);background:rgba(200,150,44,.06);transform:translateY(-2px)}
+.cat-ico{font-size:26px;margin-bottom:8px;display:block}
+.cat-name{font-size:11px;font-weight:700;color:var(--soft)}
+.cat-card.active .cat-name{color:var(--gold)}
 
-/* ══ LOCATION CARD ══ */
-.lcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s,box-shadow .2s}
-.lcard:hover{border-color:rgba(16,185,129,.28);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.42)}
+/* ── LOCATION CARDS ── */
+.loc-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:560px){.loc-grid{grid-template-columns:1fr 1fr}}
+.loc-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;position:relative;overflow:hidden;transition:all .2s}
+.loc-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(200,150,44,.08),transparent 70%);pointer-events:none}
+.loc-card:hover{border-color:rgba(200,150,44,.28);transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,0,0,.46)}
+.loc-num{position:absolute;top:18px;inset-inline-end:20px;font-family:'Syne',sans-serif;font-weight:900;font-size:44px;color:rgba(200,150,44,.07);line-height:1;pointer-events:none}
+.loc-icon{width:46px;height:46px;border-radius:12px;background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px}
+.loc-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;margin-bottom:6px;line-height:1.3}
+.loc-meta{display:flex;flex-direction:column;gap:7px;margin:12px 0 18px}
+.loc-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--soft);direction:ltr;text-align:start}
+.loc-row i{width:16px;color:var(--gold);font-size:11px;flex-shrink:0}
+.loc-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 
-.feats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-.feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 14px;width:138px;text-align:center;transition:border-color .2s}
-.feat:hover{border-color:var(--accent)}
-.feat-ico{width:40px;height:40px;border-radius:10px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:17px;color:var(--accent)}
+/* ── REVIEW CARDS ── */
+.rev-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px}
+.rev-scroll::-webkit-scrollbar{display:none}
+.rev-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;min-width:230px;max-width:250px;flex-shrink:0;transition:border-color .2s}
+.rev-card:hover{border-color:rgba(200,150,44,.2)}
+.rev-stars{display:flex;gap:3px;margin-bottom:8px}
+.rev-star{color:var(--gold);font-size:12px}
+.rev-txt{font-size:12px;color:var(--soft);line-height:1.6;margin-bottom:10px;font-family:'Noto Sans Arabic',sans-serif}
+.rev-name{font-size:11px;font-weight:700;color:var(--muted)}
+.rev-head{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px}
+.rev-big-n{font-family:'Syne',sans-serif;font-weight:900;font-size:44px;color:#fff;line-height:1}
+.rev-big-s{display:flex;flex-direction:column;gap:4px}
 
-.fab-wa{position:fixed;bottom:66px;right:16px;width:50px;height:50px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;z-index:45;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .18s;text-decoration:none}
+/* ── CONTACT SECTION ── */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:560px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;transition:border-color .2s}
+.contact-card:hover{border-color:rgba(200,150,44,.2)}
+.contact-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+
+/* ── FAB BUTTONS ── */
+.fab-wa{position:fixed;bottom:70px;right:16px;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:23px;z-index:45;box-shadow:0 4px 22px rgba(37,211,102,.38);transition:transform .18s;text-decoration:none;animation:pulseGold 3s ease-in-out infinite}
 .fab-wa:hover{transform:scale(1.1)}
-.fab-add{position:fixed;bottom:66px;left:16px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;display:flex;align-items:center;justify-content:center;color:#02140d;font-size:22px;z-index:45;cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,.42);transition:transform .18s}
+.fab-add{position:fixed;bottom:70px;left:16px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;display:flex;align-items:center;justify-content:center;color:#1a0e00;font-size:22px;z-index:45;cursor:pointer;box-shadow:0 4px 22px rgba(200,150,44,.38);transition:transform .18s}
 .fab-add:hover{transform:scale(1.1) rotate(90deg)}
 
-.av-sel{display:flex;gap:10px;justify-content:center;margin-top:8px}
-.av-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 18px;border-radius:12px;border:2px solid var(--border);cursor:pointer;transition:all .15s;background:var(--bg);font-size:11px;font-weight:700;color:var(--muted)}
-.av-opt.chosen{border-color:var(--accent);background:rgba(16,185,129,.08);color:var(--accent)}
-.av-opt span{font-size:28px}
-
+/* ── DIVIDER ── */
 .divline{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
+/* ── UPLOAD PROGRESS ── */
+.up-progress{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(200,150,44,.06);border:1px solid rgba(200,150,44,.15);border-radius:8px;margin-top:6px}
+.up-progress-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.up-progress-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .3s}
+
+/* ── AVATAR ── */
+.av-sel{display:flex;gap:10px;justify-content:center;margin-top:8px}
+.av-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 18px;border-radius:12px;border:2px solid var(--border);cursor:pointer;transition:all .15s;background:var(--bg);font-size:11px;font-weight:700;color:var(--muted)}
+.av-opt.chosen{border-color:var(--gold);background:var(--gold4);color:var(--gold)}
+.av-opt span{font-size:28px}
+.admin-av-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:rgba(200,150,44,.04);border:1px solid rgba(200,150,44,.12);border-radius:12px}
+.admin-av-img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+
+/* ── SPONSOR MODAL TOGGLE ── */
 .pl-toggle{display:flex;gap:8px;margin-bottom:2px}
 .pl-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px}
-.pl-btn.sel{border-color:var(--accent);background:rgba(16,185,129,.08);color:var(--accent)}
+.pl-btn.sel{border-color:var(--gold);background:var(--gold4);color:var(--gold)}
 .pl-btn i{font-size:16px}
 
-.admin-av-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.14);border-radius:12px}
-.admin-av-img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
+/* ── ABOUT FEATURES ── */
+.feats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 16px;width:138px;text-align:center;transition:all .2s}
+.feat:hover{border-color:var(--gold);transform:translateY(-3px)}
+.feat-ico{width:44px;height:44px;border-radius:12px;background:rgba(200,150,44,.08);border:1px solid rgba(200,150,44,.16);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:18px;color:var(--gold)}
+.feat-label{font-size:12px;font-weight:700;color:var(--soft)}
 
-/* ══ UPLOAD PROGRESS BAR (NEW) ══ */
-.up-progress{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:8px;margin-top:6px}
-.up-progress-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.up-progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .3s}
-
-@media(max-width:640px){
-  .hd{display:none!important}
-  .hero-body{padding:88px 16px 68px!important}
-  .hero-stats{gap:22px!important}
-}
+/* ── RESPONSIVE HIDE/SHOW ── */
+@media(max-width:640px){.hd{display:none!important}.hero-body{padding:90px 16px 72px!important}}
 @media(min-width:641px){.md{display:none!important}}
 </style>
 </head>
@@ -281,33 +321,41 @@ body.lb-open .card{pointer-events:none}
 <script type="text/babel">
 const{useState,useEffect,useRef,useCallback,useContext,useMemo}=React;
 
-/* ══ SUPABASE ══ */
+/* ── SUPABASE ── */
 const SB_URL='https://dtodkjkwddpmpznckrlf.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0b2Rramt3ZGRwbXB6bmNrcmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NDg4NTYsImV4cCI6MjA5MjQyNDg1Nn0.tdS1c39yykF-RKFuXqBKKaKtEjzd8TPeN9xqOkHkVvo';
 const SB=supabase.createClient(SB_URL,SB_KEY);
 const ADMIN='bilbazarlal836583@gmail.com';
 
-/* ══ VIDEO URL ══ */
-const VIDEO_URL='https://dtodkjkwddpmpznckrlf.supabase.co/storage/v1/object/public/videos/background/mg.mp4';
+const LOGO='https://github.com/hama-tech2/Bilal-bazar/blob/main/halal-market-logo.png?raw=true';
+const HERO_IMG='https://github.com/hama-tech2/Bilal-bazar/blob/main/hero-halal-market.jpg?raw=true';
 
 const MAX_COMMENT=150;
-const MAX_IMGS=100; /* ← UPDATED from 30 to 100 */
-const TITLE_LIMIT=80; /* chars before "See more" appears */
+const MAX_IMGS=100;
+const TITLE_LIMIT=80;
 
-/* ══ CATEGORIES ══ */
-const CATS=['all','rice','meat','cereal','cleaning','other'];
+const CATS=['all','rice','meat','cereal','cleaning','vegetable','dairy','other'];
+
+/* ── STATIC DATA ── */
+const REVIEWS=[
+  {id:1,name:'ئاکۆ عومەر',ckb:'کاڵاکانی تازە و نرخەکانی زۆر باشن. دووکانی پێویستم بۆ مانگی کرد!',ar:'المنتجات طازجة والأسعار ممتازة. أصبح متجري المفضل!',en:'Fresh products and great prices. My go-to store every week!',stars:5},
+  {id:2,name:'سارا حسن',ckb:'خزمەتگوزاری زۆر باشە و شوێنەکەش بیناوی.',ar:'الخدمة رائعة والمكان نظيف جداً.',en:'Wonderful service and very clean place.',stars:5},
+  {id:3,name:'محمد خالد',ckb:'داشکاندنەکانیان هەموو هەفتەیەک نوێن. پیشنیاری دەکەم.',ar:'العروض الأسبوعية دائماً جديدة. أنصح بالزيارة.',en:'Weekly offers are always fresh. Highly recommended.',stars:5},
+  {id:4,name:'ریوار بەکر',ckb:'برنج و کاڵای خواردنی کوالێتییەکەی زۆر باشە.',ar:'جودة الأرز والمواد الغذائية ممتازة.',en:'Rice and food quality is excellent.',stars:4},
+];
 
 const TX={
   ckb:{
-    sub:'هەموو ئەوەی پێویستتە — هەر هەفتەیەک داشکاندنی نوێ',
-    home:'سەرەکی',locs:'شوێنەکان',about:'دەربارە',menu:'مینیو',
+    sub:'هەموو ئەوەی پێویستتە — بە باشترین نرخ',
+    hero2:'هالال ماركت',
+    home:'سەرەکی',locs:'شوێنەکان',about:'دەربارە',deals:'داشکاندن',reviews:'نرخاندن',contact:'پەیوەندی',
     login:'چوونەژوورەوە',signup:'تۆمارکردن',logout:'دەرچوون',
-    deals:'داشکاندنەکان ببینە',stores:'شوێنەکانمان بدۆزەوە',
+    viewDeals:'داشکاندنەکان ببینە',findStore:'شوێنەکانمان بدۆزەوە',callUs:'پەیوەندیمان بکە',
     dtitle:'داشکاندنی ئەم هەفتەیە',more:'زیاتر ببینە',less:'داخستن',
     noPosts:'هیچ داشکاندنێک نییە',
-    ltitle:'شوێنەکانمان',atitle:'دەربارەی بیلال بازار',
-    atext:'لە بیلال بازار هەموو ئەوەی پێویستتە دەبینیت — خواردنی تازە، برنج، گۆشت، دانەوێڵە و زیاتر، بە باشترین نرخ.',
-    copy:'© ٢٠٢٥ بیلال بازار · هەولێر',
+    ltitle:'شوێنەکانمان',atitle:'دەربارەی هالال ماركت',
+    atext:'لە هالال ماركت هەموو ئەوەی پێویستتە دەبینیت — خواردنی تازە، برنج، گۆشت، سەوزە و زیاتر، بە باشترین نرخ و کوالێتیی بەرز.',
+    copy:'© ٢٠٢٥ هالال ماركت · هەولێر',
     days:'ڕۆژ',hrs:'کاتژمێر',min:'خولەک',finished:'داشکاندن کۆتایی هات',
     share:'هاوبەشی',like:'دڵنیا',loginFirst:'تکایە چوونەژوورەوە بۆ سەرنج',
     cmt:'سەرنج',addCmt:'سەرنجت بنووسە...',noCmt:'هیچ سەرنجێک نییە',
@@ -315,27 +363,36 @@ const TX={
     pub:'بڵاوکردنەوە',cancel:'هەڵوەشاندنەوە',save:'هەڵگرتن',
     wc:'ئیمەیڵ یان وشەی نهێنی هەڵەیە',noAcc:'هەژمارت نییە؟',haveAcc:'ئایا ئەندامیتی؟',
     lang:'زمانەکان',
-    cats:{all:'هەموو',rice:'برنج',meat:'گۆشت',cereal:'دانەوێڵە',cleaning:'مادەی پاككردنەوە',other:'هی تر'},
+    cats:{all:'هەموو',rice:'برنج',meat:'گۆشت',cereal:'دانەوێڵە',cleaning:'مادەی پاككردنەوە',vegetable:'سەوزە',dairy:'شیری',other:'هی تر'},
     br:'لق',pr:'کاڵا',wk:'هەفتانە',dc:'داشکاندن',
     openMap:'نەخشە',call:'پەیوەندی',
-    feat1:'کاڵای تازە',feat2:'باشترین نرخ',feat3:'کوالێتی بەرز',
+    feat1:'کاڵای تازە',feat2:'باشترین نرخ',feat3:'کوالێتی بەرز',feat4:'گەیاندن خێرا',
     spLink:'لینک (ئارەزوومەندانە)',crop:'بڕینی وێنە',upload:'بارکردن',
     hide:'شاردنەوە',show:'پیشاندان',
     profile:'پرۆفایل',profName:'ناوت',profAvatar:'ئاڤاتار',profSave:'هەڵگرتنی پرۆفایل',
     male:'کوڕ',female:'کچ',gallery:'دیتن',
     spPlace:'شوێنی بانگهێشتکار',spTop:'سەرەوەی مەلپەڕ',spFloat:'خوارەوەی مەلپەڕ',
     adminPhoto:'وێنەی ئەدمین',reply:'وەڵام',delCmt:'سڕینەوەی سەرنج',
+    rtitle:'نرخاندنی کڕیارەکان',
+    ctitle:'پەیوەندیمان بکە',
+    branch1:'لقی یەکەم',branch2:'لقی دووەم',
+    open:'کراوەیە',hrs2:'8 سبەی - 12 شەو',
+    whatsapp:'واتساپ',directions:'ئاراستە',
+    catTitle:'بەشەکانمان',
+    aboutTag:'دەربارەی ئێمە',
+    menu:'مینیو',
   },
   ar:{
-    sub:'كل ما تحتاجه — خصومات جديدة كل أسبوع',
-    home:'الرئيسية',locs:'المواقع',about:'من نحن',menu:'القائمة',
+    sub:'كل ما تحتاجه — بأفضل الأسعار',
+    hero2:'هلال ماركت',
+    home:'الرئيسية',locs:'المواقع',about:'من نحن',deals:'العروض',reviews:'التقييمات',contact:'التواصل',
     login:'تسجيل الدخول',signup:'إنشاء حساب',logout:'تسجيل الخروج',
-    deals:'عرض الخصومات',stores:'ابحث عن فروعنا',
+    viewDeals:'عرض الخصومات',findStore:'ابحث عن فروعنا',callUs:'اتصل بنا',
     dtitle:'عروض الأسبوع',more:'عرض المزيد',less:'إخفاء',
     noPosts:'لا توجد عروض',
-    ltitle:'فروعنا',atitle:'عن بيلال بازار',
-    atext:'في بيلال بازار ستجد كل ما تحتاجه — منتجات طازجة، أرز، لحوم، حبوب وأكثر، بأفضل الأسعار.',
-    copy:'© ٢٠٢٥ بيلال بازار · أربيل',
+    ltitle:'فروعنا',atitle:'عن هلال ماركت',
+    atext:'في هلال ماركت ستجد كل ما تحتاجه — منتجات طازجة، أرز، لحوم، خضروات وأكثر، بأفضل الأسعار وجودة عالية.',
+    copy:'© ٢٠٢٥ هلال ماركت · أربيل',
     days:'أيام',hrs:'ساعة',min:'دقيقة',finished:'انتهى الخصم',
     share:'مشاركة',like:'إعجاب',loginFirst:'سجّل دخولك للتعليق',
     cmt:'تعليق',addCmt:'اكتب تعليقاً...',noCmt:'لا توجد تعليقات',
@@ -343,65 +400,88 @@ const TX={
     pub:'نشر',cancel:'إلغاء',save:'حفظ',
     wc:'بيانات خاطئة',noAcc:'ليس لديك حساب؟',haveAcc:'هل أنت عضو؟',
     lang:'اللغات',
-    cats:{all:'الكل',rice:'أرز',meat:'لحوم',cereal:'حبوب',cleaning:'مادة تنظيف',other:'أخرى'},
+    cats:{all:'الكل',rice:'أرز',meat:'لحوم',cereal:'حبوب',cleaning:'مادة تنظيف',vegetable:'خضار',dairy:'منتجات ألبان',other:'أخرى'},
     br:'فروع',pr:'منتج',wk:'أسبوعي',dc:'خصومات',
     openMap:'الخريطة',call:'اتصال',
-    feat1:'منتجات طازجة',feat2:'أفضل الأسعار',feat3:'جودة عالية',
+    feat1:'منتجات طازجة',feat2:'أفضل الأسعار',feat3:'جودة عالية',feat4:'توصيل سريع',
     spLink:'رابط (اختياري)',crop:'قص الصورة',upload:'رفع',
     hide:'إخفاء',show:'إظهار',
     profile:'الملف الشخصي',profName:'الاسم',profAvatar:'الصورة الرمزية',profSave:'حفظ الملف',
     male:'ذكر',female:'أنثى',gallery:'اختر',
     spPlace:'موضع الراعي',spTop:'أعلى الموقع',spFloat:'أسفل يسار',
     adminPhoto:'صورة المشرف',reply:'رد',delCmt:'حذف التعليق',
+    rtitle:'آراء عملائنا',
+    ctitle:'تواصل معنا',
+    branch1:'الفرع الأول',branch2:'الفرع الثاني',
+    open:'مفتوح',hrs2:'8 صباحاً - 12 منتصف الليل',
+    whatsapp:'واتساب',directions:'الاتجاهات',
+    catTitle:'أقسامنا',
+    aboutTag:'عن متجرنا',
+    menu:'القائمة',
   },
   en:{
-    sub:'Everything you need — fresh discounts every week',
-    home:'Home',locs:'Locations',about:'About',menu:'Menu',
+    sub:'Everything you need — at the best prices',
+    hero2:'Halal Market',
+    home:'Home',locs:'Locations',about:'About',deals:'Deals',reviews:'Reviews',contact:'Contact',
     login:'Login',signup:'Sign Up',logout:'Logout',
-    deals:'See Deals',stores:'Find a Store',
+    viewDeals:'See Deals',findStore:'Find a Store',callUs:'Call Us',
     dtitle:"This Week's Deals",more:'See More',less:'Show Less',
     noPosts:'No deals right now',
-    ltitle:'Our Locations',atitle:'About Bilal Bazar',
-    atext:'At Bilal Bazar you will find everything you need — fresh produce, rice, meat, cereals and more, at the best prices.',
-    copy:'© 2025 Bilal Bazar · Erbil',
-    days:'DAYS',hrs:'HRS',min:'MIN',finished:'Discount Finished',
+    ltitle:'Our Locations',atitle:'About Halal Market',
+    atext:'At Halal Market you will find everything you need — fresh produce, rice, meat, vegetables and more, at the best prices with top quality.',
+    copy:'© 2025 Halal Market · Erbil',
+    days:'DAYS',hrs:'HRS',min:'MIN',finished:'Offer Ended',
     share:'Share',like:'Like',loginFirst:'Log in to comment',
     cmt:'Comment',addCmt:'Write a comment...',noCmt:'No comments yet',
     addPost:'Add Post',edit:'Edit',del:'Delete',mgSp:'Sponsors',
     pub:'Publish',cancel:'Cancel',save:'Save',
-    wc:'Wrong email or password',noAcc:"Don't have an account?",haveAcc:'Already a member?',
+    wc:'Wrong credentials',noAcc:"Don't have an account?",haveAcc:'Already a member?',
     lang:'Languages',
-    cats:{all:'All',rice:'Rice',meat:'Meat',cereal:'Cereals',cleaning:'Cleaning Agent',other:'Other'},
+    cats:{all:'All',rice:'Rice',meat:'Meat',cereal:'Cereals',cleaning:'Cleaning',vegetable:'Vegetables',dairy:'Dairy',other:'Other'},
     br:'Branches',pr:'Products',wk:'Weekly',dc:'Discounts',
     openMap:'Map',call:'Call',
-    feat1:'Fresh Products',feat2:'Best Prices',feat3:'Top Quality',
+    feat1:'Fresh Products',feat2:'Best Prices',feat3:'Top Quality',feat4:'Fast Delivery',
     spLink:'Link (optional)',crop:'Crop Image',upload:'Upload',
     hide:'Hide',show:'Show',
     profile:'Profile',profName:'Your Name',profAvatar:'Avatar',profSave:'Save Profile',
     male:'Male',female:'Female',gallery:'Choose',
     spPlace:'Sponsor Position',spTop:'Top of Website',spFloat:'Floating Bottom',
     adminPhoto:'Admin Photo',reply:'Reply',delCmt:'Delete Comment',
+    rtitle:'Customer Reviews',
+    ctitle:'Contact Us',
+    branch1:'Branch One',branch2:'Branch Two',
+    open:'Open',hrs2:'8:00 AM – 12:00 AM',
+    whatsapp:'WhatsApp',directions:'Directions',
+    catTitle:'Our Categories',
+    aboutTag:'About Us',
+    menu:'Menu',
   }
 };
 
 const AVATARS={male:'👨',female:'👩'};
 
-const LOCS=[
-  {id:1,ckb:'بیلال بازار – شەقامی کۆیە',ar:'بيلال بازار – شارع كويا',en:'Bilal Bazar – Koya Street',
-   addr:{ckb:'شەقامی کۆیە، هەولێر',ar:'شارع كويا، أربيل',en:'Koya Street, Erbil'},
-   link:'https://maps.app.goo.gl/MR4fDpX1jHAAsHzLA',ph:'0750 919 3030',hr:'8:00 AM – 12:00 PM'},
-  {id:2,ckb:'بیلال بازار – کۆرنیش',ar:'بيلال بازار – الكورنيش',en:'Bilal Bazar – Kornish',
-   addr:{ckb:'کۆرنیش، هەولێر',ar:'الكورنيش، أربيل',en:'Kornish, Erbil'},
-   link:'https://maps.app.goo.gl/ZuwXPth3DokXYDEt7',ph:'0750 919 3030',hr:'8:00 AM – 12:00 PM'},
-  {id:3,ckb:'بیلال بازار – هەولێری نوێ',ar:'بيلال بازار – أربيل الجديدة',en:'Bilal Bazar – New Erbil',
-   addr:{ckb:'هەولێری نوێ، هەولێر',ar:'أربيل الجديدة',en:'New Erbil, Erbil'},
-   link:'https://maps.app.goo.gl/vZhSVM94MKC1Cuja9',ph:'0750 919 3030',hr:'8:00 AM – 12:00 PM'},
-  {id:4,ckb:'هیواستی، هەولێر',ar:'هيواستي، أربيل',en:'Hiwasti, Erbil',
-   addr:{ckb:'بازاڕی بلڤانیس',ar:'سوق بلفانيس',en:'Bilvanis Market'},
-   link:'https://maps.app.goo.gl/gd7Hb4tBcRgLuey57',ph:'0750 919 3030',hr:'8:00 AM – 12:00 PM'},
+const CAT_ICONS={all:'🛒',rice:'🌾',meat:'🥩',cereal:'🌽',cleaning:'🧹',vegetable:'🥦',dairy:'🥛',other:'📦'};
+
+const LOCATIONS=[
+  {id:1,
+   name:{ckb:'هالال ماركت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
+   addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
+   link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+   phone:'07517985971',
+   phone_display:'0751 798 5971',
+   hr:'8:00 AM – 12:00 AM',
+  },
+  {id:2,
+   name:{ckb:'هالال ماركت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
+   addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
+   link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+   phone:'07507364615',
+   phone_display:'0750 736 4615',
+   hr:'8:00 AM – 12:00 AM',
+  },
 ];
 
-/* ══ CONTEXT ══ */
+/* ── CONTEXT ── */
 const Ctx=React.createContext();
 function Provider({children}){
   const[lang,setLang]=useState('ckb');
@@ -442,8 +522,7 @@ function Provider({children}){
       window.history.replaceState(null,'',window.location.pathname);
     }
     SB.auth.getSession().then(({data:{session}})=>{
-      const u=session?.user||null;
-      setUser(u);if(u)loadProfile(u.id);setReady(true);
+      const u=session?.user||null;setUser(u);if(u)loadProfile(u.id);setReady(true);
     });
     const{data:{subscription}}=SB.auth.onAuthStateChange((_,s)=>{
       const u=s?.user||null;setUser(u);
@@ -463,7 +542,7 @@ function Provider({children}){
 }
 const useApp=()=>useContext(Ctx);
 
-/* ══ HELPERS ══ */
+/* ── HELPERS ── */
 function tleft(iso,days){
   const d=new Date(iso).getTime()+days*86400000-Date.now();
   if(d<=0)return null;
@@ -476,23 +555,17 @@ async function uploadToStorage(bucket,fileOrBlob,ext='jpg'){
   const name=`${Date.now()}_${Math.random().toString(36).slice(2,7)}.${ext}`;
   const ctype=fileOrBlob instanceof Blob&&fileOrBlob.type?fileOrBlob.type:`image/${ext}`;
   const{error}=await SB.storage.from(bucket).upload(name,fileOrBlob,{contentType:ctype,upsert:false});
-  if(error)throw new Error(error.message||'Storage upload failed');
+  if(error)throw new Error(error.message||'Upload failed');
   return SB.storage.from(bucket).getPublicUrl(name).data.publicUrl;
 }
 
-/* ══ AVATAR ══ */
+/* ── AVATAR ── */
 function Av({profile,size=24,emojiSz=13}){
-  if(profile?.avatar_url){
-    return<img src={profile.avatar_url} style={{width:size,height:size,borderRadius:'50%',objectFit:'cover',border:'1px solid rgba(16,185,129,.2)',flexShrink:0,display:'inline-block'}}/>;
-  }
-  return(
-    <span style={{width:size,height:size,borderRadius:'50%',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:emojiSz,background:'rgba(16,185,129,.1)',border:'1px solid rgba(16,185,129,.2)',flexShrink:0}}>
-      {AVATARS[profile?.avatar||'male']||'👤'}
-    </span>
-  );
+  if(profile?.avatar_url)return<img src={profile.avatar_url} style={{width:size,height:size,borderRadius:'50%',objectFit:'cover',border:'1px solid rgba(200,150,44,.2)',flexShrink:0,display:'inline-block'}}/>;
+  return<span style={{width:size,height:size,borderRadius:'50%',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:emojiSz,background:'rgba(200,150,44,.1)',border:'1px solid rgba(200,150,44,.2)',flexShrink:0}}>{AVATARS[profile?.avatar||'male']||'👤'}</span>;
 }
 
-/* ══ PROFILE MODAL ══ */
+/* ── PROFILE MODAL ── */
 function ProfileModal({onClose}){
   const{t,user,profile,setProfile,toast,isAdmin}=useApp();
   const[name,setName]=useState(profile?.name||'');
@@ -501,17 +574,13 @@ function ProfileModal({onClose}){
   const[saving,setSaving]=useState(false);
   const[upBusy,setUpBusy]=useState(false);
   const fileRef=useRef(null);
-
   const uploadPhoto=async e=>{
     const f=e.target.files[0];if(!f)return;
     setUpBusy(true);
-    try{
-      const url=await uploadToStorage('avatars',f,(f.name.split('.').pop()||'jpg').toLowerCase());
-      setAvatarUrl(url);toast('Photo uploaded ✓');
-    }catch(err){toast(err.message||'Upload failed',false);}
+    try{const url=await uploadToStorage('avatars',f,(f.name.split('.').pop()||'jpg').toLowerCase());setAvatarUrl(url);toast('Photo uploaded ✓');}
+    catch(err){toast(err.message||'Upload failed',false);}
     setUpBusy(false);e.target.value='';
   };
-
   const save=async()=>{
     if(!user)return;setSaving(true);
     const payload={id:user.id,name:name.trim().slice(0,30),avatar,avatar_url:avatarUrl||null};
@@ -520,7 +589,6 @@ function ProfileModal({onClose}){
     if(error){toast(error.message,false);return;}
     setProfile(data);toast(t('profSave')+' ✓');onClose();
   };
-
   return(
     <div className="ov" onClick={onClose}>
       <div className="mbox" style={{maxWidth:360}} onClick={e=>e.stopPropagation()}>
@@ -528,11 +596,8 @@ function ProfileModal({onClose}){
         <div className="mbody" style={{display:'flex',flexDirection:'column',gap:16}}>
           {isAdmin&&(
             <div className="admin-av-wrap">
-              <label style={{fontSize:11,fontWeight:700,color:'var(--accent)',textTransform:'uppercase',letterSpacing:.5}}>{t('adminPhoto')}</label>
-              {avatarUrl
-                ?<img src={avatarUrl} className="admin-av-img" alt=""/>
-                :<div style={{width:72,height:72,borderRadius:'50%',background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:28}}>{AVATARS[avatar]||'👤'}</div>
-              }
+              <label style={{fontSize:11,fontWeight:700,color:'var(--gold)',textTransform:'uppercase',letterSpacing:.5}}>{t('adminPhoto')}</label>
+              {avatarUrl?<img src={avatarUrl} className="admin-av-img" alt=""/>:<div style={{width:72,height:72,borderRadius:'50%',background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:28}}>{AVATARS[avatar]||'👤'}</div>}
               <button className="btn btn-g" style={{padding:'7px 14px',fontSize:12}} onClick={()=>fileRef.current?.click()} disabled={upBusy}>
                 {upBusy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:<><i className="fas fa-camera"/> Upload Photo</>}
               </button>
@@ -542,11 +607,7 @@ function ProfileModal({onClose}){
           <div>
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8,textTransform:'uppercase',letterSpacing:.5}}>{t('profAvatar')}</label>
             <div className="av-sel">
-              {['male','female'].map(a=>(
-                <div key={a} className={`av-opt${avatar===a?' chosen':''}`} onClick={()=>setAvatar(a)}>
-                  <span>{AVATARS[a]}</span>{t(a)}
-                </div>
-              ))}
+              {['male','female'].map(a=><div key={a} className={`av-opt${avatar===a?' chosen':''}`} onClick={()=>setAvatar(a)}><span>{AVATARS[a]}</span>{t(a)}</div>)}
             </div>
           </div>
           <div>
@@ -554,7 +615,7 @@ function ProfileModal({onClose}){
             <input className="inp" placeholder={t('profName')} value={name} maxLength={30} onChange={e=>setName(e.target.value)}/>
             <p style={{fontSize:10,color:'var(--muted)',marginTop:4,textAlign:'end'}}>{name.length}/30</p>
           </div>
-          <button className="btn btn-p wf" onClick={save} disabled={saving} style={{padding:'12px',fontSize:14}}>
+          <button className="btn btn-gold wf" onClick={save} disabled={saving} style={{padding:'12px',fontSize:14}}>
             {saving?<><i className="fas fa-spinner fa-spin"/> Saving…</>:t('profSave')}
           </button>
         </div>
@@ -563,14 +624,13 @@ function ProfileModal({onClose}){
   );
 }
 
-/* ══ AUTH MODAL ══ */
+/* ── AUTH MODAL ── */
 function AuthModal({onClose}){
   const{t,toast,loadProfile}=useApp();
   const[mode,setMode]=useState('login');
   const[email,setEmail]=useState('');
   const[pass,setPass]=useState('');
   const[loading,setLoading]=useState(false);
-
   const submit=async e=>{
     e.preventDefault();setLoading(true);
     try{
@@ -594,23 +654,21 @@ function AuthModal({onClose}){
     }
     setLoading(false);
   };
-
   const google=async()=>{
     setLoading(true);
     const{error}=await SB.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin+window.location.pathname}});
     if(error){toast('Google login not enabled.',false);setLoading(false);}
   };
-
   return(
     <div className="ov" onClick={onClose}>
       <div className="mbox" style={{maxWidth:370}} onClick={e=>e.stopPropagation()}>
         <div className="mbody">
           <div style={{textAlign:'center',marginBottom:20}}>
-            <div style={{width:48,height:48,borderRadius:13,background:'linear-gradient(135deg,var(--accent),var(--accent2))',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,fontWeight:900,color:'#02140d',margin:'0 auto 12px'}}>B</div>
+            <img src={LOGO} alt="Halal Market" style={{width:52,height:52,objectFit:'contain',borderRadius:12,margin:'0 auto 12px',border:'1px solid rgba(200,150,44,.2)'}}/>
             <h2 style={{fontWeight:900,fontSize:20}}>{mode==='login'?t('login'):t('signup')}</h2>
             <p style={{fontSize:12,color:'var(--muted)',marginTop:4}}>
               {mode==='login'?t('noAcc'):t('haveAcc')}
-              <span className="acc" style={{cursor:'pointer',marginInlineStart:6,fontWeight:700}} onClick={()=>setMode(m=>m==='login'?'signup':'login')}>
+              <span style={{cursor:'pointer',marginInlineStart:6,fontWeight:700,color:'var(--gold)'}} onClick={()=>setMode(m=>m==='login'?'signup':'login')}>
                 {mode==='login'?t('signup'):t('login')}
               </span>
             </p>
@@ -625,7 +683,7 @@ function AuthModal({onClose}){
               <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:5,textTransform:'uppercase',letterSpacing:.4}}>Password</label>
               <input className="inp" type="password" placeholder="••••••••" value={pass} onChange={e=>setPass(e.target.value)} autoComplete="new-password" required minLength={6}/>
             </div>
-            <button type="submit" className="btn btn-p wf" style={{padding:'13px',fontSize:15}} disabled={loading}>
+            <button type="submit" className="btn btn-gold wf" style={{padding:'13px',fontSize:15}} disabled={loading}>
               {loading?<><i className="fas fa-spinner fa-spin"/> Please wait…</>:(mode==='login'?t('login'):t('signup'))}
             </button>
           </form>
@@ -642,7 +700,7 @@ function AuthModal({onClose}){
   );
 }
 
-/* ══ CROP MODAL ══ */
+/* ── CROP MODAL ── */
 function CropModal({file,aspect,onDone,onClose}){
   const{t}=useApp();
   const[img,setImg]=useState(null);
@@ -650,7 +708,6 @@ function CropModal({file,aspect,onDone,onClose}){
   const[drag,setDrag]=useState(false);
   const dr=useRef({});
   const sr=useRef({rw:320,rh:320,cw:320,ch:80,scale:1});
-
   useEffect(()=>{
     if(!file)return;
     const url=URL.createObjectURL(file);
@@ -669,7 +726,6 @@ function CropModal({file,aspect,onDone,onClose}){
     im.src=url;
     return()=>URL.revokeObjectURL(url);
   },[file,aspect]);
-
   const getXY=e=>e.touches?{cx:e.touches[0].clientX,cy:e.touches[0].clientY}:{cx:e.clientX,cy:e.clientY};
   const onS=e=>{setDrag(true);const{cx,cy}=getXY(e);dr.current={sx:cx,sy:cy,cx:crop.x,cy:crop.y};};
   const onM=e=>{if(!drag)return;const{cx,cy}=getXY(e);const dx=cx-dr.current.sx,dy=cy-dr.current.sy;const{rw,rh,cw,ch}=sr.current;setCrop({x:Math.max(0,Math.min(rw-cw,dr.current.cx+dx)),y:Math.max(0,Math.min(rh-ch,dr.current.cy+dy))});};
@@ -684,7 +740,7 @@ function CropModal({file,aspect,onDone,onClose}){
     cv.getContext('2d').drawImage(img,sx,sy,sw,sh,0,0,outW,outH);
     cv.toBlob(b=>{if(b)onDone(b);},'image/jpeg',.92);
   };
-  if(!img)return<div className="ov"><div className="mbox" style={{maxWidth:320,textAlign:'center'}} onClick={e=>e.stopPropagation()}><div className="mbody"><i className="fas fa-spinner fa-spin acc" style={{fontSize:28}}/></div></div></div>;
+  if(!img)return<div className="ov"><div className="mbox" style={{maxWidth:320,textAlign:'center'}} onClick={e=>e.stopPropagation()}><div className="mbody"><i className="fas fa-spinner fa-spin gold" style={{fontSize:28}}/></div></div></div>;
   const{rw,rh,cw,ch}=sr.current;
   return(
     <div className="ov" onClick={onClose}>
@@ -700,7 +756,7 @@ function CropModal({file,aspect,onDone,onClose}){
           </div>
           <div style={{display:'flex',gap:10,justifyContent:'center',marginTop:16}}>
             <button className="btn btn-g" onClick={onClose}>{t('cancel')}</button>
-            <button className="btn btn-p" onClick={confirm}><i className="fas fa-check"/> {t('upload')}</button>
+            <button className="btn btn-gold" onClick={confirm}><i className="fas fa-check"/> {t('upload')}</button>
           </div>
         </div>
       </div>
@@ -708,11 +764,10 @@ function CropModal({file,aspect,onDone,onClose}){
   );
 }
 
-/* ══ GLOBAL LIGHTBOX ══ */
+/* ── GLOBAL LIGHTBOX ── */
 function GlobalLightbox({imgs,startIdx,onClose}){
   const[i,setI]=useState(startIdx);
   const ts=useRef(null);
-
   useEffect(()=>{
     document.body.classList.add('lb-open');
     const h=e=>{
@@ -723,10 +778,8 @@ function GlobalLightbox({imgs,startIdx,onClose}){
     window.addEventListener('keydown',h);
     return()=>{document.body.classList.remove('lb-open');window.removeEventListener('keydown',h);};
   },[imgs,onClose]);
-
   const prev=()=>setI(x=>(x-1+imgs.length)%imgs.length);
   const next=()=>setI(x=>(x+1)%imgs.length);
-
   const onTouchStart=e=>{ts.current=e.touches[0].clientX;};
   const onTouchEnd=e=>{
     if(ts.current===null)return;
@@ -734,14 +787,12 @@ function GlobalLightbox({imgs,startIdx,onClose}){
     if(Math.abs(dx)>40){dx<0?next():prev();}
     ts.current=null;
   };
-
   const onImgClick=e=>{
     if(imgs.length<=1){onClose();return;}
     e.stopPropagation();
     const{left,width}=e.currentTarget.getBoundingClientRect();
     (e.clientX-left)<width/2?prev():next();
   };
-
   return(
     <div className="lb" onClick={onClose} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <button className="lbc" onClick={e=>{e.stopPropagation();onClose();}}>×</button>
@@ -755,49 +806,30 @@ function GlobalLightbox({imgs,startIdx,onClose}){
   );
 }
 
-/* ══ TOP SPONSOR ══ */
+/* ── SPONSORS ── */
 function SpTop({sponsors}){
   const[idx,setIdx]=useState(0);
   const[opacity,setOpacity]=useState(1);
-  const SHOW=6000,FADE=500;
   useEffect(()=>{
     if(sponsors.length<=1)return;
-    const id=setInterval(()=>{
-      setOpacity(0);
-      setTimeout(()=>{setIdx(i=>(i+1)%sponsors.length);setOpacity(1);},FADE);
-    },SHOW);
+    const id=setInterval(()=>{setOpacity(0);setTimeout(()=>{setIdx(i=>(i+1)%sponsors.length);setOpacity(1);},500);},6000);
     return()=>clearInterval(id);
   },[sponsors.length]);
   if(!sponsors.length)return null;
   const s=sponsors[idx];
   const vid=isVideoUrl(s.image_url);
-  const media=vid
-    ?<video src={s.image_url} autoPlay muted loop playsInline style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>
-    :<img src={s.image_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>;
+  const media=vid?<video src={s.image_url} autoPlay muted loop playsInline style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>:<img src={s.image_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}/>;
   const inner=s.link_url?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>:media;
-  return(
-    <div className="sp-top-wrap">
-      <div className="sp-top-slide" style={{opacity,transition:`opacity ${FADE}ms ease`}}>{inner}</div>
-      <span className="sp-top-label">Ad</span>
-    </div>
-  );
+  return<div className="sp-top-wrap"><div className="sp-top-slide" style={{opacity,transition:'opacity 500ms ease'}}>{inner}</div><span className="sp-top-label">Ad</span></div>;
 }
 
-/* ══ FLOAT SPONSOR ══ */
 function SpFloat({sponsors}){
   const[visible,setVisible]=useState(false);
   const[idx,setIdx]=useState(0);
   useEffect(()=>{
     if(!sponsors.length)return;
     let t;
-    const cycle=()=>{
-      setVisible(true);
-      t=setTimeout(()=>{
-        setVisible(false);
-        setIdx(i=>(i+1)%sponsors.length);
-        t=setTimeout(cycle,22000);
-      },7000);
-    };
+    const cycle=()=>{setVisible(true);t=setTimeout(()=>{setVisible(false);setIdx(i=>(i+1)%sponsors.length);t=setTimeout(cycle,22000);},7000);};
     t=setTimeout(cycle,5000);
     return()=>clearTimeout(t);
   },[sponsors.length]);
@@ -806,11 +838,7 @@ function SpFloat({sponsors}){
   const vid=isVideoUrl(s.image_url);
   const media=vid?<video src={s.image_url} autoPlay muted loop playsInline/>:<img src={s.image_url} alt=""/>;
   const inner=s.link_url?<a href={s.link_url} target="_blank" rel="noreferrer" style={{display:'block',width:'100%',height:'100%'}}>{media}</a>:media;
-  return(
-    <div className="sp-float-wrap" style={{opacity:visible?1:0,pointerEvents:visible?'auto':'none',transition:'opacity .55s ease'}}>
-      <div className="sp-float-inner"><span className="sp-float-label">Ad</span>{inner}</div>
-    </div>
-  );
+  return<div className="sp-float-wrap" style={{opacity:visible?1:0,pointerEvents:visible?'auto':'none',transition:'opacity .55s ease'}}><div className="sp-float-inner"><span className="sp-float-label">Ad</span>{inner}</div></div>;
 }
 
 function SponsorsDisplay({sponsors}){
@@ -819,7 +847,7 @@ function SponsorsDisplay({sponsors}){
   return<><SpTop sponsors={top}/><SpFloat sponsors={bot}/></>;
 }
 
-/* ══ COUNTDOWN ══ */
+/* ── COUNTDOWN ── */
 function Countdown({iso,days}){
   const{t}=useApp();
   const[tl,setTl]=useState(()=>tleft(iso,days));
@@ -837,14 +865,7 @@ function Countdown({iso,days}){
   );
 }
 
-/* ══════════════════════════════════════════
-   COMMENTS
-   ─ NEW: deleteComment function
-   ─ NEW: delete button (×) on each comment/reply
-     • Admin → can delete any comment
-     • User  → can delete only their own comment
-     • Others see no delete button
-══════════════════════════════════════════ */
+/* ── COMMENTS ── */
 function Comments({postId,user,onLogin}){
   const{t,profile,toast,isAdmin}=useApp();
   const[list,setList]=useState([]);
@@ -854,13 +875,10 @@ function Comments({postId,user,onLogin}){
   const[replyTo,setReplyTo]=useState(null);
   const[replyText,setReplyText]=useState('');
   const[replyBusy,setReplyBusy]=useState(false);
-
   useEffect(()=>{
     let cancelled=false;
     (async()=>{
-      const{data:cmts}=await SB.from('comments')
-        .select('id,content,created_at,user_id,parent_id,is_admin_reply')
-        .eq('post_id',postId).order('created_at',{ascending:true});
+      const{data:cmts}=await SB.from('comments').select('id,content,created_at,user_id,parent_id,is_admin_reply').eq('post_id',postId).order('created_at',{ascending:true});
       if(cancelled)return;
       if(!cmts||!cmts.length){setList([]);setFetched(true);return;}
       const ids=[...new Set(cmts.map(c=>c.user_id))];
@@ -873,13 +891,11 @@ function Comments({postId,user,onLogin}){
     return()=>{cancelled=true;};
   },[postId]);
 
-  /* ── DELETE comment (admin: any / user: own only) ── */
   const deleteComment=async id=>{
     if(!user)return;
     if(!window.confirm(t('delCmt')+'?'))return;
     const{error}=await SB.from('comments').delete().eq('id',id);
     if(error){toast(error.message,false);return;}
-    /* Remove the comment AND any replies to it from local state */
     setList(p=>p.filter(c=>c.id!==id&&c.parent_id!==id));
     toast('Deleted ✓');
   };
@@ -889,22 +905,18 @@ function Comments({postId,user,onLogin}){
     const tr=text.trim();
     if(!tr||!user||tr.length>MAX_COMMENT)return;
     setBusy(true);
-    const{data,error}=await SB.from('comments')
-      .insert({post_id:postId,user_id:user.id,content:tr,parent_id:null,is_admin_reply:false})
-      .select('id,content,created_at,user_id,parent_id,is_admin_reply').single();
+    const{data,error}=await SB.from('comments').insert({post_id:postId,user_id:user.id,content:tr,parent_id:null,is_admin_reply:false}).select('id,content,created_at,user_id,parent_id,is_admin_reply').single();
     setBusy(false);
     if(error){toast(error.message,false);return;}
     setList(p=>[...p,{...data,profile:profile?{name:profile.name,avatar:profile.avatar,avatar_url:profile.avatar_url}:null}]);
     setText('');
   };
 
-  const submitReply=async(parentId)=>{
+  const submitReply=async parentId=>{
     const tr=replyText.trim();
     if(!tr||!user||tr.length>MAX_COMMENT)return;
     setReplyBusy(true);
-    const{data,error}=await SB.from('comments')
-      .insert({post_id:postId,user_id:user.id,content:tr,parent_id:parentId,is_admin_reply:true})
-      .select('id,content,created_at,user_id,parent_id,is_admin_reply').single();
+    const{data,error}=await SB.from('comments').insert({post_id:postId,user_id:user.id,content:tr,parent_id:parentId,is_admin_reply:true}).select('id,content,created_at,user_id,parent_id,is_admin_reply').single();
     setReplyBusy(false);
     if(error){toast(error.message,false);return;}
     setList(p=>[...p,{...data,profile:profile?{name:profile.name,avatar:profile.avatar,avatar_url:profile.avatar_url}:null}]);
@@ -916,7 +928,7 @@ function Comments({postId,user,onLogin}){
       <div className="cm-login-box">
         <p style={{fontSize:12,color:'var(--muted)',marginBottom:10}}>{t('loginFirst')}</p>
         <div style={{display:'flex',gap:8,justifyContent:'center'}}>
-          <button className="btn btn-p" style={{padding:'7px 16px',fontSize:12}} onClick={onLogin}>{t('login')}</button>
+          <button className="btn btn-gold" style={{padding:'7px 16px',fontSize:12}} onClick={onLogin}>{t('login')}</button>
           <button className="btn btn-g" style={{padding:'7px 16px',fontSize:12}} onClick={onLogin}>{t('signup')}</button>
         </div>
       </div>
@@ -925,7 +937,6 @@ function Comments({postId,user,onLogin}){
 
   const topLevel=list.filter(c=>!c.parent_id);
   const getReplies=pid=>list.filter(c=>c.parent_id===pid);
-  /* Show delete button for admin (any comment) or for own comment */
   const canDelete=c=>isAdmin||(user&&user.id===c.user_id);
 
   return(
@@ -940,20 +951,11 @@ function Comments({postId,user,onLogin}){
                 <Av profile={c.profile} size={24} emojiSz={13}/>
                 <span className="cm-name">{c.profile?.name||'User'}</span>
                 <span className="cm-date">{new Date(c.created_at).toLocaleDateString()}</span>
-                {/* DELETE BUTTON — visible only to owner or admin */}
-                {canDelete(c)&&(
-                  <button className="cm-del-btn" title={t('delCmt')} onClick={()=>deleteComment(c.id)}>×</button>
-                )}
+                {canDelete(c)&&<button className="cm-del-btn" title={t('delCmt')} onClick={()=>deleteComment(c.id)}>×</button>}
               </div>
               <div className="cm-txt">{c.content}</div>
-              {isAdmin&&(
-                <button style={{background:'none',border:'none',cursor:'pointer',color:'var(--accent)',fontSize:10,fontWeight:700,marginTop:5,padding:'2px 0'}}
-                  onClick={()=>setReplyTo(replyTo===c.id?null:c.id)}>
-                  <i className="fas fa-reply" style={{marginInlineEnd:4}}/>{t('reply')}
-                </button>
-              )}
+              {isAdmin&&<button style={{background:'none',border:'none',cursor:'pointer',color:'var(--gold)',fontSize:10,fontWeight:700,marginTop:5,padding:'2px 0'}} onClick={()=>setReplyTo(replyTo===c.id?null:c.id)}><i className="fas fa-reply" style={{marginInlineEnd:4}}/>{t('reply')}</button>}
             </div>
-            {/* Replies */}
             {getReplies(c.id).map(r=>(
               <div key={r.id} className="cm-reply-item">
                 <div className="cm-meta">
@@ -961,10 +963,7 @@ function Comments({postId,user,onLogin}){
                   <span className="cm-name">{r.profile?.name||'Admin'}</span>
                   <span className="cm-admin-tag">Admin</span>
                   <span className="cm-date">{new Date(r.created_at).toLocaleDateString()}</span>
-                  {/* Admin can also delete replies */}
-                  {canDelete(r)&&(
-                    <button className="cm-del-btn" title={t('delCmt')} onClick={()=>deleteComment(r.id)}>×</button>
-                  )}
+                  {canDelete(r)&&<button className="cm-del-btn" title={t('delCmt')} onClick={()=>deleteComment(r.id)}>×</button>}
                 </div>
                 <div className="cm-txt">{r.content}</div>
               </div>
@@ -973,14 +972,11 @@ function Comments({postId,user,onLogin}){
               <div className="cm-reply-form">
                 <div style={{display:'flex',gap:6,alignItems:'center'}}>
                   <Av profile={profile} size={20} emojiSz={11}/>
-                  <input className="inp" style={{fontSize:11,padding:'6px 8px',flex:1}} placeholder="Write reply…"
-                    value={replyText} onChange={e=>setReplyText(e.target.value.slice(0,MAX_COMMENT))} autoFocus/>
-                  <button className="btn btn-p" style={{padding:'6px 10px',fontSize:11,height:30,flexShrink:0}}
-                    onClick={()=>submitReply(c.id)} disabled={replyBusy||!replyText.trim()}>
+                  <input className="inp" style={{fontSize:11,padding:'6px 8px',flex:1}} placeholder="Write reply…" value={replyText} onChange={e=>setReplyText(e.target.value.slice(0,MAX_COMMENT))} autoFocus/>
+                  <button className="btn btn-gold" style={{padding:'6px 10px',fontSize:11,height:30,flexShrink:0}} onClick={()=>submitReply(c.id)} disabled={replyBusy||!replyText.trim()}>
                     {replyBusy?<i className="fas fa-spinner fa-spin"/>:<i className="fas fa-paper-plane"/>}
                   </button>
-                  <button className="btn btn-g" style={{padding:'6px 8px',fontSize:11,height:30,flexShrink:0}}
-                    onClick={()=>{setReplyTo(null);setReplyText('');}}>×</button>
+                  <button className="btn btn-g" style={{padding:'6px 8px',fontSize:11,height:30,flexShrink:0}} onClick={()=>{setReplyTo(null);setReplyText('');}}>×</button>
                 </div>
                 <div className="cm-char">{replyText.length}/{MAX_COMMENT}</div>
               </div>
@@ -991,8 +987,7 @@ function Comments({postId,user,onLogin}){
       <form onSubmit={submit}>
         <div className="cm-input-row">
           <Av profile={profile} size={22} emojiSz={12}/>
-          <input placeholder={t('addCmt')} value={text}
-            onChange={e=>setText(e.target.value.slice(0,MAX_COMMENT))} maxLength={MAX_COMMENT}/>
+          <input placeholder={t('addCmt')} value={text} onChange={e=>setText(e.target.value.slice(0,MAX_COMMENT))} maxLength={MAX_COMMENT}/>
           <button type="submit" disabled={busy||!text.trim()}>
             {busy?<i className="fas fa-spinner fa-spin"/>:<i className="fas fa-paper-plane"/>}
           </button>
@@ -1003,40 +998,25 @@ function Comments({postId,user,onLogin}){
   );
 }
 
-/* ══════════════════════════════════════════
-   DEAL CARD
-   ─ NEW: Title "See more / Show less" for long titles
-     • Titles ≤ TITLE_LIMIT chars → shown as-is
-     • Titles > TITLE_LIMIT chars → truncated + toggle button
-   ─ Everything else unchanged
-══════════════════════════════════════════ */
+/* ── DEAL CARD ── */
 function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,setActiveCmt}){
   const{t,dir,toast}=useApp();
   const[liked,setLiked]=useState(false);
   const[likes,setLikes]=useState(post.like_count||0);
   const[copied,setCopied]=useState(false);
-  /* ── NEW: title expand state ── */
   const[titleExp,setTitleExp]=useState(false);
-
   const allImgs=parseImgs(post.images);
   const thumbImgs=allImgs.slice(0,6);
   const n=thumbImgs.length;
   const expired=!tleft(post.created_at,post.discount_days);
-  const rawTitle=post.title_ckb||post.title_en||'Bilal Bazar';
+  const rawTitle=post.title_ckb||post.title_en||'Halal Market';
   const showCmt=activeCmt===post.id;
-
-  /* ── Title truncation logic ── */
   const isLongTitle=rawTitle.length>TITLE_LIMIT;
-  const displayTitle=isLongTitle&&!titleExp
-    ?rawTitle.slice(0,TITLE_LIMIT).trimEnd()+'…'
-    :rawTitle;
-
+  const displayTitle=isLongTitle&&!titleExp?rawTitle.slice(0,TITLE_LIMIT).trimEnd()+'…':rawTitle;
   useEffect(()=>{
     if(!user)return;
-    SB.from('likes').select('id').eq('post_id',post.id).eq('user_id',user.id).maybeSingle()
-      .then(({data})=>setLiked(!!data));
+    SB.from('likes').select('id').eq('post_id',post.id).eq('user_id',user.id).maybeSingle().then(({data})=>setLiked(!!data));
   },[user?.id,post.id]);
-
   const handleLike=async()=>{
     if(!user){onLogin();return;}
     try{
@@ -1052,28 +1032,19 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
       }
     }catch(e){toast(e.message||'Like failed',false);}
   };
-
   const handleShare=async()=>{
     if(navigator.share){try{await navigator.share({title:rawTitle,url:window.location.href});}catch(e){}}
     else if(navigator.clipboard){await navigator.clipboard.writeText(window.location.href);setCopied(true);setTimeout(()=>setCopied(false),2000);}
   };
-
   const gc=n===0?'':n===1?'g1':n===2?'g2i':n===3?'g3i':n===4?'g4i':n===5?'g5i':'g6i';
-
   return(
     <div className="card">
       <div className="pimg">
         {n===0
-          ?<div style={{height:210,background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:36}}>🏷️</div>
+          ?<div style={{height:200,background:'var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:38}}>🏷️</div>
           :n===1
           ?<div className={`fi ${gc}`} onClick={()=>onOpenLb(allImgs,0)}><img src={thumbImgs[0]} alt="" loading="lazy"/></div>
-          :<div className={gc}>
-            {thumbImgs.map((img,idx)=>(
-              <div key={idx} className="fi" onClick={()=>onOpenLb(allImgs,idx)}>
-                <img src={img} alt="" loading="lazy"/>
-              </div>
-            ))}
-          </div>
+          :<div className={gc}>{thumbImgs.map((img,idx)=><div key={idx} className="fi" onClick={()=>onOpenLb(allImgs,idx)}><img src={img} alt="" loading="lazy"/></div>)}</div>
         }
         {post.discount_pct>0&&!expired&&(
           <div className={`disc${dir==='ltr'?' ltr':''}`}>
@@ -1082,28 +1053,13 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
           </div>
         )}
         {expired&&<div className="exp-ribbon"><span>{t('finished')}</span></div>}
-        {/* Image count badge — shown when more than 6 images */}
-        {allImgs.length>6&&(
-          <div style={{position:'absolute',bottom:8,left:8,background:'rgba(0,0,0,.65)',color:'#fff',fontSize:10,fontWeight:800,padding:'3px 8px',borderRadius:6,backdropFilter:'blur(4px)'}}>
-            +{allImgs.length-6} <i className="fas fa-images" style={{fontSize:9,opacity:.8}}/>
-          </div>
-        )}
+        {allImgs.length>6&&<div style={{position:'absolute',bottom:8,left:8,background:'rgba(0,0,0,.65)',color:'#fff',fontSize:10,fontWeight:800,padding:'3px 8px',borderRadius:6,backdropFilter:'blur(4px)'}}>+{allImgs.length-6} <i className="fas fa-images" style={{fontSize:9,opacity:.8}}/></div>}
       </div>
-
       <div style={{padding:'13px 14px 14px'}}>
-        {/* ── TITLE with See More toggle ── */}
         <h3 style={{fontWeight:800,fontSize:15,lineHeight:1.4,marginBottom:10,fontFamily:'Noto Sans Arabic,Outfit,sans-serif'}}>
           {displayTitle}
-          {isLongTitle&&(
-            <button
-              className="title-toggle"
-              onClick={e=>{e.stopPropagation();setTitleExp(x=>!x);}}
-            >
-              {titleExp?t('less'):t('more')}
-            </button>
-          )}
+          {isLongTitle&&<button className="title-toggle" onClick={e=>{e.stopPropagation();setTitleExp(x=>!x);}}>{titleExp?t('less'):t('more')}</button>}
         </h3>
-
         <div style={{marginBottom:12}}><Countdown iso={post.created_at} days={post.discount_days}/></div>
         <div className="post-actions">
           <button onClick={handleLike} className={`act-btn${liked?' liked':''}`}>
@@ -1128,205 +1084,103 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
   );
 }
 
-/* ══════════════════════════════════════════
-   POST MODAL
-   ─ NEW: Multiple image selection in one click
-   ─ NEW: Up to MAX_IMGS (100) images per post
-   ─ NEW: If >100 selected, clamp safely with warning
-   ─ NEW: Upload progress display while batch uploading
-   ─ KEPT: Single-file crop flow (select 1 → crop dialog)
-   ─ KEPT: All other existing functionality
-══════════════════════════════════════════ */
+/* ── POST MODAL ── */
 function PostModal({editing,onSave,onClose}){
   const{t,toast}=useApp();
   const[imgs,setImgs]=useState(()=>editing?parseImgs(editing.images):[]);
-  const[form,setForm]=useState({
-    title_ckb:editing?.title_ckb||'',
-    discount_pct:editing?.discount_pct??0,
-    discount_days:editing?.discount_days||7,
-    category:editing?.category||'rice'
-  });
+  const[form,setForm]=useState({title_ckb:editing?.title_ckb||'',discount_pct:editing?.discount_pct??0,discount_days:editing?.discount_days||7,category:editing?.category||'rice'});
   const[saving,setSaving]=useState(false);
   const[cropFile,setCropFile]=useState(null);
   const[cropAsp,setCropAsp]=useState(1);
   const[upBusy,setUpBusy]=useState(false);
-  /* NEW: upload progress status */
   const[upStatus,setUpStatus]=useState('');
   const[upDone,setUpDone]=useState(0);
   const[upTotal,setUpTotal]=useState(0);
-
   const set=(k,v)=>setForm(f=>({...f,[k]:v}));
-
-  /* ── Single image: goes through crop ── */
   const onCropped=async blob=>{
     setCropFile(null);setUpBusy(true);setUpStatus('Uploading…');
-    try{
-      const url=await uploadToStorage('posts-images',blob,'jpg');
-      setImgs(p=>[...p,url]);
-      toast('Image added ✓');
-    }catch(e){toast(e.message||'Upload failed',false);}
+    try{const url=await uploadToStorage('posts-images',blob,'jpg');setImgs(p=>[...p,url]);toast('Image added ✓');}
+    catch(e){toast(e.message||'Upload failed',false);}
     setUpBusy(false);setUpStatus('');
   };
-
-  /* ── Multiple images: upload directly, no crop ── */
   const handleMultiUpload=async files=>{
     const remaining=MAX_IMGS-imgs.length;
-    if(remaining<=0){
-      toast(`Max ${MAX_IMGS} images reached`,false);
-      return;
-    }
-    /* Clamp to remaining slots */
+    if(remaining<=0){toast(`Max ${MAX_IMGS} images reached`,false);return;}
     const toUpload=files.slice(0,remaining);
-    if(files.length>remaining){
-      toast(`First ${toUpload.length} images selected (max ${MAX_IMGS} total)`,false);
-    }
-    setUpBusy(true);
-    setUpTotal(toUpload.length);
-    setUpDone(0);
+    if(files.length>remaining)toast(`First ${toUpload.length} images selected (max ${MAX_IMGS} total)`,false);
+    setUpBusy(true);setUpTotal(toUpload.length);setUpDone(0);
     const newUrls=[];
     for(let i=0;i<toUpload.length;i++){
-      setUpStatus(`Uploading ${i+1} of ${toUpload.length}…`);
-      setUpDone(i);
-      try{
-        const file=toUpload[i];
-        const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
-        const url=await uploadToStorage('posts-images',file,ext);
-        newUrls.push(url);
-      }catch(err){
-        /* skip failed file silently, continue with rest */
-      }
+      setUpStatus(`Uploading ${i+1} of ${toUpload.length}…`);setUpDone(i);
+      try{const file=toUpload[i];const ext=(file.name.split('.').pop()||'jpg').toLowerCase();const url=await uploadToStorage('posts-images',file,ext);newUrls.push(url);}
+      catch(err){}
     }
-    setImgs(p=>[...p,...newUrls]);
-    setUpBusy(false);
-    setUpStatus('');
-    setUpDone(0);
-    setUpTotal(0);
+    setImgs(p=>[...p,...newUrls]);setUpBusy(false);setUpStatus('');setUpDone(0);setUpTotal(0);
     if(newUrls.length)toast(`${newUrls.length} image(s) uploaded ✓`);
   };
-
-  /* ── File input change handler ── */
   const onFilesSelected=e=>{
     const files=Array.from(e.target.files||[]);
     if(!files.length)return;
-    if(files.length===1){
-      setCropFile(files[0]); /* single → crop */
-    }else{
-      handleMultiUpload(files); /* multiple → direct batch upload */
-    }
+    if(files.length===1){setCropFile(files[0]);}else{handleMultiUpload(files);}
     e.target.value='';
   };
-
   const submit=async()=>{
     if(!form.title_ckb.trim()||imgs.length===0){toast('ناونیشان و وێنە پێویستن',false);return;}
     setSaving(true);
-    const payload={
-      title_ckb:form.title_ckb.trim(),title_ar:form.title_ckb.trim(),title_en:form.title_ckb.trim(),
-      discount_pct:+form.discount_pct,discount_days:+form.discount_days,
-      category:form.category,images:JSON.stringify(imgs)
-    };
-    const{error}=editing
-      ?await SB.from('posts').update(payload).eq('id',editing.id)
-      :await SB.from('posts').insert({...payload,created_at:new Date().toISOString(),like_count:0});
+    const payload={title_ckb:form.title_ckb.trim(),title_ar:form.title_ckb.trim(),title_en:form.title_ckb.trim(),discount_pct:+form.discount_pct,discount_days:+form.discount_days,category:form.category,images:JSON.stringify(imgs)};
+    const{error}=editing?await SB.from('posts').update(payload).eq('id',editing.id):await SB.from('posts').insert({...payload,created_at:new Date().toISOString(),like_count:0});
     setSaving(false);
     if(error){toast(error.message,false);return;}
     toast(editing?'Updated ✓':'Published ✓');onSave();
   };
-
   return(
     <div className="ov" onClick={onClose}>
       <div className="mbox" onClick={e=>e.stopPropagation()}>
         <div className="mhdr"><h3>{editing?t('edit'):t('addPost')}</h3><button className="btn btn-g" onClick={onClose} style={{padding:'5px 10px'}}>×</button></div>
         <div className="mbody" style={{display:'flex',flexDirection:'column',gap:16}}>
-
-          {/* ── IMAGE UPLOAD SECTION ── */}
           <div>
-            <label style={{fontSize:11,fontWeight:700,color:'var(--accent)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>
-              Images *
-              <span style={{color:'var(--muted)',fontWeight:400,marginInlineStart:6}}>
-                {imgs.length}/{MAX_IMGS}
-              </span>
-              {imgs.length>0&&(
-                <span style={{color:'var(--accent)',fontWeight:400,marginInlineStart:6,fontSize:10}}>
-                  (tap to remove)
-                </span>
-              )}
+            <label style={{fontSize:11,fontWeight:700,color:'var(--gold)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>
+              Images * <span style={{color:'var(--muted)',fontWeight:400,marginInlineStart:6}}>{imgs.length}/{MAX_IMGS}</span>
+              {imgs.length>0&&<span style={{color:'var(--gold)',fontWeight:400,marginInlineStart:6,fontSize:10}}>(tap to remove)</span>}
             </label>
-
-            {/* Thumbnail strip */}
             <div style={{display:'flex',gap:8,overflowX:'auto',paddingBottom:6}} className="nsb">
               {imgs.map((img,i)=>(
                 <div key={i} style={{position:'relative',flexShrink:0}}>
                   <img src={img} alt="" style={{width:62,height:62,objectFit:'cover',borderRadius:8,border:'1px solid var(--border)',display:'block'}}/>
-                  <button
-                    onClick={()=>setImgs(p=>p.filter((_,j)=>j!==i))}
-                    style={{position:'absolute',top:-4,right:-4,width:17,height:17,borderRadius:'50%',background:'var(--danger)',color:'#fff',border:'2px solid var(--elevated)',fontSize:8,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:900}}
-                  >×</button>
-                  {i===0&&<div style={{position:'absolute',bottom:2,left:2,background:'rgba(16,185,129,.85)',borderRadius:3,padding:'1px 4px',fontSize:7,fontWeight:800,color:'#fff'}}>MAIN</div>}
+                  <button onClick={()=>setImgs(p=>p.filter((_,j)=>j!==i))} style={{position:'absolute',top:-4,right:-4,width:17,height:17,borderRadius:'50%',background:'var(--danger)',color:'#fff',border:'2px solid var(--elevated)',fontSize:8,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:900}}>×</button>
+                  {i===0&&<div style={{position:'absolute',bottom:2,left:2,background:'rgba(200,150,44,.85)',borderRadius:3,padding:'1px 4px',fontSize:7,fontWeight:800,color:'#fff'}}>MAIN</div>}
                 </div>
               ))}
-
-              {/* Add image button */}
               {imgs.length<MAX_IMGS&&(
-                <label style={{width:62,height:62,borderRadius:8,border:'1.5px dashed var(--border2)',background:'var(--bg)',flexShrink:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:3,cursor:upBusy?'wait':'pointer',opacity:upBusy?.5:1,transition:'opacity .2s'}}>
-                  {upBusy
-                    ?<i className="fas fa-spinner fa-spin acc"/>
-                    :<i className="fas fa-images acc"/>
-                  }
-                  <span style={{fontSize:7,color:'var(--muted)',textAlign:'center',lineHeight:1.3}}>
-                    {upBusy?'…':'Add\nImages'}
-                  </span>
-                  {/* MULTIPLE attribute allows selecting many files at once */}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    style={{display:'none'}}
-                    disabled={upBusy}
-                    onChange={onFilesSelected}
-                  />
+                <label style={{width:62,height:62,borderRadius:8,border:'1.5px dashed var(--border2)',background:'var(--bg)',flexShrink:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:3,cursor:upBusy?'wait':'pointer',opacity:upBusy?.5:1}}>
+                  {upBusy?<i className="fas fa-spinner fa-spin gold"/>:<i className="fas fa-images gold"/>}
+                  <span style={{fontSize:7,color:'var(--muted)',textAlign:'center',lineHeight:1.3}}>{upBusy?'…':'Add\nImages'}</span>
+                  <input type="file" accept="image/*" multiple style={{display:'none'}} disabled={upBusy} onChange={onFilesSelected}/>
                 </label>
               )}
             </div>
-
-            {/* Upload progress bar */}
             {upBusy&&upTotal>0&&(
               <div className="up-progress">
-                <i className="fas fa-spinner fa-spin acc" style={{fontSize:11,flexShrink:0}}/>
-                <div className="up-progress-bar-wrap">
-                  <div className="up-progress-bar" style={{width:`${Math.round((upDone/upTotal)*100)}%`}}/>
-                </div>
-                <span style={{fontSize:10,color:'var(--accent)',fontWeight:700,flexShrink:0,minWidth:60,textAlign:'end'}}>{upStatus}</span>
+                <i className="fas fa-spinner fa-spin gold" style={{fontSize:11,flexShrink:0}}/>
+                <div className="up-progress-bar-wrap"><div className="up-progress-bar" style={{width:`${Math.round((upDone/upTotal)*100)}%`}}/></div>
+                <span style={{fontSize:10,color:'var(--gold)',fontWeight:700,flexShrink:0,minWidth:60,textAlign:'end'}}>{upStatus}</span>
               </div>
             )}
-            {upBusy&&upTotal===0&&(
-              <div style={{fontSize:11,color:'var(--accent)',fontWeight:700,marginTop:4}}>{upStatus}</div>
-            )}
-
-            {/* Crop aspect — for single-image crop only */}
             <div style={{display:'flex',alignItems:'center',gap:6,marginTop:8,flexWrap:'wrap'}}>
               <span style={{fontSize:10,color:'var(--muted)',marginInlineEnd:4}}>Crop ratio (single):</span>
               {[[1,'1:1'],[4/3,'4:3']].map(([r,l])=>(
-                <button key={l} className={`btn ${cropAsp===r?'btn-p':'btn-g'}`} style={{padding:'5px 12px',fontSize:11,borderRadius:20}} onClick={()=>setCropAsp(r)}>{l}</button>
+                <button key={l} className={`btn ${cropAsp===r?'btn-gold':'btn-g'}`} style={{padding:'5px 12px',fontSize:11,borderRadius:20}} onClick={()=>setCropAsp(r)}>{l}</button>
               ))}
             </div>
-            <p style={{fontSize:10,color:'var(--muted)',marginTop:5}}>
-              <i className="fas fa-info-circle" style={{marginInlineEnd:4}}/>
-              Select 1 image → crop. Select multiple → upload directly.
-            </p>
           </div>
-
           {cropFile&&<CropModal file={cropFile} aspect={cropAsp} onDone={onCropped} onClose={()=>setCropFile(null)}/>}
-
-          {/* ── TITLE ── */}
           <div>
-            <label style={{fontSize:11,fontWeight:700,color:'var(--accent)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>Title *</label>
+            <label style={{fontSize:11,fontWeight:700,color:'var(--gold)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>Title *</label>
             <input className="inp" dir="rtl" value={form.title_ckb} onChange={e=>set('title_ckb',e.target.value)} placeholder="بۆ نمونە: برنجی تازە"/>
           </div>
-
-          {/* ── DISCOUNT + DAYS ── */}
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
             <div>
-              <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:5}}>Discount % <span className="acc">(0=none)</span></label>
+              <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:5}}>Discount % <span className="gold">(0=none)</span></label>
               <input className="inp" type="number" min="0" max="99" value={form.discount_pct} onChange={e=>set('discount_pct',e.target.value)}/>
             </div>
             <div>
@@ -1334,20 +1188,17 @@ function PostModal({editing,onSave,onClose}){
               <input className="inp" type="number" min="1" max="365" value={form.discount_days} onChange={e=>set('discount_days',e.target.value)}/>
             </div>
           </div>
-
-          {/* ── CATEGORY ── */}
           <div>
             <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8}}>Category</label>
             <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
               {CATS.filter(c=>c!=='all').map(c=>(
-                <button key={c} onClick={()=>set('category',c)} className={`btn ${form.category===c?'btn-p':'btn-g'}`} style={{borderRadius:20,padding:'7px 14px',fontSize:12}}>
-                  {TX.ckb.cats[c]}
+                <button key={c} onClick={()=>set('category',c)} className={`btn ${form.category===c?'btn-gold':'btn-g'}`} style={{borderRadius:20,padding:'7px 14px',fontSize:12}}>
+                  {CAT_ICONS[c]} {TX.ckb.cats[c]}
                 </button>
               ))}
             </div>
           </div>
-
-          <button className="btn btn-p wf" onClick={submit} disabled={saving||upBusy||!form.title_ckb.trim()||imgs.length===0} style={{padding:'13px',fontSize:14}}>
+          <button className="btn btn-gold wf" onClick={submit} disabled={saving||upBusy||!form.title_ckb.trim()||imgs.length===0} style={{padding:'13px',fontSize:14}}>
             {saving?<><i className="fas fa-spinner fa-spin"/> Saving…</>:upBusy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:'✓ '+t('pub')}
           </button>
         </div>
@@ -1356,7 +1207,7 @@ function PostModal({editing,onSave,onClose}){
   );
 }
 
-/* ══ SPONSOR MODAL ══ */
+/* ── SPONSOR MODAL ── */
 function SpModal({sponsors,onUpdate,onClose}){
   const{t,toast}=useApp();
   const[list,setList]=useState(sponsors);
@@ -1369,64 +1220,39 @@ function SpModal({sponsors,onUpdate,onClose}){
   const[placement,setPlacement]=useState('float');
   const[busy,setBusy]=useState(false);
   const fileRef=useRef(null);
-
   useEffect(()=>()=>{if(preview&&preview.startsWith('blob:'))URL.revokeObjectURL(preview);},[preview]);
-
-  const reset=()=>{
-    if(preview&&preview.startsWith('blob:'))URL.revokeObjectURL(preview);
-    setPicked(null);setCroppedBlob(null);setPreview(null);setIsVid(false);setLink('');setStep('pick');
-  };
-
+  const reset=()=>{if(preview&&preview.startsWith('blob:'))URL.revokeObjectURL(preview);setPicked(null);setCroppedBlob(null);setPreview(null);setIsVid(false);setLink('');setStep('pick');};
   const onPick=e=>{
     const f=e.target.files[0];if(!f)return;
     if(preview&&preview.startsWith('blob:'))URL.revokeObjectURL(preview);
-    const url=URL.createObjectURL(f);
-    const vid=f.type.startsWith('video/');
-    setPicked(f);setPreview(url);setIsVid(vid);
-    setStep(vid?'link':'crop');e.target.value='';
+    const url=URL.createObjectURL(f);const vid=f.type.startsWith('video/');
+    setPicked(f);setPreview(url);setIsVid(vid);setStep(vid?'link':'crop');e.target.value='';
   };
-
   const onCropped=blob=>{
     if(preview&&preview.startsWith('blob:'))URL.revokeObjectURL(preview);
     setCroppedBlob(blob);setPreview(URL.createObjectURL(blob));setStep('link');
   };
-
   const handleDone=async()=>{
     setBusy(true);
     try{
       let mediaUrl;
       if(isVid){const ext=(picked.name.split('.').pop()||'mp4').toLowerCase();mediaUrl=await uploadToStorage('images',picked,ext);}
       else{mediaUrl=await uploadToStorage('images',croppedBlob,'jpg');}
-      const{data,error}=await SB.from('sponsors')
-        .insert({image_url:mediaUrl,visible:true,link_url:link.trim()||null,sort_order:list.length,placement})
-        .select().single();
+      const{data,error}=await SB.from('sponsors').insert({image_url:mediaUrl,visible:true,link_url:link.trim()||null,sort_order:list.length,placement}).select().single();
       if(error)throw new Error(error.message);
       setList(p=>[...p,data]);toast('Sponsor added ✓');reset();
-    }catch(e){toast(e.message||'Upload failed. Check Storage bucket "images".',false);}
+    }catch(e){toast(e.message||'Upload failed.',false);}
     setBusy(false);
   };
-
-  const toggle=async(id,cur)=>{
-    await SB.from('sponsors').update({visible:!cur}).eq('id',id);
-    setList(p=>p.map(s=>s.id===id?{...s,visible:!cur}:s));
-  };
-  const remove=async id=>{
-    if(!window.confirm('Remove this sponsor?'))return;
-    await SB.from('sponsors').delete().eq('id',id);
-    setList(p=>p.filter(s=>s.id!==id));toast('Removed');
-  };
-
+  const toggle=async(id,cur)=>{await SB.from('sponsors').update({visible:!cur}).eq('id',id);setList(p=>p.map(s=>s.id===id?{...s,visible:!cur}:s));};
+  const remove=async id=>{if(!window.confirm('Remove this sponsor?'))return;await SB.from('sponsors').delete().eq('id',id);setList(p=>p.filter(s=>s.id!==id));toast('Removed');};
   return(
     <div className="ov" onClick={step==='crop'?undefined:onClose}>
       <div className="mbox" onClick={e=>e.stopPropagation()}>
-        <div className="mhdr">
-          <h3>{t('mgSp')}</h3>
-          <button className="btn btn-g" style={{padding:'5px 10px'}} onClick={()=>{onUpdate(list);onClose();}}>✓ {t('save')}</button>
-        </div>
+        <div className="mhdr"><h3>{t('mgSp')}</h3><button className="btn btn-g" style={{padding:'5px 10px'}} onClick={()=>{onUpdate(list);onClose();}}>✓ {t('save')}</button></div>
         <div className="mbody" style={{display:'flex',flexDirection:'column',gap:16}}>
           {step==='pick'&&(
             <>
-              <p style={{fontSize:12,color:'var(--muted)',lineHeight:1.6}}>Choose a banner image or video.</p>
               <div>
                 <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:8,textTransform:'uppercase',letterSpacing:.5}}>{t('spPlace')}</label>
                 <div className="pl-toggle">
@@ -1435,26 +1261,24 @@ function SpModal({sponsors,onUpdate,onClose}){
                 </div>
               </div>
               <button className="btn btn-g wf" onClick={()=>fileRef.current?.click()} style={{padding:'20px',gap:10,fontSize:14,borderStyle:'dashed',borderRadius:14,flexDirection:'column'}}>
-                <i className="fas fa-images acc" style={{fontSize:22}}/><span>{t('gallery')}</span>
-                <span style={{fontSize:10,color:'var(--muted)',fontWeight:400}}>Image or Video · Link optional</span>
+                <i className="fas fa-images gold" style={{fontSize:22}}/><span>{t('gallery')}</span>
               </button>
-              <input ref={fileRef} type="file" accept="image/*,video/mp4,video/webm,video/mov,video/quicktime" style={{display:'none'}} onChange={onPick}/>
+              <input ref={fileRef} type="file" accept="image/*,video/*" style={{display:'none'}} onChange={onPick}/>
             </>
           )}
           {step==='crop'&&picked&&!isVid&&<CropModal file={picked} aspect={4} onDone={onCropped} onClose={reset}/>}
           {step==='link'&&preview&&(
             <div style={{display:'flex',flexDirection:'column',gap:14}}>
               <div style={{borderRadius:10,overflow:'hidden',border:'1px solid var(--border)',background:'#000'}}>
-                {isVid?<video src={preview} controls muted style={{width:'100%',maxHeight:100,objectFit:'contain',display:'block'}}/>
-                  :<img src={preview} alt="" style={{width:'100%',height:65,objectFit:'cover',display:'block'}}/>}
+                {isVid?<video src={preview} controls muted style={{width:'100%',maxHeight:100,objectFit:'contain',display:'block'}}/>:<img src={preview} alt="" style={{width:'100%',height:65,objectFit:'cover',display:'block'}}/>}
               </div>
               <div>
                 <label style={{fontSize:11,fontWeight:700,color:'var(--muted)',display:'block',marginBottom:6,textTransform:'uppercase',letterSpacing:.5}}>{t('spLink')}</label>
                 <input className="inp" placeholder="https://... (optional)" value={link} onChange={e=>setLink(e.target.value)} style={{fontSize:13}} dir="ltr"/>
               </div>
               <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
-                <button className="btn btn-g" onClick={reset} disabled={busy} style={{padding:'12px'}}><i className="fas fa-times"/> Change</button>
-                <button className="btn btn-p" onClick={handleDone} disabled={busy} style={{padding:'12px',fontSize:14}}>
+                <button className="btn btn-g" onClick={reset} disabled={busy} style={{padding:'12px'}}>Change</button>
+                <button className="btn btn-gold" onClick={handleDone} disabled={busy} style={{padding:'12px',fontSize:14}}>
                   {busy?<><i className="fas fa-spinner fa-spin"/> Uploading…</>:<><i className="fas fa-check"/> Done</>}
                 </button>
               </div>
@@ -1462,15 +1286,13 @@ function SpModal({sponsors,onUpdate,onClose}){
           )}
           {list.length>0&&(
             <div>
-              <p style={{fontSize:11,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Current Sponsors ({list.length})</p>
+              <p style={{fontSize:11,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.5,marginBottom:8}}>Current ({list.length})</p>
               {list.map(s=>(
                 <div key={s.id} style={{display:'flex',alignItems:'center',gap:8,padding:'9px 0',borderBottom:'1px solid var(--border)'}}>
-                  {isVideoUrl(s.image_url)
-                    ?<div style={{width:76,height:26,background:'var(--border)',borderRadius:5,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}><i className="fas fa-film" style={{color:'var(--muted)',fontSize:12}}/></div>
-                    :<img src={s.image_url} alt="" style={{width:76,height:26,objectFit:'cover',borderRadius:5,border:'1px solid var(--border)',flexShrink:0}}/>
-                  }
+                  {isVideoUrl(s.image_url)?<div style={{width:76,height:26,background:'var(--border)',borderRadius:5,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}><i className="fas fa-film" style={{color:'var(--muted)',fontSize:12}}/></div>
+                    :<img src={s.image_url} alt="" style={{width:76,height:26,objectFit:'cover',borderRadius:5,border:'1px solid var(--border)',flexShrink:0}}/>}
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:9,color:'var(--accent)',fontWeight:700,marginBottom:1}}>{s.placement==='top'?'Top':'Float'}</div>
+                    <div style={{fontSize:9,color:'var(--gold)',fontWeight:700,marginBottom:1}}>{s.placement==='top'?'Top':'Float'}</div>
                     <div style={{fontSize:10,color:'var(--muted)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',direction:'ltr'}}>{s.link_url||'No link'}</div>
                   </div>
                   <button className="btn btn-g" style={{padding:'3px 7px',flexShrink:0,fontSize:10,height:24}} onClick={()=>toggle(s.id,s.visible)}>{s.visible?t('hide'):t('show')}</button>
@@ -1479,14 +1301,13 @@ function SpModal({sponsors,onUpdate,onClose}){
               ))}
             </div>
           )}
-          {!list.length&&step==='pick'&&<p style={{textAlign:'center',color:'var(--muted)',fontSize:12,padding:'8px 0'}}>No sponsors yet.</p>}
         </div>
       </div>
     </div>
   );
 }
 
-/* ══ DRAWER ══ */
+/* ── DRAWER ── */
 function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   const{t,lang,sw,user,profile,isAdmin}=useApp();
   const go=id=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'});onClose();};
@@ -1494,47 +1315,52 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   return(
     <div className="dov" onClick={onClose}>
       <div className={`dpanel ${lang==='en'?'ltr':'rtl'}`} onClick={e=>e.stopPropagation()}>
-        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px 18px',borderBottom:'1px solid var(--border)'}}>
-          <div style={{display:'flex',alignItems:'center',gap:9}}>
-            <div style={{width:32,height:32,borderRadius:8,background:'linear-gradient(135deg,var(--accent),var(--accent2))',display:'flex',alignItems:'center',justifyContent:'center',fontSize:15,fontWeight:900,color:'#02140d'}}>B</div>
-            <span style={{fontWeight:900,fontSize:15,background:'linear-gradient(90deg,var(--accent),var(--accent3))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Bilal Bazar</span>
-          </div>
-          <button className="btn btn-g" style={{padding:'5px 9px'}} onClick={onClose}>×</button>
-        </div>
-        {user&&(
-          <div style={{padding:'10px 18px',background:'var(--elevated)',borderBottom:'1px solid var(--border)',display:'flex',alignItems:'center',gap:10,cursor:'pointer'}} onClick={()=>{onProfile();onClose();}}>
-            <Av profile={profile} size={32} emojiSz={18}/>
+        <div style={{padding:'18px',borderBottom:'1px solid var(--border)',background:'var(--elevated)'}}>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
+            <img src={LOGO} alt="Halal Market" style={{width:38,height:38,borderRadius:10,objectFit:'contain',border:'1px solid rgba(200,150,44,.2)'}}/>
             <div>
-              <p style={{fontSize:12,fontWeight:700,color:isAdmin?'var(--accent)':'var(--soft)'}}>{profile?.name||user.email.split('@')[0]}</p>
-              <p style={{fontSize:9,color:'var(--muted)'}}>{isAdmin?'⭐ Admin':'Edit Profile →'}</p>
+              <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:14,background:'linear-gradient(90deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Halal Market</div>
+              <div style={{fontSize:8,color:'var(--muted)',letterSpacing:1.5,textTransform:'uppercase'}}>Erbil · Kurdistan</div>
             </div>
+            <button className="btn btn-g" style={{padding:'5px 9px',marginInlineStart:'auto'}} onClick={onClose}>×</button>
           </div>
-        )}
+          {user&&(
+            <div style={{display:'flex',alignItems:'center',gap:10,cursor:'pointer',padding:'10px',background:'var(--bg)',borderRadius:10,border:'1px solid var(--border)'}} onClick={()=>{onProfile();onClose();}}>
+              <Av profile={profile} size={32} emojiSz={18}/>
+              <div>
+                <p style={{fontSize:12,fontWeight:700,color:isAdmin?'var(--gold)':'var(--soft)'}}>{profile?.name||user.email.split('@')[0]}</p>
+                <p style={{fontSize:9,color:'var(--muted)'}}>{isAdmin?'⭐ Admin':'Edit Profile →'}</p>
+              </div>
+            </div>
+          )}
+        </div>
         {[
-          {id:'hero',i:'fa-home',l:t('home'),bg:'rgba(16,185,129,.12)',ic:'var(--accent)'},
-          {id:'deals',i:'fa-tags',l:t('dtitle'),bg:'rgba(245,212,96,.1)',ic:'#f5d460'},
+          {id:'hero',i:'fa-home',l:t('home'),bg:'rgba(200,150,44,.1)',ic:'var(--gold)'},
+          {id:'deals',i:'fa-tags',l:t('dtitle'),bg:'rgba(239,68,68,.1)',ic:'#f87171'},
           {id:'locs',i:'fa-map-marker-alt',l:t('locs'),bg:'rgba(96,165,250,.1)',ic:'#60a5fa'},
+          {id:'reviews',i:'fa-star',l:t('reviews'),bg:'rgba(250,204,21,.1)',ic:'#facc15'},
           {id:'about',i:'fa-info-circle',l:t('about'),bg:'rgba(167,139,250,.1)',ic:'#a78bfa'},
+          {id:'contact',i:'fa-phone',l:t('contact'),bg:'rgba(34,197,94,.1)',ic:'var(--green)'},
         ].map(x=>(
           <button key={x.id} className="di" onClick={()=>go(x.id)}>
             <div className="dico" style={{background:x.bg}}><i className={`fas ${x.i}`} style={{color:x.ic,fontSize:13}}/></div>{x.l}
           </button>
         ))}
-        <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="di">
+        <a href="https://wa.me/964751798597" target="_blank" rel="noreferrer" className="di">
           <div className="dico" style={{background:'rgba(37,211,102,.1)'}}><i className="fab fa-whatsapp" style={{color:'#25d366',fontSize:14}}/></div>WhatsApp
         </a>
         <div style={{padding:'12px 18px',borderBottom:'1px solid rgba(255,255,255,.04)'}}>
           <p style={{fontSize:10,fontWeight:700,color:'var(--muted)',textTransform:'uppercase',letterSpacing:.8,marginBottom:8}}>{t('lang')}</p>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:6}}>
             {[{c:'ckb',l:'کوردی'},{c:'ar',l:'عربي'},{c:'en',l:'EN'}].map(x=>(
-              <button key={x.c} onClick={()=>{sw(x.c);onClose();}} className={`btn ${lang===x.c?'btn-p':'btn-g'}`} style={{padding:'8px 4px',fontSize:12}}>{x.l}</button>
+              <button key={x.c} onClick={()=>{sw(x.c);onClose();}} className={`btn ${lang===x.c?'btn-gold':'btn-g'}`} style={{padding:'8px 4px',fontSize:12}}>{x.l}</button>
             ))}
           </div>
         </div>
         {user?(
           <>
             {isAdmin&&<>
-              <button className="di" onClick={()=>{onAdd();onClose();}}><div className="dico" style={{background:'rgba(16,185,129,.12)'}}><i className="fas fa-plus" style={{color:'var(--accent)',fontSize:12}}/></div>{t('addPost')}</button>
+              <button className="di" onClick={()=>{onAdd();onClose();}}><div className="dico" style={{background:'rgba(200,150,44,.12)'}}><i className="fas fa-plus" style={{color:'var(--gold)',fontSize:12}}/></div>{t('addPost')}</button>
               <button className="di" onClick={()=>{onSp();onClose();}}><div className="dico" style={{background:'rgba(167,139,250,.1)'}}><i className="fas fa-images" style={{color:'#a78bfa',fontSize:12}}/></div>{t('mgSp')}</button>
             </>}
             <button className="di" onClick={()=>{onProfile();onClose();}}><div className="dico" style={{background:'rgba(96,165,250,.1)'}}><i className="fas fa-user-circle" style={{color:'#60a5fa',fontSize:13}}/></div>{t('profile')}</button>
@@ -1544,8 +1370,8 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
           </>
         ):(
           <>
-            <button className="di" onClick={()=>{onAuth();onClose();}}><div className="dico" style={{background:'rgba(16,185,129,.12)'}}><i className="fas fa-user" style={{color:'var(--accent)',fontSize:12}}/></div>{t('login')}</button>
-            <button className="di" onClick={()=>{onAuth();onClose();}}><div className="dico" style={{background:'rgba(16,185,129,.12)'}}><i className="fas fa-user-plus" style={{color:'var(--accent)',fontSize:12}}/></div>{t('signup')}</button>
+            <button className="di" onClick={()=>{onAuth();onClose();}}><div className="dico" style={{background:'rgba(200,150,44,.12)'}}><i className="fas fa-user" style={{color:'var(--gold)',fontSize:12}}/></div>{t('login')}</button>
+            <button className="di" onClick={()=>{onAuth();onClose();}}><div className="dico" style={{background:'rgba(200,150,44,.12)'}}><i className="fas fa-user-plus" style={{color:'var(--gold)',fontSize:12}}/></div>{t('signup')}</button>
           </>
         )}
       </div>
@@ -1553,7 +1379,9 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   );
 }
 
-/* ══ APP ══ */
+/* ══════════════════════════════════════
+   MAIN APP
+══════════════════════════════════════ */
 function App(){
   const{t,lang,dir,user,profile,isAdmin,toast}=useApp();
   const[posts,setPosts]=useState([]);
@@ -1571,21 +1399,16 @@ function App(){
   const[needLogin,setNeedLogin]=useState(false);
   const[globalLb,setGlobalLb]=useState(null);
   const[activeCmt,setActiveCmt]=useState(null);
-  const vidRef=useRef(null);
 
   const loadPosts=useCallback(async(silent=false)=>{
     if(!silent)setLoading(true);
-    try{
-      const{data,error}=await SB.from('posts').select('*').order('created_at',{ascending:false});
-      if(error)throw error;
-      setPosts(data||[]);
-    }catch(e){if(!silent)toast('Failed to load posts',false);}
+    try{const{data,error}=await SB.from('posts').select('*').order('created_at',{ascending:false});if(error)throw error;setPosts(data||[]);}
+    catch(e){if(!silent)toast('Failed to load posts',false);}
     if(!silent)setLoading(false);
   },[toast]);
 
   const loadSponsors=useCallback(async()=>{
-    try{const{data}=await SB.from('sponsors').select('*').eq('visible',true).order('sort_order');setSponsors(data||[]);}
-    catch{}
+    try{const{data}=await SB.from('sponsors').select('*').eq('visible',true).order('sort_order');setSponsors(data||[]);}catch{}
   },[]);
 
   useEffect(()=>{loadPosts(false);loadSponsors();},[]);
@@ -1593,18 +1416,8 @@ function App(){
   useEffect(()=>{const id=setInterval(()=>loadPosts(true),90000);return()=>clearInterval(id);},[loadPosts]);
 
   useEffect(()=>{
-    const v=vidRef.current;if(!v)return;
-    v.muted=true;
-    const play=()=>v.play().catch(()=>{});
-    play();
-    v.addEventListener('canplay',play,{once:true});
-    v.addEventListener('loadedmetadata',play,{once:true});
-    return()=>{v.removeEventListener('canplay',play);v.removeEventListener('loadedmetadata',play);};
-  },[]);
-
-  useEffect(()=>{
-    const ids=['hero','deals','locs','about'];
-    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id);}),{threshold:.2});
+    const ids=['hero','deals','locs','reviews','about','contact'];
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id);}),{threshold:.18});
     ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
     return()=>obs.disconnect();
   },[]);
@@ -1615,48 +1428,65 @@ function App(){
     setPosts(p=>p.filter(x=>x.id!==id));toast('Deleted');
   };
   const handleSaved=()=>{setPostModal(false);setEditing(null);loadPosts(true);};
-
   const filtered=useMemo(()=>cat==='all'?posts:posts.filter(p=>p.category===cat),[posts,cat]);
   const visible=filtered.slice(0,shown);
-
   const go=id=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
-  const nav=[
-    {id:'hero',i:'fa-home',l:t('home')},
-    {id:'deals',i:'fa-tags',l:'Deals'},
-    {id:'locs',i:'fa-map-marker-alt',l:t('locs')},
-    {id:'about',i:'fa-info-circle',l:t('about')},
-  ];
-
   const handleOpenLb=useCallback((imgs,idx)=>setGlobalLb({imgs,idx}),[]);
   const handleCloseLb=useCallback(()=>setGlobalLb(null),[]);
+
+  const navItems=[
+    {id:'hero',i:'fa-home',l:t('home')},
+    {id:'deals',i:'fa-tags',l:t('deals')},
+    {id:'locs',i:'fa-map-marker-alt',l:t('locs')},
+    {id:'contact',i:'fa-phone',l:t('contact')},
+  ];
 
   return(
     <div className={dir==='rtl'?'rtl':'ltr'}>
 
       <SponsorsDisplay sponsors={sponsors}/>
 
+      {/* ── TICKER ── */}
+      <div className="ticker-wrap">
+        <div className="ticker-inner">
+          {[...Array(4)].map((_,i)=>(
+            <React.Fragment key={i}>
+              <span>هالال ماركت · Halal Market</span>
+              <span>کاڵای تازە · Fresh Products</span>
+              <span>باشترین نرخ · Best Prices</span>
+              <span>هەولێر · Erbil Kurdistan</span>
+              <span>٠٧٥١٧٩٨٥٩٧١</span>
+              <span>٠٧٥٠٧٣٦٤٦١٥</span>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* ── HEADER ── */}
       <header className="hdr">
-        <div className="c flex ac jb" style={{height:52}}>
-          <div style={{display:'flex',alignItems:'center',gap:9,cursor:'pointer'}} onClick={()=>go('hero')}>
-            <div style={{width:32,height:32,borderRadius:8,background:'linear-gradient(135deg,var(--accent),var(--accent2))',display:'flex',alignItems:'center',justifyContent:'center',fontSize:16,fontWeight:900,color:'#02140d',flexShrink:0}}>B</div>
+        <div className="c hdr-inner">
+          <div className="logo-wrap" onClick={()=>go('hero')}>
+            <img src={LOGO} alt="Halal Market" className="logo-img" onError={e=>{e.target.style.display='none'}}/>
             <div>
-              <div style={{fontWeight:900,fontSize:14,color:'#fff'}}>Bilal Bazar</div>
-              <div style={{fontSize:8,fontWeight:700,color:'var(--accent)',letterSpacing:2,textTransform:'uppercase'}}>Erbil · Kurdistan</div>
+              <div className="logo-name">Halal Market</div>
+              <div className="logo-sub">Erbil · Kurdistan</div>
             </div>
           </div>
           <nav className="hd flex gap2">
-            {nav.map(x=>(
+            {[{id:'hero',l:t('home')},{id:'deals',l:t('deals')},{id:'locs',l:t('locs')},{id:'reviews',l:t('reviews')},{id:'about',l:t('about')},{id:'contact',l:t('contact')}].map(x=>(
               <button key={x.id} onClick={()=>go(x.id)} className="btn btn-g"
-                style={{padding:'6px 10px',fontSize:13,color:active===x.id?'var(--accent)':'var(--muted)',borderColor:'transparent'}}>{x.l}</button>
+                style={{padding:'6px 11px',fontSize:12,color:active===x.id?'var(--gold)':'var(--muted)',borderColor:active===x.id?'rgba(200,150,44,.3)':'transparent',background:active===x.id?'rgba(200,150,44,.06)':'transparent'}}>
+                {x.l}
+              </button>
             ))}
           </nav>
           <div style={{display:'flex',alignItems:'center',gap:8}}>
-            {isAdmin&&<button onClick={()=>{setEditing(null);setPostModal(true);}} className="btn btn-p hd" style={{padding:'7px 12px',fontSize:12}}><i className="fas fa-plus"/> {t('addPost')}</button>}
+            {isAdmin&&<button onClick={()=>{setEditing(null);setPostModal(true);}} className="btn btn-gold hd" style={{padding:'7px 12px',fontSize:12}}><i className="fas fa-plus"/> {t('addPost')}</button>}
             {user&&(
               <div style={{cursor:'pointer'}} onClick={()=>setProfileOpen(true)}>
                 {profile?.avatar_url
-                  ?<img src={profile.avatar_url} style={{width:28,height:28,borderRadius:'50%',objectFit:'cover',border:'2px solid var(--accent)',display:'block'}}/>
-                  :<div style={{width:28,height:28,borderRadius:'50%',background:'var(--elevated)',border:'2px solid var(--accent)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:800,color:'var(--accent)'}}>{user.email[0].toUpperCase()}</div>
+                  ?<img src={profile.avatar_url} style={{width:30,height:30,borderRadius:'50%',objectFit:'cover',border:'2px solid var(--gold)',display:'block'}}/>
+                  :<div style={{width:30,height:30,borderRadius:'50%',background:'var(--elevated)',border:'2px solid var(--gold)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:800,color:'var(--gold)'}}>{user.email[0].toUpperCase()}</div>
                 }
               </div>
             )}
@@ -1665,100 +1495,163 @@ function App(){
         </div>
       </header>
 
+      {/* ══════════════════════════════════
+         HERO SECTION
+      ══════════════════════════════════ */}
       <section id="hero">
-        <div className="hero-vid">
-          <video ref={vidRef} autoPlay muted loop playsInline preload="auto">
-            <source src={VIDEO_URL} type="video/mp4"/>
-          </video>
+        <div className="hero-bg">
+          <img src={HERO_IMG} alt="Halal Market" onError={e=>{e.target.parentElement.style.background='linear-gradient(150deg,#071510,#0b1e15)'}}/>
         </div>
-        <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(16,185,129,.07),transparent 70%)',top:'6%',insetInlineEnd:'-7%',filter:'blur(72px)',animation:'glow 5s ease-in-out infinite',zIndex:2,pointerEvents:'none'}}/>
-        <div style={{position:'absolute',width:360,height:360,borderRadius:'50%',background:'radial-gradient(circle,rgba(52,211,153,.05),transparent 70%)',bottom:'9%',insetInlineStart:'-5%',filter:'blur(72px)',animation:'glow 7s ease-in-out 1.5s infinite',zIndex:2,pointerEvents:'none'}}/>
+        <div className="hero-overlay"/>
+
+        {/* Decorative glows */}
+        <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(200,150,44,.06),transparent 70%)',top:'5%',insetInlineEnd:'-8%',filter:'blur(80px)',animation:'glow 6s ease-in-out infinite',zIndex:2,pointerEvents:'none'}}/>
+        <div style={{position:'absolute',width:380,height:380,borderRadius:'50%',background:'radial-gradient(circle,rgba(34,197,94,.05),transparent 70%)',bottom:'8%',insetInlineStart:'-6%',filter:'blur(80px)',animation:'glow 8s ease-in-out 2s infinite',zIndex:2,pointerEvents:'none'}}/>
+
         <div className="hero-body">
-          <h1 className="hero-title">BILAL BAZAR</h1>
-          <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:14,margin:'10px 0'}}>
-            <div style={{width:40,height:1,background:'linear-gradient(90deg,transparent,var(--accent))'}}/>
-            <span style={{fontSize:9,fontWeight:700,letterSpacing:4.5,color:'var(--accent)',textTransform:'uppercase'}}>Erbil · Est. 2020</span>
-            <div style={{width:40,height:1,background:'linear-gradient(90deg,var(--accent),transparent)'}}/>
+          <img src={LOGO} alt="Halal Market" className="hero-logo" onError={e=>{e.target.style.display='none'}}/>
+
+          <h1 className="hero-title">HALAL<br/>MARKET</h1>
+          <div className="hero-ar">
+            {lang==='ckb'?'هالال ماركت · هەولێر':lang==='ar'?'هلال ماركت · أربيل':'Halal Market · Erbil'}
           </div>
-          <div className="hero-sub">{lang==='ckb'?'بیلال بازار':lang==='ar'?'بيلال بازار':'Bilal Bazar'}</div>
           <p className="hero-desc">{t('sub')}</p>
+
           <div className="hero-btns">
-            <button onClick={()=>go('deals')} className="btn btn-p" style={{padding:'14px 30px',borderRadius:30,fontSize:15}}>
-              <i className="fas fa-fire" style={{opacity:.7}}/> {t('deals')}
+            <button onClick={()=>go('deals')} className="btn btn-gold" style={{padding:'13px 28px',borderRadius:30,fontSize:14}}>
+              <i className="fas fa-tags"/> {t('viewDeals')}
             </button>
-            <button onClick={()=>go('locs')} className="btn btn-g" style={{padding:'14px 30px',borderRadius:30,fontSize:15,color:'#fff',borderColor:'rgba(255,255,255,.2)',background:'rgba(255,255,255,.06)'}}>
-              <i className="fas fa-map-marker-alt"/> {t('stores')}
+            <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="btn btn-ghost" style={{padding:'13px 24px',borderRadius:30,fontSize:14,color:'#25d366',borderColor:'rgba(37,211,102,.3)'}}>
+              <i className="fab fa-whatsapp"/> WhatsApp
+            </a>
+            <button onClick={()=>go('locs')} className="btn btn-ghost" style={{padding:'13px 24px',borderRadius:30,fontSize:14}}>
+              <i className="fas fa-map-marker-alt"/> {t('findStore')}
             </button>
           </div>
-          <div className="hero-stats">
-            {[{n:'4',l:t('br')},{n:'10K+',l:t('pr')},{n:t('wk'),l:t('dc')}].map((s,i)=>(
-              <div key={i} style={{textAlign:'center'}}>
-                <div style={{fontWeight:900,fontSize:28,color:'#fff',lineHeight:1}}>{s.n}</div>
-                <div style={{fontSize:9,fontWeight:700,color:'var(--accent)',letterSpacing:.8,marginTop:5,textTransform:'uppercase'}}>{s.l}</div>
+
+          <div className="hero-trust">
+            {[{n:'2',l:t('br')},{n:'10K+',l:t('pr')},{n:t('wk'),l:t('dc')},{n:'4.9★',l:t('reviews')}].map((s,i)=>(
+              <div key={i} className="hero-trust-item">
+                <div className="hero-trust-n">{s.n}</div>
+                <div className="hero-trust-l">{s.l}</div>
               </div>
             ))}
           </div>
         </div>
-        <div style={{position:'absolute',bottom:18,left:'50%',transform:'translateX(-50%)',zIndex:3,display:'flex',flexDirection:'column',alignItems:'center',gap:5,color:'rgba(255,255,255,.2)',animation:'fadeIn 1s ease 2.5s both'}}>
-          <span style={{fontSize:8,letterSpacing:2.5,fontWeight:700,textTransform:'uppercase'}}>scroll</span>
+
+        <div style={{position:'absolute',bottom:20,left:'50%',transform:'translateX(-50%)',zIndex:3,display:'flex',flexDirection:'column',alignItems:'center',gap:5,color:'rgba(255,255,255,.22)',animation:'fadeIn 1s ease 2s both'}}>
+          <span style={{fontSize:7.5,letterSpacing:3,fontWeight:700,textTransform:'uppercase'}}>scroll</span>
           <i className="fas fa-chevron-down" style={{fontSize:10,animation:'float 2.4s ease-in-out infinite'}}/>
         </div>
       </section>
 
-      <section id="deals" style={{padding:'50px 0',background:'var(--bg)'}}>
+      {/* ══════════════════════════════════
+         ABOUT
+      ══════════════════════════════════ */}
+      <section id="about" style={{padding:'56px 0',background:'var(--surface)',borderTop:'1px solid var(--border)'}}>
+        <div className="c" style={{maxWidth:780,textAlign:'center'}}>
+          <span style={{display:'inline-block',padding:'5px 16px',borderRadius:20,background:'rgba(200,150,44,.08)',border:'1px solid rgba(200,150,44,.2)',fontSize:11,fontWeight:700,color:'var(--gold)',letterSpacing:.8,marginBottom:16,textTransform:'uppercase'}}>
+            {t('aboutTag')}
+          </span>
+          <h2 style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:'clamp(22px,4vw,32px)',marginBottom:14,lineHeight:1.2}}>{t('atitle')}</h2>
+          <p style={{color:'var(--soft)',fontSize:'clamp(13px,2vw,15px)',lineHeight:1.9,maxWidth:620,margin:'0 auto 28px'}}>{t('atext')}</p>
+          <div className="feats">
+            {[{i:'fa-leaf',l:t('feat1')},{i:'fa-tag',l:t('feat2')},{i:'fa-award',l:t('feat3')},{i:'fa-shipping-fast',l:t('feat4')}].map((f,i)=>(
+              <div key={i} className="feat">
+                <div className="feat-ico"><i className={`fas ${f.i}`}/></div>
+                <div className="feat-label">{f.l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divline"/>
+
+      {/* ══════════════════════════════════
+         CATEGORIES
+      ══════════════════════════════════ */}
+      <section style={{padding:'48px 0',background:'var(--bg)'}}>
         <div className="c">
           <div className="stitle">
-            <h2>{t('dtitle')}</h2>
-            <span className="badge">{filtered.length}</span>
-            {isAdmin&&<button onClick={()=>{setEditing(null);setPostModal(true);}} className="btn btn-p" style={{marginInlineStart:'auto',padding:'7px 12px',fontSize:12}}><i className="fas fa-plus"/> {t('addPost')}</button>}
+            <div className="stitle-bar"/>
+            <div>
+              <h2>{t('catTitle')}</h2>
+              <div className="stitle-sub">{lang==='ckb'?'بەشەکانمان بدۆزەوە':lang==='ar'?'تصفح أقسامنا':'Browse our sections'}</div>
+            </div>
           </div>
-          <div style={{display:'flex',gap:7,overflowX:'auto',paddingBottom:14,marginBottom:22}} className="nsb">
+          <div className="cat-grid">
             {CATS.map(c=>(
-              <button key={c} onClick={()=>setCat(c)} className={`btn ${cat===c?'btn-p':'btn-g'}`} style={{borderRadius:22,padding:'8px 18px',fontSize:13,whiteSpace:'nowrap'}}>
-                {t('cats.'+c)}
+              <div key={c} className={`cat-card${cat===c?' active':''}`} onClick={()=>{setCat(c);go('deals');}}>
+                <span className="cat-ico">{CAT_ICONS[c]}</span>
+                <div className="cat-name">{t('cats.'+c)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divline"/>
+
+      {/* ══════════════════════════════════
+         DEALS
+      ══════════════════════════════════ */}
+      <section id="deals" style={{padding:'56px 0',background:'var(--bg)'}}>
+        <div className="c">
+          <div className="stitle">
+            <div className="stitle-bar"/>
+            <div style={{flex:1}}>
+              <h2>{t('dtitle')}</h2>
+              <div className="stitle-sub">{lang==='ckb'?'داشکاندنی ئەم هەفتەیە':lang==='ar'?'عروض هذا الأسبوع':'Fresh weekly offers'}</div>
+            </div>
+            <span className="badge">{filtered.length}</span>
+            {isAdmin&&<button onClick={()=>{setEditing(null);setPostModal(true);}} className="btn btn-gold" style={{padding:'7px 12px',fontSize:12}}><i className="fas fa-plus"/> {t('addPost')}</button>}
+          </div>
+
+          {/* Category filter strip */}
+          <div style={{display:'flex',gap:7,overflowX:'auto',paddingBottom:14,marginBottom:24}} className="nsb">
+            {CATS.map(c=>(
+              <button key={c} onClick={()=>setCat(c)} className={`btn ${cat===c?'btn-gold':'btn-g'}`} style={{borderRadius:22,padding:'8px 16px',fontSize:12,whiteSpace:'nowrap',gap:5}}>
+                <span>{CAT_ICONS[c]}</span>{t('cats.'+c)}
               </button>
             ))}
           </div>
+
           {loading?(
             <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))',gap:16}}>
               {[1,2,3].map(i=>(
                 <div key={i} className="card">
-                  <div className="sk" style={{height:210}}/>
+                  <div className="sk" style={{height:200}}/>
                   <div style={{padding:14,display:'flex',flexDirection:'column',gap:8}}>
-                    <div className="sk" style={{height:13,width:'72%'}}/><div className="sk" style={{height:11,width:'46%'}}/>
+                    <div className="sk" style={{height:13,width:'68%'}}/><div className="sk" style={{height:11,width:'44%'}}/>
                   </div>
                 </div>
               ))}
             </div>
           ):filtered.length===0?(
-            <div style={{textAlign:'center',padding:'60px 20px',color:'var(--muted)'}}>
-              <div style={{fontSize:44,marginBottom:10}}>🏷️</div>
+            <div style={{textAlign:'center',padding:'64px 20px',color:'var(--muted)'}}>
+              <div style={{fontSize:48,marginBottom:12}}>🏷️</div>
               <p style={{fontSize:15}}>{t('noPosts')}</p>
             </div>
           ):(
             <>
               <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))',gap:16}}>
                 {visible.map(post=>(
-                  <DealCard
-                    key={post.id} post={post} user={user} isAdmin={isAdmin}
-                    onLogin={()=>setNeedLogin(true)}
-                    onDelete={deletePost}
+                  <DealCard key={post.id} post={post} user={user} isAdmin={isAdmin}
+                    onLogin={()=>setNeedLogin(true)} onDelete={deletePost}
                     onEdit={p=>{setEditing(p);setPostModal(true);}}
-                    onOpenLb={handleOpenLb}
-                    activeCmt={activeCmt}
-                    setActiveCmt={setActiveCmt}
-                  />
+                    onOpenLb={handleOpenLb} activeCmt={activeCmt} setActiveCmt={setActiveCmt}/>
                 ))}
               </div>
               {filtered.length>3&&shown<=3&&(
-                <div style={{textAlign:'center',marginTop:24}}>
-                  <button className="btn btn-p" style={{borderRadius:30,padding:'12px 28px'}} onClick={()=>setShown(filtered.length)}>
+                <div style={{textAlign:'center',marginTop:26}}>
+                  <button className="btn btn-gold" style={{borderRadius:30,padding:'12px 32px'}} onClick={()=>setShown(filtered.length)}>
                     <i className="fas fa-chevron-down"/> {t('more')} ({filtered.length-3})
                   </button>
                 </div>
               )}
               {shown>3&&filtered.length>3&&(
-                <div style={{textAlign:'center',marginTop:24}}>
+                <div style={{textAlign:'center',marginTop:26}}>
                   <button className="btn btn-g" style={{borderRadius:30,padding:'12px 28px'}} onClick={()=>setShown(3)}>
                     <i className="fas fa-chevron-up"/> {t('less')}
                   </button>
@@ -1771,26 +1664,42 @@ function App(){
 
       <div className="divline"/>
 
-      <section id="locs" style={{padding:'50px 0',background:'var(--surface)',borderTop:'1px solid var(--border)'}}>
+      {/* ══════════════════════════════════
+         LOCATIONS
+      ══════════════════════════════════ */}
+      <section id="locs" style={{padding:'56px 0',background:'var(--surface)'}}>
         <div className="c">
-          <div className="stitle" style={{justifyContent:'center'}}><h2>{t('ltitle')}</h2></div>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))',gap:14}}>
-            {LOCS.map(loc=>(
-              <a key={loc.id} href={loc.link} target="_blank" rel="noopener noreferrer" className="lcard">
-                <div style={{width:40,height:40,borderRadius:10,background:'rgba(16,185,129,.1)',border:'1px solid rgba(16,185,129,.18)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:14,fontSize:17}}>
-                  <i className="fas fa-store acc"/>
+          <div className="stitle">
+            <div className="stitle-bar"/>
+            <div>
+              <h2>{t('ltitle')}</h2>
+              <div className="stitle-sub">{lang==='ckb'?'هەر دوو لقەکانمان':lang==='ar'?'كلا الفرعين':'Find us near you'}</div>
+            </div>
+          </div>
+          <div className="loc-grid">
+            {LOCATIONS.map((loc,idx)=>(
+              <div key={loc.id} className="loc-card">
+                <span className="loc-num">{String(idx+1).padStart(2,'0')}</span>
+                <div className="loc-icon"><i className="fas fa-store" style={{color:'var(--gold)'}}/></div>
+                <h3 className="loc-name">{loc.name[lang]||loc.name.en}</h3>
+                <div className="loc-meta">
+                  <div className="loc-row"><i className="fas fa-map-marker-alt"/><span>{loc.addr[lang]||loc.addr.en}</span></div>
+                  <div className="loc-row"><i className="fas fa-phone"/><span>{loc.phone_display}</span></div>
+                  <div className="loc-row"><i className="far fa-clock"/><span>{loc.hr}</span></div>
+                  <div className="loc-row"><i className="fas fa-circle" style={{color:'var(--green)',fontSize:7}}/><span style={{color:'var(--green)',fontWeight:700}}>{t('open')}</span></div>
                 </div>
-                <h3 style={{fontWeight:800,fontSize:14,marginBottom:5,lineHeight:1.3,fontFamily:'Noto Sans Arabic,Outfit,sans-serif'}}>{loc[lang]||loc.en}</h3>
-                <p style={{fontSize:12,color:'var(--muted)',marginBottom:14,lineHeight:1.4}}>{loc.addr[lang]||loc.addr.en}</p>
-                <div style={{display:'flex',flexDirection:'column',gap:5,marginBottom:14,fontSize:11,color:'var(--soft)',direction:'ltr',textAlign:'start'}}>
-                  <span style={{display:'flex',alignItems:'center',gap:6}}><i className="far fa-clock acc" style={{width:14}}/>{loc.hr}</span>
-                  <span style={{display:'flex',alignItems:'center',gap:6}}><i className="fas fa-phone acc" style={{width:14}}/>{loc.ph}</span>
+                <div className="loc-btns">
+                  <a href={loc.link} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{borderRadius:10,padding:'9px 8px',fontSize:11,gap:4}}>
+                    <i className="fas fa-map-marker-alt"/> {t('openMap')}
+                  </a>
+                  <a href={`tel:+964${loc.phone.replace(/^0/,'')}`} className="btn btn-ghost" style={{borderRadius:10,padding:'9px 8px',fontSize:11,gap:4}}>
+                    <i className="fas fa-phone"/> {t('call')}
+                  </a>
+                  <a href={`https://wa.me/964${loc.phone.replace(/^0/,'')}`} target="_blank" rel="noreferrer" className="btn btn-ghost" style={{borderRadius:10,padding:'9px 8px',fontSize:11,gap:4,color:'#25d366',borderColor:'rgba(37,211,102,.2)'}}>
+                    <i className="fab fa-whatsapp"/>
+                  </a>
                 </div>
-                <div style={{display:'flex',gap:8}}>
-                  <span className="btn btn-p f1" style={{padding:'9px 8px',fontSize:12,borderRadius:8}}><i className="fas fa-map-marker-alt"/> {t('openMap')}</span>
-                  <a href={`tel:+964${loc.ph.replace(/^0/,'').replace(/\s/g,'')}`} onClick={e=>e.stopPropagation()} className="btn btn-g" style={{padding:'9px 13px'}}><i className="fas fa-phone"/></a>
-                </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
@@ -1798,47 +1707,152 @@ function App(){
 
       <div className="divline"/>
 
-      <section id="about" style={{padding:'50px 16px',maxWidth:700,margin:'0 auto',textAlign:'center'}}>
-        <div className="stitle" style={{justifyContent:'center'}}><h2>{t('atitle')}</h2></div>
-        <p style={{color:'var(--soft)',fontSize:15,lineHeight:1.88}}>{t('atext')}</p>
-        <div className="feats">
-          {[{i:'fa-leaf',l:t('feat1')},{i:'fa-tag',l:t('feat2')},{i:'fa-award',l:t('feat3')}].map((f,i)=>(
-            <div key={i} className="feat">
-              <div className="feat-ico"><i className={`fas ${f.i}`}/></div>
-              <div style={{fontSize:12,fontWeight:700}}>{f.l}</div>
+      {/* ══════════════════════════════════
+         REVIEWS
+      ══════════════════════════════════ */}
+      <section id="reviews" style={{padding:'56px 0',background:'var(--bg)'}}>
+        <div className="c">
+          <div className="stitle">
+            <div className="stitle-bar"/>
+            <div>
+              <h2>{t('rtitle')}</h2>
+              <div className="stitle-sub">{lang==='ckb'?'نرخاندنی کڕیارەکانمان':lang==='ar'?'آراء عملائنا الكرام':'What our customers say'}</div>
             </div>
-          ))}
+          </div>
+
+          {/* Rating summary */}
+          <div className="rev-head">
+            <div>
+              <div className="rev-big-n">4.9</div>
+              <div className="rev-stars" style={{marginTop:4}}>
+                {[1,2,3,4,5].map(i=><span key={i} className="rev-star"><i className="fas fa-star"/></span>)}
+              </div>
+              <div style={{fontSize:11,color:'var(--muted)',marginTop:4}}>+200 {lang==='ckb'?'نرخاندن':lang==='ar'?'تقييم':'reviews'}</div>
+            </div>
+            <div className="rev-big-s">
+              {[['5★',92],[4,6],[3,2]].map(([l,p])=>(
+                <div key={l} style={{display:'flex',alignItems:'center',gap:8}}>
+                  <span style={{fontSize:11,color:'var(--muted)',width:20}}>{l}</span>
+                  <div style={{width:110,height:5,background:'var(--border)',borderRadius:3,overflow:'hidden'}}>
+                    <div style={{height:'100%',width:`${p}%`,background:'linear-gradient(90deg,var(--gold),var(--gold2))',borderRadius:3}}/>
+                  </div>
+                  <span style={{fontSize:10,color:'var(--muted)'}}>{p}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rev-scroll">
+            {REVIEWS.map(r=>(
+              <div key={r.id} className="rev-card">
+                <div className="rev-stars">
+                  {[1,2,3,4,5].map(i=><span key={i} className="rev-star" style={{opacity:i<=r.stars?1:.25}}><i className="fas fa-star"/></span>)}
+                </div>
+                <p className="rev-txt">{r[lang]||r.en}</p>
+                <div style={{display:'flex',alignItems:'center',gap:7}}>
+                  <div style={{width:28,height:28,borderRadius:'50%',background:'rgba(200,150,44,.12)',border:'1px solid rgba(200,150,44,.2)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:13}}>👤</div>
+                  <span className="rev-name">{r.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <footer style={{background:'var(--bg)',borderTop:'1px solid var(--border)',padding:'36px 16px 74px',textAlign:'center'}}>
-        <div style={{fontWeight:900,fontSize:28,marginBottom:5,background:'linear-gradient(120deg,#fff,var(--accent))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Bilal Bazar</div>
-        <div style={{fontSize:8,fontWeight:700,letterSpacing:3,color:'var(--accent)',marginBottom:8,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
-        <div style={{fontFamily:'Noto Sans Arabic',fontSize:14,color:'var(--muted)',marginBottom:20}}>
-          {lang==='ckb'?'بیلال بازار':lang==='ar'?'بيلال بازار':'Bilal Bazar'}
+      <div className="divline"/>
+
+      {/* ══════════════════════════════════
+         CONTACT
+      ══════════════════════════════════ */}
+      <section id="contact" style={{padding:'56px 0',background:'var(--surface)'}}>
+        <div className="c">
+          <div className="stitle">
+            <div className="stitle-bar"/>
+            <div>
+              <h2>{t('ctitle')}</h2>
+              <div className="stitle-sub">{lang==='ckb'?'هەر کاتێک ئامادەین':lang==='ar'?'نحن دائماً هنا':lang==='en'?'We are always here for you':''}</div>
+            </div>
+          </div>
+          <div className="contact-grid">
+            <a href="tel:+9647517985971" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(200,150,44,.1)',border:'1px solid rgba(200,150,44,.2)'}}><i className="fas fa-phone" style={{color:'var(--gold)'}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>{t('branch1')}</div>
+                <div style={{fontSize:14,fontWeight:700,color:'var(--gold)',direction:'ltr'}}>0751 798 5971</div>
+              </div>
+            </a>
+            <a href="tel:+9647507364615" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(200,150,44,.1)',border:'1px solid rgba(200,150,44,.2)'}}><i className="fas fa-phone" style={{color:'var(--gold)'}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>{t('branch2')}</div>
+                <div style={{fontSize:14,fontWeight:700,color:'var(--gold)',direction:'ltr'}}>0750 736 4615</div>
+              </div>
+            </a>
+            <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(37,211,102,.1)',border:'1px solid rgba(37,211,102,.2)'}}><i className="fab fa-whatsapp" style={{color:'#25d366',fontSize:20}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>WhatsApp</div>
+                <div style={{fontSize:12,color:'var(--muted)'}}>{lang==='ckb'?'بنووسینی پەیامی':lang==='ar'?'راسلنا':'Message us anytime'}</div>
+              </div>
+            </a>
+            <a href={LOCATIONS[0].link} target="_blank" rel="noreferrer" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(96,165,250,.1)',border:'1px solid rgba(96,165,250,.2)'}}><i className="fas fa-map-marker-alt" style={{color:'#60a5fa',fontSize:19}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>{t('openMap')}</div>
+                <div style={{fontSize:12,color:'var(--muted)'}}>Erbil · Kurdistan</div>
+              </div>
+            </a>
+          </div>
+
+          {/* Quick action buttons */}
+          <div style={{display:'flex',flexWrap:'wrap',gap:10,justifyContent:'center',marginTop:28}}>
+            <a href="tel:+9647517985971" className="btn btn-gold" style={{borderRadius:30,padding:'12px 26px',fontSize:14}}>
+              <i className="fas fa-phone"/> {t('callUs')}
+            </a>
+            <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="btn" style={{background:'#25d366',color:'#fff',borderRadius:30,padding:'12px 26px',fontSize:14}}>
+              <i className="fab fa-whatsapp"/> WhatsApp
+            </a>
+            <a href={LOCATIONS[0].link} target="_blank" rel="noreferrer" className="btn btn-ghost" style={{borderRadius:30,padding:'12px 26px',fontSize:14}}>
+              <i className="fas fa-map-marker-alt"/> {t('findStore')}
+            </a>
+          </div>
         </div>
-        <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="btn btn-g" style={{borderRadius:12,padding:'10px 22px',color:'#25d366',borderColor:'rgba(37,211,102,.2)',display:'inline-flex',gap:8,marginBottom:18}}>
-          <i className="fab fa-whatsapp" style={{fontSize:17}}/> WhatsApp
-        </a>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer style={{background:'var(--elevated)',borderTop:'1px solid var(--border)',padding:'36px 16px 78px',textAlign:'center'}}>
+        <img src={LOGO} alt="Halal Market" style={{width:52,height:52,objectFit:'contain',borderRadius:12,margin:'0 auto 14px',border:'1px solid rgba(200,150,44,.2)',display:'block'}} onError={e=>{e.target.style.display='none'}}/>
+        <div style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:24,marginBottom:4,background:'linear-gradient(120deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Halal Market</div>
+        <div style={{fontSize:8,fontWeight:700,letterSpacing:3.5,color:'var(--muted)',marginBottom:12,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
+        <div style={{display:'flex',gap:10,justifyContent:'center',marginBottom:20,flexWrap:'wrap'}}>
+          <a href="tel:+9647517985971" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',fontSize:12}}><i className="fas fa-phone"/> 0751 798 5971</a>
+          <a href="tel:+9647507364615" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',fontSize:12}}><i className="fas fa-phone"/> 0750 736 4615</a>
+          <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',color:'#25d366',borderColor:'rgba(37,211,102,.2)'}}><i className="fab fa-whatsapp"/> WhatsApp</a>
+        </div>
+        <div style={{height:1,background:'linear-gradient(90deg,transparent,var(--border),transparent)',margin:'16px auto',maxWidth:320}}/>
         <p style={{fontSize:10,color:'var(--border2)'}}>{t('copy')}</p>
       </footer>
 
-      <div className="mnav md">
-        {nav.map(x=>(
+      {/* ── MOBILE NAV ── */}
+      <nav className="mnav md">
+        {navItems.map(x=>(
           <button key={x.id} className={`mnb ${active===x.id?'act':''}`} onClick={()=>go(x.id)}>
-            <i className={`fas ${x.i}`} style={{fontSize:20}}/>{x.l}
+            <i className={`fas ${x.i}`}/>{x.l}
           </button>
         ))}
         <button className="mnb" onClick={()=>setDrawer(true)}>
-          <i className="fas fa-bars" style={{fontSize:20}}/>{t('menu')}
+          <i className="fas fa-bars"/>{t('menu')}
         </button>
-      </div>
+      </nav>
 
-      <a href="https://wa.me/9647509193030" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
+      {/* ── FABs ── */}
+      <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
       {isAdmin&&<button className="fab-add" onClick={()=>{setEditing(null);setPostModal(true);}}><i className="fas fa-plus"/></button>}
 
+      {/* ── GLOBAL LIGHTBOX ── */}
       {globalLb&&<GlobalLightbox imgs={globalLb.imgs} startIdx={globalLb.idx} onClose={handleCloseLb}/>}
 
+      {/* ── MODALS ── */}
       {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
       {authOpen&&<AuthModal onClose={()=>setAuthOpen(false)}/>}
       {profileOpen&&<ProfileModal onClose={()=>setProfileOpen(false)}/>}
@@ -1849,11 +1863,13 @@ function App(){
         <div className="ov" onClick={()=>setNeedLogin(false)}>
           <div className="mbox" style={{maxWidth:320}} onClick={e=>e.stopPropagation()}>
             <div className="mbody" style={{textAlign:'center'}}>
-              <div style={{fontSize:42,marginBottom:10}}>❤️</div>
+              <div style={{fontSize:44,marginBottom:10}}>❤️</div>
               <h3 style={{fontWeight:800,fontSize:17,marginBottom:6}}>{t('loginFirst')}</h3>
-              <p style={{fontSize:12,color:'var(--muted)',marginBottom:16}}>تۆمار بکە یان بچۆ ژوورەوە</p>
+              <p style={{fontSize:12,color:'var(--muted)',marginBottom:16}}>
+                {lang==='ckb'?'تۆمار بکە یان بچۆ ژوورەوە':lang==='ar'?'سجّل أو ادخل إلى حسابك':'Sign up or log in to continue'}
+              </p>
               <div style={{display:'flex',gap:8}}>
-                <button className="btn btn-p f1" onClick={()=>{setNeedLogin(false);setAuthOpen(true);}}>{t('login')}</button>
+                <button className="btn btn-gold f1" onClick={()=>{setNeedLogin(false);setAuthOpen(true);}}>{t('login')}</button>
                 <button className="btn btn-g f1" onClick={()=>{setNeedLogin(false);setAuthOpen(true);}}>{t('signup')}</button>
               </div>
             </div>
