@@ -347,15 +347,15 @@ const REVIEWS=[
 const TX={
   ckb:{
     sub:'هەموو ئەوەی پێویستتە — بە باشترین نرخ',
-    hero2:'هالال ماركت',
+    hero2:'حلال مارکێت',
     home:'سەرەکی',locs:'شوێنەکان',about:'دەربارە',deals:'داشکاندن',reviews:'نرخاندن',contact:'پەیوەندی',
     login:'چوونەژوورەوە',signup:'تۆمارکردن',logout:'دەرچوون',
     viewDeals:'داشکاندنەکان ببینە',findStore:'شوێنەکانمان بدۆزەوە',callUs:'پەیوەندیمان بکە',
     dtitle:'داشکاندنی ئەم هەفتەیە',more:'زیاتر ببینە',less:'داخستن',
     noPosts:'هیچ داشکاندنێک نییە',
-    ltitle:'شوێنەکانمان',atitle:'دەربارەی هالال ماركت',
-    atext:'لە هالال ماركت هەموو ئەوەی پێویستتە دەبینیت — خواردنی تازە، برنج، گۆشت، سەوزە و زیاتر، بە باشترین نرخ و کوالێتیی بەرز.',
-    copy:'© ٢٠٢٥ هالال ماركت · هەولێر',
+    ltitle:'شوێنەکانمان',atitle:'دەربارەی حلال مارکێت',
+    atext:'لە حلال مارکێت هەموو ئەوەی پێویستتە دەبینیت — خواردنی تازە، برنج، گۆشت، سەوزە و زیاتر، بە باشترین نرخ و کوالێتیی بەرز.',
+    copy:'© ٢٠٢٥ حلال مارکێت · هەولێر',
     days:'ڕۆژ',hrs:'کاتژمێر',min:'خولەک',finished:'داشکاندن کۆتایی هات',
     share:'هاوبەشی',like:'دڵنیا',loginFirst:'تکایە چوونەژوورەوە بۆ سەرنج',
     cmt:'سەرنج',addCmt:'سەرنجت بنووسە...',noCmt:'هیچ سەرنجێک نییە',
@@ -464,7 +464,7 @@ const CAT_ICONS={all:'🛒',rice:'🌾',meat:'🥩',cereal:'🌽',cleaning:'🧹
 
 const LOCATIONS=[
   {id:1,
-   name:{ckb:'هالال ماركت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
+   name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
    addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
    phone:'07517985971',
@@ -472,7 +472,7 @@ const LOCATIONS=[
    hr:'8:00 AM – 12:00 AM',
   },
   {id:2,
-   name:{ckb:'هالال ماركت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
+   name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
    addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
    phone:'07507364615',
@@ -1451,7 +1451,7 @@ function App(){
         <div className="ticker-inner">
           {[...Array(4)].map((_,i)=>(
             <React.Fragment key={i}>
-              <span>هالال ماركت · Halal Market</span>
+              <span>حلال مارکێت · Halal Market</span>
               <span>کاڵای تازە · Fresh Products</span>
               <span>باشترین نرخ · Best Prices</span>
               <span>هەولێر · Erbil Kurdistan</span>
@@ -1513,7 +1513,7 @@ function App(){
 
           <h1 className="hero-title">HALAL<br/>MARKET</h1>
           <div className="hero-ar">
-            {lang==='ckb'?'هالال ماركت · هەولێر':lang==='ar'?'هلال ماركت · أربيل':'Halal Market · Erbil'}
+            {lang==='ckb'?'حلال مارکێت · هەولێر':lang==='ar'?'هلال ماركت · أربيل':'Halal Market · Erbil'}
           </div>
           <p className="hero-desc">{t('sub')}</p>
 
