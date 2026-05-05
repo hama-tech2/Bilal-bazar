@@ -18,8 +18,6 @@
   --gold:#c8962c;--gold2:#a67820;--gold3:#e8c06a;--gold4:rgba(200,150,44,.08);
   --green:#22c55e;--green2:#16a34a;--green3:#86efac;
   --danger:#ef4444;--danger2:#b91c1c;
-  --logo:url('https://github.com/hama-tech2/halal-market/blob/main/halal-market-logo2.png?raw=true');
-  --hero:url('https://github.com/hama-tech2/Bilal-bazar/blob/main/hero-halal-market.jpg?raw=true');
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -34,7 +32,6 @@ a{color:inherit;text-decoration:none}
 .nsb{-ms-overflow-style:none;scrollbar-width:none}
 .nsb::-webkit-scrollbar{display:none}
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes shimmer{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
@@ -45,11 +42,9 @@ a{color:inherit;text-decoration:none}
 @keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 @keyframes slideR{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:none}}
 @keyframes slideL{from{opacity:0;transform:translateX(-100%)}to{opacity:1;transform:none}}
-@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(200,150,44,.35)}70%{box-shadow:0 0 0 12px rgba(200,150,44,0)}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── LAYOUT ── */
 .c{max-width:1100px;margin:0 auto;padding:0 16px}
 .flex{display:flex}.col{flex-direction:column}
 .ac{align-items:center}.jb{justify-content:space-between}.jc{justify-content:center}
@@ -57,13 +52,11 @@ a{color:inherit;text-decoration:none}
 .f1{flex:1}.wf{width:100%}
 .tc{text-align:center}.muted{color:var(--muted)}.gold{color:var(--gold)}
 
-/* ── BADGE TICKER ── */
 .ticker-wrap{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));height:34px;overflow:hidden;display:flex;align-items:center}
 .ticker-inner{display:flex;white-space:nowrap;animation:marquee 22s linear infinite}
 .ticker-inner span{padding:0 28px;font-size:12px;font-weight:700;color:#1a0e00;letter-spacing:.4px}
 .ticker-inner span::before{content:'★ ';opacity:.6}
 
-/* ── HEADER ── */
 .hdr{position:sticky;top:0;z-index:40;background:rgba(6,8,7,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .hdr-inner{display:flex;align-items:center;justify-content:space-between;height:58px}
 .logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
@@ -71,40 +64,32 @@ a{color:inherit;text-decoration:none}
 .logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;background:linear-gradient(120deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .logo-sub{font-size:7.5px;font-weight:600;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;margin-top:-2px}
 
-/* ── HERO ── */
 #hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(6,8,7,.85) 0%,rgba(6,8,7,.55) 45%,rgba(6,8,7,.90) 100%)}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(6,8,7,.88) 0%,rgba(6,8,7,.60) 45%,rgba(6,8,7,.92) 100%)}
 .hero-body{position:relative;z-index:2;text-align:center;padding:110px 20px 90px;max-width:800px;margin:0 auto;width:100%}
-.hero-logo{width:84px;height:84px;object-fit:contain;margin:0 auto 20px;border-radius:16px;box-shadow:0 0 0 1px rgba(200,150,44,.3),0 12px 48px rgba(0,0,0,.6);animation:fadeUp .6s ease both}
-.hero-title{font-family:'Syne',sans-serif;font-weight:900;font-size:clamp(42px,9vw,96px);letter-spacing:-2px;line-height:.9;background:linear-gradient(130deg,#fff 0%,var(--gold3) 40%,var(--gold) 70%,#fff 100%);background-size:260% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp .7s ease .12s both;margin-bottom:4px}
-.hero-ar{font-family:'Noto Sans Arabic',sans-serif;font-weight:800;font-size:clamp(14px,2.5vw,20px);color:rgba(232,192,106,.8);animation:fadeUp .7s ease .28s both;margin-bottom:12px}
-.hero-desc{color:rgba(220,215,200,.62);font-size:clamp(13px,1.8vw,15px);line-height:1.8;margin:0 auto 30px;max-width:460px;animation:fadeUp .7s ease .44s both}
+.hero-title{font-family:'Syne',sans-serif;font-weight:900;font-size:clamp(48px,10vw,108px);letter-spacing:-3px;line-height:.88;background:linear-gradient(130deg,#fff 0%,var(--gold3) 40%,var(--gold) 70%,#fff 100%);background-size:260% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp .7s ease .12s both;margin-bottom:10px}
+.hero-ar{font-family:'Noto Sans Arabic',sans-serif;font-weight:700;font-size:clamp(13px,2.2vw,18px);color:rgba(232,192,106,.75);animation:fadeUp .7s ease .28s both;margin-bottom:14px;letter-spacing:.5px}
+.hero-desc{color:rgba(220,215,200,.58);font-size:clamp(13px,1.8vw,15px);line-height:1.85;margin:0 auto 32px;max-width:440px;animation:fadeUp .7s ease .44s both}
 .hero-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;animation:fadeUp .7s ease .58s both}
-.hero-trust{display:flex;gap:28px;justify-content:center;margin-top:48px;flex-wrap:wrap;animation:fadeUp .7s ease .74s both}
+.hero-trust{display:flex;gap:36px;justify-content:center;margin-top:52px;flex-wrap:wrap;animation:fadeUp .7s ease .74s both}
 .hero-trust-item{text-align:center}
 .hero-trust-n{font-family:'Syne',sans-serif;font-weight:900;font-size:28px;color:#fff;line-height:1}
 .hero-trust-l{font-size:9px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px}
 
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 20px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .16s;white-space:nowrap;font-family:inherit;text-decoration:none}
 .btn:disabled{opacity:.38;cursor:not-allowed;transform:none!important}
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00;box-shadow:0 4px 18px rgba(200,150,44,.28)}
 .btn-gold:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,150,44,.38)}
-.btn-green{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;box-shadow:0 4px 18px rgba(34,197,94,.22)}
-.btn-green:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-2px)}
 .btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--soft)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--text);background:rgba(200,150,44,.08)}
 .btn-g{background:transparent;border:1px solid var(--border);color:var(--muted)}
 .btn-g:hover{border-color:var(--gold);color:var(--text)}
 .btn-d{background:rgba(239,68,68,.1);color:var(--danger);border:1px solid rgba(239,68,68,.2)}
 .btn-d:hover{background:rgba(239,68,68,.18)}
-.btn-p{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff}
-.btn-p:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
 .badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:var(--gold4);color:var(--gold);border:1px solid rgba(200,150,44,.2)}
 
-/* ── CARD ── */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s;will-change:transform;contain:layout style}
 .card:hover{border-color:rgba(200,150,44,.25);box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 0 1px rgba(200,150,44,.08)}
 body.lb-open .card{pointer-events:none}
@@ -113,19 +98,16 @@ body.lb-open .card{pointer-events:none}
 .inp:focus{border-color:var(--gold)}
 .inp::placeholder{color:var(--muted)}
 
-/* ── SECTION TITLE ── */
 .stitle{display:flex;align-items:center;gap:14px;margin-bottom:28px}
 .stitle-bar{width:4px;height:32px;border-radius:2px;background:linear-gradient(180deg,var(--gold3),var(--gold2));flex-shrink:0}
 .stitle h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(20px,3.5vw,28px)}
 .stitle-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
-/* ── TOAST ── */
 .toast-wrap{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:6px;pointer-events:none}
 .toast{padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;min-width:190px;text-align:center;animation:toastIn .3s ease}
 .t-ok{background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.28);color:#86efac}
 .t-err{background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.25);color:#fca5a5}
 
-/* ── MODAL ── */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:80;display:flex;align-items:flex-end;justify-content:center}
 @media(min-width:540px){.ov{align-items:center;padding:20px}}
 .mbox{background:var(--elevated);border:1px solid var(--border);width:100%;max-width:500px;max-height:93vh;overflow-y:auto;border-radius:20px 20px 0 0;animation:slideUp .22s ease}
@@ -134,7 +116,6 @@ body.lb-open .card{pointer-events:none}
 .mhdr h3{font-weight:800;font-size:15px}
 .mbody{padding:18px 20px}
 
-/* ── DRAWER ── */
 .dov{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.8)}
 .dpanel{position:absolute;top:0;bottom:0;width:min(290px,85vw);background:var(--surface);border-inline-end:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
 .rtl .dpanel{right:0;animation:slideR .22s ease}
@@ -143,14 +124,12 @@ body.lb-open .card{pointer-events:none}
 .di:hover{background:var(--elevated)}
 .dico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 
-/* ── MOBILE NAV ── */
 .mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,8,7,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;height:58px;padding-bottom:env(safe-area-inset-bottom)}
 .mnb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);background:none;border:none;cursor:pointer;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;transition:color .14s}
 .mnb.act{color:var(--gold)}
 .mnb.act i{color:var(--gold)}
 .mnb i{font-size:19px;transition:color .14s}
 
-/* ── SPONSOR BANNER ── */
 .sp-top-wrap{position:relative;width:100%;overflow:hidden;height:72px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
 @media(min-width:641px){.sp-top-wrap{height:88px}}
 .sp-top-slide{position:absolute;inset:0;transition:opacity .55s ease}
@@ -162,7 +141,6 @@ body.lb-open .card{pointer-events:none}
 .sp-float-inner img{width:100%;height:100%;object-fit:contain;display:block}
 .sp-float-label{position:absolute;top:3px;right:5px;z-index:3;font-size:6px;font-weight:800;text-transform:uppercase;color:rgba(0,0,0,.28);background:rgba(255,255,255,.7);padding:1px 4px;border-radius:2px;pointer-events:none}
 
-/* ── PRODUCT IMAGE GRID ── */
 .pimg{position:relative}
 .fi{background:var(--border);overflow:hidden;cursor:pointer;position:relative}
 .fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .28s}
@@ -176,20 +154,17 @@ body.lb-open .card{pointer-events:none}
 .g6i{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2px;height:215px}
 @media(max-width:640px){.g1{height:205px!important}.g2i{height:165px!important}.g3i{height:145px!important}.g4i,.g5i,.g6i{height:175px!important}}
 
-/* ── DISCOUNT BADGE ── */
 .disc{position:absolute;top:10px;right:10px;z-index:5;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--danger),var(--danger2));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:12px;line-height:1;text-align:center;box-shadow:0 4px 14px rgba(185,28,28,.48)}
 .ltr .disc{right:auto;left:10px}
 .exp-ribbon{position:absolute;top:0;left:0;right:0;background:rgba(160,20,20,.82);padding:5px;text-align:center;z-index:4;pointer-events:none}
 .exp-ribbon span{color:#fff;font-weight:900;font-size:11px;letter-spacing:.5px}
 
-/* ── COUNTDOWN ── */
 .cdown{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:8px;background:rgba(200,150,44,.08);border:1px solid rgba(200,150,44,.18)}
 .cb{text-align:center;min-width:24px}
 .cn{font-weight:900;font-size:16px;line-height:1;color:#fff}
 .cl{font-size:7px;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
 .cs{color:rgba(200,150,44,.4);font-weight:900;font-size:13px;align-self:center;margin-bottom:2px}
 
-/* ── POST ACTIONS ── */
 .post-actions{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;padding-top:10px;border-top:1px solid var(--border)}
 .act-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .14s;white-space:nowrap;font-family:inherit;height:32px}
 .act-btn:hover{border-color:var(--gold);color:var(--text)}
@@ -197,7 +172,6 @@ body.lb-open .card{pointer-events:none}
 .act-btn.active{color:var(--green);border-color:var(--green)}
 .admin-btns{display:flex;gap:4px;margin-inline-start:auto}
 
-/* ── LIGHTBOX ── */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:300;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;touch-action:pan-y}
 .lbc{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.1);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
 .lb-img{max-width:93vw;max-height:88vh;object-fit:contain;border-radius:10px;display:block;user-select:none;-webkit-user-drag:none}
@@ -205,7 +179,6 @@ body.lb-open .card{pointer-events:none}
 .lb-nav:hover{background:rgba(255,255,255,.2)}
 .lb-counter{position:absolute;top:14px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:13px;font-weight:700;z-index:2;background:rgba(0,0,0,.45);padding:3px 12px;border-radius:20px;pointer-events:none}
 
-/* ── COMMENTS ── */
 .cm-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;padding-inline-end:2px}
 .cm-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
 .cm-reply-item{background:rgba(200,150,44,.03);border:1px solid rgba(200,150,44,.14);border-radius:10px;padding:8px 11px;margin-inline-start:24px;margin-top:5px}
@@ -225,24 +198,11 @@ body.lb-open .card{pointer-events:none}
 .cm-del-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.16);font-size:13px;font-weight:900;padding:0 3px;line-height:1;transition:color .12s;flex-shrink:0;margin-inline-start:4px;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px}
 .cm-del-btn:hover{color:var(--danger);background:rgba(239,68,68,.1)}
 
-/* ── TITLE TOGGLE ── */
 .title-toggle{display:inline;background:none;border:none;cursor:pointer;color:var(--gold);font-size:11px;font-weight:700;padding:1px 5px;margin-inline-start:4px;font-family:inherit;vertical-align:baseline;line-height:inherit;opacity:.85}
 .title-toggle:hover{opacity:1;text-decoration:underline}
 
-/* ── SKELETON ── */
 .sk{background:linear-gradient(90deg,var(--border) 25%,var(--elevated) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.6s infinite;border-radius:8px}
 
-/* ── CATEGORY CARDS ── */
-.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(min-width:560px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
-@media(min-width:800px){.cat-grid{grid-template-columns:repeat(6,1fr)}}
-.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s}
-.cat-card:hover,.cat-card.active{border-color:var(--gold);background:rgba(200,150,44,.06);transform:translateY(-2px)}
-.cat-ico{font-size:26px;margin-bottom:8px;display:block}
-.cat-name{font-size:11px;font-weight:700;color:var(--soft)}
-.cat-card.active .cat-name{color:var(--gold)}
-
-/* ── LOCATION CARDS ── */
 .loc-grid{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:560px){.loc-grid{grid-template-columns:1fr 1fr}}
 .loc-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;position:relative;overflow:hidden;transition:all .2s}
@@ -256,7 +216,6 @@ body.lb-open .card{pointer-events:none}
 .loc-row i{width:16px;color:var(--gold);font-size:11px;flex-shrink:0}
 .loc-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 
-/* ── REVIEW CARDS ── */
 .rev-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px}
 .rev-scroll::-webkit-scrollbar{display:none}
 .rev-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;min-width:230px;max-width:250px;flex-shrink:0;transition:border-color .2s}
@@ -269,28 +228,23 @@ body.lb-open .card{pointer-events:none}
 .rev-big-n{font-family:'Syne',sans-serif;font-weight:900;font-size:44px;color:#fff;line-height:1}
 .rev-big-s{display:flex;flex-direction:column;gap:4px}
 
-/* ── CONTACT SECTION ── */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:560px){.contact-grid{grid-template-columns:1fr 1fr}}
 .contact-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;transition:border-color .2s}
 .contact-card:hover{border-color:rgba(200,150,44,.2)}
 .contact-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 
-/* ── FAB BUTTONS ── */
 .fab-wa{position:fixed;bottom:70px;right:16px;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:23px;z-index:45;box-shadow:0 4px 22px rgba(37,211,102,.38);transition:transform .18s;text-decoration:none;animation:pulseGold 3s ease-in-out infinite}
 .fab-wa:hover{transform:scale(1.1)}
 .fab-add{position:fixed;bottom:70px;left:16px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;display:flex;align-items:center;justify-content:center;color:#1a0e00;font-size:22px;z-index:45;cursor:pointer;box-shadow:0 4px 22px rgba(200,150,44,.38);transition:transform .18s}
 .fab-add:hover{transform:scale(1.1) rotate(90deg)}
 
-/* ── DIVIDER ── */
 .divline{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
-/* ── UPLOAD PROGRESS ── */
 .up-progress{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(200,150,44,.06);border:1px solid rgba(200,150,44,.15);border-radius:8px;margin-top:6px}
 .up-progress-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .up-progress-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .3s}
 
-/* ── AVATAR ── */
 .av-sel{display:flex;gap:10px;justify-content:center;margin-top:8px}
 .av-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 18px;border-radius:12px;border:2px solid var(--border);cursor:pointer;transition:all .15s;background:var(--bg);font-size:11px;font-weight:700;color:var(--muted)}
 .av-opt.chosen{border-color:var(--gold);background:var(--gold4);color:var(--gold)}
@@ -298,20 +252,11 @@ body.lb-open .card{pointer-events:none}
 .admin-av-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:rgba(200,150,44,.04);border:1px solid rgba(200,150,44,.12);border-radius:12px}
 .admin-av-img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
 
-/* ── SPONSOR MODAL TOGGLE ── */
 .pl-toggle{display:flex;gap:8px;margin-bottom:2px}
 .pl-btn{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .pl-btn.sel{border-color:var(--gold);background:var(--gold4);color:var(--gold)}
 .pl-btn i{font-size:16px}
 
-/* ── ABOUT FEATURES ── */
-.feats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-.feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 16px;width:138px;text-align:center;transition:all .2s}
-.feat:hover{border-color:var(--gold);transform:translateY(-3px)}
-.feat-ico{width:44px;height:44px;border-radius:12px;background:rgba(200,150,44,.08);border:1px solid rgba(200,150,44,.16);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:18px;color:var(--gold)}
-.feat-label{font-size:12px;font-weight:700;color:var(--soft)}
-
-/* ── RESPONSIVE HIDE/SHOW ── */
 @media(max-width:640px){.hd{display:none!important}.hero-body{padding:90px 16px 72px!important}}
 @media(min-width:641px){.md{display:none!important}}
 </style>
@@ -321,7 +266,6 @@ body.lb-open .card{pointer-events:none}
 <script type="text/babel">
 const{useState,useEffect,useRef,useCallback,useContext,useMemo}=React;
 
-/* ── SUPABASE ── */
 const SB_URL='https://dtodkjkwddpmpznckrlf.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0b2Rramt3ZGRwbXB6bmNrcmxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NDg4NTYsImV4cCI6MjA5MjQyNDg1Nn0.tdS1c39yykF-RKFuXqBKKaKtEjzd8TPeN9xqOkHkVvo';
 const SB=supabase.createClient(SB_URL,SB_KEY);
@@ -336,7 +280,6 @@ const TITLE_LIMIT=80;
 
 const CATS=['all','rice','meat','cereal','cleaning','vegetable','dairy','other'];
 
-/* ── STATIC DATA ── */
 const REVIEWS=[
   {id:1,name:'ئاکۆ عومەر',ckb:'کاڵاکانی تازە و نرخەکانی زۆر باشن. دووکانی پێویستم بۆ مانگی کرد!',ar:'المنتجات طازجة والأسعار ممتازة. أصبح متجري المفضل!',en:'Fresh products and great prices. My go-to store every week!',stars:5},
   {id:2,name:'سارا حسن',ckb:'خزمەتگوزاری زۆر باشە و شوێنەکەش بیناوی.',ar:'الخدمة رائعة والمكان نظيف جداً.',en:'Wonderful service and very clean place.',stars:5},
@@ -347,14 +290,12 @@ const REVIEWS=[
 const TX={
   ckb:{
     sub:'هەموو ئەوەی پێویستتە — بە باشترین نرخ',
-    hero2:'حلال مارکێت',
-    home:'سەرەکی',locs:'شوێنەکان',about:'دەربارە',deals:'داشکاندن',reviews:'نرخاندن',contact:'پەیوەندی',
+    home:'سەرەکی',locs:'شوێنەکان',deals:'داشکاندن',reviews:'نرخاندن',contact:'پەیوەندی',
     login:'چوونەژوورەوە',signup:'تۆمارکردن',logout:'دەرچوون',
     viewDeals:'داشکاندنەکان ببینە',findStore:'شوێنەکانمان بدۆزەوە',callUs:'پەیوەندیمان بکە',
     dtitle:'داشکاندنی ئەم هەفتەیە',more:'زیاتر ببینە',less:'داخستن',
     noPosts:'هیچ داشکاندنێک نییە',
-    ltitle:'شوێنەکانمان',atitle:'دەربارەی حلال مارکێت',
-    atext:'لە حلال مارکێت هەموو ئەوەی پێویستتە دەبینیت — خواردنی تازە، برنج، گۆشت، سەوزە و زیاتر، بە باشترین نرخ و کوالێتیی بەرز.',
+    ltitle:'شوێنەکانمان',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر',
     days:'ڕۆژ',hrs:'کاتژمێر',min:'خولەک',finished:'داشکاندن کۆتایی هات',
     share:'هاوبەشی',like:'دڵنیا',loginFirst:'تکایە چوونەژوورەوە بۆ سەرنج',
@@ -366,7 +307,6 @@ const TX={
     cats:{all:'هەموو',rice:'برنج',meat:'گۆشت',cereal:'دانەوێڵە',cleaning:'مادەی پاككردنەوە',vegetable:'سەوزە',dairy:'شیری',other:'هی تر'},
     br:'لق',pr:'کاڵا',wk:'هەفتانە',dc:'داشکاندن',
     openMap:'نەخشە',call:'پەیوەندی',
-    feat1:'کاڵای تازە',feat2:'باشترین نرخ',feat3:'کوالێتی بەرز',feat4:'گەیاندن خێرا',
     spLink:'لینک (ئارەزوومەندانە)',crop:'بڕینی وێنە',upload:'بارکردن',
     hide:'شاردنەوە',show:'پیشاندان',
     profile:'پرۆفایل',profName:'ناوت',profAvatar:'ئاڤاتار',profSave:'هەڵگرتنی پرۆفایل',
@@ -376,22 +316,18 @@ const TX={
     rtitle:'نرخاندنی کڕیارەکان',
     ctitle:'پەیوەندیمان بکە',
     branch1:'لقی یەکەم',branch2:'لقی دووەم',
-    open:'کراوەیە',hrs2:'8 سبەی - 12 شەو',
-    whatsapp:'واتساپ',directions:'ئاراستە',
-    catTitle:'بەشەکانمان',
-    aboutTag:'دەربارەی ئێمە',
+    open:'کراوەیە',
+    whatsapp:'واتساپ',
     menu:'مینیو',
   },
   ar:{
     sub:'كل ما تحتاجه — بأفضل الأسعار',
-    hero2:'هلال ماركت',
-    home:'الرئيسية',locs:'المواقع',about:'من نحن',deals:'العروض',reviews:'التقييمات',contact:'التواصل',
+    home:'الرئيسية',locs:'المواقع',deals:'العروض',reviews:'التقييمات',contact:'التواصل',
     login:'تسجيل الدخول',signup:'إنشاء حساب',logout:'تسجيل الخروج',
     viewDeals:'عرض الخصومات',findStore:'ابحث عن فروعنا',callUs:'اتصل بنا',
     dtitle:'عروض الأسبوع',more:'عرض المزيد',less:'إخفاء',
     noPosts:'لا توجد عروض',
-    ltitle:'فروعنا',atitle:'عن هلال ماركت',
-    atext:'في هلال ماركت ستجد كل ما تحتاجه — منتجات طازجة، أرز، لحوم، خضروات وأكثر، بأفضل الأسعار وجودة عالية.',
+    ltitle:'فروعنا',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل',
     days:'أيام',hrs:'ساعة',min:'دقيقة',finished:'انتهى الخصم',
     share:'مشاركة',like:'إعجاب',loginFirst:'سجّل دخولك للتعليق',
@@ -403,7 +339,6 @@ const TX={
     cats:{all:'الكل',rice:'أرز',meat:'لحوم',cereal:'حبوب',cleaning:'مادة تنظيف',vegetable:'خضار',dairy:'منتجات ألبان',other:'أخرى'},
     br:'فروع',pr:'منتج',wk:'أسبوعي',dc:'خصومات',
     openMap:'الخريطة',call:'اتصال',
-    feat1:'منتجات طازجة',feat2:'أفضل الأسعار',feat3:'جودة عالية',feat4:'توصيل سريع',
     spLink:'رابط (اختياري)',crop:'قص الصورة',upload:'رفع',
     hide:'إخفاء',show:'إظهار',
     profile:'الملف الشخصي',profName:'الاسم',profAvatar:'الصورة الرمزية',profSave:'حفظ الملف',
@@ -413,22 +348,18 @@ const TX={
     rtitle:'آراء عملائنا',
     ctitle:'تواصل معنا',
     branch1:'الفرع الأول',branch2:'الفرع الثاني',
-    open:'مفتوح',hrs2:'8 صباحاً - 12 منتصف الليل',
-    whatsapp:'واتساب',directions:'الاتجاهات',
-    catTitle:'أقسامنا',
-    aboutTag:'عن متجرنا',
+    open:'مفتوح',
+    whatsapp:'واتساب',
     menu:'القائمة',
   },
   en:{
     sub:'Everything you need — at the best prices',
-    hero2:'Halal Market',
-    home:'Home',locs:'Locations',about:'About',deals:'Deals',reviews:'Reviews',contact:'Contact',
+    home:'Home',locs:'Locations',deals:'Deals',reviews:'Reviews',contact:'Contact',
     login:'Login',signup:'Sign Up',logout:'Logout',
     viewDeals:'See Deals',findStore:'Find a Store',callUs:'Call Us',
     dtitle:"This Week's Deals",more:'See More',less:'Show Less',
     noPosts:'No deals right now',
-    ltitle:'Our Locations',atitle:'About Halal Market',
-    atext:'At Halal Market you will find everything you need — fresh produce, rice, meat, vegetables and more, at the best prices with top quality.',
+    ltitle:'Our Locations',
     copy:'© 2025 Halal Market · Erbil',
     days:'DAYS',hrs:'HRS',min:'MIN',finished:'Offer Ended',
     share:'Share',like:'Like',loginFirst:'Log in to comment',
@@ -440,7 +371,6 @@ const TX={
     cats:{all:'All',rice:'Rice',meat:'Meat',cereal:'Cereals',cleaning:'Cleaning',vegetable:'Vegetables',dairy:'Dairy',other:'Other'},
     br:'Branches',pr:'Products',wk:'Weekly',dc:'Discounts',
     openMap:'Map',call:'Call',
-    feat1:'Fresh Products',feat2:'Best Prices',feat3:'Top Quality',feat4:'Fast Delivery',
     spLink:'Link (optional)',crop:'Crop Image',upload:'Upload',
     hide:'Hide',show:'Show',
     profile:'Profile',profName:'Your Name',profAvatar:'Avatar',profSave:'Save Profile',
@@ -450,16 +380,13 @@ const TX={
     rtitle:'Customer Reviews',
     ctitle:'Contact Us',
     branch1:'Branch One',branch2:'Branch Two',
-    open:'Open',hrs2:'8:00 AM – 12:00 AM',
-    whatsapp:'WhatsApp',directions:'Directions',
-    catTitle:'Our Categories',
-    aboutTag:'About Us',
+    open:'Open',
+    whatsapp:'WhatsApp',
     menu:'Menu',
   }
 };
 
 const AVATARS={male:'👨',female:'👩'};
-
 const CAT_ICONS={all:'🛒',rice:'🌾',meat:'🥩',cereal:'🌽',cleaning:'🧹',vegetable:'🥦',dairy:'🥛',other:'📦'};
 
 const LOCATIONS=[
@@ -467,27 +394,21 @@ const LOCATIONS=[
    name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
    addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
-   phone:'07517985971',
-   phone_display:'0751 798 5971',
-   hr:'8:00 AM – 12:00 AM',
+   phone:'07517985971',phone_display:'0751 798 5971',hr:'8:00 AM – 12:00 AM',
   },
   {id:2,
    name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
    addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
-   phone:'07507364615',
-   phone_display:'0750 736 4615',
-   hr:'8:00 AM – 12:00 AM',
+   phone:'07507364615',phone_display:'0750 736 4615',hr:'8:00 AM – 12:00 AM',
   },
 ];
 
-/* ── CONTEXT ── */
 const Ctx=React.createContext();
 function Provider({children}){
   const[lang,setLang]=useState('ckb');
   const[user,setUser]=useState(null);
   const[profile,setProfile]=useState(null);
-  const[ready,setReady]=useState(false);
   const[toasts,setToasts]=useState([]);
 
   const t=useCallback(k=>{
@@ -522,7 +443,7 @@ function Provider({children}){
       window.history.replaceState(null,'',window.location.pathname);
     }
     SB.auth.getSession().then(({data:{session}})=>{
-      const u=session?.user||null;setUser(u);if(u)loadProfile(u.id);setReady(true);
+      const u=session?.user||null;setUser(u);if(u)loadProfile(u.id);
     });
     const{data:{subscription}}=SB.auth.onAuthStateChange((_,s)=>{
       const u=s?.user||null;setUser(u);
@@ -534,7 +455,7 @@ function Provider({children}){
   const isAdmin=user?.email===ADMIN;
   const dir=lang==='en'?'ltr':'rtl';
   return(
-    <Ctx.Provider value={{lang,t,sw,dir,user,profile,setProfile,isAdmin,ready,toast,loadProfile}}>
+    <Ctx.Provider value={{lang,t,sw,dir,user,profile,setProfile,isAdmin,toast,loadProfile}}>
       {children}
       <div className="toast-wrap">{toasts.map(x=><div key={x.id} className={`toast ${x.ok?'t-ok':'t-err'}`}>{x.msg}</div>)}</div>
     </Ctx.Provider>
@@ -542,7 +463,6 @@ function Provider({children}){
 }
 const useApp=()=>useContext(Ctx);
 
-/* ── HELPERS ── */
 function tleft(iso,days){
   const d=new Date(iso).getTime()+days*86400000-Date.now();
   if(d<=0)return null;
@@ -559,13 +479,11 @@ async function uploadToStorage(bucket,fileOrBlob,ext='jpg'){
   return SB.storage.from(bucket).getPublicUrl(name).data.publicUrl;
 }
 
-/* ── AVATAR ── */
 function Av({profile,size=24,emojiSz=13}){
   if(profile?.avatar_url)return<img src={profile.avatar_url} style={{width:size,height:size,borderRadius:'50%',objectFit:'cover',border:'1px solid rgba(200,150,44,.2)',flexShrink:0,display:'inline-block'}}/>;
   return<span style={{width:size,height:size,borderRadius:'50%',display:'inline-flex',alignItems:'center',justifyContent:'center',fontSize:emojiSz,background:'rgba(200,150,44,.1)',border:'1px solid rgba(200,150,44,.2)',flexShrink:0}}>{AVATARS[profile?.avatar||'male']||'👤'}</span>;
 }
 
-/* ── PROFILE MODAL ── */
 function ProfileModal({onClose}){
   const{t,user,profile,setProfile,toast,isAdmin}=useApp();
   const[name,setName]=useState(profile?.name||'');
@@ -624,7 +542,6 @@ function ProfileModal({onClose}){
   );
 }
 
-/* ── AUTH MODAL ── */
 function AuthModal({onClose}){
   const{t,toast,loadProfile}=useApp();
   const[mode,setMode]=useState('login');
@@ -700,7 +617,6 @@ function AuthModal({onClose}){
   );
 }
 
-/* ── CROP MODAL ── */
 function CropModal({file,aspect,onDone,onClose}){
   const{t}=useApp();
   const[img,setImg]=useState(null);
@@ -764,7 +680,6 @@ function CropModal({file,aspect,onDone,onClose}){
   );
 }
 
-/* ── GLOBAL LIGHTBOX ── */
 function GlobalLightbox({imgs,startIdx,onClose}){
   const[i,setI]=useState(startIdx);
   const ts=useRef(null);
@@ -806,7 +721,6 @@ function GlobalLightbox({imgs,startIdx,onClose}){
   );
 }
 
-/* ── SPONSORS ── */
 function SpTop({sponsors}){
   const[idx,setIdx]=useState(0);
   const[opacity,setOpacity]=useState(1);
@@ -847,7 +761,6 @@ function SponsorsDisplay({sponsors}){
   return<><SpTop sponsors={top}/><SpFloat sponsors={bot}/></>;
 }
 
-/* ── COUNTDOWN ── */
 function Countdown({iso,days}){
   const{t}=useApp();
   const[tl,setTl]=useState(()=>tleft(iso,days));
@@ -865,7 +778,6 @@ function Countdown({iso,days}){
   );
 }
 
-/* ── COMMENTS ── */
 function Comments({postId,user,onLogin}){
   const{t,profile,toast,isAdmin}=useApp();
   const[list,setList]=useState([]);
@@ -998,7 +910,6 @@ function Comments({postId,user,onLogin}){
   );
 }
 
-/* ── DEAL CARD ── */
 function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,setActiveCmt}){
   const{t,dir,toast}=useApp();
   const[liked,setLiked]=useState(false);
@@ -1084,7 +995,6 @@ function DealCard({post,user,isAdmin,onLogin,onDelete,onEdit,onOpenLb,activeCmt,
   );
 }
 
-/* ── POST MODAL ── */
 function PostModal({editing,onSave,onClose}){
   const{t,toast}=useApp();
   const[imgs,setImgs]=useState(()=>editing?parseImgs(editing.images):[]);
@@ -1207,7 +1117,6 @@ function PostModal({editing,onSave,onClose}){
   );
 }
 
-/* ── SPONSOR MODAL ── */
 function SpModal({sponsors,onUpdate,onClose}){
   const{t,toast}=useApp();
   const[list,setList]=useState(sponsors);
@@ -1307,7 +1216,6 @@ function SpModal({sponsors,onUpdate,onClose}){
   );
 }
 
-/* ── DRAWER ── */
 function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   const{t,lang,sw,user,profile,isAdmin}=useApp();
   const go=id=>{document.getElementById(id)?.scrollIntoView({behavior:'smooth'});onClose();};
@@ -1319,7 +1227,7 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
           <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
             <img src={LOGO} alt="Halal Market" style={{width:38,height:38,borderRadius:10,objectFit:'contain',border:'1px solid rgba(200,150,44,.2)'}}/>
             <div>
-              <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:14,background:'linear-gradient(90deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Halal Market</div>
+              <div style={{fontFamily:'Syne,sans-serif',fontWeight:800,fontSize:14,background:'linear-gradient(90deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>حلال مارکێت</div>
               <div style={{fontSize:8,color:'var(--muted)',letterSpacing:1.5,textTransform:'uppercase'}}>Erbil · Kurdistan</div>
             </div>
             <button className="btn btn-g" style={{padding:'5px 9px',marginInlineStart:'auto'}} onClick={onClose}>×</button>
@@ -1339,7 +1247,6 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
           {id:'deals',i:'fa-tags',l:t('dtitle'),bg:'rgba(239,68,68,.1)',ic:'#f87171'},
           {id:'locs',i:'fa-map-marker-alt',l:t('locs'),bg:'rgba(96,165,250,.1)',ic:'#60a5fa'},
           {id:'reviews',i:'fa-star',l:t('reviews'),bg:'rgba(250,204,21,.1)',ic:'#facc15'},
-          {id:'about',i:'fa-info-circle',l:t('about'),bg:'rgba(167,139,250,.1)',ic:'#a78bfa'},
           {id:'contact',i:'fa-phone',l:t('contact'),bg:'rgba(34,197,94,.1)',ic:'var(--green)'},
         ].map(x=>(
           <button key={x.id} className="di" onClick={()=>go(x.id)}>
@@ -1379,9 +1286,6 @@ function Drawer({onClose,onAuth,onAdd,onSp,onProfile}){
   );
 }
 
-/* ══════════════════════════════════════
-   MAIN APP
-══════════════════════════════════════ */
 function App(){
   const{t,lang,dir,user,profile,isAdmin,toast}=useApp();
   const[posts,setPosts]=useState([]);
@@ -1416,7 +1320,7 @@ function App(){
   useEffect(()=>{const id=setInterval(()=>loadPosts(true),90000);return()=>clearInterval(id);},[loadPosts]);
 
   useEffect(()=>{
-    const ids=['hero','deals','locs','reviews','about','contact'];
+    const ids=['hero','deals','locs','reviews','contact'];
     const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id);}),{threshold:.18});
     ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
     return()=>obs.disconnect();
@@ -1443,10 +1347,9 @@ function App(){
 
   return(
     <div className={dir==='rtl'?'rtl':'ltr'}>
-
       <SponsorsDisplay sponsors={sponsors}/>
 
-      {/* ── TICKER ── */}
+      {/* TICKER */}
       <div className="ticker-wrap">
         <div className="ticker-inner">
           {[...Array(4)].map((_,i)=>(
@@ -1462,18 +1365,18 @@ function App(){
         </div>
       </div>
 
-      {/* ── HEADER ── */}
+      {/* HEADER */}
       <header className="hdr">
         <div className="c hdr-inner">
           <div className="logo-wrap" onClick={()=>go('hero')}>
-            <img src={LOGO} alt="Halal Market" className="logo-img" onError={e=>{e.target.style.display='none'}}/>
+            <img src={LOGO} alt="حلال مارکێت" className="logo-img" onError={e=>{e.target.style.display='none'}}/>
             <div>
-              <div className="logo-name">Halal Market</div>
+              <div className="logo-name">حلال مارکێت</div>
               <div className="logo-sub">Erbil · Kurdistan</div>
             </div>
           </div>
           <nav className="hd flex gap2">
-            {[{id:'hero',l:t('home')},{id:'deals',l:t('deals')},{id:'locs',l:t('locs')},{id:'reviews',l:t('reviews')},{id:'about',l:t('about')},{id:'contact',l:t('contact')}].map(x=>(
+            {[{id:'hero',l:t('home')},{id:'deals',l:t('deals')},{id:'locs',l:t('locs')},{id:'reviews',l:t('reviews')},{id:'contact',l:t('contact')}].map(x=>(
               <button key={x.id} onClick={()=>go(x.id)} className="btn btn-g"
                 style={{padding:'6px 11px',fontSize:12,color:active===x.id?'var(--gold)':'var(--muted)',borderColor:active===x.id?'rgba(200,150,44,.3)':'transparent',background:active===x.id?'rgba(200,150,44,.06)':'transparent'}}>
                 {x.l}
@@ -1495,42 +1398,31 @@ function App(){
         </div>
       </header>
 
-      {/* ══════════════════════════════════
-         HERO SECTION
-      ══════════════════════════════════ */}
+      {/* HERO */}
       <section id="hero">
         <div className="hero-bg">
-          <img src={HERO_IMG} alt="Halal Market" onError={e=>{e.target.parentElement.style.background='linear-gradient(150deg,#071510,#0b1e15)'}}/>
+          <img src={HERO_IMG} alt="حلال مارکێت" onError={e=>{e.target.parentElement.style.background='linear-gradient(150deg,#071510,#0b1e15)'}}/>
         </div>
         <div className="hero-overlay"/>
-
-        {/* Decorative glows */}
         <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(200,150,44,.06),transparent 70%)',top:'5%',insetInlineEnd:'-8%',filter:'blur(80px)',animation:'glow 6s ease-in-out infinite',zIndex:2,pointerEvents:'none'}}/>
         <div style={{position:'absolute',width:380,height:380,borderRadius:'50%',background:'radial-gradient(circle,rgba(34,197,94,.05),transparent 70%)',bottom:'8%',insetInlineStart:'-6%',filter:'blur(80px)',animation:'glow 8s ease-in-out 2s infinite',zIndex:2,pointerEvents:'none'}}/>
 
         <div className="hero-body">
-          <img src={LOGO} alt="Halal Market" className="hero-logo" onError={e=>{e.target.style.display='none'}}/>
-
           <h1 className="hero-title">HALAL<br/>MARKET</h1>
           <div className="hero-ar">
             {lang==='ckb'?'حلال مارکێت · هەولێر':lang==='ar'?'هلال ماركت · أربيل':'Halal Market · Erbil'}
           </div>
           <p className="hero-desc">{t('sub')}</p>
-
           <div className="hero-btns">
             <button onClick={()=>go('deals')} className="btn btn-gold" style={{padding:'13px 28px',borderRadius:30,fontSize:14}}>
               <i className="fas fa-tags"/> {t('viewDeals')}
             </button>
-            <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="btn btn-ghost" style={{padding:'13px 24px',borderRadius:30,fontSize:14,color:'#25d366',borderColor:'rgba(37,211,102,.3)'}}>
-              <i className="fab fa-whatsapp"/> WhatsApp
-            </a>
             <button onClick={()=>go('locs')} className="btn btn-ghost" style={{padding:'13px 24px',borderRadius:30,fontSize:14}}>
               <i className="fas fa-map-marker-alt"/> {t('findStore')}
             </button>
           </div>
-
           <div className="hero-trust">
-            {[{n:'2',l:t('br')},{n:'10K+',l:t('pr')},{n:t('wk'),l:t('dc')},{n:'4.9★',l:t('reviews')}].map((s,i)=>(
+            {[{n:'2',l:t('br')},{n:'5,000+',l:t('pr')},{n:t('wk'),l:t('dc')}].map((s,i)=>(
               <div key={i} className="hero-trust-item">
                 <div className="hero-trust-n">{s.n}</div>
                 <div className="hero-trust-l">{s.l}</div>
@@ -1545,57 +1437,9 @@ function App(){
         </div>
       </section>
 
-      {/* ══════════════════════════════════
-         ABOUT
-      ══════════════════════════════════ */}
-      <section id="about" style={{padding:'56px 0',background:'var(--surface)',borderTop:'1px solid var(--border)'}}>
-        <div className="c" style={{maxWidth:780,textAlign:'center'}}>
-          <span style={{display:'inline-block',padding:'5px 16px',borderRadius:20,background:'rgba(200,150,44,.08)',border:'1px solid rgba(200,150,44,.2)',fontSize:11,fontWeight:700,color:'var(--gold)',letterSpacing:.8,marginBottom:16,textTransform:'uppercase'}}>
-            {t('aboutTag')}
-          </span>
-          <h2 style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:'clamp(22px,4vw,32px)',marginBottom:14,lineHeight:1.2}}>{t('atitle')}</h2>
-          <p style={{color:'var(--soft)',fontSize:'clamp(13px,2vw,15px)',lineHeight:1.9,maxWidth:620,margin:'0 auto 28px'}}>{t('atext')}</p>
-          <div className="feats">
-            {[{i:'fa-leaf',l:t('feat1')},{i:'fa-tag',l:t('feat2')},{i:'fa-award',l:t('feat3')},{i:'fa-shipping-fast',l:t('feat4')}].map((f,i)=>(
-              <div key={i} className="feat">
-                <div className="feat-ico"><i className={`fas ${f.i}`}/></div>
-                <div className="feat-label">{f.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <div className="divline"/>
 
-      {/* ══════════════════════════════════
-         CATEGORIES
-      ══════════════════════════════════ */}
-      <section style={{padding:'48px 0',background:'var(--bg)'}}>
-        <div className="c">
-          <div className="stitle">
-            <div className="stitle-bar"/>
-            <div>
-              <h2>{t('catTitle')}</h2>
-              <div className="stitle-sub">{lang==='ckb'?'بەشەکانمان بدۆزەوە':lang==='ar'?'تصفح أقسامنا':'Browse our sections'}</div>
-            </div>
-          </div>
-          <div className="cat-grid">
-            {CATS.map(c=>(
-              <div key={c} className={`cat-card${cat===c?' active':''}`} onClick={()=>{setCat(c);go('deals');}}>
-                <span className="cat-ico">{CAT_ICONS[c]}</span>
-                <div className="cat-name">{t('cats.'+c)}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="divline"/>
-
-      {/* ══════════════════════════════════
-         DEALS
-      ══════════════════════════════════ */}
+      {/* DEALS */}
       <section id="deals" style={{padding:'56px 0',background:'var(--bg)'}}>
         <div className="c">
           <div className="stitle">
@@ -1607,8 +1451,6 @@ function App(){
             <span className="badge">{filtered.length}</span>
             {isAdmin&&<button onClick={()=>{setEditing(null);setPostModal(true);}} className="btn btn-gold" style={{padding:'7px 12px',fontSize:12}}><i className="fas fa-plus"/> {t('addPost')}</button>}
           </div>
-
-          {/* Category filter strip */}
           <div style={{display:'flex',gap:7,overflowX:'auto',paddingBottom:14,marginBottom:24}} className="nsb">
             {CATS.map(c=>(
               <button key={c} onClick={()=>setCat(c)} className={`btn ${cat===c?'btn-gold':'btn-g'}`} style={{borderRadius:22,padding:'8px 16px',fontSize:12,whiteSpace:'nowrap',gap:5}}>
@@ -1616,7 +1458,6 @@ function App(){
               </button>
             ))}
           </div>
-
           {loading?(
             <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))',gap:16}}>
               {[1,2,3].map(i=>(
@@ -1664,9 +1505,7 @@ function App(){
 
       <div className="divline"/>
 
-      {/* ══════════════════════════════════
-         LOCATIONS
-      ══════════════════════════════════ */}
+      {/* LOCATIONS */}
       <section id="locs" style={{padding:'56px 0',background:'var(--surface)'}}>
         <div className="c">
           <div className="stitle">
@@ -1707,9 +1546,7 @@ function App(){
 
       <div className="divline"/>
 
-      {/* ══════════════════════════════════
-         REVIEWS
-      ══════════════════════════════════ */}
+      {/* REVIEWS */}
       <section id="reviews" style={{padding:'56px 0',background:'var(--bg)'}}>
         <div className="c">
           <div className="stitle">
@@ -1719,8 +1556,6 @@ function App(){
               <div className="stitle-sub">{lang==='ckb'?'نرخاندنی کڕیارەکانمان':lang==='ar'?'آراء عملائنا الكرام':'What our customers say'}</div>
             </div>
           </div>
-
-          {/* Rating summary */}
           <div className="rev-head">
             <div>
               <div className="rev-big-n">4.9</div>
@@ -1741,7 +1576,6 @@ function App(){
               ))}
             </div>
           </div>
-
           <div className="rev-scroll">
             {REVIEWS.map(r=>(
               <div key={r.id} className="rev-card">
@@ -1761,16 +1595,14 @@ function App(){
 
       <div className="divline"/>
 
-      {/* ══════════════════════════════════
-         CONTACT
-      ══════════════════════════════════ */}
+      {/* CONTACT */}
       <section id="contact" style={{padding:'56px 0',background:'var(--surface)'}}>
         <div className="c">
           <div className="stitle">
             <div className="stitle-bar"/>
             <div>
               <h2>{t('ctitle')}</h2>
-              <div className="stitle-sub">{lang==='ckb'?'هەر کاتێک ئامادەین':lang==='ar'?'نحن دائماً هنا':lang==='en'?'We are always here for you':''}</div>
+              <div className="stitle-sub">{lang==='ckb'?'هەر کاتێک ئامادەین':lang==='ar'?'نحن دائماً هنا':'We are always here for you'}</div>
             </div>
           </div>
           <div className="contact-grid">
@@ -1803,8 +1635,6 @@ function App(){
               </div>
             </a>
           </div>
-
-          {/* Quick action buttons */}
           <div style={{display:'flex',flexWrap:'wrap',gap:10,justifyContent:'center',marginTop:28}}>
             <a href="tel:+9647517985971" className="btn btn-gold" style={{borderRadius:30,padding:'12px 26px',fontSize:14}}>
               <i className="fas fa-phone"/> {t('callUs')}
@@ -1819,10 +1649,10 @@ function App(){
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
+      {/* FOOTER */}
       <footer style={{background:'var(--elevated)',borderTop:'1px solid var(--border)',padding:'36px 16px 78px',textAlign:'center'}}>
-        <img src={LOGO} alt="Halal Market" style={{width:52,height:52,objectFit:'contain',borderRadius:12,margin:'0 auto 14px',border:'1px solid rgba(200,150,44,.2)',display:'block'}} onError={e=>{e.target.style.display='none'}}/>
-        <div style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:24,marginBottom:4,background:'linear-gradient(120deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Halal Market</div>
+        <img src={LOGO} alt="حلال مارکێت" style={{width:52,height:52,objectFit:'contain',borderRadius:12,margin:'0 auto 14px',border:'1px solid rgba(200,150,44,.2)',display:'block'}} onError={e=>{e.target.style.display='none'}}/>
+        <div style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:24,marginBottom:4,background:'linear-gradient(120deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>حلال مارکێت</div>
         <div style={{fontSize:8,fontWeight:700,letterSpacing:3.5,color:'var(--muted)',marginBottom:12,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
         <div style={{display:'flex',gap:10,justifyContent:'center',marginBottom:20,flexWrap:'wrap'}}>
           <a href="tel:+9647517985971" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',fontSize:12}}><i className="fas fa-phone"/> 0751 798 5971</a>
@@ -1833,7 +1663,7 @@ function App(){
         <p style={{fontSize:10,color:'var(--border2)'}}>{t('copy')}</p>
       </footer>
 
-      {/* ── MOBILE NAV ── */}
+      {/* MOBILE NAV */}
       <nav className="mnav md">
         {navItems.map(x=>(
           <button key={x.id} className={`mnb ${active===x.id?'act':''}`} onClick={()=>go(x.id)}>
@@ -1845,14 +1675,12 @@ function App(){
         </button>
       </nav>
 
-      {/* ── FABs ── */}
+      {/* FABs */}
       <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
       {isAdmin&&<button className="fab-add" onClick={()=>{setEditing(null);setPostModal(true);}}><i className="fas fa-plus"/></button>}
 
-      {/* ── GLOBAL LIGHTBOX ── */}
       {globalLb&&<GlobalLightbox imgs={globalLb.imgs} startIdx={globalLb.idx} onClose={handleCloseLb}/>}
 
-      {/* ── MODALS ── */}
       {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
       {authOpen&&<AuthModal onClose={()=>setAuthOpen(false)}/>}
       {profileOpen&&<ProfileModal onClose={()=>setProfileOpen(false)}/>}
