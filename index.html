@@ -391,16 +391,26 @@ const CAT_ICONS={all:'🛒',rice:'🌾',meat:'🥩',cereal:'🌽',cleaning:'🧹
 
 const LOCATIONS=[
   {id:1,
-   name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
-   addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
-   link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
-   phone:'07517985971',phone_display:'0751 798 5971',hr:'8:00 AM – 12:00 AM',
+    name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
+    addr:{
+      ckb:'جووتسایدی بنصڵاوە تەنیشت مزگەوتی اسراء و معراج',
+      ar:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج',
+      en:'Binaslawa Two-Way, Next to Al-Isra and Al-Mi\'raj Mosque'
+    },
+    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+    fb:'https://www.facebook.com/share/1AmkRDDf5S/',
+    phone:'07517985971',phone_display:'0751 798 5971',hr:'8:00 AM – 12:00 AM',
   },
   {id:2,
-   name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
-   addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
-   link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
-   phone:'07507364615',phone_display:'0750 736 4615',hr:'8:00 AM – 12:00 AM',
+    name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
+    addr:{
+      ckb:'بەحركە - بەرامبەر بەنزینخانەی بەحركە',
+      ar:'بحرگة - مقابل محطة وقود بحرگة',
+      en:'Baharka - Opposite Baharka Gas Station'
+    },
+    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+    fb:'https://www.facebook.com/share/18LEioK1mf/',
+    phone:'07507364615',phone_display:'0750 736 4615',hr:'8:00 AM – 12:00 AM',
   },
 ];
 
@@ -1528,6 +1538,9 @@ function App(){
                   <div className="loc-row"><i className="fas fa-circle" style={{color:'var(--green)',fontSize:7}}/><span style={{color:'var(--green)',fontWeight:700}}>{t('open')}</span></div>
                 </div>
                 <div className="loc-btns">
+                  <a href={loc.fb} target="_blank" rel="noreferrer" className="btn btn-gold" style={{ padding: '8px', borderRadius: '10px' }}>
+  <i className="fab fa-facebook"></i>
+</a>
                   <a href={loc.link} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{borderRadius:10,padding:'9px 8px',fontSize:11,gap:4}}>
                     <i className="fas fa-map-marker-alt"/> {t('openMap')}
                   </a>
