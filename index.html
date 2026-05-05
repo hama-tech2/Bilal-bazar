@@ -1632,9 +1632,7 @@ function App(){
       </nav>
 
       {/* FABs */}
-      <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
-      {isAdmin&&<button className="fab-add" onClick={()=>{setEditing(null);setPostModal(true);}}><i className="fas fa-plus"/></button>}
-
+      
       {globalLb&&<GlobalLightbox imgs={globalLb.imgs} startIdx={globalLb.idx} onClose={handleCloseLb}/>}
 
       {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
