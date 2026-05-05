@@ -389,27 +389,30 @@ const TX={
 const AVATARS={male:'👨',female:'👩'};
 const CAT_ICONS={all:'🛒',rice:'🌾',meat:'🥩',cereal:'🌽',cleaning:'🧹',vegetable:'🥦',dairy:'🥛',other:'📦'};
 
-<div className="loc-btns" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', padding: '10px' }}>
-  {/* 1. نەخشە - Location */}
-  <a href={loc.link} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-    <i className="fas fa-map-marker-alt"/> {t('openMap')}
-  </a>
-
-  {/* 2. فەیسبووک - Facebook */}
-  <a href={loc.fb} target="_blank" rel="noreferrer" className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-    <i className="fab fa-facebook"/> Facebook
-  </a>
-
-  {/* 3. وەتسئەپ - WhatsApp */}
-  <a href={`https://wa.me/964${loc.phone.replace(/^0/,'')}`} target="_blank" rel="noreferrer" className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-    <i className="fab fa-whatsapp"/> WhatsApp
-  </a>
-
-  {/* 4. پەیوەندی - Call */}
-  <a href={`tel:+964${loc.phone.replace(/^0/,'')}`} className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-    <i className="fas fa-phone"/> {t('call')}
-  </a>
-</div>
+const LOCATIONS=[
+  {id:1,
+    name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
+    addr:{
+      ckb:'جووتسایدی بنصڵاوە تەنیشت مزگەوتی اسراء و معراج',
+      ar:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج',
+      en:'Binaslawa Two-Way, Next to Al-Isra and Al-Mi\'raj Mosque'
+    },
+    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+    fb:'https://www.facebook.com/share/1AmkRDDf5S/',
+    phone:'07517985971',phone_display:'0751 798 5971',hr:'8:00 AM – 12:00 AM',
+  },
+  {id:2,
+    name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
+    addr:{
+      ckb:'بەحركە - بەرامبەر بەنزینخانەی بەحركە',
+      ar:'بحرگة - مقابل محطة وقود بحرگة',
+      en:'Baharka - Opposite Baharka Gas Station'
+    },
+    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+    fb:'https://www.facebook.com/share/18LEioK1mf/',
+    phone:'07507364615',phone_display:'0750 736 4615',hr:'8:00 AM – 12:00 AM',
+  },
+];
 
 const Ctx=React.createContext();
 function Provider({children}){
@@ -1634,30 +1637,16 @@ function App(){
           </button>
         ))}
         <button className="mnb" onClick={()=>setDrawer(true)}>
-          <div className="loc-btns" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', padding: '12px 10px' }}>
-            {/* 1. نەخشە */}
-            <a href={loc.link} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-              <i className="fas fa-map-marker-alt"/> {t('openMap')}
-            </a>
+          <i className="fas fa-bars"/>{t('menu')}
+        </button>
+      </nav>
 
-            {/* 2. فەیسبووک */}
-            <a href={loc.fb} target="_blank" rel="noreferrer" className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-              <i className="fab fa-facebook"/> Facebook
-            </a>
+      {/* FABs */}
+      
+      {globalLb&&<GlobalLightbox imgs={globalLb.imgs} startIdx={globalLb.idx} onClose={handleCloseLb}/>}
 
-            {/* 3. وەتسئەپ */}
-            <a href={`https://wa.me/964${loc.phone.replace(/^0/,'')}`} target="_blank" rel="noreferrer" className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-              <i className="fab fa-whatsapp"/> WhatsApp
-            </a>
-
-            {/* 4. پەیوەندی */}
-            <a href={`tel:+964${loc.phone.replace(/^0/,'')}`} className="btn btn-gold" style={{ borderRadius: 10, padding: '12px 5px', fontSize: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-              <i className="fas fa-phone"/> {t('call')}
-            </a>
-          </div>
-        </div>
-      ))}
-        
+      {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
+      {authOpen&&<AuthModal onClose={()=>setAuthOpen(false)}/>}
       {profileOpen&&<ProfileModal onClose={()=>setProfileOpen(false)}/>}
       {postModal&&<PostModal editing={editing} onSave={handleSaved} onClose={()=>{setPostModal(false);setEditing(null);}}/>}
       {spOpen&&<SpModal sponsors={sponsors} onUpdate={s=>{setSponsors(s);loadSponsors();}} onClose={()=>setSpOpen(false)}/>}
